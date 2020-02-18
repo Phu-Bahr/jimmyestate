@@ -1,0 +1,2 @@
+class Jumbotron < ApplicationRecord
+end

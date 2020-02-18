@@ -1,0 +1,486 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+//  @import url('https://fonts.googleapis.com/css?family=Lato:300,700|Prata"');
+
+html,
+body,
+#app,
+#app > div {
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.venueBackground {
+  background: white;
+}
+
+.master {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-family: ambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Prata", serif;
+}
+
+.glow-border {
+  box-shadow: 0px 0px 30px 10px #565050;
+}
+
+.invisible {
+  display: none;
+}
+
+// venue
+.venueImage {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: fill;
+  opacity: 0.3;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.venueTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  font-size: 20px;
+  width: 50%;
+  text-align: center;
+  background: whitesmoke;
+  color: black;
+  transition: width 1s, background 0.1s, 0.5s;
+}
+
+.venueDetails {
+  background: black;
+  color: whitesmoke;
+}
+
+// .m-fadeOut {
+//   height: 0.00000001px;
+//   width: 0.00000001px;
+//   visibility: hidden;
+//   opacity: 0;
+//   transition: visibility 0s linear 0ms, opacity 0.4s;
+// }
+// .m-fadeIn {
+//   visibility: visible;
+//   opacity: 1;
+//   transition: visibility 0s linear 0s, opacity 0.4s;
+// }
+
+.parent {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: fill;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  display: inline-block;
+}
+
+.child {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.parent:hover .child,
+.parent:focus .child {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.parent:hover .child:before,
+.parent:focus .child:before {
+  display: block;
+}
+
+.parent:hover a,
+.parent:focus a {
+  display: block;
+}
+
+.parent:hover .venueTitle {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.parent:hover .venueImage {
+  opacity: 1;
+}
+
+/* Media Queries */
+@media screen and (max-width: 960px) {
+  .parent {
+    width: 100%;
+    margin: 20px 0px;
+  }
+  .wrapper {
+    padding: 20px 20px;
+  }
+}
+
+.border {
+  border: #565050;
+}
+
+.custom-button.btn {
+  background-color: #293241;
+  color: #fff;
+  border: none;
+}
+.custom-button.btn:hover {
+  color: #fff !important;
+  border: none;
+}
+
+.parallaxVenue {
+  background: url("https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  filter: grayscale(100%);
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+// end of venue
+
+// jumbotron
+
+.jumboBackground {
+  background-color: black !important;
+}
+
+.overlayParticle {
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.particles {
+  position: absolute;
+  right: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.jumboFont {
+  font-size: 6vw;
+}
+
+.jumboFont2 {
+  font-size: 3vw;
+}
+
+.jumboFont3 {
+  font-size: 4vw;
+}
+// end of jumbotron
+
+// NAV BAR CSS
+
+.navbar-font {
+  font-size: 31px;
+  color: black;
+  font-weight: 800;
+}
+
+.site-header {
+  background-color: whitesmoke;
+  padding: 20px 10px;
+}
+
+.navbar-underline:link {
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.navbar-underline:hover,
+.navbar-underline:focus,
+.navbar-underline:active {
+  color: #999;
+  text-decoration: none;
+}
+.navbar-underline {
+  text-decoration: none;
+  transition: color 0.1s, background-color 0.1s;
+}
+.navbar-underline {
+  position: relative;
+  display: block;
+  padding: 16px 0;
+  margin: auto;
+  letter-spacing: 1px;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  transition: color 0.1s, background-color 0.1s, padding 0.2s ease-in;
+}
+.navbar-underline::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: darkgrey;
+  transform-origin: right top;
+  transform: scale(0, 1);
+  transition: color 0.1s, transform 0.2s ease-out;
+}
+
+.navbar-underline:hover::before,
+.navbar-underline:focus::before {
+  transform-origin: left top;
+  transform: scale(1, 1);
+}
+// end of navbar
+
+// footer
+
+.footerbackground {
+  background: black;
+  color: white;
+}
+
+.iconfont {
+  font-size: 30px;
+  color: whitesmoke;
+}
+
+// social css
+
+$primary: hsla(120, 74%, 75%, 0.6); //#8eee8e
+$primary-dark: hsla(120, 74%, 75%, 0.3); //#8eee8e
+
+$white87: hsla(0, 0%, 100%, 0.87); //#fff
+$white60: hsla(0, 0%, 100%, 0.6); //#fff
+$white30: hsla(0, 0%, 100%, 0.3); //#fff
+$white15: hsla(0, 0%, 100%, 0.15); //#fff
+$white0: hsla(0, 0%, 100%, 0); //#fff
+
+$dark-gray: hsla(0, 0%, 7%, 1); //#121212
+
+$link: hsla(208, 100, 67, 1); //#56afff
+$link-light: hsla(192, 100, 49, 1); //#00C8FB
+
+/**
+ * rem
+ */
+// Convert a pixel value to REM units
+@function rem($pixel) {
+  @return $pixel / 16 + rem;
+}
+
+// icon
+.c-magic-icon {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  outline: none;
+  line-height: rem(45);
+  display: inline-block;
+  text-align: center;
+  margin: 0 rem(4);
+
+  & * {
+    pointer-events: none;
+  }
+
+  &:hover .c-magic-icon__curtain {
+    transform: translate(0, 100%);
+  }
+
+  &:focus {
+    .c-magic-icon__outline {
+      border: rem(1) solid $link;
+      color: $link;
+    }
+  }
+
+  &:active .c-magic-icon__fill {
+    opacity: 40%;
+  }
+}
+
+// icons layers
+
+.c-magic-icon__fill {
+  border-radius: 50%;
+  color: $dark-gray;
+  display: inline-block;
+  width: rem(45);
+  height: rem(45);
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.twitter {
+  background-color: #1ca1f2;
+}
+
+.instagram {
+  background: linear-gradient(
+    216deg,
+    rgba(64, 93, 230, 1) 0%,
+    rgba(225, 48, 108, 1) 54%,
+    rgba(255, 220, 128, 1) 100%
+  );
+}
+
+.other {
+  background-color: blue;
+}
+
+.c-magic-icon__fill {
+  opacity: 80%;
+}
+
+.c-magic-icon__curtain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  transform: translate(0, 0%);
+  transition: transform 0.18s ease-out;
+}
+
+.c-magic-icon__outline {
+  border-radius: 50%;
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: rem(45);
+  height: rem(45);
+}
+
+// end of social css
+
+// end of footer
+
+// beginning Company component
+
+.parallaxCompany {
+  background: url("https://weraveyou.com/wp-content/uploads/2019/11/slideshow-1496136375.jpg");
+  filter: grayscale(100%);
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.companycontent {
+  background: whitesmoke;
+  height: 100%;
+  font-size: 26px;
+}
+
+.companyfont {
+  position: relative;
+  color: white;
+  text-align: center;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  font-size: 5vw;
+}
+
+// end of company
+
+// reservation css
+
+.parallaxReservation {
+  background: url("https://bottle-service-vegas.com/wp-content/uploads/2019/04/Bottle-service-seating-areas.jpg");
+  filter: grayscale(100%);
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// end of reservation
+
+// login
+
+// .login-background {
+//   // height: 800px;
+//   // width: 100%;
+//   // background: url("https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?cs=srgb&dl=people-walking-on-the-street-2506923.jpg&fm=jpg");
+//   // background-size: cover;
+//   // // background-attachment: fixed;
+// }
+
+// end of login
+
+// announcements
+
+.glow-border {
+  -webkit-box-shadow: 0px 0px 30px 10px #565050;
+  -moz-box-shadow: 0px 0px 30px 10px #565050;
+  box-shadow: 0px 0px 30px 10px #565050;
+}
+
+.event-border:hover {
+  -webkit-box-shadow: 0px 0px 30px 10px #565050;
+  -moz-box-shadow: 0px 0px 30px 10px #565050;
+  box-shadow: 0px 0px 30px 10px #565050;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+// end of announcements
