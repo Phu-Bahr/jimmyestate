@@ -16,6 +16,6 @@ class Api::V1::AnnouncementsController < ApplicationController
 
     private
         def announcement_params
-            params.require(:announcement).permit(:description, :flier)
+            params.require(:announcement).permit(:description, :flier, :title)
         end
 end

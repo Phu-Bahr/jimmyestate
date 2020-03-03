@@ -36,7 +36,8 @@ company = Company.create!(
 
 announcement = Announcement.create!(
     description: "hello, we are going to party soon", 
-    flier: "https://www.templatemonster.com/blog/wp-content/uploads/2015/12/christmas-psd-freebie.jpg"
+    flier: "https://www.templatemonster.com/blog/wp-content/uploads/2015/12/christmas-psd-freebie.jpg",
+    title: "place title here"
 )
 
 event = Event.create!([
