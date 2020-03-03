@@ -11,6 +11,7 @@ class AnnouncementContainer extends Component {
       hideEditAnnounce: true,
       description: "",
       flier: "",
+      title: "",
       refreshKey: false
     };
 
@@ -40,11 +41,12 @@ class AnnouncementContainer extends Component {
     event.preventDefault();
     // need to make url more dynamic than hard code 1
     const urls = "/api/v1/announcements/1";
-    const { description, flier } = this.state;
+    const { description, flier, title } = this.state;
 
     const body = {
       description,
-      flier
+      flier,
+      title
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -79,7 +81,8 @@ class AnnouncementContainer extends Component {
         this.setState({
           announcementData: response1,
           description: response1[0].description,
-          flier: response1[0].flier
+          flier: response1[0].flier,
+          title: response1[0].title
         });
         this.setState({ eventData: response2 });
       })
@@ -97,7 +100,8 @@ class AnnouncementContainer extends Component {
           this.setState({
             announcementData: response1,
             description: response1[0].description,
-            flier: response1[0].flier
+            flier: response1[0].flier,
+            title: response1[0].title
           });
           this.setState({ eventData: response2 });
         })
@@ -125,12 +129,16 @@ class AnnouncementContainer extends Component {
       return element.flier;
     });
 
+    let announcementTitle = announcementData.map(element => {
+      return element.title;
+    });
+
     return (
       <div id="announcementTag">
         <div className="container-fluid companycontent pt-5">
           <div className="text-center">
             <div>
-              <h1>Announcements</h1>
+              <h1>{announcementTitle}</h1>
             </div>
             <div className="container pt-4 pb-4">
               <div className="row">
@@ -153,6 +161,16 @@ class AnnouncementContainer extends Component {
                 <div className="row">
                   <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
                     <form onSubmit={this.onSubmit}>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="title"
+                          id="title"
+                          className="form-control"
+                          onChange={this.onChange}
+                          placeholder={this.state.title}
+                        />
+                      </div>
                       <div className="form-group">
                         <input
                           type="text"
