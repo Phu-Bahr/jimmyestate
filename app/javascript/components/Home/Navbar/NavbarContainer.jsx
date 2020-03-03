@@ -21,7 +21,7 @@ class NavbarContainer extends Component {
             role="navigation"
             onClick={this.scrollToTop}
           >
-            JIMMY CHAO REALTY
+            JC REALTY
           </div>
 
           <button
