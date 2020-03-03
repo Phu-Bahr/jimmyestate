@@ -140,6 +140,9 @@ class AnnouncementContainer extends Component {
             <div>
               <h1>{announcementTitle}</h1>
             </div>
+            <div>
+              <h4>Your Real Estate Concierge</h4>
+            </div>
             <div className="container pt-4 pb-4">
               <div className="row">
                 <div className="col-md-10 offset-lg-1">
