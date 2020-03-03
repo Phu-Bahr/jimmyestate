@@ -21,7 +21,7 @@ class NavbarContainer extends Component {
             role="navigation"
             onClick={this.scrollToTop}
           >
-            PlusONE
+            JIMMY CHAO REALTY
           </div>
 
           <button
@@ -41,6 +41,17 @@ class NavbarContainer extends Component {
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link
+                  to="reservationTag"
+                  className="nav-link navbar-underline"
+                  smooth={true}
+                  offset={-90}
+                  duration={1100}
+                >
+                  HOME
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <Link
                   to="/newVenue"
@@ -51,43 +62,46 @@ class NavbarContainer extends Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  VENUES
+                  FEATURED COMMUNITIES
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link
                     to="/newVenue"
                     className="dropdown-item navbar-underline"
                   >
-                    Club 1 Website
+                    Arlington
                   </Link>
                   <Link
                     to="/newVenue"
                     className="dropdown-item navbar-underline"
                   >
-                    Club 2 Website
+                    Belmont
                   </Link>
-                  <div className="dropdown-divider"></div>
                   <Link
-                    to="venueTag"
+                    to="/newVenue"
                     className="dropdown-item navbar-underline"
-                    smooth={true}
-                    offset={-90}
-                    duration={1100}
                   >
-                    Bring to list of clubs here
+                    Brookline
+                  </Link>
+                  <Link
+                    to="/newVenue"
+                    className="dropdown-item navbar-underline"
+                  >
+                    Newton
+                  </Link>
+                  <Link
+                    to="/newVenue"
+                    className="dropdown-item navbar-underline"
+                  >
+                    Waltham
+                  </Link>
+                  <Link
+                    to="/newVenue"
+                    className="dropdown-item navbar-underline"
+                  >
+                    Watertown
                   </Link>
                 </div>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="reservationTag"
-                  className="nav-link navbar-underline"
-                  smooth={true}
-                  offset={-90}
-                  duration={1100}
-                >
-                  RESERVATIONS
-                </Link>
               </li>
               <li className="nav-item">
                 <Link
@@ -97,7 +111,7 @@ class NavbarContainer extends Component {
                   offset={-90}
                   duration={1100}
                 >
-                  COMPANY
+                  SERVICES
                 </Link>
               </li>
               <li className="nav-item">
@@ -108,7 +122,7 @@ class NavbarContainer extends Component {
                   offset={-90}
                   duration={1100}
                 >
-                  Events
+                  ABOUT
                 </Link>
               </li>
               <li className="nav-item">
