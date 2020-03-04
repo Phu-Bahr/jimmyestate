@@ -16,7 +16,7 @@ class Api::V1::CompaniesController < ApplicationController
 
     private
         def company_params
-            params.require(:company).permit(:description)
+            params.require(:company).permit(:description, :title)
         end
 end
 

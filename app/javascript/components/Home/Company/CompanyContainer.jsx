@@ -6,6 +6,7 @@ class CompanyContainer extends Component {
     this.state = {
       companyData: [],
       description: "",
+      title: "",
       refreshKey: false,
       hidDiv: true
     };
@@ -35,10 +36,11 @@ class CompanyContainer extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = "/api/v1/companies/1";
-    const { description } = this.state;
+    const { description, title } = this.state;
 
     const body = {
-      description
+      description,
+      title
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -78,7 +80,11 @@ class CompanyContainer extends Component {
       .then(response => response.json())
       .then(body => {
         let newCompanyData = body;
-        this.setState({ companyData: newCompanyData });
+        this.setState({
+          companyData: newCompanyData,
+          description: newCompanyData[0].description,
+          title: newCompanyData[0].title
+        });
       })
       .then(this.setState({ refreshKey: false }))
       .catch(error => console.log(error.message));
@@ -99,7 +105,9 @@ class CompanyContainer extends Component {
         .then(response => response.json())
         .then(body => {
           let newCompanyData = body;
-          this.setState({ companyData: newCompanyData });
+          this.setState({
+            companyData: newCompanyData
+          });
         })
         .then(this.setState({ refreshKey: false }));
     }
@@ -118,6 +126,10 @@ class CompanyContainer extends Component {
       return element.description;
     });
 
+    let companyTitle = companyData.map(element => {
+      return element.title;
+    });
+
     return (
       <div id="companyTag">
         <div className="parallaxCompany">
@@ -128,6 +140,7 @@ class CompanyContainer extends Component {
         <div>
           <section className="container-fluid companycontent py-5">
             <div className="container">
+              <h2 className="text-center"> {companyTitle} test</h2>
               <p> {companyDescription} </p>
             </div>
             <div className={this.props.hideEditButton}>
@@ -142,13 +155,23 @@ class CompanyContainer extends Component {
               <div className={"col-xs-12 col-sm-12 col-md-12" + " " + hide}>
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group pt-3">
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.title}
+                    />
+                  </div>
+                  <div className="form-group pt-3">
                     <textarea
                       type="text"
                       name="description"
                       id="description"
                       className="form-control"
                       onChange={this.onChange}
-                      placeholder="Update Description Here..."
+                      value={this.state.description}
                       rows="4"
                     />
                   </div>

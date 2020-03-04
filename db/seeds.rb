@@ -31,12 +31,13 @@ footer = Footer.create!(
 )
 
 company = Company.create!(
-    description: "this is the beginning of a company description"
+    description: "this is the beginning of a company description",
+    title: "edit your title here"
 )
 
 announcement = Announcement.create!(
     description: "hello, we are going to party soon", 
-    flier: "https://www.templatemonster.com/blog/wp-content/uploads/2015/12/christmas-psd-freebie.jpg",
+    flier: "https://images.pexels.com/photos/207983/pexels-photo-207983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     title: "place title here"
 )
 
