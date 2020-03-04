@@ -463,6 +463,10 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   -webkit-box-shadow: 0px 0px 30px 10px #565050;
   -moz-box-shadow: 0px 0px 30px 10px #565050;
   box-shadow: 0px 0px 30px 10px #565050;
+  height: 60vw;
+  width: 100%;
+  /* even more control with max-width */
+  max-width: 720px;
 }
 
 .event-border:hover {

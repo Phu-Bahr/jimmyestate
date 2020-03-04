@@ -171,7 +171,7 @@ class AnnouncementContainer extends Component {
                           id="title"
                           className="form-control"
                           onChange={this.onChange}
-                          placeholder={this.state.title}
+                          value={this.state.title}
                         />
                       </div>
                       <div className="form-group">
@@ -181,7 +181,7 @@ class AnnouncementContainer extends Component {
                           id="description"
                           className="form-control"
                           onChange={this.onChange}
-                          placeholder={this.state.description}
+                          value={this.state.description}
                         />
                       </div>
                       <div className="form-group">
@@ -191,7 +191,7 @@ class AnnouncementContainer extends Component {
                           id="flier"
                           className="form-control"
                           onChange={this.onChange}
-                          placeholder={this.state.flier}
+                          value={this.state.flier}
                         />
                       </div>
                       <button type="submit" className="btn custom-button">
@@ -207,10 +207,7 @@ class AnnouncementContainer extends Component {
           <div className="row">
             <div className="col-sm-6 pb-5">
               <div className="text-center">
-                <img
-                  className="img-fluid glow-border"
-                  src={announcementFlier}
-                ></img>
+                <img className="glow-border" src={announcementFlier}></img>
               </div>
             </div>
 
