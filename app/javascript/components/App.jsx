@@ -4,6 +4,10 @@ import Home from "../components/Home/Home";
 import NewVenue from "../components/Home/Venue/NewVenue";
 import Registration from "../components/Home/User/Registration";
 import Login from "../components/Home/User/Login";
+import ServiceContainer from "../components/Home/Service/ServiceContainer";
+import AboutContainer from "../components/Home/About/AboutContainer";
+import ContactContainer from "../components/Home/Contact/ContactContainer";
+import NavbarContainer from "../components/Home/Navbar/NavbarContainer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -77,6 +81,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router>
+          <NavbarContainer />
           <Switch>
             <Route
               exact
@@ -113,6 +118,9 @@ class App extends Component {
                 />
               )}
             />
+            <Route path="/service" component={ServiceContainer} />
+            <Route path="/about" component={AboutContainer} />
+            <Route path="/contact" component={ContactContainer} />
           </Switch>
         </Router>
       </React.Fragment>

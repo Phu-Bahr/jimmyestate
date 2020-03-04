@@ -50,7 +50,6 @@ class Home extends Component {
             loggedInStatus={this.props.loggedInStatus}
           />
         </div>
-        <NavbarContainer hideEditButton={hideEditButton} />
         <JumbotronContainer hideEditButton={hideEditButton} />
         <AnnouncementContainer hideEditButton={hideEditButton} />
         <VenueContainer hideEditButton={hideEditButton} />
@@ -63,4 +62,5 @@ class Home extends Component {
 
 export default Home;
 
+//<NavbarContainer hideEditButton={hideEditButton} />
 //<ReservationContainer hideEditButton={hideEditButton} />
