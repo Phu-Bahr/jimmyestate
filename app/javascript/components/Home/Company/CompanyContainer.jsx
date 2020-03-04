@@ -140,7 +140,7 @@ class CompanyContainer extends Component {
         <div>
           <section className="container-fluid companycontent py-5">
             <div className="container">
-              <h2 className="text-center"> {companyTitle} test</h2>
+              <h2 className="text-center">{companyTitle}</h2>
               <p> {companyDescription} </p>
             </div>
             <div className={this.props.hideEditButton}>
