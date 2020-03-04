@@ -84,16 +84,8 @@ class Login extends Component {
       hide = "invisible";
     }
     return (
-      <div style={{ height: 1 }}>
-        <div
-          className="container text-center login-background"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "40%",
-            transform: "translate(-50%, -50%)"
-          }}
-        >
+      <div>
+        <div className="container text-center login-background">
           <div>
             <div className="col-sm-12 col-lg-6 offset-lg-3">
               <h1>Status: {this.props.loggedInStatus}</h1>

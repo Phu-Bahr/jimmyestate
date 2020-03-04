@@ -10,6 +10,7 @@ import ContactContainer from "../components/Home/Contact/ContactContainer";
 import NavbarContainer from "../components/Home/Navbar/NavbarContainer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import FooterContainer from "../components/Home/Footer/FooterContainer";
 
 library.add(fab);
 
@@ -122,6 +123,10 @@ class App extends Component {
             <Route path="/about" component={AboutContainer} />
             <Route path="/contact" component={ContactContainer} />
           </Switch>
+          <FooterContainer
+            loggedInStatus={this.state.loggedInStatus}
+            user={this.state.user}
+          />
         </Router>
       </React.Fragment>
     );

@@ -398,6 +398,13 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   height: rem(45);
 }
 
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; /* Footer height */
+}
+
 // end of social css
 
 // end of footer

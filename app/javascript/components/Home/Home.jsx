@@ -54,7 +54,6 @@ class Home extends Component {
         <AnnouncementContainer hideEditButton={hideEditButton} />
         <VenueContainer hideEditButton={hideEditButton} />
         <CompanyContainer hideEditButton={hideEditButton} />
-        <FooterContainer hideEditButton={hideEditButton} />
       </div>
     );
   }
@@ -62,5 +61,6 @@ class Home extends Component {
 
 export default Home;
 
+//<FooterContainer hideEditButton={hideEditButton} />
 //<NavbarContainer hideEditButton={hideEditButton} />
 //<ReservationContainer hideEditButton={hideEditButton} />
