@@ -156,6 +156,12 @@ class FooterContainer extends Component {
   }
 
   render() {
+    let hideEditButton;
+    if (this.props.user.admin === true) {
+      hideEditButton = "";
+    } else {
+      hideEditButton = "invisible";
+    }
     let hide;
     if (this.state.hideDiv === true) {
       hide = "invisible";
@@ -223,7 +229,7 @@ class FooterContainer extends Component {
             </div>
           </div>
 
-          <div className={this.props.hideEditButton}>
+          <div className={hideEditButton}>
             <div className="col-sm-12 mt-5 text-center">
               <button
                 type="button"
