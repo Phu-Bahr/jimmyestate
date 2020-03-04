@@ -289,8 +289,8 @@ h6 {
 // footer
 
 .footerbackground {
-  background: black;
-  color: white;
+  background: #d6d6d6;
+  color: black;
 }
 
 .iconfont {
@@ -394,7 +394,7 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   height: 100%;
   top: 0;
   left: 0;
-  background-color: black;
+  background-color: #d6d6d6;
   transform: translate(0, 0%);
   transition: transform 0.18s ease-out;
 }

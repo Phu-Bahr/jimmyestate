@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
-
+// import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-router-dom";
 // fix links
 class NavbarContainer extends Component {
   constructor(props) {
@@ -42,19 +42,13 @@ class NavbarContainer extends Component {
           >
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link
-                  to="reservationTag"
-                  className="nav-link navbar-underline"
-                  smooth={true}
-                  offset={-90}
-                  duration={1100}
-                >
-                  HOME
+                <Link to="/" className="nav-link navbar-underline">
+                  Home
                 </Link>
               </li>
               <li className="nav-item dropdown">
                 <Link
-                  to="/newVenue"
+                  to="/"
                   className="nav-link dropdown-toggle navbar-underline"
                   id="navbarDropdown"
                   role="button"
@@ -65,74 +59,38 @@ class NavbarContainer extends Component {
                   FEATURED COMMUNITIES
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link
-                    to="/newVenue"
-                    className="dropdown-item navbar-underline"
-                  >
+                  <Link to="/" className="dropdown-item navbar-underline">
                     Arlington
                   </Link>
-                  <Link
-                    to="/newVenue"
-                    className="dropdown-item navbar-underline"
-                  >
+                  <Link to="/" className="dropdown-item navbar-underline">
                     Belmont
                   </Link>
-                  <Link
-                    to="/newVenue"
-                    className="dropdown-item navbar-underline"
-                  >
+                  <Link to="/" className="dropdown-item navbar-underline">
                     Brookline
                   </Link>
-                  <Link
-                    to="/newVenue"
-                    className="dropdown-item navbar-underline"
-                  >
+                  <Link to="/" className="dropdown-item navbar-underline">
                     Newton
                   </Link>
-                  <Link
-                    to="/newVenue"
-                    className="dropdown-item navbar-underline"
-                  >
+                  <Link to="/" className="dropdown-item navbar-underline">
                     Waltham
                   </Link>
-                  <Link
-                    to="/newVenue"
-                    className="dropdown-item navbar-underline"
-                  >
+                  <Link to="/" className="dropdown-item navbar-underline">
                     Watertown
                   </Link>
                 </div>
               </li>
               <li className="nav-item">
-                <Link
-                  to="companyTag"
-                  className="nav-link navbar-underline"
-                  smooth={true}
-                  offset={-90}
-                  duration={1100}
-                >
+                <Link to="/service" className="nav-link navbar-underline">
                   SERVICES
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  to="announcementTag"
-                  className="nav-link navbar-underline"
-                  smooth={true}
-                  offset={-90}
-                  duration={1100}
-                >
+                <Link to="/about" className="nav-link navbar-underline">
                   ABOUT
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  to="contactTag"
-                  className="nav-link navbar-underline"
-                  smooth={true}
-                  offset={-90}
-                  duration={1100}
-                >
+                <Link to="/contact" className="nav-link navbar-underline">
                   CONTACT
                 </Link>
               </li>
