@@ -8,6 +8,7 @@ import ServiceContainer from "../components/Home/Service/ServiceContainer";
 import AboutContainer from "../components/Home/About/AboutContainer";
 import ContactContainer from "../components/Home/Contact/ContactContainer";
 import NavbarContainer from "../components/Home/Navbar/NavbarContainer";
+import CommunityContainer from "../components/Home/Community/CommunityContainer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
@@ -82,7 +83,10 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router>
-          <NavbarContainer />
+          <NavbarContainer
+            loggedInStatus={this.state.loggedInStatus}
+            user={this.state.user}
+          />
           <Switch>
             <Route
               exact
@@ -122,6 +126,17 @@ class App extends Component {
             <Route path="/service" component={ServiceContainer} />
             <Route path="/about" component={AboutContainer} />
             <Route path="/contact" component={ContactContainer} />
+            <Route
+              path="/addcommunity"
+              render={props => (
+                <CommunityContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  handleLogout={this.handleLogout}
+                  user={this.state.user}
+                />
+              )}
+            />
           </Switch>
           <FooterContainer
             loggedInStatus={this.state.loggedInStatus}

@@ -162,6 +162,7 @@ class FooterContainer extends Component {
     } else {
       hideEditButton = "invisible";
     }
+
     let hide;
     if (this.state.hideDiv === true) {
       hide = "invisible";
