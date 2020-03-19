@@ -219,7 +219,7 @@ class FooterContainer extends Component {
                 {footerOfficeData}
               </div>
               <div className="col-xs-12 col-sm-4 col-md-4">
-                <h3 className="d-flex justify-content-center">CONTACT US</h3>
+                <h3 className="d-flex justify-content-center">CONTACT ME</h3>
                 {footerContactUsData}
               </div>
               <div className="col-xs-12 col-sm-4 col-md-4">
