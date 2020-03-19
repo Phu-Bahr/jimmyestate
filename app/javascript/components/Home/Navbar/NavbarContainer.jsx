@@ -13,6 +13,13 @@ class NavbarContainer extends Component {
   };
 
   render() {
+    let hideEditButton;
+    if (this.props.user.admin === true) {
+      hideEditButton = "";
+    } else {
+      hideEditButton = "invisible";
+    }
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light site-header sticky-top py-4 navbar-font-type">
         <div className="container-fluid" style={{ maxWidth: 1150 }}>
@@ -71,6 +78,15 @@ class NavbarContainer extends Component {
                   <Link to="/" className="dropdown-item navbar-underline">
                     Watertown
                   </Link>
+                  <div className={hideEditButton}>
+                    <div className="dropdown-divider"></div>
+                    <Link
+                      to="/addcommunity"
+                      className="dropdown-item navbar-underline"
+                    >
+                      Add Community
+                    </Link>
+                  </div>
                 </div>
               </li>
               <li className="nav-item">
