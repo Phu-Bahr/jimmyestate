@@ -9,7 +9,7 @@ class CommunityContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Hi from Add community page Page</h1>
+        <h1>Hi from community container Page</h1>
       </div>
     );
   }
