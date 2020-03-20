@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class NewCommunity extends React.Component {
+class NewTown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ class NewCommunity extends React.Component {
       townlink1: "",
       townlink2: "",
       townlink3: "",
-      town: ""
+      name: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -29,7 +29,7 @@ class NewCommunity extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/communities/create";
+    const urls = "/api/v1/towns";
     const {
       headerText1,
       headerText2,
@@ -42,7 +42,7 @@ class NewCommunity extends React.Component {
       townlink1,
       townlink2,
       townlink3,
-      town
+      name
     } = this.state;
 
     const body = {
@@ -57,7 +57,7 @@ class NewCommunity extends React.Component {
       townlink1,
       townlink2,
       townlink3,
-      town
+      name
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -93,11 +93,11 @@ class NewCommunity extends React.Component {
 
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
-                <label htmlFor="town">Town</label>
+                <label htmlFor="namen">Town</label>
                 <input
                   type="text"
-                  name="town"
-                  id="town"
+                  name="name"
+                  id="name"
                   className="form-control"
                   required
                   onChange={this.onChange}
@@ -240,4 +240,4 @@ class NewCommunity extends React.Component {
   }
 }
 
-export default NewCommunity;
+export default NewTown;

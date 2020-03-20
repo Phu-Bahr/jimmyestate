@@ -1,6 +1,7 @@
-class Communities < ActiveRecord::Migration[5.2]
+class CreateTowns < ActiveRecord::Migration[5.2]
   def change
-    create_table :communities do |t|
+    create_table :towns do |t|
+      t.string :name
       t.string :headerText1
       t.string :headerText2
       t.string :paragraph1

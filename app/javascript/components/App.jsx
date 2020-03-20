@@ -8,7 +8,7 @@ import ServiceContainer from "../components/Home/Service/ServiceContainer";
 import AboutContainer from "../components/Home/About/AboutContainer";
 import ContactContainer from "../components/Home/Contact/ContactContainer";
 import NavbarContainer from "../components/Home/Navbar/NavbarContainer";
-import NewCommunity from "../components/Home/Community/NewCommunity";
+import NewTown from "../components/Home/Town/NewTown";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
@@ -129,7 +129,7 @@ class App extends Component {
             <Route
               path="/addcommunity"
               render={props => (
-                <NewCommunity
+                <NewTown
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   handleLogout={this.handleLogout}
