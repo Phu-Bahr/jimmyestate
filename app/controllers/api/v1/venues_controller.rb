@@ -40,5 +40,4 @@ class Api::V1::VenuesController < ApplicationController
       @venue ||= Venue.find(params[:id])
     end
 
-
 end

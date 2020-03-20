@@ -14,6 +14,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get 'communities/index'
+      post 'communities/create'
+      put 'communities/update/:id', to: 'communities#update'
+      delete '/destroy/:id', to: 'communities#destroy'
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
       resources :jumbotrons, only: [:index, :update]
       resources :footers, only: [:index, :update]
       resources :companies, only: [:index, :update]
