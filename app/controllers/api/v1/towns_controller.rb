@@ -4,7 +4,7 @@ class Api::V1::TownsController < ApplicationController
   
     def index
       town = Town.all.order(name: :asc)
-      render js: town
+      render json: town
     end
 
     def create
@@ -33,7 +33,7 @@ class Api::V1::TownsController < ApplicationController
     private
 
     def town_params
-      params.require(:town).permit(:headerText1, :headerText2, :paragraph1, :paragraph2, :paragraph3, :paragraph4, :paragraph5, :townheader, :townlink1, :townlink2, :townlink3, :name)
+      params.require(:town).permit(:name, :headerText1, :headerText2, :paragraph1, :paragraph2, :paragraph3, :paragraph4, :paragraph5, :townheader, :townlink1, :townlink2, :townlink3 )
     end
 
     def town

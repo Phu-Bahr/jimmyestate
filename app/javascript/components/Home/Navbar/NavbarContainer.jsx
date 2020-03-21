@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import { Link, animateScroll as scroll } from "react-scroll";
 import { Link } from "react-router-dom";
-// fix links
+import TownList from "./TownList";
+
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
@@ -60,24 +60,7 @@ class NavbarContainer extends Component {
                   Featured Communities
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link to="/" className="dropdown-item navbar-underline">
-                    Arlington
-                  </Link>
-                  <Link to="/" className="dropdown-item navbar-underline">
-                    Belmont
-                  </Link>
-                  <Link to="/" className="dropdown-item navbar-underline">
-                    Brookline
-                  </Link>
-                  <Link to="/" className="dropdown-item navbar-underline">
-                    Newton
-                  </Link>
-                  <Link to="/" className="dropdown-item navbar-underline">
-                    Waltham
-                  </Link>
-                  <Link to="/" className="dropdown-item navbar-underline">
-                    Watertown
-                  </Link>
+                  <TownList />
                   <div className={hideEditButton}>
                     <div className="dropdown-divider"></div>
                     <Link
