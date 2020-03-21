@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_181352) do
   end
 
   create_table "towns", force: :cascade do |t|
-    t.string "town"
+    t.string "name"
     t.string "headerText1"
     t.string "headerText2"
     t.string "paragraph1"

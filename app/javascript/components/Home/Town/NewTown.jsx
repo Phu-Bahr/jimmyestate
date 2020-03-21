@@ -5,6 +5,7 @@ class NewTown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       headerText1: "",
       headerText2: "",
       paragraph1: "",
@@ -15,8 +16,7 @@ class NewTown extends React.Component {
       townheader: "",
       townlink1: "",
       townlink2: "",
-      townlink3: "",
-      name: ""
+      townlink3: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -31,6 +31,7 @@ class NewTown extends React.Component {
     event.preventDefault();
     const urls = "/api/v1/towns";
     const {
+      name,
       headerText1,
       headerText2,
       paragraph1,
@@ -41,11 +42,11 @@ class NewTown extends React.Component {
       townheader,
       townlink1,
       townlink2,
-      townlink3,
-      name
+      townlink3
     } = this.state;
 
     const body = {
+      name,
       headerText1,
       headerText2,
       paragraph1,
@@ -56,8 +57,7 @@ class NewTown extends React.Component {
       townheader,
       townlink1,
       townlink2,
-      townlink3,
-      name
+      townlink3
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -93,7 +93,7 @@ class NewTown extends React.Component {
 
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
-                <label htmlFor="namen">Town</label>
+                <label htmlFor="name">Town</label>
                 <input
                   type="text"
                   name="name"
