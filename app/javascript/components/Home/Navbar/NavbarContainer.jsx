@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import TownList from "./TownList";
+import TownList from "../Town/TownList";
 
 class NavbarContainer extends Component {
   constructor(props) {
@@ -47,6 +47,7 @@ class NavbarContainer extends Component {
                   Home
                 </Link>
               </li>
+
               <li className="nav-item dropdown">
                 <Link
                   to="/"
@@ -72,16 +73,19 @@ class NavbarContainer extends Component {
                   </div>
                 </div>
               </li>
+
               <li className="nav-item">
                 <Link to="/service" className="nav-link navbar-underline">
                   Services
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link to="/about" className="nav-link navbar-underline">
                   About
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link to="/contact" className="nav-link navbar-underline">
                   Contact

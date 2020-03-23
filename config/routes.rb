@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :companies, only: [:index, :update]
       resources :announcements, only: [:index, :update]
       resources :events, only: [:index, :create, :update, :destroy]
-      resources :towns, only: [:index, :create, :update, :destroy]
+      resources :towns, only: [:index, :create, :update, :destroy, :show]
       resources :registrations, only: [:create]
       resources :sessions, only: [:create]
     end
