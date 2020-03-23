@@ -42,11 +42,14 @@ class TownList extends Component {
 
   render() {
     const townData = this.state.townData;
-    console.log(townData);
 
     let listOfTowns = townData.map(element => {
       return (
-        <Link to="/" className="dropdown-item navbar-underline">
+        <Link
+          to={`/towns/${element.id}`}
+          key={element.id}
+          className="dropdown-item navbar-underline"
+        >
           {element.name}
         </Link>
       );

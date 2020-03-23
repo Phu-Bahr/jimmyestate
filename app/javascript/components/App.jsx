@@ -12,6 +12,7 @@ import NewTown from "../components/Home/Town/NewTown";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
+import TownShowPage from "../components/Home/Town/TownShowPage";
 
 library.add(fab);
 
@@ -126,6 +127,7 @@ class App extends Component {
             <Route path="/service" component={ServiceContainer} />
             <Route path="/about" component={AboutContainer} />
             <Route path="/contact" component={ContactContainer} />
+            <Route path="/towns/:id?" component={TownShowPage} />
             <Route
               path="/addcommunity"
               render={props => (

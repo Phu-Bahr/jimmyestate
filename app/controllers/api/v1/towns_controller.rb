@@ -7,6 +7,11 @@ class Api::V1::TownsController < ApplicationController
       render json: town
     end
 
+    def show
+      town = Town.find(params[:id])
+      render json: town
+    end
+
     def create
       town = Town.create!(town_params)
       if town
