@@ -55,10 +55,26 @@ class TownShowPage extends Component {
       <div>
         <div className="parallaxCompany">
           <div className="center">
-            <h1 className="companyfont">{this.state.townData.name}</h1>
+            <h1 className="companyfont">{this.state.townData.headerText1}</h1>
+            <h2 className="companyfont">{this.state.townData.headerText2}</h2>
           </div>
         </div>
-        <div>{this.state.townData.headerText1}</div>
+        <br />
+        <div>
+          <div>{this.state.townData.paragraph1}</div>
+          <div>{this.state.townData.paragraph2}</div>
+          <div>{this.state.townData.paragraph3}</div>
+          <div>{this.state.townData.paragraph4}</div>
+          <div>{this.state.townData.paragraph5}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.townheader}</div>
+          <div>{this.state.townData.townlink1}</div>
+          <div>{this.state.townData.townlink2}</div>
+          <div>{this.state.townData.townlink3}</div>
+        </div>
+
         <h1>Hi from town show page! container Page</h1>
       </div>
     );
