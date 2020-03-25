@@ -53,11 +53,88 @@ class TownShowPage extends Component {
   render() {
     return (
       <div>
-        <div className="parallaxCompany">
-          <div className="center">
-            <h1 className="companyfont">{this.state.townData.headerText1}</h1>
-            <h2 className="companyfont">{this.state.townData.headerText2}</h2>
+        <div className="parallaxShowPage darken-pseudo darken-with-text">
+          <div className="container py-5">
+            <h1>Featured {this.state.townData.name} Real Estate</h1>
+            <h4>{this.state.townData.headerText2}</h4>
           </div>
+        </div>
+
+        <br />
+        <div>
+          <div>{this.state.townData.paragraph1}</div>
+          <div>{this.state.townData.paragraph2}</div>
+          <div>{this.state.townData.paragraph3}</div>
+          <div>{this.state.townData.paragraph4}</div>
+          <div>{this.state.townData.paragraph5}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.townheader}</div>
+          <div>{this.state.townData.townlink1}</div>
+          <div>{this.state.townData.townlink2}</div>
+          <div>{this.state.townData.townlink3}</div>
+        </div>
+
+        <br />
+        <div>
+          <div>{this.state.townData.paragraph1}</div>
+          <div>{this.state.townData.paragraph2}</div>
+          <div>{this.state.townData.paragraph3}</div>
+          <div>{this.state.townData.paragraph4}</div>
+          <div>{this.state.townData.paragraph5}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.townheader}</div>
+          <div>{this.state.townData.townlink1}</div>
+          <div>{this.state.townData.townlink2}</div>
+          <div>{this.state.townData.townlink3}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.paragraph1}</div>
+          <div>{this.state.townData.paragraph2}</div>
+          <div>{this.state.townData.paragraph3}</div>
+          <div>{this.state.townData.paragraph4}</div>
+          <div>{this.state.townData.paragraph5}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.townheader}</div>
+          <div>{this.state.townData.townlink1}</div>
+          <div>{this.state.townData.townlink2}</div>
+          <div>{this.state.townData.townlink3}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.paragraph1}</div>
+          <div>{this.state.townData.paragraph2}</div>
+          <div>{this.state.townData.paragraph3}</div>
+          <div>{this.state.townData.paragraph4}</div>
+          <div>{this.state.townData.paragraph5}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.townheader}</div>
+          <div>{this.state.townData.townlink1}</div>
+          <div>{this.state.townData.townlink2}</div>
+          <div>{this.state.townData.townlink3}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.paragraph1}</div>
+          <div>{this.state.townData.paragraph2}</div>
+          <div>{this.state.townData.paragraph3}</div>
+          <div>{this.state.townData.paragraph4}</div>
+          <div>{this.state.townData.paragraph5}</div>
+        </div>
+        <br />
+        <div>
+          <div>{this.state.townData.townheader}</div>
+          <div>{this.state.townData.townlink1}</div>
+          <div>{this.state.townData.townlink2}</div>
+          <div>{this.state.townData.townlink3}</div>
         </div>
         <br />
         <div>
