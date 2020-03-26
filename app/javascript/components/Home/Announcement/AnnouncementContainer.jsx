@@ -141,7 +141,7 @@ class AnnouncementContainer extends Component {
               <h1>{announcementTitle}</h1>
             </div>
             <div>
-              <h4>Your Real Estate Concierge</h4>
+              <h3>Your Real Estate Concierge</h3>
             </div>
             <div className="container pt-4 pb-4">
               <div className="row">
