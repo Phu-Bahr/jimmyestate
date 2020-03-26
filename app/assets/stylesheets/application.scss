@@ -34,6 +34,12 @@ body,
   font-family: ambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
+.link {
+  color: #8bce3c;
+}
+.link:hover {
+  color: #8bce3c;
+}
 h1,
 h2,
 h3,
@@ -262,7 +268,7 @@ h6 {
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: #7fc41c;
+  background-color: #8bce3c;
   transform-origin: right top;
   transform: scale(0, 1);
   transition: color 0.1s, transform 0.2s ease-out;
@@ -512,12 +518,41 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.darken-with-text h1,
-h4 {
-  font-size: 2em;
+.darken-with-text h1 {
+  font-size: 3.5vw;
   color: white;
   position: relative; // relative pushes it to the top
   z-index: 1;
+}
+
+.darken-with-text h4 {
+  font-size: 2.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+}
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+  .darken-with-text {
+    font-size: 3.5vw;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  .darken-with-text {
+    font-size: 30px;
+  }
+}
+
+//wrap span with this class and no wrap.
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.townheader-font {
+  font-weight: 300;
+  font-size: 30px;
 }
 
 // ending SHOWPAGE

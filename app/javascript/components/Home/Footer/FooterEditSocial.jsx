@@ -6,7 +6,11 @@ const FooterEditSocial = props => {
   return (
     <div>
       <div className="d-flex justify-content-center mt-3">
-        <Link to={props.facebook} target="blank" className="c-magic-icon">
+        <Link
+          to={`//` + props.facebook}
+          target="blank"
+          className="c-magic-icon"
+        >
           <div className="c-magic-icon__fill facebook">
             <FontAwesomeIcon
               icon={["fab", "facebook-f"]}
@@ -22,7 +26,7 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={props.twitter} target="blank" className="c-magic-icon">
+        <Link to={`//` + props.twitter} target="blank" className="c-magic-icon">
           <div className="c-magic-icon__fill twitter">
             <FontAwesomeIcon
               icon={["fab", "twitter"]}
@@ -38,7 +42,11 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={props.instagram} target="blank" className="c-magic-icon">
+        <Link
+          to={`//` + props.instagram}
+          target="blank"
+          className="c-magic-icon"
+        >
           <div className="c-magic-icon__fill instagram">
             <FontAwesomeIcon
               icon={["fab", "instagram"]}
@@ -54,7 +62,7 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={props.other} target="blank" className="c-magic-icon">
+        <Link to={`//` + props.other} target="blank" className="c-magic-icon">
           <div className="c-magic-icon__fill other">
             <FontAwesomeIcon
               icon={["fab", "google"]}

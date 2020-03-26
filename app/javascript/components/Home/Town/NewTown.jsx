@@ -127,7 +127,8 @@ class NewTown extends React.Component {
               </div>
               <div className="form-group">
                 <label htmlFor="paragraph1">Paragraph1</label>
-                <input
+                <textarea
+                  rows="3"
                   type="text"
                   name="paragraph1"
                   id="paragraph1"
@@ -138,7 +139,8 @@ class NewTown extends React.Component {
               </div>
               <div className="form-group">
                 <label htmlFor="paragraph2">Paragraph2</label>
-                <input
+                <textarea
+                  rows="3"
                   type="text"
                   name="paragraph2"
                   id="paragraph2"
@@ -149,34 +151,34 @@ class NewTown extends React.Component {
               </div>
               <div className="form-group">
                 <label htmlFor="paragraph3">Paragraph3</label>
-                <input
+                <textarea
+                  rows="3"
                   type="text"
                   name="paragraph3"
                   id="paragraph3"
                   className="form-control"
-                  required
                   onChange={this.onChange}
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="paragraph4">Paragraph4</label>
-                <input
+                <textarea
+                  rows="3"
                   type="text"
                   name="paragraph4"
                   id="paragraph4"
                   className="form-control"
-                  required
                   onChange={this.onChange}
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="paragraph5">Paragraph5</label>
-                <input
+                <textarea
+                  rows="3"
                   type="text"
                   name="paragraph5"
                   id="paragraph5"
                   className="form-control"
-                  required
                   onChange={this.onChange}
                 />
               </div>
@@ -192,7 +194,7 @@ class NewTown extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="townlink1">townlink1</label>
+                <label htmlFor="townlink1">Wiki Link</label>
                 <input
                   type="text"
                   name="townlink1"
@@ -203,7 +205,7 @@ class NewTown extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="townlink2">townlink2</label>
+                <label htmlFor="townlink2">School Link</label>
                 <input
                   type="text"
                   name="townlink2"
@@ -214,7 +216,7 @@ class NewTown extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="townlink3">townlink3</label>
+                <label htmlFor="townlink3">Town Site</label>
                 <input
                   type="text"
                   name="townlink3"
