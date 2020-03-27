@@ -17,7 +17,10 @@ class TownList extends Component {
       townheader: "",
       townlink1: "",
       townlink2: "",
-      townlink3: ""
+      townlink3: "",
+      townlinkdescription1: "",
+      townlinkdescription2: "",
+      townlinkdescription3: ""
     };
   }
 
