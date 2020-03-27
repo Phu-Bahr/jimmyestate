@@ -90,8 +90,6 @@ class NewTown extends React.Component {
   }
 
   render() {
-    console.log("new community state", this.state);
-
     return (
       <div className="container mt-5">
         <div className="row">
@@ -112,28 +110,35 @@ class NewTown extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="headerText1">headerText1</label>
-                <input
-                  type="text"
-                  name="headerText1"
-                  id="headerText1"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
+
+              <div className="parallaxShowPage" style={{ color: "white" }}>
+                <div className="container py-5">
+                  <div className="">
+                    <label htmlFor="headerText1">headerText1</label>
+                    <input
+                      type="text"
+                      name="headerText1"
+                      id="headerText1"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                    />
+
+                    <div className="">
+                      <label htmlFor="headerText2">headerText2</label>
+                      <input
+                        type="text"
+                        name="headerText2"
+                        id="headerText2"
+                        className="form-control"
+                        required
+                        onChange={this.onChange}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="headerText2">headerText2</label>
-                <input
-                  type="text"
-                  name="headerText2"
-                  id="headerText2"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
+
               <div className="form-group">
                 <label htmlFor="paragraph1">Paragraph1</label>
                 <textarea
@@ -144,8 +149,10 @@ class NewTown extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  placeholder="required"
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="paragraph2">Paragraph2</label>
                 <textarea
@@ -156,8 +163,10 @@ class NewTown extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  placeholder="required"
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="paragraph3">Paragraph3</label>
                 <textarea
@@ -169,6 +178,7 @@ class NewTown extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="paragraph4">Paragraph4</label>
                 <textarea
@@ -180,6 +190,7 @@ class NewTown extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="paragraph5">Paragraph5</label>
                 <textarea
@@ -191,6 +202,7 @@ class NewTown extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="townheader">Townheader</label>
                 <input
@@ -200,6 +212,22 @@ class NewTown extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  placeholder="ex: Town Links"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="townlinkdescription1">
+                  Town Link Description 1
+                </label>
+                <input
+                  type="text"
+                  name="townlinkdescription1"
+                  id="townlinkdescription1"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                  placeholder="ex: Town Wikipedia"
                 />
               </div>
               <div className="form-group">
@@ -211,16 +239,18 @@ class NewTown extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  placeholder="ex: www.wikipedia.com"
                 />
               </div>
+
               <div className="form-group">
-                <label htmlFor="townlinkdescription1">
-                  Town Link Description 1
+                <label htmlFor="townlinkdescription2">
+                  Town Link Description 2
                 </label>
                 <input
                   type="text"
-                  name="townlinkdescription1"
-                  id="townlinkdescription1"
+                  name="townlinkdescription2"
+                  id="townlinkdescription2"
                   className="form-control"
                   required
                   onChange={this.onChange}
@@ -237,14 +267,15 @@ class NewTown extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
+
               <div className="form-group">
-                <label htmlFor="townlinkdescription2">
-                  Town Link Description 2
+                <label htmlFor="townlinkdescription3">
+                  Town Link Description 3
                 </label>
                 <input
                   type="text"
-                  name="townlinkdescription2"
-                  id="townlinkdescription2"
+                  name="townlinkdescription3"
+                  id="townlinkdescription3"
                   className="form-control"
                   required
                   onChange={this.onChange}
@@ -256,19 +287,6 @@ class NewTown extends React.Component {
                   type="text"
                   name="townlink3"
                   id="townlink3"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlinkdescription3">
-                  Town Link Description 3
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription3"
-                  id="townlinkdescription3"
                   className="form-control"
                   required
                   onChange={this.onChange}
