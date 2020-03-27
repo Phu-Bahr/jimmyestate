@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TownList from "../Town/TownList";
+import { animateScroll as scroll } from "react-scroll";
 
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
-    this.setState = {};
+    this.setState = { refreshKey: false };
+    // this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
+
+  // toggleRefreshKey(event) {
+  //   this.setState({ refreshKey: true });
+  // }
 
   scrollToTop = () => {
     scroll.scrollToTop();
   };
 
+  // componentDidUpdate() {
+  //   if (this.state.refreshKey === true) {
+  //     this.setState({ refreshKey: false });
+  //   }
+  // }
   render() {
     let hideEditButton;
     if (this.props.user.admin === true) {
@@ -23,7 +34,11 @@ class NavbarContainer extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light site-header sticky-top py-4 navbar-font-type">
         <div className="container-fluid" style={{ maxWidth: 1150 }}>
-          <div className="navbar-font">JC Realty</div>
+          <Link to="/">
+            <div className="navbar-font" onClick={this.scrollToTop}>
+              JC Realty
+            </div>
+          </Link>
 
           <button
             className="navbar-toggler"
