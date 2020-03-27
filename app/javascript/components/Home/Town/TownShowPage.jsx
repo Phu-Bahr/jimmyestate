@@ -56,17 +56,17 @@ class TownShowPage extends Component {
       <div>
         <div className="parallaxShowPage darken-pseudo darken-with-text">
           <div className="container py-5">
-            <h1>Featured {this.state.townData.name} Real Estate</h1>
+            <h1>{this.state.townData.headerText1}</h1>
             <h4>{this.state.townData.headerText2}</h4>
           </div>
         </div>
 
-        <div className="container py-4">
-          <div className="pb-2">{this.state.townData.paragraph1}</div>
-          <div className="pb-2">{this.state.townData.paragraph2}</div>
-          <div className="pb-2">{this.state.townData.paragraph3}</div>
-          <div className="pb-2">{this.state.townData.paragraph4}</div>
-          <div>{this.state.townData.paragraph5}</div>
+        <div className="container pt-5">
+          <p className="">{this.state.townData.paragraph1}</p>
+          <p className="">{this.state.townData.paragraph2}</p>
+          <p className="">{this.state.townData.paragraph3}</p>
+          <p className="">{this.state.townData.paragraph4}</p>
+          <p className="">{this.state.townData.paragraph5}</p>
         </div>
 
         <div className="container pb-5">
@@ -79,21 +79,21 @@ class TownShowPage extends Component {
               target="blank"
               className="link"
             >
-              <li>{this.state.townData.name} Wiki</li>
+              <li>{this.state.townData.townlinkdescription1}</li>
             </Link>
             <Link
               to={`//` + this.state.townData.townlink2}
               target="blank"
               className="link"
             >
-              <li>{this.state.townData.name} Schools</li>
+              <li>{this.state.townData.townlinkdescription2}</li>
             </Link>
             <Link
               to={`//` + this.state.townData.townlink3}
               target="blank"
               className="link"
             >
-              <li>{this.state.townData.name} Website</li>
+              <li>{this.state.townData.townlinkdescription3}</li>
             </Link>
           </ul>
         </div>

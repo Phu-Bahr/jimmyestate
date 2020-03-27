@@ -16,7 +16,10 @@ class NewTown extends React.Component {
       townheader: "",
       townlink1: "",
       townlink2: "",
-      townlink3: ""
+      townlink3: "",
+      townlinkdescription1: "",
+      townlinkdescription2: "",
+      townlinkdescription3: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -42,7 +45,10 @@ class NewTown extends React.Component {
       townheader,
       townlink1,
       townlink2,
-      townlink3
+      townlink3,
+      townlinkdescription1,
+      townlinkdescription2,
+      townlinkdescription3
     } = this.state;
 
     const body = {
@@ -57,7 +63,10 @@ class NewTown extends React.Component {
       townheader,
       townlink1,
       townlink2,
-      townlink3
+      townlink3,
+      townlinkdescription1,
+      townlinkdescription2,
+      townlinkdescription3
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -194,7 +203,7 @@ class NewTown extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="townlink1">Wiki Link</label>
+                <label htmlFor="townlink1">Town Link 1</label>
                 <input
                   type="text"
                   name="townlink1"
@@ -205,7 +214,20 @@ class NewTown extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="townlink2">School Link</label>
+                <label htmlFor="townlinkdescription1">
+                  Town Link Description 1
+                </label>
+                <input
+                  type="text"
+                  name="townlinkdescription1"
+                  id="townlinkdescription1"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="townlink2">Town Link 2</label>
                 <input
                   type="text"
                   name="townlink2"
@@ -216,11 +238,37 @@ class NewTown extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="townlink3">Town Site</label>
+                <label htmlFor="townlinkdescription2">
+                  Town Link Description 2
+                </label>
+                <input
+                  type="text"
+                  name="townlinkdescription2"
+                  id="townlinkdescription2"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="townlink3">Town Link 3</label>
                 <input
                   type="text"
                   name="townlink3"
                   id="townlink3"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="townlinkdescription3">
+                  Town Link Description 3
+                </label>
+                <input
+                  type="text"
+                  name="townlinkdescription3"
+                  id="townlinkdescription3"
                   className="form-control"
                   required
                   onChange={this.onChange}
