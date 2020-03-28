@@ -229,6 +229,12 @@ h6 {
   font-weight: 800;
 }
 
+.navbar-font:hover {
+  font-size: 31px;
+  color: #8bce3c;
+  font-weight: 800;
+}
+
 .site-header {
   background-color: #fff;
   padding: 20px 10px;
@@ -242,7 +248,7 @@ h6 {
 .navbar-underline:hover,
 .navbar-underline:focus,
 .navbar-underline:active {
-  color: #999;
+  color: #8bce3c !important;
   text-decoration: none;
 }
 .navbar-underline {
@@ -264,14 +270,14 @@ h6 {
   content: "";
   display: block;
   position: absolute;
-  bottom: 3px;
+  bottom: -1.3px;
   left: 0;
   height: 2px;
   width: 100%;
   background-color: #8bce3c;
   transform-origin: right top;
   transform: scale(0, 1);
-  transition: color 0.1s, transform 0.2s ease-out;
+  transition: color 0.1s, transform 0.3s ease-out;
 }
 
 .navbar-underline:hover::before,

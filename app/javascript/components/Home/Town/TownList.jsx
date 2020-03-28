@@ -48,7 +48,6 @@ class TownList extends Component {
         let newTownData = body;
         this.setState({ townData: newTownData });
       })
-      .then(this.setState({ refreshKey: true }))
       .catch(error => console.log("error message =>", error.message));
   }
 
@@ -67,49 +66,46 @@ class TownList extends Component {
         .then(response => response.json())
         .then(body => {
           let newTownData = body;
-          this.setState({
-            townData: newTownData
-          });
+          this.setState({ townData: newTownData });
         })
-        .then(this.setState({ refreshKey: false }));
+        .then(this.setState({ refreshKey: false }))
+        .catch(error => console.log("error message =>", error.message));
     }
   }
 
   render() {
-    console.log(this.props);
-
     const townData = this.state.townData;
 
     let listOfTowns = townData.map(element => {
-      if (this.state.adminMode === true) {
+      if (this.state.adminMode === false) {
         return (
           <React.Fragment key={element.id}>
-            <Link
-              to={`/towns/${element.id}`}
-              className="dropdown-item navbar-underline"
-            >
-              {element.name}
-            </Link>
+            <div className="container py-1">
+              <Link
+                to={`/towns/${element.id}`}
+                className="dropdown-item navbar-underline"
+              >
+                {element.name}
+              </Link>
+            </div>
           </React.Fragment>
         );
       } else {
         return (
-          <div className="navbar-underline" key={element.id}>
+          <React.Fragment key={element.id}>
             <div className="container">
-              <div className="row">
-                <Link to={`/towns/${element.id}`} className="col">
+              <div className="row navbar-underline">
+                <Link
+                  to={`/towns/${element.id}`}
+                  className="dropdown-item col-sm-4"
+                >
                   {element.name}
                 </Link>
-                <div className="col">
-                  <FontAwesomeIcon
-                    icon={["fas", "fa-trash"]}
-                    className="iconfont mt-2"
-                  />
-                </div>
-                <div className="col">edit</div>
+                <div className="dropdown-item col-sm-4">delete</div>
+                <div className="dropdown-item col-sm-4">edit</div>
               </div>
             </div>
-          </div>
+          </React.Fragment>
         );
       }
     });
