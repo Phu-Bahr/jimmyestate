@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class TownList extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class TownList extends Component {
       townlinkdescription1: "",
       townlinkdescription2: "",
       townlinkdescription3: "",
-      refreshKey: false
+      refreshKey: false,
+      adminMode: false
     };
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
@@ -79,15 +81,37 @@ class TownList extends Component {
     const townData = this.state.townData;
 
     let listOfTowns = townData.map(element => {
-      return (
-        <Link
-          to={`/towns/${element.id}`}
-          key={element.id}
-          className="dropdown-item navbar-underline"
-        >
-          {element.name}
-        </Link>
-      );
+      if (this.state.adminMode === true) {
+        return (
+          <React.Fragment key={element.id}>
+            <Link
+              to={`/towns/${element.id}`}
+              className="dropdown-item navbar-underline"
+            >
+              {element.name}
+            </Link>
+          </React.Fragment>
+        );
+      } else {
+        return (
+          <div className="navbar-underline" key={element.id}>
+            <div className="container">
+              <div className="row">
+                <Link to={`/towns/${element.id}`} className="col">
+                  {element.name}
+                </Link>
+                <div className="col">
+                  <FontAwesomeIcon
+                    icon={["fas", "fa-trash"]}
+                    className="iconfont mt-2"
+                  />
+                </div>
+                <div className="col">edit</div>
+              </div>
+            </div>
+          </div>
+        );
+      }
     });
 
     return <div>{listOfTowns}</div>;
