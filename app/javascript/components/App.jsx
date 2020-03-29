@@ -11,10 +11,11 @@ import NavbarContainer from "../components/Home/Navbar/NavbarContainer";
 import NewTown from "../components/Home/Town/NewTown";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
 import TownShowPage from "../components/Home/Town/TownShowPage";
 
-library.add(fab);
+library.add(fab, faTrashAlt, faEdit);
 
 class App extends Component {
   constructor() {
