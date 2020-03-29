@@ -93,16 +93,17 @@ class TownList extends Component {
       } else {
         return (
           <React.Fragment key={element.id}>
-            <div className="container">
+            <div className="container dropdown-item">
               <div className="row navbar-underline">
-                <Link
-                  to={`/towns/${element.id}`}
-                  className="dropdown-item col-sm-4"
-                >
+                <Link to={`/towns/${element.id}`} className="col-sm-4 ">
                   {element.name}
                 </Link>
-                <div className="dropdown-item col-sm-4">delete</div>
-                <div className="dropdown-item col-sm-4">edit</div>
+                <div className="col-sm-4 pl-4">
+                  <FontAwesomeIcon icon="trash-alt" />
+                </div>
+                <div className="col-sm-4">
+                  <FontAwesomeIcon icon="edit" />
+                </div>
               </div>
             </div>
           </React.Fragment>
