@@ -25,6 +25,7 @@ class TownList extends Component {
       refreshKey: false
     };
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
   toggleRefreshKey(event) {
@@ -72,10 +73,41 @@ class TownList extends Component {
     }
   }
 
+  deleteEvent(id) {
+    const urls = `/api/v1/towns/${id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(this.toggleRefreshKey)
+      .catch(error => console.log(error.message));
+  }
+
   render() {
     const townData = this.state.townData;
 
     let listOfTowns = townData.map(element => {
+      let handleDelete = () => {
+        let result = confirm("Are you sure?");
+        if (result) {
+          this.deleteEvent(element.id);
+        }
+      };
+
       if (this.props.user.admin === undefined) {
         return (
           <React.Fragment key={element.id}>
@@ -98,7 +130,7 @@ class TownList extends Component {
                   {element.name}
                 </Link>
                 <div className="col-sm-4 pl-4">
-                  <FontAwesomeIcon icon="trash-alt" />
+                  <FontAwesomeIcon icon="trash-alt" onClick={handleDelete} />
                 </div>
                 <div className="col-sm-4">
                   <FontAwesomeIcon icon="edit" />
