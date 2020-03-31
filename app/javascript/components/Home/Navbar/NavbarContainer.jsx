@@ -76,7 +76,11 @@ class NavbarContainer extends Component {
                   Featured Communities
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <TownList />
+                  <TownList
+                    loggedInStatus={this.props.loggedInStatus}
+                    user={this.props.user}
+                    hideEditButton={hideEditButton}
+                  />
                   <div className={hideEditButton}>
                     <div className="dropdown-divider"></div>
                     <Link

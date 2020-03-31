@@ -22,8 +22,7 @@ class TownList extends Component {
       townlinkdescription1: "",
       townlinkdescription2: "",
       townlinkdescription3: "",
-      refreshKey: false,
-      adminMode: false
+      refreshKey: false
     };
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
@@ -77,7 +76,7 @@ class TownList extends Component {
     const townData = this.state.townData;
 
     let listOfTowns = townData.map(element => {
-      if (this.state.adminMode === false) {
+      if (this.props.user.admin === undefined) {
         return (
           <React.Fragment key={element.id}>
             <div className="container py-1">
@@ -90,7 +89,7 @@ class TownList extends Component {
             </div>
           </React.Fragment>
         );
-      } else {
+      } else if (this.props.user.admin === true) {
         return (
           <React.Fragment key={element.id}>
             <div className="container dropdown-item">
