@@ -14,6 +14,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
 import TownShowPage from "../components/Home/Town/TownShowPage";
+import EditTown from "../components/Home/Town/EditTown";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -129,6 +130,17 @@ class App extends Component {
             <Route path="/about" component={AboutContainer} />
             <Route path="/contact" component={ContactContainer} />
             <Route path="/towns/:id?" component={TownShowPage} />
+            <Route
+              path="/editcommunity/:id?"
+              render={props => (
+                <EditTown
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  handleLogout={this.handleLogout}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route
               path="/addcommunity"
               render={props => (
