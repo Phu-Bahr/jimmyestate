@@ -133,7 +133,9 @@ class TownList extends Component {
                   <FontAwesomeIcon icon="trash-alt" onClick={handleDelete} />
                 </div>
                 <div className="col-sm-4">
-                  <FontAwesomeIcon icon="edit" />
+                  <Link to={`/editcommunity/${element.id}`}>
+                    <FontAwesomeIcon icon="edit" />
+                  </Link>
                 </div>
               </div>
             </div>
