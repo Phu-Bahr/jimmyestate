@@ -108,7 +108,8 @@ class TownList extends Component {
         }
       };
 
-      if (this.props.user.admin === undefined) {
+      // if (this.props.user.admin === undefined) {
+      if (0 === 1) {
         return (
           <React.Fragment key={element.id}>
             <div className="container py-1">
@@ -121,20 +122,29 @@ class TownList extends Component {
             </div>
           </React.Fragment>
         );
-      } else if (this.props.user.admin === true) {
+        // } else if (this.props.user.admin === true) {
+      } else if (0 === 0) {
         return (
           <React.Fragment key={element.id}>
-            <div className="container dropdown-item">
+            <div className="dropdown-item">
               <div className="row navbar-underline">
-                <Link to={`/towns/${element.id}`} className="col-sm-4 ">
+                <Link
+                  to={`/towns/${element.id}`}
+                  className="col-sm-4 dropdown-item ml-n3 mr-4"
+                  style={{ fontSize: "13px" }}
+                >
                   {element.name}
                 </Link>
-                <div className="col-sm-4 pl-4">
-                  <FontAwesomeIcon icon="trash-alt" onClick={handleDelete} />
+                <div className="col-sm-4 dropdown-item mr-n4">
+                  <FontAwesomeIcon
+                    icon="trash-alt"
+                    size="2x"
+                    onClick={handleDelete}
+                  />
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-4 dropdown-item m-auto">
                   <Link to={`/editcommunity/${element.id}`}>
-                    <FontAwesomeIcon icon="edit" />
+                    <FontAwesomeIcon icon="edit" size="2x" />
                   </Link>
                 </div>
               </div>
