@@ -108,8 +108,8 @@ class TownList extends Component {
         }
       };
 
-      // if (this.props.user.admin === undefined) {
-      if (0 === 1) {
+      if (this.props.user.admin === undefined) {
+        // if (0 === 1) {
         return (
           <React.Fragment key={element.id}>
             <div className="container py-1">
@@ -122,8 +122,8 @@ class TownList extends Component {
             </div>
           </React.Fragment>
         );
-        // } else if (this.props.user.admin === true) {
-      } else if (0 === 0) {
+      } else if (this.props.user.admin === true) {
+        // } else if (0 === 0) {
         return (
           <React.Fragment key={element.id}>
             <div className="dropdown-item">

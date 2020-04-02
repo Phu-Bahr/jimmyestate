@@ -7,22 +7,12 @@ class NavbarContainer extends Component {
   constructor(props) {
     super(props);
     this.setState = { refreshKey: false };
-    // this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
-
-  // toggleRefreshKey(event) {
-  //   this.setState({ refreshKey: true });
-  // }
 
   scrollToTop = () => {
     scroll.scrollToTop();
   };
 
-  // componentDidUpdate() {
-  //   if (this.state.refreshKey === true) {
-  //     this.setState({ refreshKey: false });
-  //   }
-  // }
   render() {
     let hideEditButton;
     if (this.props.user.admin === true) {
@@ -86,6 +76,7 @@ class NavbarContainer extends Component {
                     <Link
                       to="/addcommunity"
                       className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
                     >
                       Add Community
                     </Link>
