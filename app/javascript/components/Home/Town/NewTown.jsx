@@ -87,6 +87,7 @@ class NewTown extends React.Component {
       })
       .then(body => {
         this.props.history.push(`/towns/${body.id}`);
+        window.location.reload(false);
       })
       .then(window.scrollTo(0, 0))
       .catch(error => console.log(error.message));
