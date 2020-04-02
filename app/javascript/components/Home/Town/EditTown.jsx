@@ -93,6 +93,7 @@ class EditTown extends Component {
       .then(alert("Town has been updated."))
       .then(body => {
         this.props.history.push(`/towns/${this.state.id}`);
+        window.location.reload(false);
       })
       .then(window.scrollTo(0, 0))
       .catch(error => console.log(error.message));
