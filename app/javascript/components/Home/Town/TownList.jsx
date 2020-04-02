@@ -130,19 +130,19 @@ class TownList extends Component {
               <div className="row navbar-underline">
                 <Link
                   to={`/towns/${element.id}`}
-                  className="col-sm-4 dropdown-item ml-n3 mr-4"
+                  className="col-sm-4 ml-n1 mr-4"
                   style={{ fontSize: "13px" }}
                 >
                   {element.name}
                 </Link>
-                <div className="col-sm-4 dropdown-item mr-n4">
+                <div className="col-sm-4 mr-n4">
                   <FontAwesomeIcon
                     icon="trash-alt"
                     size="2x"
                     onClick={handleDelete}
                   />
                 </div>
-                <div className="col-sm-4 dropdown-item m-auto">
+                <div className="col-sm-4 m-auto">
                   <Link to={`/editcommunity/${element.id}`}>
                     <FontAwesomeIcon icon="edit" size="2x" />
                   </Link>
