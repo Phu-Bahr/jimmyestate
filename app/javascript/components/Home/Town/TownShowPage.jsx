@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 
 class TownShowPage extends Component {
   constructor(props) {
@@ -11,9 +12,14 @@ class TownShowPage extends Component {
     this.fetchTownData = this.fetchTownData.bind(this);
   }
 
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
   componentDidMount() {
     let id = this.props.match.params.id;
     this.fetchTownData(id);
+    this.scrollToTop();
   }
 
   fetchTownData(id) {
@@ -30,7 +36,8 @@ class TownShowPage extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ townData: body, id: body.id });
-      });
+      })
+      .then(this.scrollToTop());
   }
 
   componentDidUpdate() {
@@ -48,7 +55,8 @@ class TownShowPage extends Component {
         .then(response => response.json())
         .then(body => {
           this.setState({ townData: body, id: body.id });
-        });
+        })
+        .then(this.scrollToTop());
     }
   }
   render() {
