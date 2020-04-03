@@ -18,4 +18,5 @@ class Api::V1::JumbotronsController < ApplicationController
         def jumbo_params
             params.require(:jumbotron).permit(:line1, :line2, :line3)
         end
+
 end

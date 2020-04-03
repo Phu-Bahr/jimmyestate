@@ -48,7 +48,11 @@ class NavbarContainer extends Component {
           >
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to="/" className="nav-link navbar-underline">
+                <Link
+                  to="/"
+                  className="nav-link navbar-underline"
+                  onClick={this.scrollToTop}
+                >
                   Home
                 </Link>
               </li>
@@ -76,7 +80,6 @@ class NavbarContainer extends Component {
                     <Link
                       to="/addcommunity"
                       className="dropdown-item navbar-underline"
-                      onClick={this.scrollToTop}
                     >
                       Add Community
                     </Link>
