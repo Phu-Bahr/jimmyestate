@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import Home from "../components/Home/Home";
 import NewVenue from "../components/Home/Venue/NewVenue";
 import Registration from "../components/Home/User/Registration";
@@ -83,6 +88,35 @@ class App extends Component {
   }
 
   render() {
+    const ProtectedRoute = ({ component: Comp, path }) => {
+      return (
+        <Route
+          path={path}
+          render={props => {
+            return this.state.user.admin ? (
+              <Comp
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+                handleLogin={this.handleLogin}
+                handleLogout={this.handleLogout}
+              />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/",
+                  state: {
+                    prevLocation: path,
+                    error: "You need to login first!"
+                  }
+                }}
+              />
+            );
+          }}
+        />
+      );
+    };
+
     return (
       <React.Fragment>
         <Router>
@@ -103,8 +137,9 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/newVenue" component={NewVenue} />
+            <ProtectedRoute path="/newVenue" component={NewVenue} />
             <Route
+              exact
               path="/registration"
               render={props => (
                 <Registration
@@ -115,6 +150,7 @@ class App extends Component {
               )}
             />
             <Route
+              exact
               path="/login"
               render={props => (
                 <Login
@@ -126,11 +162,12 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/service" component={ServiceContainer} />
-            <Route path="/about" component={AboutContainer} />
-            <Route path="/contact" component={ContactContainer} />
-            <Route path="/towns/:id?" component={TownShowPage} />
-            <Route
+            <Route exact path="/service" component={ServiceContainer} />
+            <Route exact path="/about" component={AboutContainer} />
+            <Route exact path="/contact" component={ContactContainer} />
+            <Route exact path="/towns/:id?" component={TownShowPage} />
+            <ProtectedRoute
+              exact
               path="/editcommunity/:id?"
               render={props => (
                 <EditTown
@@ -141,17 +178,8 @@ class App extends Component {
                 />
               )}
             />
-            <Route
-              path="/addcommunity"
-              render={props => (
-                <NewTown
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  handleLogout={this.handleLogout}
-                  user={this.state.user}
-                />
-              )}
-            />
+            <ProtectedRoute exact path="/addcommunity" component={NewTown} />
+            <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
           <FooterContainer
             loggedInStatus={this.state.loggedInStatus}
