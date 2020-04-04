@@ -80,6 +80,7 @@ class NavbarContainer extends Component {
                     <Link
                       to="/addcommunity"
                       className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
                     >
                       Add Community
                     </Link>
