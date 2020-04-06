@@ -90,6 +90,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
+              placeholder="Date"
             />
             <input
               type="time"
@@ -98,6 +99,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
+              placeholder="Time"
             />
             <button type="submit" className="btn custom-button">
               Create Event

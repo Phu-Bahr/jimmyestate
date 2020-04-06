@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,10 @@ class Login extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
+
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   handleLogoutClick() {
     const urls = "/logout";
@@ -85,7 +91,7 @@ class Login extends Component {
     }
     return (
       <div>
-        <div className="container text-center login-background">
+        <div className="container text-center my-5">
           <div>
             <div className="col-sm-12 col-lg-6 offset-lg-3">
               <h1>Status: {this.props.loggedInStatus}</h1>
@@ -97,7 +103,7 @@ class Login extends Component {
                   : this.props.user.email}
               </h2>
 
-              <h3 className="p-5">Enter Credentials Here</h3>
+              <h3 className="p-4">Enter Credentials Here</h3>
 
               <form onSubmit={this.handleLoginSubmit}>
                 <div className="form-group">
@@ -126,14 +132,18 @@ class Login extends Component {
 
                 <div className="row d-flex justify-content-center">
                   <div className="px-1">
-                    <button className="btn btn-info" type="submit">
+                    <button
+                      className="btn btn-info"
+                      type="submit"
+                      onClick={this.scrollToTop}
+                    >
                       Login
                     </button>
                   </div>
                   <div>
                     <button
                       className="btn btn-info"
-                      onClick={this.handleLogoutClick}
+                      onClick={(this.handleLogoutClick, this.scrollToTop)}
                     >
                       Logout
                     </button>
@@ -141,7 +151,7 @@ class Login extends Component {
                 </div>
               </form>
 
-              <div>
+              <div className="mt-3">
                 <Link to="/">Back to Home page</Link>
               </div>
             </div>

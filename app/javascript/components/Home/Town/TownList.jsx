@@ -102,7 +102,9 @@ class TownList extends Component {
 
     let listOfTowns = townData.map(element => {
       let handleDelete = () => {
-        let result = confirm("Are you sure?");
+        let result = confirm(
+          `Are you sure you want to delete ${element.name}?`
+        );
         if (result) {
           this.deleteEvent(element.id);
         }
