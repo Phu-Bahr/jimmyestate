@@ -124,6 +124,7 @@ class App extends Component {
             loggedInStatus={this.state.loggedInStatus}
             user={this.state.user}
           />
+
           <Switch>
             <Route
               exact
@@ -137,17 +138,16 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/service" component={ServiceContainer} />
+            <Route exact path="/about" component={AboutContainer} />
+            <Route exact path="/contact" component={ContactContainer} />
+            <Route exact path="/towns/:id?" component={TownShowPage} />
             <ProtectedRoute path="/newVenue" component={NewVenue} />
-            <Route
+            <ProtectedRoute exact path="/addcommunity" component={NewTown} />
+            <ProtectedRoute
               exact
-              path="/registration"
-              render={props => (
-                <Registration
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  handleLogin={this.handleLogin}
-                />
-              )}
+              path="/editcommunity/:id?"
+              component={EditTown}
             />
             <Route
               exact
@@ -162,25 +162,14 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/service" component={ServiceContainer} />
-            <Route exact path="/about" component={AboutContainer} />
-            <Route exact path="/contact" component={ContactContainer} />
-            <Route exact path="/towns/:id?" component={TownShowPage} />
             <ProtectedRoute
               exact
-              path="/editcommunity/:id?"
-              render={props => (
-                <EditTown
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  handleLogout={this.handleLogout}
-                  user={this.state.user}
-                />
-              )}
+              path="/registration"
+              component={Registration}
             />
-            <ProtectedRoute exact path="/addcommunity" component={NewTown} />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
+
           <FooterContainer
             loggedInStatus={this.state.loggedInStatus}
             user={this.state.user}
