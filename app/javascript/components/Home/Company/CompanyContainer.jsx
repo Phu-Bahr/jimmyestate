@@ -138,7 +138,10 @@ class CompanyContainer extends Component {
           </div>
         </div>
         <div>
-          <section className="container-fluid companycontent py-5">
+          <section
+            className="container-fluid companycontent py-5"
+            id="companyfont"
+          >
             <div className="container">
               <h2 className="text-center py-5">{companyTitle}</h2>
               <p>Who We Are & What Makes Us Different</p>

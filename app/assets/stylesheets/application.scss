@@ -285,6 +285,7 @@ h6 {
   transform-origin: left top;
   transform: scale(1, 1);
 }
+
 // end of navbar
 
 // footer
@@ -554,3 +555,20 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 // ending SHOWPAGE
+
+//MOBILE VIEW CSS
+
+//navbar bigger than mobile
+@media only screen and (min-width: 600px) {
+  #about {
+    width: 280px;
+  }
+}
+
+//mobile view
+@media only screen and (max-width: 600px) {
+  #companyfont {
+    font-size: 16px;
+  }
+}
+// ending mobile view css
