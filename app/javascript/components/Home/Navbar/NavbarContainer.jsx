@@ -93,11 +93,48 @@ class NavbarContainer extends Component {
                   Services
                 </Link>
               </li>
-
-              <li className="nav-item">
-                <Link to="/about" className="nav-link navbar-underline">
+              <li className="nav-item dropdown">
+                <Link
+                  to="/"
+                  className="nav-link dropdown-toggle navbar-underline"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   About
                 </Link>
+                <div
+                  className="dropdown-menu"
+                  id="about"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <div className="container py-1">
+                    <Link
+                      to="/about"
+                      className="dropdown-item navbar-underline"
+                    >
+                      About Jimmy Chou
+                    </Link>
+                  </div>
+                  <div className="container py-1">
+                    <Link
+                      to="/about"
+                      className="dropdown-item navbar-underline"
+                    >
+                      Sold Portfolio
+                    </Link>
+                  </div>
+                  <div className="container py-1">
+                    <Link
+                      to="/about"
+                      className="dropdown-item navbar-underline"
+                    >
+                      About RTN Realty Advisors
+                    </Link>
+                  </div>
+                </div>
               </li>
 
               <li className="nav-item">
