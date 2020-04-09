@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :towns, only: [:index, :create, :update, :destroy, :show]
       resources :registrations, only: [:create]
       resources :sessions, only: [:create]
+      resources :abouts, only: [:index, :update]
     end
   end
 

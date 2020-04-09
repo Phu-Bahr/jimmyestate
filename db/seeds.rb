@@ -42,8 +42,24 @@ announcement = Announcement.create!(
 )
 
 event = Event.create!([
-    { title: "Christmas time party", date: Date.parse('2019-12-25'), time: "10:00", location: "Wonder Bar" },
-    { title: "Halloween time party", date: Date.parse('2019-10-31'), time: "10:00", location: "The Grand" },
-    { title: "Thirsty Thursday", date: Date.parse('2019-12-25'), time: "10:00", location: "Scorpian Bar" },
-    { title: "New years bash", date: Date.parse('2019-12-31'), time: "10:00", location: "Big Night" }
+    { title: "Natick Open House", date: Date.parse('2020-12-25'), time: "10:00", location: "Natick" }
 ])
+
+about = About.create!(
+   bannerText1: "banner 1",
+   bannerText2: "banner 2",
+   paragraph1: "paragraph 1",
+   paragraph2: "paragraph 2",
+   paragraph3: "paragraph 3",
+   paragraph4: "paragraph 4",
+   paragraph5: "paragraph 5",
+   paragraph6: "paragraph 6",
+   paragraph7: "paragraph 7",
+   paragraph8: "paragraph 8",
+   photo: "photo info here",
+   photoname: "john smith",
+   photonumber: "555-555-5555",
+   photoemail: "john@aol.com",
+   photoaddress1: "21 jump st",
+   photoaddress2: "Boston, MA 02111"
+)

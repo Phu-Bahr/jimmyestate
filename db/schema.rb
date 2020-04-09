@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_012050) do
+ActiveRecord::Schema.define(version: 2020_04_09_015426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abouts", force: :cascade do |t|
+    t.string "bannerText1"
+    t.string "bannerText2"
+    t.string "paragraph1"
+    t.string "paragraph2"
+    t.string "paragraph3"
+    t.string "paragraph4"
+    t.string "paragraph5"
+    t.string "paragraph6"
+    t.string "paragraph7"
+    t.string "paragraph8"
+    t.string "photo"
+    t.string "photoname"
+    t.string "photonumber"
+    t.string "photoemail"
+    t.string "photoaddress1"
+    t.string "photoaddress2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "announcements", force: :cascade do |t|
     t.string "description"
