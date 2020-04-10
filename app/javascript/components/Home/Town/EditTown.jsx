@@ -162,7 +162,7 @@ class EditTown extends Component {
 
               <div className="parallaxShowPage" style={{ color: "white" }}>
                 <div className="container py-5">
-                  <div className="">
+                  <div>
                     <label htmlFor="headerText1">headerText1</label>
                     <input
                       type="text"
@@ -174,7 +174,7 @@ class EditTown extends Component {
                       value={this.state.headerText1}
                     />
 
-                    <div className="">
+                    <div>
                       <label htmlFor="headerText2">headerText2</label>
                       <input
                         type="text"
