@@ -70,7 +70,7 @@ class NavbarContainer extends Component {
                   Featured Communities
                 </Link>
                 <div
-                  className="dropdown-menu dropdown-menu-right"
+                  className="dropdown-menu dropdown-menu-right animate slideIn"
                   aria-labelledby="navbarDropdown"
                 >
                   <TownList
@@ -109,7 +109,7 @@ class NavbarContainer extends Component {
                   About
                 </Link>
                 <div
-                  className="dropdown-menu dropdown-menu-right"
+                  className="dropdown-menu dropdown-menu-right animate slideIn"
                   id="about"
                   aria-labelledby="navbarDropdown"
                 >
