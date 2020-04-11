@@ -69,7 +69,10 @@ class NavbarContainer extends Component {
                 >
                   Featured Communities
                 </Link>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div
+                  className="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="navbarDropdown"
+                >
                   <TownList
                     loggedInStatus={this.props.loggedInStatus}
                     user={this.props.user}
@@ -106,7 +109,7 @@ class NavbarContainer extends Component {
                   About
                 </Link>
                 <div
-                  className="dropdown-menu"
+                  className="dropdown-menu dropdown-menu-right"
                   id="about"
                   aria-labelledby="navbarDropdown"
                 >

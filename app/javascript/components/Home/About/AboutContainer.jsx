@@ -171,7 +171,7 @@ class AboutContainer extends Component {
       return (
         <div key={element.id}>
           <h1>{element.bannerText1}</h1>
-          <h1>{element.bannerText2}</h1>
+          <h4>{element.bannerText2}</h4>
         </div>
       );
     });
@@ -194,12 +194,23 @@ class AboutContainer extends Component {
     let photoArea = aboutData.map(element => {
       return (
         <div key={element.id}>
-          <div>{element.photo}</div>
-          <div>{element.photoname}</div>
-          <div>{element.photonumber}</div>
-          <div>{element.photoemail}</div>
-          <div>{element.photoaddress1}</div>
-          <div>{element.photoaddress2}</div>
+          <div className="text-center">
+            <img className="img-fluid rounded" src={element.photo}></img>
+          </div>
+
+          <div className="container mt-3 text-center">
+            <div className="container">
+              <div style={{ fontWeight: "bolder", fontSize: "30px" }}>
+                {element.photoname}
+              </div>
+            </div>
+            <div className="container mt-2">
+              <div>{element.photonumber}</div>
+              <div>{element.photoemail}</div>
+              <div>{element.photoaddress2}</div>
+              <div>{element.photoaddress1}</div>
+            </div>
+          </div>
         </div>
       );
     });
@@ -212,224 +223,226 @@ class AboutContainer extends Component {
 
         <div className="container py-4">
           <div className="row">
-            <div className="col-md-6">{paragraphs}</div>
-            <div className="col-md-6">{photoArea}</div>
+            <div className="col-md-8">{paragraphs}</div>
+            <div className="col-md-4">{photoArea}</div>
           </div>
         </div>
 
-        <form onSubmit={this.onSubmit}>
-          <div className="parallaxShowPage">
+        <div className="container">
+          <form onSubmit={this.onSubmit}>
+            <div className="parallaxShowPage">
+              <div className="container py-5">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="bannerText1"
+                    id="bannerText1"
+                    className="form-control"
+                    required
+                    onChange={this.onChange}
+                    value={this.state.bannerText1}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="bannerText2"
+                    id="bannerText2"
+                    className="form-control"
+                    required
+                    onChange={this.onChange}
+                    value={this.state.bannerText2}
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="container py-5">
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="bannerText1"
-                  id="bannerText1"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.bannerText1}
-                />
-              </div>
+              <div className="row">
+                <div className="col-md-9">
+                  <div className="form-group">
+                    <label htmlFor="paragraph1">Paragraph1</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph1"
+                      id="paragraph1"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                      value={this.state.paragraph1}
+                    />
+                  </div>
 
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="bannerText2"
-                  id="bannerText2"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.bannerText2}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="paragraph1">Paragraph1</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph1"
-                    id="paragraph1"
-                    className="form-control"
-                    required
-                    onChange={this.onChange}
-                    value={this.state.paragraph1}
-                  />
+                  <div className="form-group">
+                    <label htmlFor="paragraph2">Paragraph2</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph2"
+                      id="paragraph2"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                      value={this.state.paragraph2}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph3">Paragraph3</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph3"
+                      id="paragraph3"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                      value={this.state.paragraph3}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph4">Paragraph4</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph4"
+                      id="paragraph4"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.paragraph4}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph5">Paragraph5</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph5"
+                      id="paragraph5"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.paragraph5}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph6">Paragraph6</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph6"
+                      id="paragraph6"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.paragraph6}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph7">Paragraph7</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph7"
+                      id="paragraph7"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.paragraph7}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph8">Paragraph8</label>
+                    <textarea
+                      rows="3"
+                      type="text"
+                      name="paragraph8"
+                      id="paragraph8"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.paragraph8}
+                    />
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="paragraph2">Paragraph2</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph2"
-                    id="paragraph2"
-                    className="form-control"
-                    required
-                    onChange={this.onChange}
-                    value={this.state.paragraph2}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph3">Paragraph3</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph3"
-                    id="paragraph3"
-                    className="form-control"
-                    required
-                    onChange={this.onChange}
-                    value={this.state.paragraph3}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph4">Paragraph4</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph4"
-                    id="paragraph4"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.paragraph4}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph5">Paragraph5</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph5"
-                    id="paragraph5"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.paragraph5}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph6">Paragraph6</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph6"
-                    id="paragraph6"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.paragraph6}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph7">Paragraph7</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph7"
-                    id="paragraph7"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.paragraph7}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph8">Paragraph8</label>
-                  <textarea
-                    rows="3"
-                    type="text"
-                    name="paragraph8"
-                    id="paragraph8"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.paragraph8}
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="photo">photo</label>
-                  <input
-                    type="text"
-                    name="photo"
-                    id="photo"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.photo}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="photoname">photoname</label>
-                  <input
-                    type="text"
-                    name="photoname"
-                    id="photoname"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.photoname}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="photonumber">photonumber</label>
-                  <input
-                    type="text"
-                    name="photonumber"
-                    id="photonumber"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.photonumber}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="photoemail">photoemail</label>
-                  <input
-                    type="text"
-                    name="photoemail"
-                    id="photoemail"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.photoemail}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="photoaddress1">photoaddress1</label>
-                  <input
-                    type="text"
-                    name="photoaddress1"
-                    id="photoaddress1"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.photoaddress1}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="photoaddress2">photoaddress2</label>
-                  <input
-                    type="text"
-                    name="photoaddress2"
-                    id="photoaddress2"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={this.state.photoaddress2}
-                  />
+                <div className="col-md-3">
+                  <div className="form-group">
+                    <label htmlFor="photo">photo</label>
+                    <input
+                      type="text"
+                      name="photo"
+                      id="photo"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.photo}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="photoname">photoname</label>
+                    <input
+                      type="text"
+                      name="photoname"
+                      id="photoname"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.photoname}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="photonumber">photonumber</label>
+                    <input
+                      type="text"
+                      name="photonumber"
+                      id="photonumber"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.photonumber}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="photoemail">photoemail</label>
+                    <input
+                      type="text"
+                      name="photoemail"
+                      id="photoemail"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.photoemail}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="photoaddress1">photoaddress1</label>
+                    <input
+                      type="text"
+                      name="photoaddress1"
+                      id="photoaddress1"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.photoaddress1}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="photoaddress2">photoaddress2</label>
+                    <input
+                      type="text"
+                      name="photoaddress2"
+                      id="photoaddress2"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.photoaddress2}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <button type="submit" className="btn custom-button mt-3">
-            Submit Town changes
-          </button>
+            <button type="submit" className="btn custom-button mt-3">
+              Submit changes
+            </button>
 
-          <Link to="/" className="btn btn-link mt-3">
-            Back to Home Page
-          </Link>
-        </form>
+            <Link to="/" className="btn btn-link mt-3">
+              Back to Home Page
+            </Link>
+          </form>
+        </div>
       </div>
     );
   }
