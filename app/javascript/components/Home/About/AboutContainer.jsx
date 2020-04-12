@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 
 class AboutContainer extends Component {
   constructor(props) {
@@ -23,11 +24,24 @@ class AboutContainer extends Component {
       photoemail: "",
       photoaddress1: "",
       photoaddress2: "",
-      refreshKey: false
+      refreshKey: false,
+      hideDiv: true
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
+    this.clickEdit = this.clickEdit.bind(this);
+  }
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
+  clickEdit(event) {
+    if (this.state.hideDiv === false) {
+      this.setState({ hideDiv: true });
+    } else {
+      this.setState({ hideDiv: false });
+    }
   }
 
   toggleRefreshKey(event) {
@@ -164,7 +178,22 @@ class AboutContainer extends Component {
   }
 
   render() {
-    console.log("about state --", this.state.bannerText1);
+    console.log(this.props);
+
+    let hideEditButton;
+    if (this.props.user.admin === true) {
+      hideEditButton = "";
+    } else {
+      // set below to blank string to default show edit buttons
+      hideEditButton = "invisible";
+    }
+
+    let hide;
+    if (this.state.hideDiv === true) {
+      hide = "invisible";
+    } else {
+      hide = "";
+    }
 
     let aboutData = this.state.aboutData;
     let banner = aboutData.map(element => {
@@ -217,7 +246,7 @@ class AboutContainer extends Component {
 
     return (
       <div>
-        <div className="parallaxShowPage darken-pseudo darken-with-text">
+        <div className="parallaxAboutJimmyPage darken-pseudo darken-with-text">
           <div className="container py-5">{banner}</div>
         </div>
 
@@ -228,7 +257,21 @@ class AboutContainer extends Component {
           </div>
         </div>
 
-        <div className="container">
+        <div className={"container py-3" + " " + hideEditButton}>
+          <div className="row">
+            <div className="col text-center">
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={this.clickEdit}
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={"container" + " " + hide}>
           <form onSubmit={this.onSubmit}>
             <div className="parallaxShowPage">
               <div className="container py-5">
@@ -432,15 +475,18 @@ class AboutContainer extends Component {
                   </div>
                 </div>
               </div>
+              <button
+                type="submit"
+                className="btn custom-button mt-3"
+                onClick={this.scrollToTop}
+              >
+                Submit changes
+              </button>
+
+              <Link to="/" className="btn btn-link mt-3">
+                Back to Home Page
+              </Link>
             </div>
-
-            <button type="submit" className="btn custom-button mt-3">
-              Submit changes
-            </button>
-
-            <Link to="/" className="btn btn-link mt-3">
-              Back to Home Page
-            </Link>
           </form>
         </div>
       </div>

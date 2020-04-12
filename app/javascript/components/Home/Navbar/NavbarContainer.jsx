@@ -117,6 +117,7 @@ class NavbarContainer extends Component {
                     <Link
                       to="/about"
                       className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
                     >
                       About Jimmy Chou
                     </Link>
@@ -125,6 +126,7 @@ class NavbarContainer extends Component {
                     <Link
                       to="/about"
                       className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
                     >
                       Sold Portfolio
                     </Link>
@@ -133,6 +135,7 @@ class NavbarContainer extends Component {
                     <Link
                       to="/about"
                       className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
                     >
                       About RTN Realty Advisors
                     </Link>
