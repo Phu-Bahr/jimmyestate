@@ -139,7 +139,17 @@ class App extends Component {
               )}
             />
             <Route exact path="/service" component={ServiceContainer} />
-            <Route exact path="/about" component={AboutContainer} />
+            <Route
+              exact
+              path="/about"
+              render={props => (
+                <AboutContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route exact path="/contact" component={ContactContainer} />
             <Route exact path="/towns/:id?" component={TownShowPage} />
             <ProtectedRoute path="/newVenue" component={NewVenue} />
