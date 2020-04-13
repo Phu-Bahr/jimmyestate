@@ -1,5 +1,3 @@
-# initial seed for venue, jumbotron, footer, announcement, event
-
 venues = Venue.create!([
     { name: 'Jame\'s Cool Bar', street: '21 Jump', city: 'Boston', state: 'MA', zip: '02111', telephone: '555-555-5555', url: 'www.google.com', venue_image: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&w=1000&q=80'},
     { name: 'Paul\'s Cool Club', street: '22 Jump', city: 'Boston', state: 'MA', zip: '02111', telephone: '555-555-5555', url: 'www.amazon.com', venue_image: 'https://www.vets4pets.com/siteassets/species/cat/kitten/tiny-kitten-in-field.jpg?width=1040'},
@@ -46,6 +44,25 @@ event = Event.create!([
 ])
 
 about = About.create!(
+   bannerText1: "banner 1",
+   bannerText2: "banner 2",
+   paragraph1: "paragraph 1",
+   paragraph2: "paragraph 2",
+   paragraph3: "paragraph 3",
+   paragraph4: "paragraph 4",
+   paragraph5: "paragraph 5",
+   paragraph6: "paragraph 6",
+   paragraph7: "paragraph 7",
+   paragraph8: "paragraph 8",
+   photo: "photo info here",
+   photoname: "john smith",
+   photonumber: "555-555-5555",
+   photoemail: "john@aol.com",
+   photoaddress1: "21 jump st",
+   photoaddress2: "Boston, MA 02111"
+)
+
+AboutCompany = AboutCompany.create!(
    bannerText1: "banner 1",
    bannerText2: "banner 2",
    paragraph1: "paragraph 1",

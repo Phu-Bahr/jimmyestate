@@ -145,64 +145,7 @@ class CompanyContainer extends Component {
             id="companyfont"
           >
             <div className="container">
-              <h2 className="text-center py-5">{companyTitle}</h2>
-              <p>Who We Are & What Makes Us Different</p>
-              <p>
-                RTN Realty Advisors LLC provides residential and commercial
-                sales, leasing and property management services. Our agents are
-                committed to giving clients the best possible experience with a
-                multi-tiered approach to marketing and agent support. No matter
-                how large or small a transaction is, our clients receive the
-                highest-level of service to generate the best possible results.{" "}
-              </p>
-              <p>
-                RTN Realty Advisors LLC is owned by RTN Federal Credit Union, a
-                non-profit organization with 50k+ members and almost $1B in
-                assets. The credit union owning our organization allows us
-                access to a network of people across Massachusetts as well as a
-                connection to all the services the credit union provides. While
-                our services don’t have to be used together, there is value in
-                having us all under one roof, which can save you time and money.
-              </p>
-              <p>
-                Not a credit union member? That’s just fine, you aren’t required
-                to have ties at all. You will still receive the value that we
-                are able to offer when such a large financial institution backs
-                our success. The bottom line is that our setup as a brokerage
-                owned by a non-profit allows for us to focus on the education
-                and service side of the transaction. We are able to focus solely
-                on doing a good job while providing our clients all the value of
-                a full-service brokerage.
-              </p>
-              <p>
-                For those seeking to purchase a home, our synergistic
-                relationship allows for a more seamless buying process. RTN
-                Realty Advisors believes in service and education first, so our
-                buyer clients don’t need to feel pressured to buy a home. With
-                access to free educational seminars and information about the
-                buying process, our agents make sure buyer’s feel prepare to
-                make such a large financial decision. Choosing the right loan
-                product for buyers is a big decision, and our agents have
-                trusted contacts to help buyers find the right fit. If you do
-                choose to go with an RTN FCU product, we do work in the same
-                buildings with each other. That means more person to person
-                interactions when things need to be completed and overall better
-                communication during your transaction.
-              </p>
-
-              <p>
-                For prospective home sellers, our value is unprecedented. Most
-                agents are on their own when listing a home. They take on all
-                the costs of listing including marketing, advertising,
-                prospecting for buyers, and other business expenses. RTN Realty
-                Advisors is different. The marketing of your home is completed
-                by a dedicated team whose sole role is to market homes. We’re
-                owned by a non-profit and our commissions aren’t driven from
-                some broker’s profit model. In the end, we get to spend more
-                time selling your property. We are not burdened financially by
-                marketing and other business expenses, and you receive the
-                high-end service you expect for your commission.
-              </p>
+              <h2 className="text-center py-3">{companyTitle}</h2>
               <p>{companyDescription}</p>
             </div>
             <div className={this.props.hideEditButton}>
