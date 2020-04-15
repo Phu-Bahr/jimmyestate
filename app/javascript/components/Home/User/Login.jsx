@@ -70,8 +70,6 @@ class Login extends Component {
       })
       .then(response => response.json())
       .then(data => {
-        console.log("from login data", data);
-
         if (data.logged_in) {
           this.props.handleLogin(data);
         }
@@ -140,16 +138,15 @@ class Login extends Component {
                       Login
                     </button>
                   </div>
-                  <div>
-                    <button
-                      className="btn btn-info"
-                      onClick={(this.handleLogoutClick, this.scrollToTop)}
-                    >
-                      Logout
-                    </button>
-                  </div>
                 </div>
               </form>
+
+              <button
+                className="btn btn-info mt-3"
+                onClick={this.handleLogoutClick}
+              >
+                Logout
+              </button>
 
               <div className="mt-3">
                 <Link to="/">Back to Home page</Link>
@@ -163,3 +160,5 @@ class Login extends Component {
 }
 
 export default Login;
+
+// you can only have one button in a form apparently. having log out button IN the form is same as pressing log in.
