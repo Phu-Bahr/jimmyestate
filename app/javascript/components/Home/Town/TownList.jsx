@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class TownList extends Component {
@@ -93,7 +93,8 @@ class TownList extends Component {
           throw error;
         }
       })
-      .then(this.toggleRefreshKey)
+      .then(this.props.history.push("/"))
+      .then(window.location.reload(false))
       .catch(error => console.log(error.message));
   }
 
@@ -160,4 +161,4 @@ class TownList extends Component {
   }
 }
 
-export default TownList;
+export default withRouter(TownList);

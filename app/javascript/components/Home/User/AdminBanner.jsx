@@ -5,18 +5,40 @@ class AdminBanner extends Component {
   constructor(props) {
     super();
     this.state = {};
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
+
+  handleLogoutClick() {
+    const urls = "/logout";
+
+    fetch(urls, {
+      method: "DELETE",
+      credentials: "include"
+    })
+      .then(response => {
+        this.props.handleLogout();
+      })
+      .catch(error => {
+        console.log("logout error", error);
+      });
+  }
+
   render() {
+    let hideEditButton = "invisible";
+    if (this.props.user.admin === true) {
+      hideEditButton = "";
+    }
+
+    console.log("Admin?", this.props.user.admin);
+    console.log("admin banner ===>", this.props.user);
+
     return (
-      <div className="container text-center p-4">
+      <div className={"container text-center p-4" + " " + hideEditButton}>
         <div>
           <h1>Administration Mode</h1>
           <div className="row d-flex justify-content-center">
             <div className="px-1">
-              <button
-                className="btn btn-info"
-                onClick={this.props.handleLogoutClick}
-              >
+              <button className="btn btn-info" onClick={this.handleLogoutClick}>
                 Logout
               </button>
             </div>

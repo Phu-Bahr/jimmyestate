@@ -21,6 +21,7 @@ import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
 import TownShowPage from "../components/Home/Town/TownShowPage";
 import EditTown from "../components/Home/Town/EditTown";
+import AdminBanner from "../components/Home/User/AdminBanner";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -121,11 +122,17 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router>
+          <AdminBanner
+            loggedInStatus={this.state.loggedInStatus}
+            user={this.state.user}
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+          />
+
           <NavbarContainer
             loggedInStatus={this.state.loggedInStatus}
             user={this.state.user}
           />
-
           <Switch>
             <Route
               exact
@@ -191,7 +198,6 @@ class App extends Component {
             />
             <Route path="*" component={() => "404 NOT FOUND"} />
           </Switch>
-
           <FooterContainer
             loggedInStatus={this.state.loggedInStatus}
             user={this.state.user}

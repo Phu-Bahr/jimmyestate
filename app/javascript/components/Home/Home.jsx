@@ -27,8 +27,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log("Admin?", this.props.user.admin);
-
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";
@@ -39,13 +37,6 @@ class Home extends Component {
 
     return (
       <div className="master">
-        <div className={hideEditButton}>
-          <AdminBanner
-            hideEditButton={hideEditButton}
-            handleLogoutClick={this.handleLogoutClick}
-            loggedInStatus={this.props.loggedInStatus}
-          />
-        </div>
         <JumbotronContainer hideEditButton={hideEditButton} />
         <AnnouncementContainer hideEditButton={hideEditButton} />
         <VenueContainer hideEditButton={hideEditButton} />
