@@ -242,7 +242,7 @@ class NewTown extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
-                  placeholder="ex: www.wikipedia.com"
+                  placeholder="ex: www.wikipedia.com, **only use www, no http in front of it."
                 />
               </div>
 
