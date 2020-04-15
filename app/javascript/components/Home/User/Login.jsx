@@ -74,7 +74,7 @@ class Login extends Component {
           this.props.handleLogin(data);
         }
       })
-      .then(this.props.history.push("/"))
+      .then(this.props.history.goBack)
       .catch(error => {
         console.log("login error", error);
       });
