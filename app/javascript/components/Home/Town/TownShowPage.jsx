@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
+import TownLinks from "./TownLinks";
 
 class TownShowPage extends Component {
   constructor(props) {
@@ -103,6 +104,7 @@ class TownShowPage extends Component {
             >
               <li>{this.state.townData.townlinkdescription3}</li>
             </Link>
+            <TownLinks />
           </ul>
         </div>
       </div>
