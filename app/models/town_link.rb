@@ -1,0 +1,2 @@
+class TownLink < ApplicationRecord
+end

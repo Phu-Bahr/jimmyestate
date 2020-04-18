@@ -170,7 +170,17 @@ class App extends Component {
               )}
             />
             <Route exact path="/contact" component={ContactContainer} />
-            <Route exact path="/towns/:id?" component={TownShowPage} />
+            <Route
+              exact
+              path="/towns/:id?"
+              render={props => (
+                <TownShowPage
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
             <ProtectedRoute path="/newVenue" component={NewVenue} />
             <ProtectedRoute exact path="/addcommunity" component={NewTown} />
             <ProtectedRoute
