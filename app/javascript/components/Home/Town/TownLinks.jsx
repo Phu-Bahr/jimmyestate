@@ -98,6 +98,7 @@ class TownLinks extends Component {
         })
         .then(response => response.json())
         .then(body => {
+          console.log("BODY townlinks DIDUPDATE =====>", body);
           let newTownLinkData = body;
           this.setState({
             townLinkData: newTownLinkData,

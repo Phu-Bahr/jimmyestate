@@ -63,8 +63,6 @@ class App extends Component {
       })
       .then(response => response.json())
       .then(data => {
-        console.log("log in? =>>", data);
-
         if (
           data.logged_in === true &&
           (this.state.loggedInStatus = "Not Logged In")

@@ -29,9 +29,6 @@ class AdminBanner extends Component {
       hideEditButton = "";
     }
 
-    console.log("Admin?", this.props.user.admin);
-    console.log("admin banner ===>", this.props.user);
-
     return (
       <div className={"container text-center p-4" + " " + hideEditButton}>
         <div>
