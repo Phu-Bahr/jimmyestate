@@ -60,6 +60,7 @@ class TownShowPage extends Component {
         .then(this.scrollToTop());
     }
   }
+
   render() {
     return (
       <div>
@@ -107,6 +108,7 @@ class TownShowPage extends Component {
             <TownLinks
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
+              paramID={this.props.match.params.id}
             />
           </ul>
         </div>

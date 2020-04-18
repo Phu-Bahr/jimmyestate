@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 
 class TownLinks extends Component {
   constructor() {
@@ -17,6 +18,10 @@ class TownLinks extends Component {
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
 
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
   toggleRefreshKey(event) {
     this.setState({ refreshKey: true });
   }
@@ -27,7 +32,8 @@ class TownLinks extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/town_links";
+    let town_id = this.props.paramID;
+    const urls = `/api/v1/towns/${town_id}/town_links`;
     const { townlink, townlinkdescription } = this.state;
 
     const body = {
@@ -56,7 +62,7 @@ class TownLinks extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/town_links")
+    fetch(`/api/v1/towns/${this.props.paramID}/town_links`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -68,17 +74,19 @@ class TownLinks extends Component {
       })
       .then(response => response.json())
       .then(body => {
+        console.log("BODY townlinks didmount =====>", body);
         let newTownLinkData = body;
         this.setState({
-          townLinkData: newTownLinkData
+          townLinkData: newTownLinkData,
+          id: newTownLinkData[0].town_id
         });
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
-      fetch("api/v1/town_links")
+    if (this.state.id != this.props.paramID) {
+      fetch(`/api/v1/towns/${this.props.paramID}/town_links`)
         .then(response => {
           if (response.ok) {
             return response;
@@ -91,18 +99,36 @@ class TownLinks extends Component {
         .then(response => response.json())
         .then(body => {
           let newTownLinkData = body;
-          this.setState({ townLinkData: newTownLinkData });
+          this.setState({
+            townLinkData: newTownLinkData,
+            id: newTownLinkData[0].town_id,
+            refreshKey: false
+          });
+        });
+    } else if (this.state.refreshKey === true) {
+      fetch(`/api/v1/towns/${this.props.paramID}/town_links`)
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
         })
-        // refresh key won't work
-        .then(window.location.reload(false))
-        .catch(error => console.log("error message =>", error.message));
+        .then(response => response.json())
+        .then(body => {
+          let newTownLinkData = body;
+          this.setState({
+            townLinkData: newTownLinkData,
+            id: newTownLinkData[0].town_id,
+            refreshKey: false
+          });
+        });
     }
   }
 
   render() {
-    console.log("townlink state", this.state.townLinkData);
-    console.log("props from townlink", this.props);
-
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";
@@ -122,39 +148,46 @@ class TownLinks extends Component {
     });
 
     return (
-      <div className={hideEditButton}>
-        <div>test links and forms, not finished yet.</div>
-        <div>{displayLinks}</div>
-
-        <form onSubmit={this.onSubmit} className="my-4">
-          <div className="form-group">
-            <label htmlFor="townlink">Town Link</label>
-            <input
-              type="text"
-              name="townlink"
-              id="townlink"
-              className="form-control"
-              required
-              onChange={this.onChange}
-              placeholder="ex: www.wikipedia.com, **only use www or http(s) in front of it."
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="townlinkdescription">Town Link Description</label>
-            <input
-              type="text"
-              name="townlinkdescription"
-              id="townlinkdescription"
-              className="form-control"
-              required
-              onChange={this.onChange}
-              placeholder="ex: Town Wikipedia"
-            />
-          </div>
-          <button type="submit" className="btn custom-button">
-            Create Town Link
-          </button>
-        </form>
+      <div>
+        <div className={hideEditButton}>
+          <div>test links and forms, not finished yet.</div>
+          <div>{displayLinks}</div>
+          <form
+            onSubmit={event => {
+              this.onSubmit(event);
+              event.target.reset();
+            }}
+            className="my-4"
+          >
+            <div className="form-group">
+              <label htmlFor="townlink">Town Link</label>
+              <input
+                type="text"
+                name="townlink"
+                id="townlink"
+                className="form-control"
+                required
+                onChange={this.onChange}
+                placeholder="ex: www.wikipedia.com, **only use www or http(s) in front of it."
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="townlinkdescription">Town Link Description</label>
+              <input
+                type="text"
+                name="townlinkdescription"
+                id="townlinkdescription"
+                className="form-control"
+                required
+                onChange={this.onChange}
+                placeholder="ex: Town Wikipedia"
+              />
+            </div>
+            <button type="submit" className="btn custom-button">
+              Create Town Link
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

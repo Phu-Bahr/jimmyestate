@@ -3,12 +3,15 @@ class Api::V1::TownLinksController < ApplicationController
     protect_from_forgery unless: -> { request.format.json? }
   
     def index
-      townlink = TownLink.all
+      town = Town.find(params[:town_id])
+      townlink = town.town_links.all
       render json: townlink
     end
 
     def create
-      townlink = TownLink.create!(townlink_params)
+      town = Town.find(params[:town_id])
+      townlink = town.town_links.create!(townlink_params)
+
       if townlink
         render json: townlink
       else
@@ -31,7 +34,6 @@ class Api::V1::TownLinksController < ApplicationController
     end
 
     private
-
     def townlink_params
       params.require(:town_link).permit(:townlink, :townlinkdescription)
     end

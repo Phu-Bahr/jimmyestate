@@ -109,8 +109,10 @@ ActiveRecord::Schema.define(version: 2020_04_18_005242) do
   create_table "town_links", force: :cascade do |t|
     t.string "townlink"
     t.string "townlinkdescription"
+    t.bigint "town_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["town_id"], name: "index_town_links_on_town_id"
   end
 
   create_table "towns", force: :cascade do |t|
