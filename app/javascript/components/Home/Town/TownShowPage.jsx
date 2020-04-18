@@ -104,7 +104,10 @@ class TownShowPage extends Component {
             >
               <li>{this.state.townData.townlinkdescription3}</li>
             </Link>
-            <TownLinks />
+            <TownLinks
+              loggedInStatus={this.props.loggedInStatus}
+              user={this.props.user}
+            />
           </ul>
         </div>
       </div>
