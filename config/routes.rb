@@ -19,12 +19,13 @@ Rails.application.routes.draw do
       resources :companies, only: [:index, :update]
       resources :announcements, only: [:index, :update]
       resources :events, only: [:index, :create, :update, :destroy]
-      resources :towns, only: [:index, :create, :update, :destroy, :show]
+      resources :towns, only: [:index, :create, :update, :destroy, :show] do
+        resources :town_links, only: [:index, :create, :update, :destroy]
+      end
       resources :registrations, only: [:create]
       resources :sessions, only: [:create]
       resources :abouts, only: [:index, :update]
       resources :about_companies, only: [:index, :update]
-      resources :town_links, only: [:index, :create, :update, :destroy]
     end
   end
 

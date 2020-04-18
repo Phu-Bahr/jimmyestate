@@ -81,7 +81,8 @@
 #    photoaddress2: "Boston, MA 02111"
 # )
 
-TownLink = TownLink.create!(
+townseed = TownLink.create!(
     townlink: "www.example.com",
-    townlinkdescription: "Google Page"
+    townlinkdescription: "Google Page",
+    town_id: 78
 )
