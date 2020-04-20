@@ -11,13 +11,15 @@ class TownLinks extends Component {
       id: "",
       townlink: "",
       townlinkdescription: "",
-      refreshKey: false
+      refreshKey: false,
+      townlinkID: ""
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.onSubmitEdit = this.onSubmitEdit.bind(this);
   }
 
   scrollToTop = () => {
@@ -59,6 +61,71 @@ class TownLinks extends Component {
         }
         throw new Error("Network response was not ok.");
       })
+      .then(
+        this.setState({ townlink: "", townlinkdescription: "", townlinkID: "" })
+      )
+      .then(this.toggleRefreshKey)
+      .catch(error => console.log(error.message));
+  }
+
+  onSubmitEdit(event) {
+    event.preventDefault();
+    const urls = `/api/v1/towns/${this.props.paramID}/town_links/${this.state.townlinkID}`;
+    const { townlink, townlinkdescription, townlinkID } = this.state;
+
+    const body = {
+      townlink,
+      townlinkdescription,
+      townlinkID
+    };
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "PUT",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${resopnse.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(alert("Town Link has been updated."))
+      .then(
+        this.setState({ townlink: "", townlinkdescription: "", townlinkID: "" })
+      )
+      .then(this.toggleRefreshKey)
+      .catch(error => console.log(error.message));
+  }
+
+  deleteEvent(id) {
+    const urls = `/api/v1/towns/${this.props.paramID}/town_links/${id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
   }
@@ -76,7 +143,6 @@ class TownLinks extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log("BODY townlinks didmount =====>", body);
         let newTownLinkData = body;
         this.setState({
           townLinkData: newTownLinkData,
@@ -100,7 +166,6 @@ class TownLinks extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          console.log("BODY townlinks DIDUPDATE =====>", body);
           let newTownLinkData = body;
           this.setState({
             townLinkData: newTownLinkData,
@@ -131,31 +196,9 @@ class TownLinks extends Component {
     }
   }
 
-  deleteEvent(id) {
-    const urls = `/api/v1/towns/${this.props.paramID}/town_links/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(urls, {
-      method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
-
   render() {
+    console.log(this.state);
+
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";
@@ -173,6 +216,14 @@ class TownLinks extends Component {
           this.deleteEvent(element.id);
         }
       };
+
+      let handleEdit = () => {
+        this.setState({
+          townlinkID: element.id,
+          townlink: element.townlink,
+          townlinkdescription: element.townlinkdescription
+        });
+      };
       return (
         <div key={element.id} className="row">
           <div className="col-sm-2">
@@ -180,17 +231,15 @@ class TownLinks extends Component {
               <li>{element.townlinkdescription}</li>
             </Link>
           </div>
-          <div className="col-xs-4">
+          <div className={"col-xs-4 px-5" + " " + hideEditButton}>
             <FontAwesomeIcon
               icon="trash-alt"
               size="1x"
               onClick={handleDelete}
             />
           </div>
-          <div className="col-sm-4">
-            <Link to="/">
-              <FontAwesomeIcon icon="edit" size="1x" />
-            </Link>
+          <div className={"col-xs-4" + " " + hideEditButton}>
+            <FontAwesomeIcon icon="edit" size="1x" onClick={handleEdit} />
           </div>
         </div>
       );
@@ -198,9 +247,8 @@ class TownLinks extends Component {
 
     return (
       <div>
-        <div className="">
-          <div>test links and forms, not finished yet.</div>
-          <div>{displayLinks}</div>
+        <div>{displayLinks}</div>
+        <div className={hideEditButton}>
           <form
             onSubmit={event => {
               this.onSubmit(event);
@@ -218,6 +266,7 @@ class TownLinks extends Component {
                 required
                 onChange={this.onChange}
                 placeholder="ex: www.wikipedia.com, **only use www or http(s) in front of it."
+                value={this.state.townlink}
               />
             </div>
             <div className="form-group">
@@ -230,12 +279,21 @@ class TownLinks extends Component {
                 required
                 onChange={this.onChange}
                 placeholder="ex: Town Wikipedia"
+                value={this.state.townlinkdescription}
               />
             </div>
             <button type="submit" className="btn custom-button">
               Create Town Link
             </button>
           </form>
+
+          <button
+            type="submit"
+            className="btn btn-info"
+            onClick={this.onSubmitEdit}
+          >
+            Submit Town Link Changes
+          </button>
         </div>
       </div>
     );
