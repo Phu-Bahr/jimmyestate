@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class TownLinks extends Component {
   constructor() {
@@ -16,6 +17,7 @@ class TownLinks extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
   scrollToTop = () => {
@@ -129,6 +131,30 @@ class TownLinks extends Component {
     }
   }
 
+  deleteEvent(id) {
+    const urls = `/api/v1/towns/${this.props.paramID}/town_links/${id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(this.toggleRefreshKey)
+      .catch(error => console.log(error.message));
+  }
+
   render() {
     let hideEditButton;
     if (this.props.user.admin === true) {
@@ -139,18 +165,40 @@ class TownLinks extends Component {
 
     let townData = this.state.townLinkData;
     let displayLinks = townData.map(element => {
+      let handleDelete = () => {
+        let result = confirm(
+          `Are you sure you want to delete ${element.townlink}?`
+        );
+        if (result) {
+          this.deleteEvent(element.id);
+        }
+      };
       return (
-        <div key={element.id}>
-          <Link to={`//` + element.townlink} target="blank" className="link">
-            <li>{element.townlinkdescription}</li>
-          </Link>
+        <div key={element.id} className="row">
+          <div className="col-sm-2">
+            <Link to={`//` + element.townlink} target="blank" className="link">
+              <li>{element.townlinkdescription}</li>
+            </Link>
+          </div>
+          <div className="col-xs-4">
+            <FontAwesomeIcon
+              icon="trash-alt"
+              size="1x"
+              onClick={handleDelete}
+            />
+          </div>
+          <div className="col-sm-4">
+            <Link to="/">
+              <FontAwesomeIcon icon="edit" size="1x" />
+            </Link>
+          </div>
         </div>
       );
     });
 
     return (
       <div>
-        <div className={hideEditButton}>
+        <div className="">
           <div>test links and forms, not finished yet.</div>
           <div>{displayLinks}</div>
           <form

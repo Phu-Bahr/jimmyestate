@@ -39,7 +39,7 @@ class Api::V1::TownLinksController < ApplicationController
     end
 
     def townlink
-      @townlink ||= townlink.find(params[:id])
+      @townlink ||= TownLink.find(params[:id])
     end
 
 end
