@@ -84,27 +84,6 @@ class TownShowPage extends Component {
             {this.state.townData.townheader}
           </div>
           <ul>
-            <Link
-              to={`//` + this.state.townData.townlink1}
-              target="blank"
-              className="link"
-            >
-              <li>{this.state.townData.townlinkdescription1}</li>
-            </Link>
-            <Link
-              to={`//` + this.state.townData.townlink2}
-              target="blank"
-              className="link"
-            >
-              <li>{this.state.townData.townlinkdescription2}</li>
-            </Link>
-            <Link
-              to={`//` + this.state.townData.townlink3}
-              target="blank"
-              className="link"
-            >
-              <li>{this.state.townData.townlinkdescription3}</li>
-            </Link>
             <TownLinks
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}

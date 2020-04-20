@@ -228,9 +228,8 @@ class NewTown extends React.Component {
                   name="townlinkdescription1"
                   id="townlinkdescription1"
                   className="form-control"
-                  required
                   onChange={this.onChange}
-                  placeholder="ex: Town Wikipedia"
+                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
                 />
               </div>
               <div className="form-group">
@@ -240,9 +239,8 @@ class NewTown extends React.Component {
                   name="townlink1"
                   id="townlink1"
                   className="form-control"
-                  required
                   onChange={this.onChange}
-                  placeholder="ex: www.wikipedia.com, **only use www, no http in front of it."
+                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
                 />
               </div>
 
@@ -255,8 +253,8 @@ class NewTown extends React.Component {
                   name="townlinkdescription2"
                   id="townlinkdescription2"
                   className="form-control"
-                  required
                   onChange={this.onChange}
+                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
                 />
               </div>
               <div className="form-group">
@@ -266,7 +264,7 @@ class NewTown extends React.Component {
                   name="townlink2"
                   id="townlink2"
                   className="form-control"
-                  required
+                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
                   onChange={this.onChange}
                 />
               </div>
@@ -280,7 +278,7 @@ class NewTown extends React.Component {
                   name="townlinkdescription3"
                   id="townlinkdescription3"
                   className="form-control"
-                  required
+                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
                   onChange={this.onChange}
                 />
               </div>
@@ -291,7 +289,7 @@ class NewTown extends React.Component {
                   name="townlink3"
                   id="townlink3"
                   className="form-control"
-                  required
+                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
                   onChange={this.onChange}
                 />
               </div>
