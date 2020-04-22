@@ -24,7 +24,7 @@ class NavbarContainer extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light site-header sticky-top py-4 navbar-font-type">
         <div className="container-fluid" style={{ maxWidth: 1150 }}>
-          <Link to="/">
+          <Link to="/login">
             <div className="navbar-font" onClick={this.scrollToTop}>
               JC Realty
             </div>
