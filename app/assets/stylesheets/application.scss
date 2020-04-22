@@ -216,6 +216,21 @@ h6 {
 .jumboFont3 {
   font-size: 4vw;
 }
+
+// bigger than mobile
+@media only screen and (min-width: 600px) {
+  .jumboFont {
+    font-size: 4vw;
+  }
+
+  .jumboFont2 {
+    font-size: 2vw;
+  }
+
+  .jumboFont3 {
+    font-size: 3vw;
+  }
+}
 // end of jumbotron
 
 // NAV BAR CSS
@@ -532,9 +547,19 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.flier-size {
-  height: 300px;
+.parallaxEvents {
+  background: url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  filter: grayscale(1%);
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+// .flier-size {
+//   height: 300px;
+// }
 
 // end of announcements
 

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import VenueContainer from "../Home/Venue/VenueContainer";
 import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
-import AdminBanner from "../Home/User/AdminBanner";
+import PropertySearchContainer from "../Home/PropertySearch/PropertySearchContainer";
+import AboutContainer from "./About/AboutContainer";
 
 class Home extends Component {
   constructor(props) {
@@ -38,6 +39,8 @@ class Home extends Component {
     return (
       <div className="master">
         <JumbotronContainer hideEditButton={hideEditButton} />
+        <PropertySearchContainer />
+        <AboutContainer user={this.props.user} />
         <AnnouncementContainer hideEditButton={hideEditButton} />
         <VenueContainer hideEditButton={hideEditButton} />
       </div>
