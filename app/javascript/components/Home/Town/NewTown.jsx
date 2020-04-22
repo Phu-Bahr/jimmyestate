@@ -94,9 +94,9 @@ class NewTown extends React.Component {
 
   render() {
     return (
-      <div className="container mt-5">
+      <div className="container my-5">
         <div className="row">
-          <div className="col-sm-12 col-lg-6 offset-lg-3">
+          <div className="col-sm-12 col-lg-12">
             <h1 className="font-weight-normal mb-5">
               Add your new Community here.
             </h1>
