@@ -69,41 +69,49 @@ class TownLinks extends Component {
   }
 
   onSubmitEdit(event) {
-    event.preventDefault();
-    const urls = `/api/v1/towns/${this.props.paramID}/town_links/${this.state.townlinkID}`;
-    const { townlink, townlinkdescription, townlinkID } = this.state;
+    if (this.state.townlinkID === "") {
+      alert("Nothing to edit");
+    } else {
+      event.preventDefault();
+      const urls = `/api/v1/towns/${this.props.paramID}/town_links/${this.state.townlinkID}`;
+      const { townlink, townlinkdescription, townlinkID } = this.state;
 
-    const body = {
-      townlink,
-      townlinkdescription,
-      townlinkID
-    };
+      const body = {
+        townlink,
+        townlinkdescription,
+        townlinkID
+      };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+      const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${resopnse.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
+      fetch(urls, {
+        method: "PUT",
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
       })
-      .then(alert("Town Link has been updated."))
-      .then(
-        this.setState({ townlink: "", townlinkdescription: "", townlinkID: "" })
-      )
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${resopnse.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(alert("Town Link has been updated."))
+        .then(
+          this.setState({
+            townlink: "",
+            townlinkdescription: "",
+            townlinkID: ""
+          })
+        )
+        .then(this.toggleRefreshKey)
+        .catch(error => console.log(error.message));
+    }
   }
 
   deleteEvent(id) {
