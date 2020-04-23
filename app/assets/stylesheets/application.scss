@@ -617,20 +617,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   }
 }
 
-// /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
-// @media screen and (min-width: 601px) {
-//   .darken-with-text {
-//     font-size: 3.5vw;
-//   }
-// }
-
-// /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-// @media screen and (max-width: 600px) {
-//   .darken-with-text {
-//     font-size: 30px;
-//   }
-// }
-
 //wrap span with this class and no wrap.
 .text-nowrap {
   white-space: nowrap;
@@ -685,3 +671,47 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   background-size: cover;
 }
 //end about company page
+
+// About Portfolio page
+.parallaxAboutPortfolioPage {
+  background: url("https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  filter: grayscale(1%);
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.caption {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+}
+
+.portfolioTitle {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  font-size: 20px;
+  width: 50%;
+  text-align: center;
+  background: whitesmoke;
+  color: black;
+  transition: width 1s, background 0.1s, 0.5s;
+}
+
+.parent:hover .portfolioTitle {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.parent:hover .venueImage {
+  opacity: 1;
+}
+// end of portfolio page

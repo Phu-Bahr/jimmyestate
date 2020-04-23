@@ -22,6 +22,7 @@ import FooterContainer from "../components/Home/Footer/FooterContainer";
 import TownShowPage from "../components/Home/Town/TownShowPage";
 import EditTown from "../components/Home/Town/EditTown";
 import AdminBanner from "../components/Home/User/AdminBanner";
+import PortfolioContainer from "./Home/Portfolio/PortfolioContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -161,6 +162,17 @@ class App extends Component {
               path="/aboutcompany"
               render={props => (
                 <AboutCompanyContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/portfolio"
+              render={props => (
+                <PortfolioContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   user={this.state.user}
