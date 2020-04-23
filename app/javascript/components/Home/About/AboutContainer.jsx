@@ -251,7 +251,7 @@ class AboutContainer extends Component {
         </div>
 
         <div className="container">
-          <div className="row mt-5">
+          <div className="row py-5">
             <div className="col-md-12">
               <div className="float-left ml-4 pr-4 mb-3">{photoArea}</div>
               <div className="">{paragraphs}</div>
