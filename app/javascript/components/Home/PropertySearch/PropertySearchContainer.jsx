@@ -7,7 +7,7 @@ class PropertySearchContainer extends Component {
   }
 
   onSubmit = () => {
-    alert("Thanks for visiting my site, search be implemented soon!");
+    alert("Thanks for visiting my site, search will be implemented soon!");
   };
   render() {
     return (

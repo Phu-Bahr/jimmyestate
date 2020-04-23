@@ -548,7 +548,7 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 .parallaxEvents {
-  background: url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background: url("https://s.yimg.com/ny/api/res/1.2/xUn.BetJqVS0KMZFtfKJKQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-images/2019-11/15a1f0d0-04ce-11ea-b6fb-3a78ae8a00a2");
   filter: grayscale(1%);
   height: 400px;
   background-attachment: fixed;
@@ -587,31 +587,49 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 .darken-with-text h1 {
-  font-size: 3.5vw;
+  font-size: 5.5vw;
   color: white;
   position: relative; // relative pushes it to the top
   z-index: 1;
 }
 
 .darken-with-text h4 {
-  font-size: 2.5vw;
+  font-size: 4.5vw;
   color: white;
   position: relative; // relative pushes it to the top
   z-index: 1;
 }
-/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
-@media screen and (min-width: 601px) {
-  .darken-with-text {
+
+// bigger than mobile
+@media only screen and (min-width: 600px) {
+  .darken-with-text h1 {
     font-size: 3.5vw;
+    color: white;
+    position: relative; // relative pushes it to the top
+    z-index: 1;
+  }
+
+  .darken-with-text h4 {
+    font-size: 2.5vw;
+    color: white;
+    position: relative; // relative pushes it to the top
+    z-index: 1;
   }
 }
 
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-@media screen and (max-width: 600px) {
-  .darken-with-text {
-    font-size: 30px;
-  }
-}
+// /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+// @media screen and (min-width: 601px) {
+//   .darken-with-text {
+//     font-size: 3.5vw;
+//   }
+// }
+
+// /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+// @media screen and (max-width: 600px) {
+//   .darken-with-text {
+//     font-size: 30px;
+//   }
+// }
 
 //wrap span with this class and no wrap.
 .text-nowrap {
