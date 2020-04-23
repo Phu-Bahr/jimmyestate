@@ -223,7 +223,7 @@ class AboutContainer extends Component {
     let photoArea = aboutData.map(element => {
       return (
         <div key={element.id}>
-          <div className="text-center">
+          <div>
             <img className="img-fluid rounded" src={element.photo}></img>
           </div>
 
@@ -250,10 +250,12 @@ class AboutContainer extends Component {
           <div className="container py-5">{banner}</div>
         </div>
 
-        <div className="container py-4">
-          <div className="row">
-            <div className="col-md-8">{paragraphs}</div>
-            <div className="col-md-4">{photoArea}</div>
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-md-12">
+              <div className="float-right ml-4 mb-3">{photoArea}</div>
+              <div className="">{paragraphs}</div>
+            </div>
           </div>
         </div>
 
@@ -495,3 +497,10 @@ class AboutContainer extends Component {
 }
 
 export default AboutContainer;
+
+// {/* <div className="container py-4">
+// <div className="row">
+//   <div className="col-md-8">{paragraphs}</div>
+//   <div className="col-md-4">{photoArea}</div>
+// </div>
+// </div> */}

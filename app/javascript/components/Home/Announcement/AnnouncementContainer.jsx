@@ -135,7 +135,7 @@ class AnnouncementContainer extends Component {
 
     return (
       <div id="announcementTag">
-        <div className="parallaxVenue">
+        <div className="parallaxEvents">
           <div className="center">
             <h1 className="companyfont">Events</h1>
           </div>

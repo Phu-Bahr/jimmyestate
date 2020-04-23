@@ -1,5 +1,5 @@
-desc "Keeping jame's site awake"
+desc "Keeping Jimmy Estate site awake"
 task no_sleep: :environment do
-    puts "Keeping jame's site awake"
-    HTTParty.get("https://jamescoolsite.herokuapp.com/")
+    puts "Keeping Jimmy Estate site awake"
+    HTTParty.get("https://jimmyestates.herokuapp.com/")
 end
