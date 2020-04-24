@@ -12,17 +12,17 @@ class PortfolioContainer extends Component {
           <h1 className="text-center caption">PORTFOLIO</h1>
         </div>
 
-        <div className="container text-center">
+        <div className="container py-5 text-center">
           <h4>ACTIVE PROPERTIES</h4>
 
           <div className="row">
             <div className="col-md-4 col-middle px-3 py-2">
               <div className="card border-0">
-                <div className="parent m-0">
-                  <div className="child particles">
+                <div className="parent1 m-0">
+                  <div className="child1 particles">
                     <img
-                      className="venueImage card-img-top"
-                      src="https://images.pexels.com/photos/1735658/pexels-photo-1735658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                      className="portfolioImage card-img-top"
+                      src="https://media.mlspin.com/photo.aspx?mls=72509944&n=0"
                     />
                     <div className="portfolioTitle">SOLD</div>
                   </div>
