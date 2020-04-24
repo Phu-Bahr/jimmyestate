@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_18_005242) do
+ActiveRecord::Schema.define(version: 2020_04_24_005908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,21 @@ ActiveRecord::Schema.define(version: 2020_04_18_005242) do
     t.string "line1"
     t.string "line2"
     t.string "line3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.string "bannerText"
+    t.string "photo"
+    t.integer "price"
+    t.string "streetnumber"
+    t.string "street"
+    t.string "aptnumber"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create]
       resources :abouts, only: [:index, :update]
       resources :about_companies, only: [:index, :update]
+      resources :portfolios, only: [:index, :create, :update, :destroy]
     end
   end
 
