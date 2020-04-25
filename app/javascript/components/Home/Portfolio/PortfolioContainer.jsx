@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import { animateScroll as scroll } from "react-scroll";
 
 class PortfolioContainer extends Component {
   constructor() {
     super();
     this.state = {
       portfolioData: [],
+      propertyID: "",
       refreshKey: false,
-      bannerText: "",
       photo: "",
       price: "",
       streetnumber: "",
@@ -23,7 +24,27 @@ class PortfolioContainer extends Component {
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
     this.toggleRefreshKeyFalse = this.toggleRefreshKeyFalse.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.onSubmitEdit = this.onSubmitEdit.bind(this);
+    this.clearState = this.clearState.bind(this);
   }
+
+  clearState = () => {
+    this.setState({
+      photo: "",
+      price: "",
+      streetnumber: "",
+      street: "",
+      aptnumber: "",
+      city: "",
+      state: "",
+      zip: "",
+      status: ""
+    });
+  };
+
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   toggleRefreshKey(event) {
     this.setState({ refreshKey: true });
@@ -40,7 +61,6 @@ class PortfolioContainer extends Component {
     event.preventDefault();
     const urls = "/api/v1/portfolios";
     const {
-      bannerText,
       photo,
       price,
       streetnumber,
@@ -53,7 +73,6 @@ class PortfolioContainer extends Component {
     } = this.state;
 
     const body = {
-      bannerText,
       photo,
       price,
       streetnumber,
@@ -81,7 +100,9 @@ class PortfolioContainer extends Component {
         }
         throw new Error("Network response was not ok.");
       })
+      .then(alert("Property has been added."))
       .then(this.toggleRefreshKey)
+      .then(this.clearState)
       .catch(error => console.log(error.message));
   }
 
@@ -107,6 +128,62 @@ class PortfolioContainer extends Component {
       })
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
+  }
+
+  onSubmitEdit() {
+    if (this.state.propertyID === "") {
+      alert("Nothing to edit");
+    } else {
+      event.preventDefault();
+      const urls = `/api/v1/portfolios/${this.state.propertyID}`;
+      const {
+        photo,
+        price,
+        streetnumber,
+        street,
+        aptnumber,
+        city,
+        state,
+        zip,
+        status
+      } = this.state;
+
+      const body = {
+        photo,
+        price,
+        streetnumber,
+        street,
+        aptnumber,
+        city,
+        state,
+        zip,
+        status
+      };
+
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+
+      fetch(urls, {
+        method: "PUT",
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      })
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${resopnse.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(alert("Property has been updated."))
+        .then(this.clearState)
+        .then(this.toggleRefreshKey)
+        .catch(error => console.log(error.message));
+    }
   }
 
   componentDidMount() {
@@ -155,8 +232,7 @@ class PortfolioContainer extends Component {
   }
 
   render() {
-    console.log("Portfolio state ==> ", this.state.portfolioData);
-    console.log("refresh key", this.state.refreshKey);
+    console.log("state", this.state);
 
     let data = this.state.portfolioData;
 
@@ -168,6 +244,22 @@ class PortfolioContainer extends Component {
         if (result) {
           this.deleteEvent(element.id);
         }
+      };
+
+      let handleEdit = () => {
+        this.setState({
+          propertyID: element.id,
+          photo: element.photo,
+          price: element.price,
+          streetnumber: element.streetnumber,
+          street: element.street,
+          aptnumber: element.aptnumber,
+          city: element.city,
+          state: element.state,
+          zip: element.zip,
+          status: element.status
+        });
+        this.scrollToTop();
       };
 
       if (element.status === "Active") {
@@ -195,13 +287,27 @@ class PortfolioContainer extends Component {
                 <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
             </div>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleDelete}
-            >
-              Delete Venue
-            </button>
+
+            <div className="row">
+              <div className="col-sm-6">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleDelete}
+                >
+                  Delete Property
+                </button>
+              </div>
+              <div className="col-sm-6">
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={handleEdit}
+                >
+                  Edit Property
+                </button>
+              </div>
+            </div>
           </div>
         );
       }
@@ -215,6 +321,22 @@ class PortfolioContainer extends Component {
         if (result) {
           this.deleteEvent(element.id);
         }
+      };
+
+      let handleEdit = () => {
+        this.setState({
+          propertyID: element.id,
+          photo: element.photo,
+          price: element.price,
+          streetnumber: element.streetnumber,
+          street: element.street,
+          aptnumber: element.aptnumber,
+          city: element.city,
+          state: element.state,
+          zip: element.zip,
+          status: element.status
+        });
+        this.scrollToTop();
       };
 
       if (element.status === "Sold") {
@@ -242,13 +364,26 @@ class PortfolioContainer extends Component {
                 <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
             </div>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleDelete}
-            >
-              Delete Venue
-            </button>
+            <div className="row">
+              <div className="col-sm-6">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleDelete}
+                >
+                  Delete Property
+                </button>
+              </div>
+              <div className="col-sm-6">
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={handleEdit}
+                >
+                  Edit Property
+                </button>
+              </div>
+            </div>
           </div>
         );
       }
@@ -263,6 +398,23 @@ class PortfolioContainer extends Component {
           this.deleteEvent(element.id);
         }
       };
+
+      let handleEdit = () => {
+        this.setState({
+          propertyID: element.id,
+          photo: element.photo,
+          price: element.price,
+          streetnumber: element.streetnumber,
+          street: element.street,
+          aptnumber: element.aptnumber,
+          city: element.city,
+          state: element.state,
+          zip: element.zip,
+          status: element.status
+        });
+        this.scrollToTop();
+      };
+
       if (element.status === "Rental") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
@@ -288,13 +440,26 @@ class PortfolioContainer extends Component {
                 <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
             </div>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleDelete}
-            >
-              Delete Venue
-            </button>
+            <div className="row">
+              <div className="col-sm-6">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleDelete}
+                >
+                  Delete Property
+                </button>
+              </div>
+              <div className="col-sm-6">
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={handleEdit}
+                >
+                  Edit Property
+                </button>
+              </div>
+            </div>
           </div>
         );
       }
@@ -324,6 +489,7 @@ class PortfolioContainer extends Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  value={this.state.photo}
                 />
               </div>
               <div className="form-group col-sm-3">
@@ -335,6 +501,7 @@ class PortfolioContainer extends Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  value={this.state.price}
                 />
               </div>
             </div>
@@ -348,6 +515,7 @@ class PortfolioContainer extends Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  value={this.state.streetnumber}
                 />
               </div>
               <div className="form-group col-sm-4">
@@ -359,6 +527,7 @@ class PortfolioContainer extends Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  value={this.state.street}
                 />
               </div>
               <div className="form-group col-sm-4">
@@ -369,6 +538,7 @@ class PortfolioContainer extends Component {
                   id="aptnumber"
                   className="form-control"
                   onChange={this.onChange}
+                  value={this.state.aptnumber}
                 />
               </div>
             </div>
@@ -382,6 +552,7 @@ class PortfolioContainer extends Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  value={this.state.city}
                 />
               </div>
               <div className="form-group col-sm-2">
@@ -405,6 +576,7 @@ class PortfolioContainer extends Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  value={this.state.zip}
                 />
               </div>
             </div>
@@ -418,6 +590,7 @@ class PortfolioContainer extends Component {
                   required
                   onChange={this.onChange}
                   value="Active"
+                  checked={this.state.status === "Active"}
                 />
                 <label className="form-check-label" htmlFor="status">
                   Active
@@ -432,6 +605,7 @@ class PortfolioContainer extends Component {
                   required
                   onChange={this.onChange}
                   value="Sold"
+                  checked={this.state.status === "Sold"}
                 />
                 <label className="form-check-label" htmlFor="status">
                   Sold
@@ -446,26 +620,38 @@ class PortfolioContainer extends Component {
                   required
                   onChange={this.onChange}
                   value="Rental"
+                  checked={this.state.status === "Rental"}
                 />
                 <label className="form-check-label" htmlFor="status">
                   Rental
                 </label>
               </div>
             </div>
-
-            <button type="submit" className="btn custom-button mt-3">
-              Add Portfolio Piece
-            </button>
+            <div className="row">
+              <div className="col-sm-2">
+                <button type="submit" className="btn custom-button mt-3">
+                  Add Property
+                </button>
+              </div>
+              <div className="col-sm-2">
+                <button
+                  className="btn btn-info mt-3"
+                  onClick={this.onSubmitEdit}
+                >
+                  Submit Changes
+                </button>
+              </div>
+            </div>
           </form>
         </div>
 
         <div className="container py-5 text-center">
           <h4>ACTIVE PROPERTIES</h4>
-          <div className="row">{displayActivePortfolio}</div>
+          <div className="row py-3">{displayActivePortfolio}</div>
           <h4>SOLD PROPERTIES </h4>
-          <div className="row">{displaySoldPortfolio}</div>
+          <div className="row py-3">{displaySoldPortfolio}</div>
           <h4>RENTED PROPERTIES</h4>
-          <div className="row">{displayRentalPortfolio}</div>
+          <div className="row py-3">{displayRentalPortfolio}</div>
         </div>
       </div>
     );
