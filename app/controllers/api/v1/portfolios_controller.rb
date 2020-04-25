@@ -34,7 +34,6 @@ class Api::V1::PortfoliosController < ApplicationController
 
     def portfolio_params
         params.require(:portfolio).permit( 
-            :bannerText, 
             :photo, 
             :price, 
             :streetnumber, 
