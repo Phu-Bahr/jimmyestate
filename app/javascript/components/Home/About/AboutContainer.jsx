@@ -178,8 +178,6 @@ class AboutContainer extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";

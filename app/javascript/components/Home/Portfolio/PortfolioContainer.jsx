@@ -16,7 +16,8 @@ class PortfolioContainer extends Component {
       city: "",
       state: "",
       zip: "",
-      status: ""
+      status: "",
+      hideDiv: true
     };
 
     this.onChange = this.onChange.bind(this);
@@ -26,6 +27,7 @@ class PortfolioContainer extends Component {
     this.deleteEvent = this.deleteEvent.bind(this);
     this.onSubmitEdit = this.onSubmitEdit.bind(this);
     this.clearState = this.clearState.bind(this);
+    this.clickEdit = this.clickEdit.bind(this);
   }
 
   clearState = () => {
@@ -41,6 +43,14 @@ class PortfolioContainer extends Component {
       status: ""
     });
   };
+
+  clickEdit(event) {
+    if (this.state.hideDiv === false) {
+      this.setState({ hideDiv: true });
+    } else {
+      this.setState({ hideDiv: false });
+    }
+  }
 
   scrollToTop = () => {
     scroll.scrollToTop();
@@ -234,6 +244,21 @@ class PortfolioContainer extends Component {
   render() {
     console.log("state", this.state);
 
+    let hideEditButton;
+    if (this.props.user.admin === true) {
+      hideEditButton = "";
+    } else {
+      // set below to blank string to default show edit buttons
+      hideEditButton = "invisible";
+    }
+
+    let hide;
+    if (this.state.hideDiv === true) {
+      hide = "invisible";
+    } else {
+      hide = "";
+    }
+
     let data = this.state.portfolioData;
 
     let displayActivePortfolio = data.map(element => {
@@ -288,24 +313,26 @@ class PortfolioContainer extends Component {
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-sm-6">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleDelete}
-                >
-                  Delete Property
-                </button>
-              </div>
-              <div className="col-sm-6">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={handleEdit}
-                >
-                  Edit Property
-                </button>
+            <div className={"container" + " " + hide}>
+              <div className="row">
+                <div className="col-sm-6">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleDelete}
+                  >
+                    Delete Property
+                  </button>
+                </div>
+                <div className="col-sm-6">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={handleEdit}
+                  >
+                    Edit Property
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -364,24 +391,27 @@ class PortfolioContainer extends Component {
                 <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-sm-6">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleDelete}
-                >
-                  Delete Property
-                </button>
-              </div>
-              <div className="col-sm-6">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={handleEdit}
-                >
-                  Edit Property
-                </button>
+
+            <div className={"container" + " " + hide}>
+              <div className="row">
+                <div className="col-sm-6">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleDelete}
+                  >
+                    Delete Property
+                  </button>
+                </div>
+                <div className="col-sm-6">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={handleEdit}
+                  >
+                    Edit Property
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -440,24 +470,27 @@ class PortfolioContainer extends Component {
                 <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-sm-6">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleDelete}
-                >
-                  Delete Property
-                </button>
-              </div>
-              <div className="col-sm-6">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={handleEdit}
-                >
-                  Edit Property
-                </button>
+
+            <div className={"container" + " " + hide}>
+              <div className="row">
+                <div className="col-sm-6">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleDelete}
+                  >
+                    Delete Property
+                  </button>
+                </div>
+                <div className="col-sm-6">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={handleEdit}
+                  >
+                    Edit Property
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -471,7 +504,21 @@ class PortfolioContainer extends Component {
           <h1 className="text-center caption">PORTFOLIO</h1>
         </div>
 
-        <div className="container">
+        <div className={"container py-3" + " " + hideEditButton}>
+          <div className="row">
+            <div className="col text-center">
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={this.clickEdit}
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={"container" + " " + hide}>
           <form
             onSubmit={event => {
               this.onSubmit(event);
@@ -646,12 +693,12 @@ class PortfolioContainer extends Component {
         </div>
 
         <div className="container py-5 text-center">
-          <h4>ACTIVE PROPERTIES</h4>
-          <div className="row py-3">{displayActivePortfolio}</div>
-          <h4>SOLD PROPERTIES </h4>
-          <div className="row py-3">{displaySoldPortfolio}</div>
-          <h4>RENTED PROPERTIES</h4>
-          <div className="row py-3">{displayRentalPortfolio}</div>
+          <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
+          <div className="row pt-3 pb-5">{displayActivePortfolio}</div>
+          <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES </h2>
+          <div className="row pt-3 pb-5">{displaySoldPortfolio}</div>
+          <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
+          <div className="row pt-3 pb-5">{displayRentalPortfolio}</div>
         </div>
       </div>
     );

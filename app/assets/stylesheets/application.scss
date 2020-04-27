@@ -603,14 +603,14 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // bigger than mobile
 @media only screen and (min-width: 600px) {
   .darken-with-text h1 {
-    font-size: 3.5vw;
+    font-size: 3vw;
     color: white;
     position: relative; // relative pushes it to the top
     z-index: 1;
   }
 
   .darken-with-text h4 {
-    font-size: 2.5vw;
+    font-size: 2vw;
     color: white;
     position: relative; // relative pushes it to the top
     z-index: 1;

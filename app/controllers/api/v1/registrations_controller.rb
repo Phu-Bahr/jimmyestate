@@ -1,4 +1,7 @@
 class Api::V1::RegistrationsController < ApplicationController
+
+    protect_from_forgery unless: -> { request.format.json? }
+    
     def create
         user = User.create!(
             email: params['user']['email'],
