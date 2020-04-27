@@ -1,5 +1,7 @@
 class Api::V1::JumbotronsController < ApplicationController
 
+    protect_from_forgery unless: -> { request.format.json? }
+    
     def index
         jumbotron = Jumbotron.all
         render json: jumbotron

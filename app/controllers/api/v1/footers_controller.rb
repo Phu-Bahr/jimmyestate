@@ -1,5 +1,7 @@
 class Api::V1::FootersController < ApplicationController
 
+    protect_from_forgery unless: -> { request.format.json? }
+    
     def index
         footer = Footer.all
         render json: footer

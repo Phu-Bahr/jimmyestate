@@ -1,5 +1,7 @@
 class Api::V1::CompaniesController < ApplicationController
 
+    protect_from_forgery unless: -> { request.format.json? }
+    
     def index
         company = Company.all
         render json: company

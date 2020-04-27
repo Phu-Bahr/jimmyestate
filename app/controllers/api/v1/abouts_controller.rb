@@ -1,5 +1,7 @@
 class Api::V1::AboutsController < ApplicationController
 
+    protect_from_forgery unless: -> { request.format.json? }
+    
     def index
         about = About.all
         render json: about

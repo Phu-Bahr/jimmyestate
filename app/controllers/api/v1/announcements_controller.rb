@@ -1,5 +1,7 @@
 class Api::V1::AnnouncementsController < ApplicationController
 
+    protect_from_forgery unless: -> { request.format.json? }
+    
     def index
         announcement = Announcement.all
         render json: announcement
