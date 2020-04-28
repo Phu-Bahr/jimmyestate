@@ -14,7 +14,32 @@ class EmailForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    alert("email submitted");
+    const urls = "/api/v1/contacts";
+    const { name, email, message } = this.state;
+
+    const body = {
+      name,
+      email,
+      message
+    };
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .catch(error => console.log(error.message));
   }
 
   render() {
