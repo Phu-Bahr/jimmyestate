@@ -3,12 +3,13 @@ class Api::V1::ContactsController < ApplicationController
     protect_from_forgery unless: -> { request.format.json? }
 
     def create
-        contact = Contact.create!(contact_params)
-        if contact
-            UserMailer.contact_me(contact).deliver_now
-            render json: contact
+        @contact = Contact.create!(contact_params)
+
+        if @contact
+            UserMailer.with(contact: @contact).contact_me.deliver_later
+            render json: @contact
         else
-            render json: contact.errors
+            render json: @contact.errors
         end
     end
 
