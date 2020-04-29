@@ -1,10 +1,11 @@
 class UserMailer < ApplicationMailer
     default from: 'no-reply@jimmyestateapp.com'
  
-    def contact_me(contact)
-        @contact = contact
+    def contact_me
+        @contact = params[:contact]
+
         mail(
-            to: "tpdevemail@gmail.com",
+            to: <ADMIN_EMAIL>,
             subject: 'Customer inquiries'
         )
     end
