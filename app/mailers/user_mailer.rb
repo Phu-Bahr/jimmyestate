@@ -5,8 +5,8 @@ class UserMailer < ApplicationMailer
         @contact = params[:contact]
 
         mail(
-            to: <ADMIN_EMAIL>,
-            subject: 'Customer inquiries'
+            to: Rails.application.credentials.gmail[:admin],
+            subject: "Jimmy Site Inquiry - #{params[:contact].name}"
         )
     end
 end
