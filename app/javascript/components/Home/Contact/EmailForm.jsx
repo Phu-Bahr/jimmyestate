@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
+import Recaptcha from "react-google-invisible-recaptcha";
 
 class EmailForm extends Component {
   constructor(props) {
@@ -7,7 +8,12 @@ class EmailForm extends Component {
     this.state = { name: "", email: "", message: "" };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.clearForm = this.clearForm.bind(this);
+
+    this.onResolved = this.onResolved.bind(this);
+  }
+
+  onResolved() {
+    alert("Your inquiry has been received!");
   }
 
   scrollToTop = () => {
@@ -18,12 +24,11 @@ class EmailForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  clearForm() {
-    this.setState({ name: "", email: "", message: "" }), scroll.scrollToTop();
-  }
-
   onSubmit(event) {
     event.preventDefault();
+
+    this.recaptcha.execute();
+
     const urls = "/api/v1/contacts";
     const { name, email, message } = this.state;
 
@@ -45,7 +50,6 @@ class EmailForm extends Component {
     })
       .then(response => {
         if (response.ok) {
-          alert("Your Inquiry has been submitted");
           return response.json();
         }
         alert(
@@ -53,7 +57,7 @@ class EmailForm extends Component {
         );
         throw new Error("Network response was not ok.");
       })
-      .then(this.clearForm)
+      .then(this.scrollToTop)
       .catch(error => console.log(error.message));
   }
 
@@ -105,6 +109,11 @@ class EmailForm extends Component {
           <button type="submit" className="btn custom-button mt-3">
             Send
           </button>
+          <Recaptcha
+            ref={ref => (this.recaptcha = ref)}
+            sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
+            onResolved={this.onResolved}
+          />
         </form>
       </div>
     );
