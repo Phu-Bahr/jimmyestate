@@ -65,7 +65,7 @@ class EmailForm extends Component {
     console.log("state contact page form", this.state);
 
     return (
-      <div>
+      <React.Fragment>
         <form
           onSubmit={event => {
             this.onSubmit(event);
@@ -115,7 +115,7 @@ class EmailForm extends Component {
             onResolved={this.onResolved}
           />
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }
