@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EmailForm from "./EmailForm";
+import Map from "./Map";
 
 class ContactContainer extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class ContactContainer extends Component {
     });
 
     return (
-      <div>
+      <React.Fragment>
         <div className="parallaxContactPage darken-pseudo darken-with-text">
           <div className="container py-5">
             <h1>Contact Jimmy Chao</h1>
@@ -53,16 +54,18 @@ class ContactContainer extends Component {
 
         <div className="container py-5">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 pb-3">
               <EmailForm />
             </div>
             <div className="col-md-6">
-              <div>{contactData}</div>
-              <div>google maps here</div>
+              <div className="text-center pb-3">{contactData}</div>
+              <div>
+                <Map />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
