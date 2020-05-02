@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_204528) do
+ActiveRecord::Schema.define(version: 2020_05_01_192320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,22 @@ ActiveRecord::Schema.define(version: 2020_04_28_204528) do
     t.string "twitter"
     t.string "instagram"
     t.string "other"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "home_worths", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "time"
+    t.string "address"
+    t.string "squarefootage"
+    t.string "numberbedrooms"
+    t.string "numberbathrooms"
+    t.string "propertytype"
+    t.string "addfeatures"
+    t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

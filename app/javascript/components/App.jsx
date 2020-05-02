@@ -9,7 +9,6 @@ import Home from "../components/Home/Home";
 import NewVenue from "../components/Home/Venue/NewVenue";
 import Registration from "../components/Home/User/Registration";
 import Login from "../components/Home/User/Login";
-import ServiceContainer from "../components/Home/Service/ServiceContainer";
 import AboutContainer from "../components/Home/About/AboutContainer";
 import AboutCompanyContainer from "../components/Home/AboutCompany/AboutCompanyContainer";
 import ContactContainer from "../components/Home/Contact/ContactContainer";
@@ -23,6 +22,7 @@ import TownShowPage from "../components/Home/Town/TownShowPage";
 import EditTown from "../components/Home/Town/EditTown";
 import AdminBanner from "../components/Home/User/AdminBanner";
 import PortfolioContainer from "./Home/Portfolio/PortfolioContainer";
+import HomeWorthContainer from "../components/Home/Service/HomeWorthContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -145,7 +145,17 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/service" component={ServiceContainer} />
+            <Route
+              exact
+              path="/homeworth"
+              render={props => (
+                <HomeWorthContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route
               exact
               path="/about"

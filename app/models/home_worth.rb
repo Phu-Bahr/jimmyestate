@@ -1,0 +1,2 @@
+class HomeWorth < ApplicationRecord
+end

@@ -13,7 +13,7 @@ class EmailForm extends Component {
   }
 
   onResolved() {
-    alert("Your inquiry has been received!");
+    console.log("Captcha resolved");
   }
 
   scrollToTop = () => {
