@@ -6,7 +6,16 @@ class UserMailer < ApplicationMailer
 
         mail(
             to: Rails.application.credentials.gmail[:admin],
-            subject: "Jimmy Site Inquiry - #{params[:contact].name}"
+            subject: "Jimmy Estates - General Inquiry - #{params[:contact].name}"
+        )
+    end
+
+    def home_worth
+        @home_worth = params[:home_worth]
+
+        mail(
+            to: Rails.application.credentials.gmail[:admin],
+            subject: "Jimmy Estates - Home Worth Inquiry - #{params[:home_worth].name}"
         )
     end
 end

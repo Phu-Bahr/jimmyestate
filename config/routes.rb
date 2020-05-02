@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   delete :logout, to: "api/v1/sessions#logout"
   get :logged_in, to: "api/v1/sessions#logged_in"
+ 
 
   
   namespace :api do
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
       resources :about_companies, only: [:index, :update]
       resources :portfolios, only: [:index, :create, :update, :destroy]
       resources :contacts, only: [:create]
+      resources :home_worths, only: [:create]
     end
   end
 

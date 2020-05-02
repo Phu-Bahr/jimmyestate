@@ -91,10 +91,60 @@ class NavbarContainer extends Component {
                 </div>
               </li>
 
-              <li className="nav-item">
-                <Link to="/service" className="nav-link navbar-underline">
+              <li className="nav-item dropdown">
+                <Link
+                  to="/"
+                  className="nav-link dropdown-toggle navbar-underline"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   Services
                 </Link>
+                <div
+                  className="dropdown-menu dropdown-menu-right animate slideIn"
+                  id="about"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <div className="container py-1">
+                    <Link
+                      to="/buyinghome"
+                      className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
+                    >
+                      Buying Property
+                    </Link>
+                  </div>
+                  <div className="container py-1">
+                    <Link
+                      to="/sellinghome"
+                      className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
+                    >
+                      Selling Property
+                    </Link>
+                  </div>
+                  <div className="container py-1">
+                    <Link
+                      to="/homeworth"
+                      className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
+                    >
+                      What's my home worth?
+                    </Link>
+                  </div>
+                  <div className="container py-1">
+                    <Link
+                      to="/relocation"
+                      className="dropdown-item navbar-underline"
+                      onClick={this.scrollToTop}
+                    >
+                      Relocation Assistance
+                    </Link>
+                  </div>
+                </div>
               </li>
               <li className="nav-item dropdown">
                 <Link
