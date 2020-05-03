@@ -50,6 +50,7 @@ class EmailForm extends Component {
     })
       .then(response => {
         if (response.ok) {
+          alert("Your inquiry has been received!");
           return response.json();
         }
         alert(

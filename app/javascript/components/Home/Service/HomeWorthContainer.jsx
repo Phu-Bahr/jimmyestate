@@ -9,19 +9,55 @@ class HomeWorthContainer extends Component {
       name: "",
       email: "",
       phone: "",
-      time: "",
+      time: "Anytime",
       address: "",
       squarefootage: "",
       numberbedrooms: "",
       numberbathrooms: "",
-      propertytype: "",
-      addfeatures: "",
+      propertytype: "Single Family",
+      addfeatures: {
+        Heating: false,
+        Cooling: false,
+        Pool: false
+      },
       message: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
+    this.onAddFeatureChange = this.onAddFeatureChange.bind(this);
     this.onResolved = this.onResolved.bind(this);
+  }
+
+  renderAddFeatures() {
+    const features = ["Heating", "Cooling", "Pool"];
+    return features.map((feature, i) => {
+      return (
+        <div key={i} className="px-3">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id={feature}
+            name={feature}
+            onChange={this.onAddFeatureChange}
+            value={this.state.addfeatures[feature]}
+          />
+          <label className="form-check-label" htmlFor={feature}>
+            {feature}
+          </label>
+        </div>
+      );
+    });
+  }
+
+  onAddFeatureChange(e) {
+    const val = e.target.checked;
+    const name = e.target.name;
+    let updateFeatures = Object.assign({}, this.state.addfeatures, {
+      [name]: val
+    });
+    this.setState({
+      addfeatures: updateFeatures
+    });
   }
 
   onResolved() {
@@ -42,6 +78,19 @@ class HomeWorthContainer extends Component {
     this.recaptcha.execute();
 
     const urls = "/api/v1/home_worths";
+    const bodyFeatures = featureObject => {
+      let parsedFeatures = [];
+      for (let [key, value] of Object.entries(featureObject)) {
+        if (value) {
+          parsedFeatures.push(key);
+        }
+      }
+      return parsedFeatures.join(", ").toString();
+    };
+
+    let addfeatures = bodyFeatures(this.state.addfeatures);
+    console.log("stringed out add feature!", addfeatures);
+
     const {
       name,
       email,
@@ -52,7 +101,6 @@ class HomeWorthContainer extends Component {
       numberbedrooms,
       numberbathrooms,
       propertytype,
-      addfeatures,
       message
     } = this.state;
 
@@ -70,6 +118,8 @@ class HomeWorthContainer extends Component {
       message
     };
 
+    console.log("addfeatures state in Submit", addfeatures);
+
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
     fetch(urls, {
@@ -82,6 +132,7 @@ class HomeWorthContainer extends Component {
     })
       .then(response => {
         if (response.ok) {
+          alert("Your inquiry has been received!");
           return response.json();
         }
         alert(
@@ -94,7 +145,9 @@ class HomeWorthContainer extends Component {
   }
 
   render() {
-    console.log("state contact page form", this.state);
+    // console.log(parsedFeatures.join(", ").toString());
+
+    // console.log("state homeworth page form ===>", this.state.addfeatures);
 
     return (
       <React.Fragment>
@@ -152,14 +205,20 @@ class HomeWorthContainer extends Component {
                   <label htmlFor="time">
                     Best time to reach you (required)
                   </label>
-                  <input
+                  <select
                     type="text"
                     name="time"
                     id="time"
                     className="form-control"
                     onChange={this.onChange}
                     required
-                  />
+                    value={this.state.time}
+                  >
+                    <option>Anytime</option>
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="address">Your Address (required)</label>
@@ -213,28 +272,30 @@ class HomeWorthContainer extends Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="propertytype">Property Type (required)</label>
-                  <input
+                  <select
                     type="text"
                     name="propertytype"
                     id="propertytype"
                     className="form-control"
                     onChange={this.onChange}
                     required
-                  />
+                    value={this.state.propertytype}
+                  >
+                    <option>Single Family</option>
+                    <option>Condo</option>
+                    <option>Multi Family</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="addfeatures">
                     Additional Features (required)
                   </label>
-                  <input
-                    type="text"
-                    name="addfeatures"
-                    id="addfeatures"
-                    className="form-control"
-                    onChange={this.onChange}
-                    required
-                  />
+                  <br />
+                  <div className="form-check form-check-inline">
+                    {this.renderAddFeatures()}
+                  </div>
                 </div>
+
                 <div className="form-group">
                   <label htmlFor="message">Your Message (required)</label>
                   <textarea
