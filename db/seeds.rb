@@ -81,8 +81,15 @@
 #    photoaddress2: "Boston, MA 02111"
 # )
 
-townseed = TownLink.create!(
-    townlink: "www.example.com",
-    townlinkdescription: "Google Page",
-    town_id: 78
+# townseed = TownLink.create!(
+#     townlink: "www.example.com",
+#     townlinkdescription: "Google Page",
+#     town_id: 78
+# )
+
+homeWorthEdit = WorthEdit.create!(
+    paragraph1: "test", 
+    paragraph2: "test", 
+    bannerText1: "test", 
+    bannerText2: "test"
 )

@@ -1,0 +1,2 @@
+class WorthEdit < ApplicationRecord
+end

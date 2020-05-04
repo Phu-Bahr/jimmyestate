@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_192320) do
+ActiveRecord::Schema.define(version: 2020_05_04_031331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,15 @@ ActiveRecord::Schema.define(version: 2020_05_01_192320) do
     t.string "telephone", null: false
     t.string "url", null: false
     t.string "venue_image", default: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwipzcXPktHlAhXrQ98KHSdKCeQQjRx6BAgBEAQ&url=https%3A%2F%2Fvollrath.com%2FProducts%2FSmallwares%2FBuffet-Tabletop-Service%2FKondi-Keeper-Replacement-Lids&psig=AOvVaw0LqwqgCNgtGbIq8mXXbpiH&ust=1572977005119341"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "worth_edits", force: :cascade do |t|
+    t.string "paragraph1"
+    t.string "paragraph2"
+    t.string "bannerText1"
+    t.string "bannerText2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
