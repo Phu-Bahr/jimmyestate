@@ -29,7 +29,12 @@ class HomeWorthContainer extends Component {
         DenStudy: false,
         Views: false
       },
-      message: ""
+      message: "",
+      homeWorthEditData: [],
+      paragraph1: "",
+      paragraph2: "",
+      bannerText1: "",
+      bannerText2: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -166,24 +171,113 @@ class HomeWorthContainer extends Component {
       .catch(error => console.log(error.message));
   }
 
-  render() {
-    // console.log(parsedFeatures.join(", ").toString());
+  componentDidMount() {
+    fetch("/api/v1/worth_edits")
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let newHomeWorthEditData = body;
+        this.setState({
+          homeWorthEditData: newHomeWorthEditData,
+          id: newHomeWorthEditData[0].id,
+          bannerText1: newHomeWorthEditData[0].bannerText1,
+          bannerText2: newHomeWorthEditData[0].bannerText2,
+          paragraph1: newHomeWorthEditData[0].paragraph1,
+          paragraph2: newHomeWorthEditData[0].paragraph2
+        });
+      })
+      .catch(error => console.log("error message =>", error.message));
+  }
 
-    // console.log("state homeworth page form ===>", this.state.addfeatures);
+  render() {
+    let homeContent = this.state.homeWorthEditData.map(element => {
+      return (
+        <div key={element.id}>
+          <p className="pb-2">{element.paragraph1}</p>
+          <p className="pb-2">{element.paragraph2}</p>
+        </div>
+      );
+    });
+    let bannerContent = this.state.homeWorthEditData.map(element => {
+      return (
+        <div key={element.id} className="container py-5">
+          <h1>{element.bannerText1}</h1>
+          <h4>{element.bannerText2}</h4>
+        </div>
+      );
+    });
 
     return (
       <React.Fragment>
         <div className="parallaxHomeWorthPage darken-pseudo darken-with-text">
-          <div className="container py-5">
-            <h1>What's my home worth?</h1>
-            <h4>Let's get you an assessment</h4>
-          </div>
+          {bannerContent}
         </div>
         <div className="container py-5">
           <div className="row">
             <div className="col-sm-6">INSERT PHOTOS HERE</div>
 
             <div className="col-sm-6">
+              {homeContent}
+
+              <form
+              // onSubmitEdit={event => {
+              //   this.onSubmit(event);
+              //   event.target.reset();
+              // }}
+              >
+                <div className="form-group">
+                  <label htmlFor="bannerText1">Your bannerText1</label>
+                  <input
+                    type="text"
+                    name="bannerText1"
+                    id="bannerText1"
+                    className="form-control"
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="bannerText2">Your bannerText2</label>
+                  <input
+                    type="text"
+                    name="bannerText2"
+                    id="bannerText2"
+                    className="form-control"
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="paragraph1">Your paragraph1</label>
+                  <input
+                    type="text"
+                    name="paragraph1"
+                    id="paragraph1"
+                    className="form-control"
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="paragraph2">Your paragraph2</label>
+                  <input
+                    type="text"
+                    name="paragraph2"
+                    id="paragraph2"
+                    className="form-control"
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+              </form>
               <form
                 onSubmit={event => {
                   this.onSubmit(event);

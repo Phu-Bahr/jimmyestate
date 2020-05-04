@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resources :portfolios, only: [:index, :create, :update, :destroy]
       resources :contacts, only: [:create]
       resources :home_worths, only: [:create]
+      resources :worth_edits, only: [:index, :update]
     end
   end
 
