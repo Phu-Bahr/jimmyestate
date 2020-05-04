@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
+import WorthPhotoContainer from "./WorthPhotoContainer";
 
 class HomeWorthContainer extends Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class HomeWorthContainer extends Component {
       paragraph2: "",
       bannerText1: "",
       bannerText2: "",
-      refreshKey: false
+      refreshKey: false,
+      hideDiv: true
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -43,6 +45,15 @@ class HomeWorthContainer extends Component {
     this.onResolved = this.onResolved.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
     this.onSubmitEdit = this.onSubmitEdit.bind(this);
+    this.clickEdit = this.clickEdit.bind(this);
+  }
+
+  clickEdit(event) {
+    if (this.state.hideDiv === false) {
+      this.setState({ hideDiv: true });
+    } else {
+      this.setState({ hideDiv: false });
+    }
   }
 
   toggleRefreshKey(event) {
@@ -201,6 +212,7 @@ class HomeWorthContainer extends Component {
           paragraph2: newHomeWorthEditData[0].paragraph2
         });
       })
+
       .catch(error => console.log("error message =>", error.message));
   }
 
@@ -266,6 +278,21 @@ class HomeWorthContainer extends Component {
   render() {
     console.log(this.state.bannerText1);
 
+    let hideEditButton;
+    if (this.props.user.admin) {
+      hideEditButton = "";
+    } else {
+      // set below to blank string to default show edit buttons
+      hideEditButton = "invisible";
+    }
+
+    let hide;
+    if (this.state.hideDiv) {
+      hide = "invisible";
+    } else {
+      hide = "";
+    }
+
     let homeContent = this.state.homeWorthEditData.map(element => {
       return (
         <div key={element.id}>
@@ -288,82 +315,88 @@ class HomeWorthContainer extends Component {
         <div className="parallaxHomeWorthPage darken-pseudo darken-with-text">
           {bannerContent}
         </div>
+        <div className={"container py-3" + " " + hideEditButton}>
+          <div className="row">
+            <div className="col text-center">
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={this.clickEdit}
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="container py-5">
           <div className="row">
-            <div className="card border-0 col-md-6">
-              <div className="parent1 m-0">
-                <div className="child1 particles">
-                  <img
-                    className="portfolioImage card-img-top"
-                    src="https://images.pexels.com/photos/4048182/pexels-photo-4048182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                  />
-                </div>
-              </div>
-            </div>
+            <WorthPhotoContainer user={this.props.user} hide={hide} />
 
             <div className="col-sm-6">
               {homeContent}
-
-              <form
-                onSubmit={event => {
-                  this.onSubmitEdit(event);
-                  event.target.reset();
-                }}
-              >
-                <div className="form-group">
-                  <label htmlFor="bannerText1">Your bannerText1</label>
-                  <input
-                    type="text"
-                    name="bannerText1"
-                    id="bannerText1"
-                    className="form-control"
-                    onChange={this.onChange}
-                    required
-                    value={this.state.bannerText1}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="bannerText2">Your bannerText2</label>
-                  <input
-                    type="text"
-                    name="bannerText2"
-                    id="bannerText2"
-                    className="form-control"
-                    onChange={this.onChange}
-                    required
-                    value={this.state.bannerText2}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph1">Your paragraph1</label>
-                  <input
-                    type="text"
-                    name="paragraph1"
-                    id="paragraph1"
-                    className="form-control"
-                    onChange={this.onChange}
-                    required
-                    value={this.state.paragraph1}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="paragraph2">Your paragraph2</label>
-                  <input
-                    type="text"
-                    name="paragraph2"
-                    id="paragraph2"
-                    className="form-control"
-                    onChange={this.onChange}
-                    required
-                    value={this.state.paragraph2}
-                  />
-                </div>
-                <div className="pb-3">
-                  <button type="submit" className="btn custom-button">
-                    Update
-                  </button>
-                </div>
-              </form>
+              <div className="container">
+                <form
+                  onSubmit={event => {
+                    this.onSubmitEdit(event);
+                    event.target.reset();
+                  }}
+                  className={hide}
+                >
+                  <div className="form-group">
+                    <label htmlFor="bannerText1">Your bannerText1</label>
+                    <input
+                      type="text"
+                      name="bannerText1"
+                      id="bannerText1"
+                      className="form-control"
+                      onChange={this.onChange}
+                      required
+                      value={this.state.bannerText1}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="bannerText2">Your bannerText2</label>
+                    <input
+                      type="text"
+                      name="bannerText2"
+                      id="bannerText2"
+                      className="form-control"
+                      onChange={this.onChange}
+                      required
+                      value={this.state.bannerText2}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph1">Your paragraph1</label>
+                    <input
+                      type="text"
+                      name="paragraph1"
+                      id="paragraph1"
+                      className="form-control"
+                      onChange={this.onChange}
+                      required
+                      value={this.state.paragraph1}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="paragraph2">Your paragraph2</label>
+                    <input
+                      type="text"
+                      name="paragraph2"
+                      id="paragraph2"
+                      className="form-control"
+                      onChange={this.onChange}
+                      required
+                      value={this.state.paragraph2}
+                    />
+                  </div>
+                  <div className="pb-3">
+                    <button type="submit" className="btn custom-button">
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </div>
               <form
                 onSubmit={event => {
                   this.onSubmit(event);

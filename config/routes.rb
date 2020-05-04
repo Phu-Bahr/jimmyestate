@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :contacts, only: [:create]
       resources :home_worths, only: [:create]
       resources :worth_edits, only: [:index, :update]
+      resources :worth_photos, only: [:index, :create, :update, :destroy]
     end
   end
 
