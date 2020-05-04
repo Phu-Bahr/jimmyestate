@@ -1,0 +1,2 @@
+class WorthPhoto < ApplicationRecord
+end
