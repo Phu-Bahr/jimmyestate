@@ -34,12 +34,19 @@ class HomeWorthContainer extends Component {
       paragraph1: "",
       paragraph2: "",
       bannerText1: "",
-      bannerText2: ""
+      bannerText2: "",
+      refreshKey: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onAddFeatureChange = this.onAddFeatureChange.bind(this);
     this.onResolved = this.onResolved.bind(this);
+    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
+    this.onSubmitEdit = this.onSubmitEdit.bind(this);
+  }
+
+  toggleRefreshKey(event) {
+    this.setState({ refreshKey: true });
   }
 
   renderAddFeatures() {
@@ -197,7 +204,68 @@ class HomeWorthContainer extends Component {
       .catch(error => console.log("error message =>", error.message));
   }
 
+  componentDidUpdate() {
+    if (this.state.refreshKey === true) {
+      fetch("api/v1/worth_edits")
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          let newHomeWorthEditData = body;
+          this.setState({
+            homeWorthEditData: newHomeWorthEditData
+          });
+        })
+        .then(this.setState({ refreshKey: false }))
+        .then(this.scrollToTop);
+    }
+  }
+
+  onSubmitEdit(event) {
+    event.preventDefault();
+    const urls = "/api/v1/worth_edits/1";
+    const { bannerText1, bannerText2, paragraph1, paragraph2 } = this.state;
+
+    const body = {
+      bannerText1,
+      bannerText2,
+      paragraph1,
+      paragraph2
+    };
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "PUT",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(this.toggleRefreshKey)
+      .catch(error => console.log(error.message));
+  }
+
   render() {
+    console.log(this.state.bannerText1);
+
     let homeContent = this.state.homeWorthEditData.map(element => {
       return (
         <div key={element.id}>
@@ -228,10 +296,10 @@ class HomeWorthContainer extends Component {
               {homeContent}
 
               <form
-              // onSubmitEdit={event => {
-              //   this.onSubmit(event);
-              //   event.target.reset();
-              // }}
+                onSubmit={event => {
+                  this.onSubmitEdit(event);
+                  event.target.reset();
+                }}
               >
                 <div className="form-group">
                   <label htmlFor="bannerText1">Your bannerText1</label>
@@ -242,6 +310,7 @@ class HomeWorthContainer extends Component {
                     className="form-control"
                     onChange={this.onChange}
                     required
+                    value={this.state.bannerText1}
                   />
                 </div>
                 <div className="form-group">
@@ -253,6 +322,7 @@ class HomeWorthContainer extends Component {
                     className="form-control"
                     onChange={this.onChange}
                     required
+                    value={this.state.bannerText2}
                   />
                 </div>
                 <div className="form-group">
@@ -264,6 +334,7 @@ class HomeWorthContainer extends Component {
                     className="form-control"
                     onChange={this.onChange}
                     required
+                    value={this.state.paragraph1}
                   />
                 </div>
                 <div className="form-group">
@@ -275,7 +346,13 @@ class HomeWorthContainer extends Component {
                     className="form-control"
                     onChange={this.onChange}
                     required
+                    value={this.state.paragraph2}
                   />
+                </div>
+                <div className="pb-3">
+                  <button type="submit" className="btn custom-button">
+                    Update
+                  </button>
                 </div>
               </form>
               <form
