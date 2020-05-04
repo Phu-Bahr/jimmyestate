@@ -290,7 +290,16 @@ class HomeWorthContainer extends Component {
         </div>
         <div className="container py-5">
           <div className="row">
-            <div className="col-sm-6">INSERT PHOTOS HERE</div>
+            <div className="card border-0 col-md-6">
+              <div className="parent1 m-0">
+                <div className="child1 particles">
+                  <img
+                    className="portfolioImage card-img-top"
+                    src="https://images.pexels.com/photos/4048182/pexels-photo-4048182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  />
+                </div>
+              </div>
+            </div>
 
             <div className="col-sm-6">
               {homeContent}
