@@ -110,7 +110,7 @@ class NavbarContainer extends Component {
                 >
                   <div className="container py-1">
                     <Link
-                      to="/buyinghome"
+                      to="/buying-a-home"
                       className="dropdown-item navbar-underline"
                       onClick={this.scrollToTop}
                     >
