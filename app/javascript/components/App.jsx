@@ -24,6 +24,7 @@ import AdminBanner from "../components/Home/User/AdminBanner";
 import PortfolioContainer from "./Home/Portfolio/PortfolioContainer";
 import HomeWorthContainer from "../components/Home/Service/HomeWorthContainer";
 import RelocationContainer from "../components/Home/Service/RelocationContainer";
+import BuyingHomeContainer from "../components/Home/Service/BuyingHomeContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -142,6 +143,17 @@ class App extends Component {
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   handleLogout={this.handleLogout}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/buying-a-home"
+              render={props => (
+                <BuyingHomeContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
                   user={this.state.user}
                 />
               )}
