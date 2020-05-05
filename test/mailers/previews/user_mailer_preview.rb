@@ -9,4 +9,9 @@ class UserMailerPreview < ActionMailer::Preview
         home_worth = HomeWorth.new(name: "Tony Dog", email: "tp@hotmail.com", message: "testing this dog!")
         UserMailer.with(home_worth: home_worth).home_worth
     end
+
+    def relocation
+        relocation = Relocation.new(name: "Tony Dog", email: "tp@hotmail.com", message: "testing this dog!")
+        UserMailer.with(relocation: relocation).relocation
+    end
 end

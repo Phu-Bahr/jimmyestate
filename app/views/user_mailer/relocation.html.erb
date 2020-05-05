@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Email from Jimmy Estates Site </h1>
+    <h2>Relocation Inquiry</h2>
+    <p>
+      <strong>From:</strong> <%= @relocation.name %><br>
+      <strong>Email:</strong> <%= @relocation.email %><br>
+      <strong>Phone:</strong> <%= @relocation.phone %><br>
+      <strong>Best time to call:</strong> <%= @relocation.time %><br>
+      <strong>Destination Address:</strong> <%= @relocation.destinationaddress %><br>
+      <strong>Moving Timeframe:</strong> <%= @relocation.timeframe %><br>
+      <strong>Assistance Selling:</strong> <%= @relocation.assistsell %><br>
+   
+    </p>
+    <p>
+    <strong>Message:</strong><br><%= @relocation.message %>.
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>
+

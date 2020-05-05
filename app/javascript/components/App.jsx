@@ -23,6 +23,7 @@ import EditTown from "../components/Home/Town/EditTown";
 import AdminBanner from "../components/Home/User/AdminBanner";
 import PortfolioContainer from "./Home/Portfolio/PortfolioContainer";
 import HomeWorthContainer from "../components/Home/Service/HomeWorthContainer";
+import RelocationContainer from "../components/Home/Service/RelocationContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -150,6 +151,17 @@ class App extends Component {
               path="/homeworth"
               render={props => (
                 <HomeWorthContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/relocation"
+              render={props => (
+                <RelocationContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   user={this.state.user}

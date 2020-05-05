@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_191310) do
+ActiveRecord::Schema.define(version: 2020_05_05_184238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,34 @@ ActiveRecord::Schema.define(version: 2020_05_04_191310) do
     t.string "state"
     t.string "zip"
     t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relocation_edits", force: :cascade do |t|
+    t.string "paragraph1"
+    t.string "paragraph2"
+    t.string "bannerText1"
+    t.string "bannerText2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relocation_photos", force: :cascade do |t|
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relocations", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "time"
+    t.string "destinationaddress"
+    t.string "timeframe"
+    t.string "assistsell"
+    t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

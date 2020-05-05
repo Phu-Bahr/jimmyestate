@@ -87,7 +87,15 @@
 #     town_id: 78
 # )
 
-homeWorthEdit = WorthEdit.create!(
+# homeWorthEdit = WorthEdit.create!(
+#     paragraph1: "test", 
+#     paragraph2: "test", 
+#     bannerText1: "test", 
+#     bannerText2: "test"
+# )
+
+
+relocationEdit = RelocationEdit.create!(
     paragraph1: "test", 
     paragraph2: "test", 
     bannerText1: "test", 

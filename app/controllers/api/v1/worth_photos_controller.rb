@@ -16,15 +16,6 @@ class Api::V1::WorthPhotosController < ApplicationController
       end
     end
 
-    def update
-      worth_photo = worth_photo.find(params[:id])
-      if worth_photo.update_attributes(worth_photo_params)
-          render json: worth_photo
-      else
-          render json: worth_photo.errors, status: :unprocessable_entity
-      end
-    end
-
     def destroy
       worth_photo&.destroy
       render json: { message: 'worth_photo deleted'}

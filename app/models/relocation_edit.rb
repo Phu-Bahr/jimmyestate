@@ -1,0 +1,2 @@
+class RelocationEdit < ApplicationRecord
+end
