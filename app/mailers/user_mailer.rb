@@ -18,4 +18,13 @@ class UserMailer < ApplicationMailer
             subject: "Jimmy Estates - Home Worth Inquiry - #{params[:home_worth].name}"
         )
     end
+
+    def relocation
+        @relocation = params[:relocation]
+
+        mail(
+            to: Rails.application.credentials.gmail[:admin],
+            subject: "Jimmy Estates - Relocation Inquiry - #{params[:relocation].name}"
+        )
+    end
 end

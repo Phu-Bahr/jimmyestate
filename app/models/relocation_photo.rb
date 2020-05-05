@@ -1,0 +1,2 @@
+class RelocationPhoto < ApplicationRecord
+end
