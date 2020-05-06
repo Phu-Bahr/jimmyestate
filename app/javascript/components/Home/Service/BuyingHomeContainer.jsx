@@ -12,7 +12,8 @@ class BuyingHomeContainer extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       content: null,
-      refreshKey: false
+      refreshKey: false,
+      readOnly: true
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
@@ -35,32 +36,36 @@ class BuyingHomeContainer extends Component {
   };
 
   onSubmit(event) {
-    event.preventDefault();
-    const urls = "/api/v1/buying_contents";
-    const { content } = this.state;
+    if (this.state.readOnly) {
+      alert("Can't save on Read Only");
+    } else {
+      event.preventDefault();
+      const urls = "/api/v1/buying_contents";
+      const { content } = this.state;
 
-    const body = {
-      content
-    };
+      const body = {
+        content
+      };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+      const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Content has been saved");
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
+      fetch(urls, {
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
       })
-      .catch(error => console.log(error.message));
+        .then(response => {
+          if (response.ok) {
+            alert("Content has been saved");
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .catch(error => console.log(error.message));
+    }
   }
 
   componentDidMount() {
@@ -76,8 +81,6 @@ class BuyingHomeContainer extends Component {
       })
       .then(response => response.json())
       .then(rawContent => {
-        console.log("response raw parse", rawContent[0].content);
-
         if (rawContent) {
           this.setState({
             editorState: EditorState.createWithContent(
@@ -103,6 +106,7 @@ class BuyingHomeContainer extends Component {
             placeholder="Type content here"
             editorState={this.state.editorState}
             onChange={this.updateEditorState.bind(this)}
+            readOnly={this.state.readOnly}
           />
           <button onClick={this.onSubmit}>Save your content</button>
         </div>
