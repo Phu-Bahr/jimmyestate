@@ -808,3 +808,16 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 // end of relocation page
+
+// buying page
+.parallaxBuyingPage {
+  background: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  filter: grayscale(1%);
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+//  end of buying page
