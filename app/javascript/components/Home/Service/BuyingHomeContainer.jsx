@@ -114,7 +114,9 @@ class BuyingHomeContainer extends Component {
             onEditorStateChange={this.updateEditorState.bind(this)}
             readOnly={this.state.readOnly}
           />
-          <button onClick={this.onSubmit}>Save your content</button>
+          <div className="pt-3">
+            <button onClick={this.onSubmit}>Save your content</button>
+          </div>
         </div>
       );
     }
