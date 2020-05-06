@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "./react-draft-wysiwyg.css";
 
 class BuyingHomeContainer extends Component {
   constructor(props) {
