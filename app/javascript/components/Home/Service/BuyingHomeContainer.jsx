@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import {
-  EditorState,
-  Editor as DraftEditor,
-  convertToRaw,
-  convertFromRaw
-} from "draft-js";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 class BuyingHomeContainer extends Component {
   constructor(props) {
@@ -13,13 +10,9 @@ class BuyingHomeContainer extends Component {
       editorState: EditorState.createEmpty(),
       content: null,
       refreshKey: false,
-      readOnly: true
+      readOnly: false
     };
     this.onSubmit = this.onSubmit.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-  }
-  toggleRefreshKey(event) {
-    this.setState({ refreshKey: true });
   }
 
   updateEditorState(editorState) {
@@ -97,19 +90,44 @@ class BuyingHomeContainer extends Component {
   }
 
   render() {
-    console.log("how raw should look", this.state.content);
-
-    return (
-      <React.Fragment>
-        <div className="editor-container">
-          <DraftEditor
-            placeholder="Type content here"
+    let adminToggle;
+    if (this.state.readOnly) {
+      adminToggle = (
+        <div className="container pb-5 pt-3">
+          <Editor
+            toolbarHidden
             editorState={this.state.editorState}
-            onChange={this.updateEditorState.bind(this)}
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.updateEditorState.bind(this)}
+            readOnly={this.state.readOnly}
+          />
+        </div>
+      );
+    } else {
+      adminToggle = (
+        <div className="container pb-5 pt-3">
+          <Editor
+            editorState={this.state.editorState}
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.updateEditorState.bind(this)}
             readOnly={this.state.readOnly}
           />
           <button onClick={this.onSubmit}>Save your content</button>
         </div>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        <div className="parallaxBuyingPage darken-pseudo darken-with-text">
+          <div className="container py-5">
+            <h1>Hi there</h1>
+            <h4>helloooo there</h4>
+          </div>
+        </div>
+        {adminToggle}
       </React.Fragment>
     );
   }
