@@ -1,14 +1,111 @@
 import React, { Component } from "react";
+import {
+  EditorState,
+  Editor as DraftEditor,
+  convertToRaw,
+  convertFromRaw
+} from "draft-js";
 
 class BuyingHomeContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      content: null,
+      refreshKey: false
+    };
+    this.onSubmit = this.onSubmit.bind(this);
+    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
+  toggleRefreshKey(event) {
+    this.setState({ refreshKey: true });
+  }
+
+  updateEditorState(editorState) {
+    const contentState = editorState.getCurrentContent();
+    this.saveContent(contentState);
+    console.log("content state raw", convertToRaw(contentState));
+    this.setState({ editorState });
+  }
+
+  saveContent = contentData => {
+    this.setState({
+      content: JSON.stringify(convertToRaw(contentData))
+    });
+  };
+
+  onSubmit(event) {
+    event.preventDefault();
+    const urls = "/api/v1/buying_contents";
+    const { content } = this.state;
+
+    const body = {
+      content
+    };
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(urls, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        if (response.ok) {
+          alert("Content has been saved");
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .catch(error => console.log(error.message));
+  }
+
+  componentDidMount() {
+    fetch("/api/v1/buying_contents")
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(rawContent => {
+        console.log("response raw parse", rawContent[0].content);
+
+        if (rawContent) {
+          this.setState({
+            editorState: EditorState.createWithContent(
+              convertFromRaw(
+                JSON.parse(rawContent[rawContent.length - 1].content)
+              )
+            )
+          });
+        } else {
+          this.setState({ editorState: EditorState.createEmpty() });
+        }
+      })
+      .catch(error => console.log("error message =>", error.message));
+  }
+
   render() {
+    console.log("how raw should look", this.state.content);
+
     return (
       <React.Fragment>
-        <div>Hi there</div>
+        <div className="editor-container">
+          <DraftEditor
+            placeholder="Type content here"
+            editorState={this.state.editorState}
+            onChange={this.updateEditorState.bind(this)}
+          />
+          <button onClick={this.onSubmit}>Save your content</button>
+        </div>
       </React.Fragment>
     );
   }
