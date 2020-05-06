@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       resources :relocations, only: [:create]
       resources :relocation_edits, only: [:index, :update]
       resources :relocation_photos, only: [:index, :create, :destroy]
+      resources :buying_contents, only: [:index, :create, :update, :destroy]
     end
   end
 
