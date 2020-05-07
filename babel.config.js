@@ -5,15 +5,6 @@ module.exports = function(api) {
   var isProductionEnv = api.env("production");
   var isTestEnv = api.env("test");
 
-  module: {
-    loaders: [
-      {
-        test: /plugin\.css$/,
-        loaders: ["style-loader", "css"]
-      }
-    ];
-  }
-
   if (!validEnv.includes(currentEnv)) {
     throw new Error(
       "Please specify a valid `NODE_ENV` or " +

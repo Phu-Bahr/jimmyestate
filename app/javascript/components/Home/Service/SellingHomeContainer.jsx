@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 
-class BuyingHomeContainer extends Component {
+class SellingHomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ class BuyingHomeContainer extends Component {
       alert("Can't save on Read Only");
     } else {
       event.preventDefault();
-      const urls = "/api/v1/buying_contents";
+      const urls = "/api/v1/selling_contents";
       const { content } = this.state;
 
       const body = {
@@ -61,7 +61,7 @@ class BuyingHomeContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/buying_contents")
+    fetch("/api/v1/selling_contents")
       .then(response => {
         if (response.ok) {
           return response;
@@ -134,4 +134,4 @@ class BuyingHomeContainer extends Component {
   }
 }
 
-export default BuyingHomeContainer;
+export default SellingHomeContainer;
