@@ -1,0 +1,2 @@
+class SellingContent < ApplicationRecord
+end
