@@ -90,20 +90,7 @@ class SellingHomeContainer extends Component {
 
   render() {
     let adminToggle;
-    if (this.state.readOnly) {
-      adminToggle = (
-        <div className="container pb-5 pt-3">
-          <Editor
-            toolbarHidden
-            editorState={this.state.editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={this.state.readOnly}
-          />
-        </div>
-      );
-    } else {
+    if (this.props.user.admin) {
       adminToggle = (
         <div className="container pb-5 pt-3">
           <Editor
@@ -118,11 +105,24 @@ class SellingHomeContainer extends Component {
           </div>
         </div>
       );
+    } else {
+      adminToggle = (
+        <div className="container pb-5 pt-3">
+          <Editor
+            toolbarHidden
+            editorState={this.state.editorState}
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.updateEditorState.bind(this)}
+            readOnly={this.state.readOnly}
+          />
+        </div>
+      );
     }
 
     return (
       <React.Fragment>
-        <div className="parallaxBuyingPage darken-pseudo darken-with-text">
+        <div className="parallaxSellingPage darken-pseudo darken-with-text">
           <div className="container py-5">
             <h1>Hi there</h1>
             <h4>helloooo there</h4>
