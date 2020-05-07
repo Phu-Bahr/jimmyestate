@@ -90,20 +90,7 @@ class BuyingHomeContainer extends Component {
 
   render() {
     let adminToggle;
-    if (this.state.readOnly) {
-      adminToggle = (
-        <div className="container pb-5 pt-3">
-          <Editor
-            toolbarHidden
-            editorState={this.state.editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={this.state.readOnly}
-          />
-        </div>
-      );
-    } else {
+    if (this.props.user.admin) {
       adminToggle = (
         <div className="container pb-5 pt-3">
           <Editor
@@ -116,6 +103,19 @@ class BuyingHomeContainer extends Component {
           <div className="pt-3">
             <button onClick={this.onSubmit}>Save your content</button>
           </div>
+        </div>
+      );
+    } else {
+      adminToggle = (
+        <div className="container pb-5 pt-3">
+          <Editor
+            toolbarHidden
+            editorState={this.state.editorState}
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.updateEditorState.bind(this)}
+            readOnly={this.state.readOnly}
+          />
         </div>
       );
     }
