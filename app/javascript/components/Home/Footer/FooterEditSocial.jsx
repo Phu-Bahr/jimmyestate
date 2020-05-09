@@ -29,14 +29,14 @@ const FooterEditSocial = props => {
         <Link to={`//` + props.twitter} target="blank" className="c-magic-icon">
           <div className="c-magic-icon__fill twitter">
             <FontAwesomeIcon
-              icon={["fab", "twitter"]}
+              icon={["fab", "linkedin-in"]}
               className="iconfont mt-2"
             />
           </div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
             <FontAwesomeIcon
-              icon={["fab", "twitter"]}
+              icon={["fab", "linkedin-in"]}
               className="iconfont mt-2"
             />
           </div>
@@ -63,17 +63,47 @@ const FooterEditSocial = props => {
         </Link>
 
         <Link to={`//` + props.other} target="blank" className="c-magic-icon">
-          <div className="c-magic-icon__fill other">
+          <div className="c-magic-icon__fill googleplus">
             <FontAwesomeIcon
-              icon={["fab", "google"]}
+              icon={["fab", "google-plus-g"]}
               className="iconfont mt-2"
             />
           </div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
             <FontAwesomeIcon
-              icon={["fab", "google"]}
+              icon={["fab", "google-plus-g"]}
               className="iconfont mt-2"
+            />
+          </div>
+        </Link>
+        <Link to={`//` + props.other} target="blank" className="c-magic-icon">
+          <div className="c-magic-icon__fill zillow">
+            <img
+              style={{ height: "80%", filter: "invert(100%)" }}
+              src="https://img.pngio.com/zillow-icon-png-91-images-in-collection-page-2-zillow-icon-png-512_512.png"
+            />
+          </div>
+          <div className="c-magic-icon__curtain"></div>
+          <div className="c-magic-icon__outline">
+            <img
+              style={{ height: "80%", filter: "invert(100%)" }}
+              src="https://img.pngio.com/zillow-icon-png-91-images-in-collection-page-2-zillow-icon-png-512_512.png"
+            />
+          </div>
+        </Link>
+        <Link to={`//` + props.other} target="blank" className="c-magic-icon">
+          <div className="c-magic-icon__fill realtor">
+            <img
+              style={{ height: "90%", filter: "invert(100%)" }}
+              src="https://cdn3.iconfinder.com/data/icons/real-estate-glyph-8/100/Artboard_43-512.png"
+            />
+          </div>
+          <div className="c-magic-icon__curtain"></div>
+          <div className="c-magic-icon__outline">
+            <img
+              style={{ height: "90%", filter: "invert(100%)" }}
+              src="https://cdn3.iconfinder.com/data/icons/real-estate-glyph-8/100/Artboard_43-512.png"
             />
           </div>
         </Link>
