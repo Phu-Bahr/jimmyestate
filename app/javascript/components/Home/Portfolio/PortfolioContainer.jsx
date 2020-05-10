@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
+import { FadeIn, FadeInUp } from "../../../components/Constants/Constants";
 
 class PortfolioContainer extends Component {
   constructor() {
@@ -499,10 +500,12 @@ class PortfolioContainer extends Component {
     });
 
     return (
-      <div>
-        <div className="parallaxAboutPortfolioPage darken-pseudo darken-with-text">
-          <h1 className="text-center caption">PORTFOLIO</h1>
-        </div>
+      <React.Fragment>
+        <FadeIn>
+          <div className="parallaxAboutPortfolioPage darken-pseudo darken-with-text">
+            <h1 className="text-center caption">PORTFOLIO</h1>
+          </div>
+        </FadeIn>
 
         <div className={"container py-3" + " " + hideEditButton}>
           <div className="row">
@@ -693,14 +696,18 @@ class PortfolioContainer extends Component {
         </div>
 
         <div className="container py-5 text-center">
-          <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
-          <div className="row pt-3 pb-5">{displayActivePortfolio}</div>
+          <FadeInUp>
+            <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
+          </FadeInUp>
+          <FadeInUp>
+            <div className="row pt-3 pb-5">{displayActivePortfolio}</div>
+          </FadeInUp>
           <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES </h2>
           <div className="row pt-3 pb-5">{displaySoldPortfolio}</div>
           <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
           <div className="row pt-3 pb-5">{displayRentalPortfolio}</div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
