@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const FooterEditSocial = props => {
   return (
-    <div>
+    <React.Fragment>
       <div className="d-flex justify-content-center mt-3">
         <Link
           to={`//` + props.facebook}
@@ -77,7 +77,8 @@ const FooterEditSocial = props => {
             />
           </div>
         </Link>
-        <Link to={`//` + props.other} target="blank" className="c-magic-icon">
+
+        <Link to={`//` + props.zillow} target="blank" className="c-magic-icon">
           <div className="c-magic-icon__fill zillow">
             <img
               style={{ height: "80%", filter: "invert(100%)" }}
@@ -92,7 +93,8 @@ const FooterEditSocial = props => {
             />
           </div>
         </Link>
-        <Link to={`//` + props.other} target="blank" className="c-magic-icon">
+
+        <Link to={`//` + props.realtor} target="blank" className="c-magic-icon">
           <div className="c-magic-icon__fill realtor">
             <img
               style={{ height: "90%", filter: "invert(100%)" }}
@@ -108,7 +110,7 @@ const FooterEditSocial = props => {
           </div>
         </Link>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

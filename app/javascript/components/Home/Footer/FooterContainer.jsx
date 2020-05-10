@@ -22,6 +22,8 @@ class FooterContainer extends Component {
       twitter: "",
       instagram: "",
       other: "",
+      zillow: "",
+      realtor: "",
       refreshKey: false
     };
 
@@ -61,7 +63,9 @@ class FooterContainer extends Component {
       facebook,
       twitter,
       instagram,
-      other
+      other,
+      zillow,
+      realtor
     } = this.state;
 
     const body = {
@@ -75,7 +79,9 @@ class FooterContainer extends Component {
       facebook,
       twitter,
       instagram,
-      other
+      other,
+      zillow,
+      realtor
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -127,7 +133,9 @@ class FooterContainer extends Component {
           facebook: body[0].facebook,
           twitter: body[0].twitter,
           instagram: body[0].instagram,
-          other: body[0].other
+          other: body[0].other,
+          zillow: body[0].zillow,
+          realtor: body[0].realtor
         });
       })
       .catch(error => console.log(error.message));
@@ -206,6 +214,8 @@ class FooterContainer extends Component {
           twitter={element.twitter}
           instagram={element.instagram}
           other={element.other}
+          zillow={element.zillow}
+          realtor={element.realtor}
         />
       );
     });
@@ -257,7 +267,7 @@ class FooterContainer extends Component {
                         id="name"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.name}
+                        value={this.state.name}
                       />
                     </div>
                     <div className="form-group">
@@ -267,7 +277,7 @@ class FooterContainer extends Component {
                         id="street"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.street}
+                        value={this.state.street}
                       />
                     </div>
                     <div className="form-group">
@@ -277,7 +287,7 @@ class FooterContainer extends Component {
                         id="citystate"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.citystate}
+                        value={this.state.citystate}
                       />
                     </div>
                     <button type="submit" className="btn custom-button mt-n3">
@@ -300,7 +310,7 @@ class FooterContainer extends Component {
                         id="contact1"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.contact1}
+                        value={this.state.contact1}
                       />
                     </div>
                     <div className="form-group">
@@ -310,7 +320,7 @@ class FooterContainer extends Component {
                         id="contact2"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.contact2}
+                        value={this.state.contact2}
                       />
                     </div>
                     <div className="form-group">
@@ -320,7 +330,7 @@ class FooterContainer extends Component {
                         id="contact3"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.contact3}
+                        value={this.state.contact3}
                       />
                     </div>
                     <div className="form-group">
@@ -330,7 +340,7 @@ class FooterContainer extends Component {
                         id="contact4"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.contact4}
+                        value={this.state.contact4}
                       />
                     </div>
                     <button type="submit" className="btn custom-button mt-n3">
@@ -353,7 +363,7 @@ class FooterContainer extends Component {
                         id="facebook"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.facebook}
+                        value={this.state.facebook}
                       />
                     </div>
                     <div className="form-group">
@@ -363,7 +373,7 @@ class FooterContainer extends Component {
                         id="twitter"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.twitter}
+                        value={this.state.twitter}
                       />
                     </div>
                     <div className="form-group">
@@ -373,7 +383,7 @@ class FooterContainer extends Component {
                         id="instagram"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.instagram}
+                        value={this.state.instagram}
                       />
                     </div>
                     <div className="form-group">
@@ -383,7 +393,27 @@ class FooterContainer extends Component {
                         id="other"
                         className="form-control"
                         onChange={this.onChange}
-                        placeholder={this.state.other}
+                        value={this.state.other}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="zillow"
+                        id="zillow"
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.zillow}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="realtor"
+                        id="realtor"
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.realtor}
                       />
                     </div>
                     <button type="submit" className="btn custom-button mt-n3">

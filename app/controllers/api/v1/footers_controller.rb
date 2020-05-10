@@ -18,6 +18,6 @@ class Api::V1::FootersController < ApplicationController
 
     private
         def footer_params
-            params.require(:footer).permit(:name, :street, :citystate, :contact1, :contact2, :contact3, :contact4, :facebook, :twitter, :instagram, :other)
+            params.require(:footer).permit(:name, :street, :citystate, :contact1, :contact2, :contact3, :contact4, :facebook, :twitter, :instagram, :other, :zillow, :realtor)
         end
 end
