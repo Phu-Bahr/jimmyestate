@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Particles from "react-particles-js";
-import { Link } from "react-router-dom";
 import JumboTile from "./JumboTile";
-import * as Constants from "../../Constants/Index";
 
 const particleOpt = {
   particles: {
@@ -181,7 +179,12 @@ class JumbotronContainer extends Component {
       .then(response => response.json())
       .then(body => {
         let newJumboData = body;
-        this.setState({ jumboData: newJumboData });
+        this.setState({
+          jumboData: newJumboData,
+          line1: newJumboData[0].line1,
+          line2: newJumboData[0].line2,
+          line3: newJumboData[0].line3
+        });
       })
       .catch(error => console.log(error.message));
   }
@@ -234,7 +237,7 @@ class JumbotronContainer extends Component {
     });
 
     return (
-      <div>
+      <React.Fragment>
         <div className="text-white text-center">
           <div className="card card-image py-5 jumboBackground">
             <div className="py-5">
@@ -271,7 +274,7 @@ class JumbotronContainer extends Component {
                             id="line1"
                             className="form-control"
                             onChange={this.onChange}
-                            placeholder="line 1"
+                            value={this.state.line1}
                           />
                         </div>
                         <div className="form-group">
@@ -281,7 +284,7 @@ class JumbotronContainer extends Component {
                             id="line2"
                             className="form-control"
                             onChange={this.onChange}
-                            placeholder="line 2"
+                            value={this.state.line2}
                           />
                         </div>
                         <div className="form-group">
@@ -291,7 +294,7 @@ class JumbotronContainer extends Component {
                             id="line3"
                             className="form-control"
                             onChange={this.onChange}
-                            placeholder="line 3"
+                            value={this.state.line3}
                           />
                         </div>
 
@@ -309,7 +312,7 @@ class JumbotronContainer extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
