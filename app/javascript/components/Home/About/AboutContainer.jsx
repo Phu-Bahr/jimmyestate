@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
+import { FadeIn } from "../../../components/Constants/Constants";
 
 class AboutContainer extends Component {
   constructor(props) {
@@ -244,18 +245,20 @@ class AboutContainer extends Component {
 
     return (
       <div>
-        <div className="parallaxAboutJimmyPage darken-pseudo darken-with-text">
-          <div className="container py-5">{banner}</div>
-        </div>
+        <FadeIn>
+          <div className="parallaxAboutJimmyPage darken-pseudo darken-with-text">
+            <div className="container py-5">{banner}</div>
+          </div>
 
-        <div className="container">
-          <div className="row py-5">
-            <div className="col-md-12">
-              <div className="float-left ml-4 pr-4 mb-3">{photoArea}</div>
-              <div className="">{paragraphs}</div>
+          <div className="container">
+            <div className="row py-5">
+              <div className="col-md-12">
+                <div className="float-left ml-4 pr-4 mb-3">{photoArea}</div>
+                <div className="">{paragraphs}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
 
         <div className={"container py-3" + " " + hideEditButton}>
           <div className="row">
