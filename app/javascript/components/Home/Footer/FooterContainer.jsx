@@ -83,6 +83,7 @@ class FooterContainer extends Component {
       zillow,
       realtor
     };
+    console.log("body in edit submit", body);
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -120,6 +121,8 @@ class FooterContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
+        console.log("didmount body data", body);
+
         let newFooterData = body;
         this.setState({ footerData: newFooterData });
         this.setState({
@@ -155,6 +158,8 @@ class FooterContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
+          console.log("didupdate body data", body);
+
           let newFooter = body;
           this.setState({ footerData: newFooter });
         })
@@ -164,6 +169,8 @@ class FooterContainer extends Component {
   }
 
   render() {
+    console.log("footer state == > ", this.state);
+
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";

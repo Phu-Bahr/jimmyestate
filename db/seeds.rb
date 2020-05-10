@@ -25,7 +25,9 @@
 #     facebook: 'www.facebook.com',
 #     twitter: 'www.twitter.com',
 #     instagram: 'www.instagram.com',
-#     other: 'www.amazon.com'
+#     other: 'www.amazon.com',
+#     zillow: 'www.amazon.com',
+#     realtor: 'www.amazon.com'
 # )
 
 # company = Company.create!(
