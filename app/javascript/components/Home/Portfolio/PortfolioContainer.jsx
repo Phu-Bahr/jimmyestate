@@ -291,28 +291,30 @@ class PortfolioContainer extends Component {
       if (element.status === "Active") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <div className="card border-0">
-              <div className="parent1 m-0">
-                <div className="child1 particles">
-                  <img
-                    className="portfolioImage card-img-top"
-                    src={element.photo}
-                  />
-                  <div className="portfolioTitle">On Market</div>
+            <FadeInUp>
+              <div className="card border-0">
+                <div className="parent1 m-0">
+                  <div className="child1 particles">
+                    <img
+                      className="portfolioImage card-img-top"
+                      src={element.photo}
+                    />
+                    <div className="portfolioTitle">On Market</div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="card-body">
-                <div style={{ fontWeight: "900" }}>
-                  $
-                  {element.price.toLocaleString(navigator.language, {
-                    minimumFractionDigits: 0
-                  })}
+                <div className="card-body">
+                  <div style={{ fontWeight: "900" }}>
+                    $
+                    {element.price.toLocaleString(navigator.language, {
+                      minimumFractionDigits: 0
+                    })}
+                  </div>
+                  <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
+                  <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
                 </div>
-                <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
-                <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
-            </div>
+            </FadeInUp>
 
             <div className={"container" + " " + hide}>
               <div className="row">
@@ -370,28 +372,30 @@ class PortfolioContainer extends Component {
       if (element.status === "Sold") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <div className="card border-0">
-              <div className="parent1 m-0">
-                <div className="child1 particles">
-                  <img
-                    className="portfolioImage card-img-top"
-                    src={element.photo}
-                  />
-                  <div className="portfolioTitle">SOLD</div>
+            <FadeInUp>
+              <div className="card border-0">
+                <div className="parent1 m-0">
+                  <div className="child1 particles">
+                    <img
+                      className="portfolioImage card-img-top"
+                      src={element.photo}
+                    />
+                    <div className="portfolioTitle">SOLD</div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="card-body">
-                <div style={{ fontWeight: "900" }}>
-                  $
-                  {element.price.toLocaleString(navigator.language, {
-                    minimumFractionDigits: 0
-                  })}
+                <div className="card-body">
+                  <div style={{ fontWeight: "900" }}>
+                    $
+                    {element.price.toLocaleString(navigator.language, {
+                      minimumFractionDigits: 0
+                    })}
+                  </div>
+                  <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
+                  <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
                 </div>
-                <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
-                <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
-            </div>
+            </FadeInUp>
 
             <div className={"container" + " " + hide}>
               <div className="row">
@@ -449,28 +453,30 @@ class PortfolioContainer extends Component {
       if (element.status === "Rental") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <div className="card border-0">
-              <div className="parent1 m-0">
-                <div className="child1 particles">
-                  <img
-                    className="portfolioImage card-img-top"
-                    src={element.photo}
-                  />
-                  <div className="portfolioTitle">Rental</div>
+            <FadeInUp>
+              <div className="card border-0">
+                <div className="parent1 m-0">
+                  <div className="child1 particles">
+                    <img
+                      className="portfolioImage card-img-top"
+                      src={element.photo}
+                    />
+                    <div className="portfolioTitle">Rental</div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="card-body">
-                <div style={{ fontWeight: "900" }}>
-                  $
-                  {element.price.toLocaleString(navigator.language, {
-                    minimumFractionDigits: 0
-                  })}
+                <div className="card-body">
+                  <div style={{ fontWeight: "900" }}>
+                    $
+                    {element.price.toLocaleString(navigator.language, {
+                      minimumFractionDigits: 0
+                    })}
+                  </div>
+                  <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
+                  <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
                 </div>
-                <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
-                <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
               </div>
-            </div>
+            </FadeInUp>
 
             <div className={"container" + " " + hide}>
               <div className="row">
@@ -699,12 +705,16 @@ class PortfolioContainer extends Component {
           <FadeInUp>
             <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
           </FadeInUp>
+          <div className="row pt-3 pb-5">{displayActivePortfolio}</div>
+
           <FadeInUp>
-            <div className="row pt-3 pb-5">{displayActivePortfolio}</div>
+            <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES </h2>
           </FadeInUp>
-          <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES </h2>
           <div className="row pt-3 pb-5">{displaySoldPortfolio}</div>
-          <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
+
+          <FadeInUp>
+            <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
+          </FadeInUp>
           <div className="row pt-3 pb-5">{displayRentalPortfolio}</div>
         </div>
       </React.Fragment>

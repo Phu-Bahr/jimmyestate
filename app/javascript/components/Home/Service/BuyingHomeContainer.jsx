@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
+import { FadeInUp, FadeIn } from "../../Constants/Constants";
 
 class BuyingHomeContainer extends Component {
   constructor(props) {
@@ -122,13 +123,15 @@ class BuyingHomeContainer extends Component {
 
     return (
       <React.Fragment>
-        <div className="parallaxBuyingPage darken-pseudo darken-with-text">
-          <div className="container py-5">
-            <h1>Hi there</h1>
-            <h4>helloooo there</h4>
+        <FadeIn>
+          <div className="parallaxBuyingPage darken-pseudo darken-with-text">
+            <div className="container py-5">
+              <h1>Hi there</h1>
+              <h4>helloooo there</h4>
+            </div>
           </div>
-        </div>
-        {adminToggle}
+        </FadeIn>
+        <FadeIn>{adminToggle}</FadeIn>
       </React.Fragment>
     );
   }
