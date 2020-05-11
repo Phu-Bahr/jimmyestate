@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EmailForm from "./EmailForm";
 import Map from "./Map";
+import { FadeIn, FadeInLeft, FadeInRight } from "../../Constants/Constants";
 
 class ContactContainer extends Component {
   constructor(props) {
@@ -45,22 +46,30 @@ class ContactContainer extends Component {
 
     return (
       <React.Fragment>
-        <div className="parallaxContactPage darken-pseudo darken-with-text">
-          <div className="container py-5">
-            <h1>Contact Jimmy Chao</h1>
-            <h4>Let's Talk and get you a house!</h4>
+        <FadeIn>
+          <div className="parallaxContactPage darken-pseudo darken-with-text">
+            <div className="container py-5">
+              <h1>Contact Jimmy Chao</h1>
+              <h4>Let's Talk and get you a house!</h4>
+            </div>
           </div>
-        </div>
+        </FadeIn>
 
         <div className="container py-5">
           <div className="row">
             <div className="col-md-6 pb-3">
-              <EmailForm />
+              <FadeInLeft>
+                <EmailForm />
+              </FadeInLeft>
             </div>
             <div className="col-md-6">
-              <div className="text-center pb-3">{contactData}</div>
+              <FadeInRight>
+                <div className="text-center pb-3">{contactData}</div>
+              </FadeInRight>
               <div>
-                <Map />
+                <FadeInRight>
+                  <Map />
+                </FadeInRight>
               </div>
             </div>
           </div>

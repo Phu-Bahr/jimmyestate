@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FadeInRight } from "../../Constants/Constants";
 
 class RelocationPhotoContainer extends Component {
   constructor(props) {
@@ -139,23 +140,25 @@ class RelocationPhotoContainer extends Component {
 
       return (
         <div className="pb-3" key={element.id}>
-          <div className="parent1 m-0">
-            <div className="child1 particles">
-              <img
-                className="portfolioImage card-img-top"
-                src={element.photo}
-              />
+          <FadeInRight>
+            <div className="parent1 m-0">
+              <div className="child1 particles">
+                <img
+                  className="portfolioImage card-img-top"
+                  src={element.photo}
+                />
+              </div>
+              <div className={"portfolioTitle" + " " + this.props.hide}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleDelete}
+                >
+                  Delete Property
+                </button>
+              </div>
             </div>
-            <div className={"portfolioTitle" + " " + this.props.hide}>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={handleDelete}
-              >
-                Delete Property
-              </button>
-            </div>
-          </div>
+          </FadeInRight>
         </div>
       );
     });
