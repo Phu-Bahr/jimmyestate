@@ -6,10 +6,10 @@ import { FadeIn } from "../../Constants/Constants";
 const particleOpt = {
   particles: {
     number: {
-      value: 120,
+      value: 100,
       density: {
         enable: true,
-        value_area: 800
+        value_area: 1000
       }
     },
     shape: {
@@ -241,75 +241,73 @@ class JumbotronContainer extends Component {
       <React.Fragment>
         <FadeIn>
           <div className="text-white text-center">
-            <div className="card card-image py-5 jumboBackground">
-              <div className="py-5">
+            <div className="pt-5 jumboBackground">
+              <div className=" ">
                 <div>
                   <Particles
                     className="particles overlayParticle"
                     params={particleOpt}
+                    height="1300px"
                   />
                 </div>
-                <div>{jumboList}</div>
-                <div className={this.props.hideEditButton}>
-                  <div className="col-sm-12 my-4">
-                    <button
-                      type="button"
-                      className="btn btn-info"
-                      onClick={this.clickEdit}
-                    >
-                      Edit
-                    </button>
-                  </div>
 
-                  <div className={"container" + " " + hide}>
-                    <div className="row">
-                      <div className="col-sm-12 col-lg-6 offset-lg-3">
-                        <p className="font-weight-normal mb-3">
-                          Update your info here...
-                        </p>
+                <div className="pt-5 centerJumboText">{jumboList}</div>
+              </div>
+            </div>
+            <div className={this.props.hideEditButton}>
+              <div className="col-sm-12 my-4">
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={this.clickEdit}
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+            <div className={"container" + " " + hide}>
+              <div className="row">
+                <div className="col-sm-12 col-lg-6 offset-lg-3">
+                  <p className="font-weight-normal mb-3">
+                    Update your info here...
+                  </p>
 
-                        <form onSubmit={this.onSubmit}>
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              name="line1"
-                              id="line1"
-                              className="form-control"
-                              onChange={this.onChange}
-                              value={this.state.line1}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              name="line2"
-                              id="line2"
-                              className="form-control"
-                              onChange={this.onChange}
-                              value={this.state.line2}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="textarea"
-                              name="line3"
-                              id="line3"
-                              className="form-control"
-                              onChange={this.onChange}
-                              value={this.state.line3}
-                            />
-                          </div>
-
-                          <button
-                            type="submit"
-                            className="btn custom-button mt-3"
-                          >
-                            Update title data
-                          </button>
-                        </form>
-                      </div>
+                  <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="line1"
+                        id="line1"
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.line1}
+                      />
                     </div>
-                  </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="line2"
+                        id="line2"
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.line2}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="textarea"
+                        name="line3"
+                        id="line3"
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.line3}
+                      />
+                    </div>
+
+                    <button type="submit" className="btn custom-button mt-3">
+                      Update title data
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

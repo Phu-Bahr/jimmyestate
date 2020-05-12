@@ -188,6 +188,7 @@ h6 {
 
 .jumboBackground {
   background-color: black !important;
+  height: 50vh;
 }
 
 .overlayParticle {
@@ -199,7 +200,7 @@ h6 {
 
 .particles {
   position: absolute;
-  right: 0;
+  top: 15%;
   right: 0;
   bottom: 0;
   left: 0;
@@ -230,7 +231,19 @@ h6 {
   .jumboFont3 {
     font-size: 3vw;
   }
+  .centerJumboText {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-10%, -50%);
+  }
+  .jumboBackground {
+    background-color: black !important;
+    height: 100vh;
+  }
 }
+
 // end of jumbotron
 
 // NAV BAR CSS
