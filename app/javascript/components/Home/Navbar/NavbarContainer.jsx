@@ -22,6 +22,332 @@ class NavbarContainer extends Component {
       hideEditButton = "invisible";
     }
 
+    let collapseMenuLogic;
+    if (window.innerWidth < 1100) {
+      collapseMenuLogic = (
+        <ul
+          className="navbar-nav ml-auto"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+        >
+          <li className="nav-item">
+            <Link
+              to="/"
+              className="nav-link navbar-underline"
+              onClick={this.scrollToTop}
+            >
+              Home
+            </Link>
+          </li>
+
+          <li className="nav-item dropdown">
+            <Link
+              to="/"
+              className="nav-link dropdown-toggle navbar-underline"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Featured Communities
+            </Link>
+            <div
+              className="dropdown-menu dropdown-menu-right animate slideIn"
+              aria-labelledby="navbarDropdown"
+            >
+              <TownList
+                loggedInStatus={this.props.loggedInStatus}
+                user={this.props.user}
+                hideEditButton={hideEditButton}
+              />
+              <div className={hideEditButton}>
+                <div className="dropdown-divider"></div>
+                <Link
+                  to="/addcommunity"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Add Community
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li className="nav-item dropdown">
+            <Link
+              to="/"
+              className="nav-link dropdown-toggle navbar-underline"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Services
+            </Link>
+            <div
+              className="dropdown-menu dropdown-menu-right animate slideIn"
+              id="about"
+              aria-labelledby="navbarDropdown"
+            >
+              <div className="container py-1">
+                <Link
+                  to="/buying-a-home"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Buying Property
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/selling-a-home"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Selling Property
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/homeworth"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  What's my home worth?
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/relocation"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Relocation Assistance
+                </Link>
+              </div>
+            </div>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              to="/"
+              className="nav-link dropdown-toggle navbar-underline"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              About
+            </Link>
+            <div
+              className="dropdown-menu dropdown-menu-right animate slideIn"
+              id="about"
+              aria-labelledby="navbarDropdown"
+            >
+              <div className="container py-1">
+                <Link
+                  to="/about"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  About Jimmy Chau
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/portfolio"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Sold Portfolio
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/aboutcompany"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  About RTN Realty Advisors
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            {" "}
+            <Link
+              to="/contact"
+              className="nav-link navbar-underline"
+              onClick={this.scrollToTop}
+            >
+              Contact
+            </Link>
+          </li>
+        </ul>
+      );
+    } else {
+      collapseMenuLogic = (
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link
+              to="/"
+              className="nav-link navbar-underline"
+              onClick={this.scrollToTop}
+            >
+              Home
+            </Link>
+          </li>
+
+          <li className="nav-item dropdown">
+            <Link
+              to="/"
+              className="nav-link dropdown-toggle navbar-underline"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Featured Communities
+            </Link>
+            <div
+              className="dropdown-menu dropdown-menu-right animate slideIn"
+              aria-labelledby="navbarDropdown"
+            >
+              <TownList
+                loggedInStatus={this.props.loggedInStatus}
+                user={this.props.user}
+                hideEditButton={hideEditButton}
+              />
+              <div className={hideEditButton}>
+                <div className="dropdown-divider"></div>
+                <Link
+                  to="/addcommunity"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Add Community
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li className="nav-item dropdown">
+            <Link
+              to="/"
+              className="nav-link dropdown-toggle navbar-underline"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Services
+            </Link>
+            <div
+              className="dropdown-menu dropdown-menu-right animate slideIn"
+              id="about"
+              aria-labelledby="navbarDropdown"
+            >
+              <div className="container py-1">
+                <Link
+                  to="/buying-a-home"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Buying Property
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/selling-a-home"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Selling Property
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/homeworth"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  What's my home worth?
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/relocation"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Relocation Assistance
+                </Link>
+              </div>
+            </div>
+          </li>
+          <li className="nav-item dropdown">
+            <Link
+              to="/"
+              className="nav-link dropdown-toggle navbar-underline"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              About
+            </Link>
+            <div
+              className="dropdown-menu dropdown-menu-right animate slideIn"
+              id="about"
+              aria-labelledby="navbarDropdown"
+            >
+              <div className="container py-1">
+                <Link
+                  to="/about"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  About Jimmy Chau
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/portfolio"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  Sold Portfolio
+                </Link>
+              </div>
+              <div className="container py-1">
+                <Link
+                  to="/aboutcompany"
+                  className="dropdown-item navbar-underline"
+                  onClick={this.scrollToTop}
+                >
+                  About RTN Realty Advisors
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            {" "}
+            <Link to="/contact" className="nav-link navbar-underline">
+              Contact
+            </Link>
+          </li>
+        </ul>
+      );
+    }
+    console.log("window width==>", window.innerWidth);
+
     return (
       <div className="sticky-top">
         <FadeInDown>
@@ -33,8 +359,8 @@ class NavbarContainer extends Component {
                 </div>
               </Link>
               <button
-                className="navbar-toggler"
                 type="button"
+                className="navbar-toggler"
                 data-toggle="collapse"
                 data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
@@ -47,159 +373,7 @@ class NavbarContainer extends Component {
                 className="collapse navbar-collapse justify-content-between"
                 id="navbarSupportedContent"
               >
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <Link
-                      to="/"
-                      className="nav-link navbar-underline"
-                      onClick={this.scrollToTop}
-                    >
-                      Home
-                    </Link>
-                  </li>
-
-                  <li className="nav-item dropdown">
-                    <Link
-                      to="/"
-                      className="nav-link dropdown-toggle navbar-underline"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Featured Communities
-                    </Link>
-                    <div
-                      className="dropdown-menu dropdown-menu-right animate slideIn"
-                      aria-labelledby="navbarDropdown"
-                    >
-                      <TownList
-                        loggedInStatus={this.props.loggedInStatus}
-                        user={this.props.user}
-                        hideEditButton={hideEditButton}
-                      />
-                      <div className={hideEditButton}>
-                        <div className="dropdown-divider"></div>
-                        <Link
-                          to="/addcommunity"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          Add Community
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li className="nav-item dropdown">
-                    <Link
-                      to="/"
-                      className="nav-link dropdown-toggle navbar-underline"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Services
-                    </Link>
-                    <div
-                      className="dropdown-menu dropdown-menu-right animate slideIn"
-                      id="about"
-                      aria-labelledby="navbarDropdown"
-                    >
-                      <div className="container py-1">
-                        <Link
-                          to="/buying-a-home"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          Buying Property
-                        </Link>
-                      </div>
-                      <div className="container py-1">
-                        <Link
-                          to="/selling-a-home"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          Selling Property
-                        </Link>
-                      </div>
-                      <div className="container py-1">
-                        <Link
-                          to="/homeworth"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          What's my home worth?
-                        </Link>
-                      </div>
-                      <div className="container py-1">
-                        <Link
-                          to="/relocation"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          Relocation Assistance
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="nav-item dropdown">
-                    <Link
-                      to="/"
-                      className="nav-link dropdown-toggle navbar-underline"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      About
-                    </Link>
-                    <div
-                      className="dropdown-menu dropdown-menu-right animate slideIn"
-                      id="about"
-                      aria-labelledby="navbarDropdown"
-                    >
-                      <div className="container py-1">
-                        <Link
-                          to="/about"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          About Jimmy Chau
-                        </Link>
-                      </div>
-                      <div className="container py-1">
-                        <Link
-                          to="/portfolio"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          Sold Portfolio
-                        </Link>
-                      </div>
-                      <div className="container py-1">
-                        <Link
-                          to="/aboutcompany"
-                          className="dropdown-item navbar-underline"
-                          onClick={this.scrollToTop}
-                        >
-                          About RTN Realty Advisors
-                        </Link>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li className="nav-item">
-                    <Link to="/contact" className="nav-link navbar-underline">
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
+                {collapseMenuLogic}
               </div>
             </div>
           </nav>
@@ -210,3 +384,7 @@ class NavbarContainer extends Component {
 }
 
 export default NavbarContainer;
+
+// below will close hamburger but UX is super ugly.
+// data-toggle="collapse"
+// data-target="#navbarSupportedContent"
