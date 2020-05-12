@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import { FadeIn, FadeInUp } from "../../../components/Constants/Constants";
+import ScrollAnimation from "react-animate-on-scroll";
 
 class PortfolioContainer extends Component {
   constructor() {
@@ -291,7 +292,7 @@ class PortfolioContainer extends Component {
       if (element.status === "Active") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <FadeInUp>
+            <ScrollAnimation animateIn="fadeIn">
               <div className="card border-0">
                 <div className="parent1 m-0">
                   <div className="child1 particles">
@@ -314,7 +315,7 @@ class PortfolioContainer extends Component {
                   <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
                 </div>
               </div>
-            </FadeInUp>
+            </ScrollAnimation>
 
             <div className={"container" + " " + hide}>
               <div className="row">
@@ -372,7 +373,7 @@ class PortfolioContainer extends Component {
       if (element.status === "Sold") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <FadeInUp>
+            <ScrollAnimation animateIn="fadeIn">
               <div className="card border-0">
                 <div className="parent1 m-0">
                   <div className="child1 particles">
@@ -395,7 +396,7 @@ class PortfolioContainer extends Component {
                   <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
                 </div>
               </div>
-            </FadeInUp>
+            </ScrollAnimation>
 
             <div className={"container" + " " + hide}>
               <div className="row">
@@ -453,7 +454,7 @@ class PortfolioContainer extends Component {
       if (element.status === "Rental") {
         return (
           <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <FadeInUp>
+            <ScrollAnimation animateIn="fadeIn">
               <div className="card border-0">
                 <div className="parent1 m-0">
                   <div className="child1 particles">
@@ -476,7 +477,7 @@ class PortfolioContainer extends Component {
                   <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
                 </div>
               </div>
-            </FadeInUp>
+            </ScrollAnimation>
 
             <div className={"container" + " " + hide}>
               <div className="row">
