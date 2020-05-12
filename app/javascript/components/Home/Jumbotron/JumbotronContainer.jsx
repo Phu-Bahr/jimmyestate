@@ -251,7 +251,7 @@ class JumbotronContainer extends Component {
                   />
                 </div>
 
-                <div className="pt-5 centerJumboText">{jumboList}</div>
+                <div className="pt-5">{jumboList}</div>
               </div>
             </div>
             <div className={this.props.hideEditButton}>
