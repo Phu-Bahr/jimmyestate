@@ -4,6 +4,7 @@ import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
 import PropertySearchContainer from "../Home/PropertySearch/PropertySearchContainer";
 import AboutContainer from "./About/AboutContainer";
+import ScrollAnimation from "react-animate-on-scroll";
 
 class Home extends Component {
   constructor(props) {
@@ -39,10 +40,16 @@ class Home extends Component {
     return (
       <div className="master">
         <JumbotronContainer hideEditButton={hideEditButton} />
-        <PropertySearchContainer />
-        <AboutContainer user={this.props.user} />
-        <AnnouncementContainer hideEditButton={hideEditButton} />
-        <VenueContainer hideEditButton={hideEditButton} />
+
+        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+          <AboutContainer user={this.props.user} />
+        </ScrollAnimation>
+        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+          <AnnouncementContainer hideEditButton={hideEditButton} />
+        </ScrollAnimation>
+        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+          <VenueContainer hideEditButton={hideEditButton} />
+        </ScrollAnimation>
       </div>
     );
   }

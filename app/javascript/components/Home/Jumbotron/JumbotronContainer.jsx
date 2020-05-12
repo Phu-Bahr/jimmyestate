@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Particles from "react-particles-js";
 import JumboTile from "./JumboTile";
 import { FadeIn } from "../../Constants/Constants";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const particleOpt = {
   particles: {
@@ -239,13 +240,13 @@ class JumbotronContainer extends Component {
 
     return (
       <React.Fragment>
-        <FadeIn>
+        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
           <div className="text-white text-center">
             <div className="pt-5 jumboBackground">
               <div className=" ">
                 <div>
                   <Particles
-                    className="particles overlayParticle"
+                    className="particles1 overlayParticle"
                     params={particleOpt}
                     height="1300px"
                   />
@@ -312,7 +313,7 @@ class JumbotronContainer extends Component {
               </div>
             </div>
           </div>
-        </FadeIn>
+        </ScrollAnimation>
       </React.Fragment>
     );
   }
