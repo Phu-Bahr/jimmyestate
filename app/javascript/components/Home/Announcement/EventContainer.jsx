@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
+import Map from "../Contact/Map";
 
 class EventContainer extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class EventContainer extends Component {
       location: "",
       date: "",
       time: "",
+      flier: "",
       selectedStepId: null
     };
 
@@ -63,13 +65,14 @@ class EventContainer extends Component {
   updateEvent(id) {
     event.preventDefault();
     const urls = `/api/v1/events/${id}`;
-    const { title, location, date, time } = this.state;
+    const { title, location, date, time, flier } = this.state;
 
     const body = {
       title,
       location,
       date,
-      time
+      time,
+      flier
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -93,7 +96,15 @@ class EventContainer extends Component {
       })
       .then(this.props.toggleRefreshKey)
       .then(alert("Event has been updated."))
-      .then(this.setState({ title: "", location: "", date: "", time: "" }))
+      .then(
+        this.setState({
+          title: "",
+          location: "",
+          date: "",
+          time: "",
+          flier: ""
+        })
+      )
       .catch(error => console.log(error.message));
   }
 
@@ -104,6 +115,16 @@ class EventContainer extends Component {
     } else {
       hide = "";
     }
+
+    let photo = this.props.eventData.map(element => {
+      return (
+        <React.Fragment>
+          <div className="">
+            <img className="img-fluid" src={element.flier} />
+          </div>
+        </React.Fragment>
+      );
+    });
 
     let events = this.props.eventData.map(element => {
       let hideUpdate;
@@ -146,16 +167,15 @@ class EventContainer extends Component {
           handleDelete={handleDelete}
           submitUpdate={submitUpdate}
           onChange={onChange}
+          flier={element.flier}
         />
       );
     });
 
     return (
-      <div>
-        <div className="pb-3">
-          <div className="text-center">
-            <h1>Events coming up</h1>
-          </div>
+      <React.Fragment>
+        <div className="text-center">
+          <h1>Events coming up</h1>
 
           <div className={this.props.hideEditButton}>
             <div className="text-center">
@@ -167,6 +187,7 @@ class EventContainer extends Component {
                 Edit Events
               </button>
             </div>
+
             <div className={"pt-4" + " " + hide}>
               <NewEvent
                 refreshKey={this.props.refreshKey}
@@ -176,8 +197,16 @@ class EventContainer extends Component {
           </div>
         </div>
 
-        <div>{events}</div>
-      </div>
+        <div className="row p-5">
+          <div className="col-md-3 pb-3">{events}</div>
+          <div className="col-md-5 pb-3">
+            <div>{photo}</div>
+          </div>
+          <div className="col-md-4 pb-3">
+            <Map />
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

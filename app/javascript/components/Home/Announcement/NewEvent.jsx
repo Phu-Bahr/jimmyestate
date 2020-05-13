@@ -8,6 +8,7 @@ class NewEvent extends Component {
       location: "",
       date: "",
       time: "",
+      flier: "",
       refreshKey: false
     };
 
@@ -22,13 +23,14 @@ class NewEvent extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = "/api/v1/events";
-    const { title, location, date, time } = this.state;
+    const { title, location, date, time, flier } = this.state;
 
     const body = {
       title,
       location,
       date,
-      time
+      time,
+      flier
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -58,7 +60,7 @@ class NewEvent extends Component {
         <div className="px-3">
           <h4>Add new event here:</h4>
         </div>
-        <div className="col-sm-12 col-lg-6 pb-4">
+        <div className="col-sm-12 col-lg-6 pb-4 container mx-auto">
           <form
             onSubmit={event => {
               this.onSubmit(event);
@@ -72,7 +74,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="Title"
+              placeholder="Street Address"
             />
             <input
               type="text"
@@ -81,7 +83,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="Location"
+              placeholder="City State, Zip"
             />
             <input
               type="date"
@@ -100,6 +102,15 @@ class NewEvent extends Component {
               required
               onChange={this.onChange}
               placeholder="Time"
+            />
+            <input
+              type="text"
+              name="flier"
+              id="flier"
+              className="form-control"
+              required
+              onChange={this.onChange}
+              placeholder="Image URL"
             />
             <button type="submit" className="btn custom-button">
               Create Event

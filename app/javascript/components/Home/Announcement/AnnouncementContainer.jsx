@@ -10,7 +10,6 @@ class AnnouncementContainer extends Component {
       eventData: [],
       hideEditAnnounce: true,
       description: "",
-      flier: "",
       title: "",
       refreshKey: false
     };
@@ -41,11 +40,10 @@ class AnnouncementContainer extends Component {
     event.preventDefault();
     // need to make url more dynamic than hard code 1
     const urls = "/api/v1/announcements/1";
-    const { description, flier, title } = this.state;
+    const { description, title } = this.state;
 
     const body = {
       description,
-      flier,
       title
     };
 
@@ -81,7 +79,6 @@ class AnnouncementContainer extends Component {
         this.setState({
           announcementData: response1,
           description: response1[0].description,
-          flier: response1[0].flier,
           title: response1[0].title
         });
         this.setState({ eventData: response2 });
@@ -100,7 +97,6 @@ class AnnouncementContainer extends Component {
           this.setState({
             announcementData: response1,
             description: response1[0].description,
-            flier: response1[0].flier,
             title: response1[0].title
           });
           this.setState({ eventData: response2 });
@@ -125,30 +121,24 @@ class AnnouncementContainer extends Component {
       return element.description;
     });
 
-    let announcementFlier = announcementData.map(element => {
-      return element.flier;
-    });
-
     let announcementTitle = announcementData.map(element => {
       return element.title;
     });
 
     return (
-      <div id="announcementTag">
+      <div>
         <div className="parallaxEvents">
           <div className="center">
             <h1 className="companyfont">Events</h1>
           </div>
         </div>
+
         <div className="container-fluid companycontent pt-5">
           <div className="text-center">
             <div>
               <h1>{announcementTitle}</h1>
             </div>
-            <div>
-              <h3>Your Real Estate Concierge</h3>
-            </div>
-            <div className="container pt-4 pb-4">
+            <div className="container">
               <div className="row">
                 <div className="col-md-10 offset-lg-1">
                   <p>{announcementDescription}</p>
@@ -189,16 +179,7 @@ class AnnouncementContainer extends Component {
                           value={this.state.description}
                         />
                       </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="flier"
-                          id="flier"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.flier}
-                        />
-                      </div>
+
                       <button type="submit" className="btn custom-button">
                         Submit Change
                       </button>
@@ -209,21 +190,13 @@ class AnnouncementContainer extends Component {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-sm-6 pb-5">
-              <div className="text-center">
-                <img className="glow-border" src={announcementFlier}></img>
-              </div>
-            </div>
-
-            <div className="col-sm-6">
-              <EventContainer
-                eventData={this.state.eventData}
-                refreshKey={this.state.refreshKey}
-                hideEditButton={this.props.hideEditButton}
-                toggleRefreshKey={this.toggleRefreshKey}
-              />
-            </div>
+          <div>
+            <EventContainer
+              eventData={this.state.eventData}
+              refreshKey={this.state.refreshKey}
+              hideEditButton={this.props.hideEditButton}
+              toggleRefreshKey={this.toggleRefreshKey}
+            />
           </div>
         </div>
       </div>

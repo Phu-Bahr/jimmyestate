@@ -83,6 +83,17 @@ const EventTile = props => {
                     placeholder={props.time}
                   />
                 </div>
+                <div className="col-sm-6">
+                  <label>Image URL</label>
+                  <input
+                    type="text"
+                    name="flier"
+                    id="flier"
+                    className="form-control"
+                    onChange={props.onChange}
+                    placeholder={props.flier}
+                  />
+                </div>
               </div>
               <button type="submit" className="btn custom-button">
                 Submit Update
