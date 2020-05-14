@@ -187,7 +187,7 @@ h6 {
 // jumbotron
 
 .jumboBackground {
-  background-color: black !important;
+  background-color: white !important;
   height: 50vh;
 }
 
@@ -260,7 +260,7 @@ h6 {
     transform: translate(-50%, 100%);
   }
   .jumboBackground {
-    background-color: black !important;
+    background-color: white !important;
     height: 100vh;
   }
 }
@@ -268,6 +268,10 @@ h6 {
 // end of jumbotron
 
 // NAV BAR CSS
+
+.dropdown-item {
+  background: transparent !important;
+}
 
 .navbar-font-type {
   font-family: ambria, Cochin, Georgia, Times, "Times New Roman", serif;

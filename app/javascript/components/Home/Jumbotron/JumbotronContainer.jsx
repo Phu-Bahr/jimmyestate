@@ -13,6 +13,9 @@ const particleOpt = {
         value_area: 1000
       }
     },
+    color: {
+      value: "#000000"
+    },
     shape: {
       stroke: {
         width: 0
@@ -45,7 +48,8 @@ const particleOpt = {
       enable: true,
       distance: 70,
       opacity: 0.4,
-      width: 1
+      width: 1,
+      color: "#8bce3c"
     },
     move: {
       enable: true,
@@ -241,7 +245,7 @@ class JumbotronContainer extends Component {
     return (
       <React.Fragment>
         <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
-          <div className="text-white text-center">
+          <div className="text-black text-center">
             <div className="pt-5 jumboBackground">
               <div className=" ">
                 <div>
