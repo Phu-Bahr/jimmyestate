@@ -231,23 +231,29 @@ class TownLinks extends Component {
         });
       };
       return (
-        <div key={element.id} className="row">
-          <div className="col-sm-2">
-            <Link to={`//` + element.townlink} target="blank" className="link">
-              <li>{element.townlinkdescription}</li>
-            </Link>
+        <React.Fragment>
+          <div key={element.id} className="row">
+            <div className="col-sm-6">
+              <Link
+                to={`//` + element.townlink}
+                target="blank"
+                className="link"
+              >
+                <li>{element.townlinkdescription}</li>
+              </Link>
+            </div>
+            <div className={"col-xs-4 px-5" + " " + hideEditButton}>
+              <FontAwesomeIcon
+                icon="trash-alt"
+                size="1x"
+                onClick={handleDelete}
+              />
+            </div>
+            <div className={"col-xs-4" + " " + hideEditButton}>
+              <FontAwesomeIcon icon="edit" size="1x" onClick={handleEdit} />
+            </div>
           </div>
-          <div className={"col-xs-4 px-5" + " " + hideEditButton}>
-            <FontAwesomeIcon
-              icon="trash-alt"
-              size="1x"
-              onClick={handleDelete}
-            />
-          </div>
-          <div className={"col-xs-4" + " " + hideEditButton}>
-            <FontAwesomeIcon icon="edit" size="1x" onClick={handleEdit} />
-          </div>
-        </div>
+        </React.Fragment>
       );
     });
 

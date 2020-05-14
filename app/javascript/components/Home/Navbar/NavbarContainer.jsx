@@ -146,7 +146,7 @@ class NavbarContainer extends Component {
                 className="dropdown-item navbar-underline"
                 onClick={this.scrollToTop}
               >
-                About Jimmy Chau
+                About Jimmy Chao
               </Link>
             </div>
             <div className="container py-1">
@@ -205,7 +205,7 @@ class NavbarContainer extends Component {
             <div className="container-fluid" style={{ maxWidth: 1150 }}>
               <Link to="/login">
                 <div className="navbar-font" onClick={this.scrollToTop}>
-                  JC Realty
+                  Jimmy Chao
                 </div>
               </Link>
               <button
