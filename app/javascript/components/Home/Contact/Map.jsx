@@ -55,7 +55,7 @@ class Map extends Component {
       <React.Fragment>
         <div
           style={{
-            height: 375,
+            height: "60vh",
             width: "100%",
             display: "flex",
             flexFlow: "row nowrap",
