@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import EventContainer from "./EventContainer";
-import NewEvent from "./NewEvent";
 
 class AnnouncementContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       announcementData: [],
-      eventData: [],
       hideEditAnnounce: true,
       description: "",
       title: "",
@@ -71,17 +69,16 @@ class AnnouncementContainer extends Component {
   }
 
   componentDidMount() {
-    Promise.all([fetch("/api/v1/announcements"), fetch("/api/v1/events")])
-      .then(([response1, response2]) => {
-        return Promise.all([response1.json(), response2.json()]);
+    Promise.all([fetch("/api/v1/announcements")])
+      .then(([response1]) => {
+        return Promise.all([response1.json()]);
       })
-      .then(([response1, response2]) => {
+      .then(([response1]) => {
         this.setState({
           announcementData: response1,
           description: response1[0].description,
           title: response1[0].title
         });
-        this.setState({ eventData: response2 });
       })
       // need to add error messages
       .catch(error => console.log(error.message));
@@ -89,17 +86,16 @@ class AnnouncementContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      Promise.all([fetch("/api/v1/announcements"), fetch("/api/v1/events")])
-        .then(([response1, response2]) => {
-          return Promise.all([response1.json(), response2.json()]);
+      Promise.all([fetch("/api/v1/announcements")])
+        .then(([response1]) => {
+          return Promise.all([response1.json()]);
         })
-        .then(([response1, response2]) => {
+        .then(([response1]) => {
           this.setState({
             announcementData: response1,
             description: response1[0].description,
             title: response1[0].title
           });
-          this.setState({ eventData: response2 });
         })
         // need to add error messages
         .then(this.setState({ refreshKey: false }))
@@ -146,7 +142,7 @@ class AnnouncementContainer extends Component {
               </div>
             </div>
             <div className={this.props.hideEditButton}>
-              <div className="pb-4">
+              <div className="pb-5">
                 <button
                   type="button"
                   className="btn btn-info"
@@ -191,12 +187,7 @@ class AnnouncementContainer extends Component {
           </div>
 
           <div>
-            <EventContainer
-              eventData={this.state.eventData}
-              refreshKey={this.state.refreshKey}
-              hideEditButton={this.props.hideEditButton}
-              toggleRefreshKey={this.toggleRefreshKey}
-            />
+            <EventContainer hideEditButton={this.props.hideEditButton} />
           </div>
         </div>
       </div>

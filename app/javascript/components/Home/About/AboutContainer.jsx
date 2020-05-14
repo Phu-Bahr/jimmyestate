@@ -244,7 +244,7 @@ class AboutContainer extends Component {
     });
 
     return (
-      <div>
+      <React.Fragment>
         <FadeIn>
           <div className="parallaxAboutJimmyPage darken-pseudo darken-with-text">
             <div className="container py-5">{banner}</div>
@@ -260,7 +260,7 @@ class AboutContainer extends Component {
           </div>
         </FadeIn>
 
-        <div className={"container py-3" + " " + hideEditButton}>
+        <div className={"container pb-3" + " " + hideEditButton}>
           <div className="row">
             <div className="col text-center">
               <button
@@ -492,7 +492,7 @@ class AboutContainer extends Component {
             </div>
           </form>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

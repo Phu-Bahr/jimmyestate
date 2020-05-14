@@ -122,8 +122,6 @@ class FooterContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log("didmount body data", body);
-
         let newFooterData = body;
         this.setState({ footerData: newFooterData });
         this.setState({
@@ -170,8 +168,6 @@ class FooterContainer extends Component {
   }
 
   render() {
-    console.log("footer state == > ", this.state);
-
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";
