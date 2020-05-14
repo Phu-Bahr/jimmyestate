@@ -7,102 +7,104 @@ const EventTile = props => {
   };
 
   return (
-    <div>
-      <div className="event-border p-3">
-        <div>{props.title}</div>
-        <div>{props.location}</div>
-        <div>
-          {moment(props.date).format("MMMM Do YYYY")}, {convert(props.time)}
-        </div>
+    <React.Fragment>
+      <div onClick={props.payload}>
+        <div className="event-border p-3">
+          <div>{props.title}</div>
+          <div>{props.location}</div>
+          <div>
+            {moment(props.date).format("MMMM Do YYYY")}, {convert(props.time)}
+          </div>
 
-        <br />
-        <div className={"px-3" + " " + props.hide}>
-          <button
-            type="button"
-            className="btn btn-info"
-            onClick={props.clickHideUpdate}
-          >
-            Edit
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={props.handleDelete}
-          >
-            Delete
-          </button>
-          <div className={"py-4" + " " + props.hideUpdate}>
-            <form
-              onSubmit={event => {
-                props.submitUpdate(event);
-                event.target.reset();
-              }}
+          <br />
+          <div className={"px-3" + " " + props.hide}>
+            <button
+              type="button"
+              className="btn btn-info"
+              onClick={props.payload}
             >
-              <div className="row">
-                <div className="col-sm-6">
-                  <label>Title</label>
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    className="form-control"
-                    onChange={props.onChange}
-                    placeholder={props.title}
-                  />
+              Edit
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={props.handleDelete}
+            >
+              Delete
+            </button>
+            <div className={"py-4" + " " + props.hideUpdate}>
+              <form
+                onSubmit={event => {
+                  props.submitUpdate(event);
+                  event.target.reset();
+                }}
+              >
+                <div className="row">
+                  <div className="col-sm-6">
+                    <label>Title</label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.titleState}
+                    />
+                  </div>
+                  <div className="col-sm-6">
+                    <label>Location</label>
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.locationState}
+                    />
+                  </div>
+                  <div className="col-sm-12 col-lg-6">
+                    <label>Date of Event</label>
+                    <input
+                      type="date"
+                      name="date"
+                      id="date"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.dateState}
+                    />
+                  </div>
+                  <div className="col-sm-12 col-lg-6">
+                    <label>Time of Event</label>
+                    <input
+                      type="time"
+                      name="time"
+                      id="time"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.timeState}
+                    />
+                  </div>
+                  <div className="col-sm-6">
+                    <label>Image URL</label>
+                    <input
+                      type="text"
+                      name="flier"
+                      id="flier"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.flierState}
+                    />
+                  </div>
                 </div>
-                <div className="col-sm-6">
-                  <label>Location</label>
-                  <input
-                    type="text"
-                    name="location"
-                    id="location"
-                    className="form-control"
-                    onChange={props.onChange}
-                    placeholder={props.location}
-                  />
-                </div>
-                <div className="col-sm-12 col-lg-6">
-                  <label>Date of Event</label>
-                  <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    className="form-control"
-                    onChange={props.onChange}
-                    placeholder={props.date}
-                  />
-                </div>
-                <div className="col-sm-12 col-lg-6">
-                  <label>Time of Event</label>
-                  <input
-                    type="time"
-                    name="time"
-                    id="time"
-                    className="form-control"
-                    onChange={props.onChange}
-                    placeholder={props.time}
-                  />
-                </div>
-                <div className="col-sm-6">
-                  <label>Image URL</label>
-                  <input
-                    type="text"
-                    name="flier"
-                    id="flier"
-                    className="form-control"
-                    onChange={props.onChange}
-                    placeholder={props.flier}
-                  />
-                </div>
-              </div>
-              <button type="submit" className="btn custom-button">
-                Submit Update
-              </button>
-            </form>
+                <button type="submit" className="btn custom-button">
+                  Submit Update
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

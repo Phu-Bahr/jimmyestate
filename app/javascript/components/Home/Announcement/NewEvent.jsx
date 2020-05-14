@@ -45,12 +45,12 @@ class NewEvent extends Component {
     })
       .then(response => {
         if (response.ok) {
+          alert("Event has been added");
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
       .then(this.props.toggleRefreshKey)
-      .then(alert("Event has been added"))
       .catch(error => console.log(error.message));
   }
 

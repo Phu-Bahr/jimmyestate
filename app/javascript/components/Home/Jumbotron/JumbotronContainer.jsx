@@ -266,7 +266,7 @@ class JumbotronContainer extends Component {
                 </button>
               </div>
             </div>
-            <div className={"container" + " " + hide}>
+            <div className={"container pb-3" + " " + hide}>
               <div className="row">
                 <div className="col-sm-12 col-lg-6 offset-lg-3">
                   <p className="font-weight-normal mb-3">
