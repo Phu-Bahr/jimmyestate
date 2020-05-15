@@ -11,8 +11,6 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 42.33016,
-      lng: -71.12668,
       window: false
     };
 
@@ -24,20 +22,22 @@ class Map extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     const WrappedMap = withScriptjs(
       withGoogleMap(props => {
         return (
           <GoogleMap
-            defaultZoom={13}
-            defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+            defaultZoom={14}
+            defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
           >
             <Marker
-              position={{ lat: this.state.lat, lng: this.state.lng }}
+              position={{ lat: this.props.lat, lng: this.props.lng }}
               onClick={this.onClick}
             />
             {this.state.window && (
               <InfoWindow
-                position={{ lat: this.state.lat, lng: this.state.lng }}
+                position={{ lat: this.props.lat, lng: this.props.lng }}
               >
                 <React.Fragment>
                   <div>RTN Headquarters</div>
@@ -55,7 +55,7 @@ class Map extends Component {
       <React.Fragment>
         <div
           style={{
-            height: 350,
+            height: "60vh",
             width: "100%",
             display: "flex",
             flexFlow: "row nowrap",

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import VenueContainer from "../Home/Venue/VenueContainer";
 import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
-import PropertySearchContainer from "../Home/PropertySearch/PropertySearchContainer";
-import AboutContainer from "./About/AboutContainer";
 import ScrollAnimation from "react-animate-on-scroll";
 
 class Home extends Component {
