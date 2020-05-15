@@ -33,7 +33,7 @@ class Api::V1::EventsController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:title, :location, :date, :time, :flier)
+        params.require(:event).permit(:title, :location, :date, :time, :flier, :lat, :lng)
     end
 
     def event

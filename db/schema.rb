@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_192909) do
+ActiveRecord::Schema.define(version: 2020_05_15_030227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_05_13_192909) do
     t.datetime "updated_at", null: false
     t.string "time"
     t.string "flier"
+    t.string "lat"
+    t.string "lng"
   end
 
   create_table "footers", force: :cascade do |t|

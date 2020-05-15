@@ -42,7 +42,7 @@ const EventTile = props => {
             >
               <div className="row">
                 <div className="col-sm-6">
-                  <label>Title</label>
+                  <label>Street Address</label>
                   <input
                     type="text"
                     name="title"
@@ -53,7 +53,7 @@ const EventTile = props => {
                   />
                 </div>
                 <div className="col-sm-6">
-                  <label>Location</label>
+                  <label>City, State Zip</label>
                   <input
                     type="text"
                     name="location"
@@ -94,6 +94,28 @@ const EventTile = props => {
                     className="form-control"
                     onChange={props.onChange}
                     value={props.flierState}
+                  />
+                </div>
+                <div className="col-sm-6">
+                  <label>Latitude</label>
+                  <input
+                    type="text"
+                    name="lat"
+                    id="lat"
+                    className="form-control"
+                    onChange={props.onChange}
+                    value={props.latState}
+                  />
+                </div>
+                <div className="col-sm-6">
+                  <label>Longitude</label>
+                  <input
+                    type="text"
+                    name="lng"
+                    id="lng"
+                    className="form-control"
+                    onChange={props.onChange}
+                    value={props.lngState}
                   />
                 </div>
               </div>

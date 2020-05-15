@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
-import Map from "../Contact/Map";
+import Map from "./MapEvent";
 import { FadeIn } from "../../Constants/Constants";
 
 class EventContainer extends Component {
@@ -14,6 +14,8 @@ class EventContainer extends Component {
       date: "",
       time: "",
       flier: "",
+      lat: "",
+      lng: "",
       selectedStepId: null,
       eventData: [],
       refreshKey: false
@@ -38,9 +40,17 @@ class EventContainer extends Component {
     }
   }
 
-  editCurrentEventState(a, b, c, d, e, f) {
+  editCurrentEventState(a, b, c, d, e, f, g, h) {
     if (this.state.selectedStepId === f) {
-      this.setState({ title: a, location: b, date: c, time: d, flier: e });
+      this.setState({
+        title: a,
+        location: b,
+        date: c,
+        time: d,
+        flier: e,
+        lat: g,
+        lng: h
+      });
     } else {
       this.setState({
         title: a,
@@ -48,7 +58,9 @@ class EventContainer extends Component {
         date: c,
         time: d,
         flier: e,
-        selectedStepId: f
+        selectedStepId: f,
+        lat: g,
+        lng: h
       });
     }
   }
@@ -88,14 +100,16 @@ class EventContainer extends Component {
   updateEvent(id) {
     event.preventDefault();
     const urls = `/api/v1/events/${id}`;
-    const { title, location, date, time, flier } = this.state;
+    const { title, location, date, time, flier, lat, lng } = this.state;
 
     const body = {
       title,
       location,
       date,
       time,
-      flier
+      flier,
+      lat,
+      lng
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -126,7 +140,9 @@ class EventContainer extends Component {
           location: "",
           date: "",
           time: "",
-          flier: ""
+          flier: "",
+          lat: "",
+          lng: ""
         })
       )
       .then(this.toggleRefreshKey)
@@ -149,7 +165,9 @@ class EventContainer extends Component {
         let newEventData = body;
         this.setState({
           eventData: newEventData,
-          flier: newEventData[0].flier
+          flier: newEventData[0].flier,
+          lat: newEventData[0].lat,
+          lng: newEventData[0].lng
         });
       })
       .catch(() => this.props.history.push("/"));
@@ -172,7 +190,9 @@ class EventContainer extends Component {
           let newEventData = body;
           this.setState({
             eventData: newEventData,
-            flier: newEventData[0].flier
+            flier: newEventData[0].flier,
+            lat: newEventData[0].lat,
+            lng: newEventData[0].lng
           });
         })
         .then(this.setState({ refreshKey: false }))
@@ -181,11 +201,19 @@ class EventContainer extends Component {
   }
 
   render() {
+    console.log("GEOOOODATA =====>", this.state.geoData);
+
     let hide;
+    let editMode1;
+    let editMode2;
     if (this.state.hideDiv === true) {
       hide = "invisible";
+      editMode1 = "col-md-3 pb-3";
+      editMode2 = "col-md-5 pb-3";
     } else {
       hide = "";
+      editMode1 = "col-md-5 pb-3";
+      editMode2 = "col-md-3 pb-3";
     }
 
     let photo;
@@ -242,7 +270,9 @@ class EventContainer extends Component {
           element.date,
           element.time,
           element.flier,
-          element.id
+          element.id,
+          element.lat,
+          element.lng
         );
         this.setSelectedStep(element.id);
       };
@@ -252,6 +282,8 @@ class EventContainer extends Component {
       let dateState;
       let timeState;
       let flierState;
+      let latState;
+      let lngState;
 
       if (this.state.selectedStepId === element.id) {
         (titleState = this.state.title),
@@ -259,12 +291,16 @@ class EventContainer extends Component {
           (dateState = this.state.date),
           (timeState = this.state.time),
           (flierState = this.state.flier);
+        latState = this.state.lat;
+        lngState = this.state.lng;
       } else {
         (titleState = ""),
           (locationState = ""),
           (dateState = ""),
           (timeState = ""),
           (flierState = "");
+        latState = "";
+        lngState = "";
       }
 
       return (
@@ -276,6 +312,8 @@ class EventContainer extends Component {
           date={element.date}
           time={element.time}
           flier={element.flier}
+          lat={element.lat}
+          lng={element.lng}
           hide={hide}
           hideUpdate={hideUpdate}
           clickHideUpdate={clickHideUpdate}
@@ -287,6 +325,8 @@ class EventContainer extends Component {
           dateState={dateState}
           timeState={timeState}
           flierState={flierState}
+          latState={latState}
+          lngState={lngState}
           payload={getCurrentEventState}
         />
       );
@@ -315,12 +355,15 @@ class EventContainer extends Component {
         </div>
 
         <div className="row p-5">
-          <div className="col-md-3 pb-3">{events}</div>
-          <div className="col-md-5 pb-3">
+          <div className={editMode1}>{events}</div>
+          <div className={editMode2}>
             <div>{photo}</div>
           </div>
           <div className="col-md-4 pb-3">
-            <Map />
+            <Map
+              lat={parseFloat(this.state.lat)}
+              lng={parseFloat(this.state.lng)}
+            />
           </div>
         </div>
       </React.Fragment>

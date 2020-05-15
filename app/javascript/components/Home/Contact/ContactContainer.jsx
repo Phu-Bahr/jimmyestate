@@ -7,7 +7,8 @@ class ContactContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contactData: []
+      contactData: [],
+      geoData: []
     };
   }
 
@@ -33,8 +34,6 @@ class ContactContainer extends Component {
   }
 
   render() {
-    console.log(this.state.contactData[0]);
-
     let contactData = this.state.contactData.map(element => {
       return (
         <div key={element.id}>

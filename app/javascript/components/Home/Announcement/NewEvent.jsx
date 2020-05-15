@@ -9,10 +9,16 @@ class NewEvent extends Component {
       date: "",
       time: "",
       flier: "",
+      lat: "",
+      lng: "",
+      geoData: [],
       refreshKey: false
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+    this.submit = this.submit.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -21,16 +27,46 @@ class NewEvent extends Component {
   }
 
   onSubmit(event) {
-    event.preventDefault();
+    let location = `${this.state.title} ${this.state.location}`;
+
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
+    )
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        console.log(body.results[0].geometry.location.lat);
+
+        this.setState({
+          geoData: body,
+          lat: body.results[0].geometry.location.lat,
+          lng: body.results[0].geometry.location.lng
+        });
+      })
+      .then(setTimeout(this.submit, 1000))
+      .catch(error => console.log("error message =>", error.message));
+  }
+
+  submit(event) {
     const urls = "/api/v1/events";
-    const { title, location, date, time, flier } = this.state;
+    const { title, location, date, time, flier, lat, lng } = this.state;
 
     const body = {
       title,
       location,
       date,
       time,
-      flier
+      flier,
+      lat,
+      lng
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -51,12 +87,14 @@ class NewEvent extends Component {
         throw new Error("Network response was not ok.");
       })
       .then(this.props.toggleRefreshKey)
+      .then(this.setState({ lat: "", lng: "" }))
       .catch(error => console.log(error.message));
   }
-
   render() {
+    console.log(this.state);
+
     return (
-      <div>
+      <React.Fragment>
         <div className="px-3">
           <h4>Add new event here:</h4>
         </div>
@@ -112,12 +150,12 @@ class NewEvent extends Component {
               onChange={this.onChange}
               placeholder="Image URL"
             />
-            <button type="submit" className="btn custom-button">
-              Create Event
-            </button>
           </form>
+          <button onClick={this.onSubmit} className="btn custom-button">
+            Create Event
+          </button>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
