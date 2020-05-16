@@ -27,7 +27,7 @@ class NewEvent extends Component {
   }
 
   onSubmit(event) {
-    let location = `${this.state.title} ${this.state.location}`;
+    let location = `${this.state.location}`;
 
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
@@ -87,7 +87,17 @@ class NewEvent extends Component {
         throw new Error("Network response was not ok.");
       })
       .then(this.props.toggleRefreshKey)
-      .then(this.setState({ lat: "", lng: "" }))
+      .then(
+        this.setState({
+          title: "",
+          location: "",
+          date: "",
+          time: "",
+          flier: "",
+          lat: "",
+          lng: ""
+        })
+      )
       .catch(error => console.log(error.message));
   }
   render() {
@@ -112,7 +122,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="Street Address"
+              placeholder="Name of Event"
             />
             <input
               type="text"
@@ -121,7 +131,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="City State, Zip"
+              placeholder="Address"
             />
             <input
               type="date"

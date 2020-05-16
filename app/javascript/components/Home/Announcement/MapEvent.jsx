@@ -10,15 +10,7 @@ import {
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      window: false
-    };
-
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick() {
-    this.setState({ window: true });
+    this.state = {};
   }
 
   render() {
@@ -31,21 +23,7 @@ class Map extends Component {
             defaultZoom={14}
             defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
           >
-            <Marker
-              position={{ lat: this.props.lat, lng: this.props.lng }}
-              onClick={this.onClick}
-            />
-            {this.state.window && (
-              <InfoWindow
-                position={{ lat: this.props.lat, lng: this.props.lng }}
-              >
-                <React.Fragment>
-                  <div>RTN Headquarters</div>
-                  <div>365 Bolyston St.</div>
-                  <div>Brookline, MA 02445</div>
-                </React.Fragment>
-              </InfoWindow>
-            )}
+            <Marker position={{ lat: this.props.lat, lng: this.props.lng }} />
           </GoogleMap>
         );
       })
