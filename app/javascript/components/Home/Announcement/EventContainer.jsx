@@ -200,6 +200,33 @@ class EventContainer extends Component {
     }
   }
 
+  onUpdateGeocode(event) {
+    let location = `${this.state.location}`;
+
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
+    )
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        console.log(body.results[0].geometry.location.lat);
+
+        this.setState({
+          lat: body.results[0].geometry.location.lat,
+          lng: body.results[0].geometry.location.lng
+        });
+      })
+      .catch(error => console.log("error message =>", error.message));
+  }
+
   render() {
     console.log("GEOOOODATA =====>", this.state.geoData);
 
@@ -208,7 +235,7 @@ class EventContainer extends Component {
     let editMode2;
     if (this.state.hideDiv === true) {
       hide = "invisible";
-      editMode1 = "col-md-3 pb-3";
+      editMode1 = "col-md-4 pb-3";
       editMode2 = "col-md-5 pb-3";
     } else {
       hide = "";
@@ -261,6 +288,10 @@ class EventContainer extends Component {
 
       let clickHideUpdate = () => {
         this.setSelectedStep(element.id);
+      };
+
+      let handleUpdateGeocode = () => {
+        this.onUpdateGeocode();
       };
 
       let getCurrentEventState = () => {
@@ -328,6 +359,7 @@ class EventContainer extends Component {
           latState={latState}
           lngState={lngState}
           payload={getCurrentEventState}
+          handleUpdateGeocode={handleUpdateGeocode}
         />
       );
     });
@@ -359,7 +391,7 @@ class EventContainer extends Component {
           <div className={editMode2}>
             <div>{photo}</div>
           </div>
-          <div className="col-md-4 pb-3">
+          <div className="col-md-3 pb-3">
             <Map
               lat={parseFloat(this.state.lat)}
               lng={parseFloat(this.state.lng)}

@@ -42,7 +42,7 @@ const EventTile = props => {
             >
               <div className="row">
                 <div className="col-sm-6">
-                  <label>Street Address</label>
+                  <label>Name of Event</label>
                   <input
                     type="text"
                     name="title"
@@ -53,7 +53,7 @@ const EventTile = props => {
                   />
                 </div>
                 <div className="col-sm-6">
-                  <label>City, State Zip</label>
+                  <label>Address</label>
                   <input
                     type="text"
                     name="location"
@@ -123,6 +123,15 @@ const EventTile = props => {
                 Submit Update
               </button>
             </form>
+            <div>
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={props.handleUpdateGeocode}
+              >
+                Update Geocode
+              </button>
+            </div>
           </div>
         </div>
       </div>
