@@ -14,7 +14,7 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log("map being loaded COUNT");
 
     const WrappedMap = withScriptjs(
       withGoogleMap(props => {
@@ -31,16 +31,7 @@ class Map extends Component {
 
     return (
       <React.Fragment>
-        <div
-          style={{
-            height: "60vh",
-            width: "100%",
-            display: "flex",
-            flexFlow: "row nowrap",
-            justifyContent: "center",
-            padding: 0
-          }}
-        >
+        <div className="event-map">
           <div style={{ width: "100%" }}>
             <WrappedMap
               googleMapURL={

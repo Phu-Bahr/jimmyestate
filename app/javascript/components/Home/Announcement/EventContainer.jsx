@@ -228,7 +228,7 @@ class EventContainer extends Component {
   }
 
   render() {
-    console.log("GEOOOODATA =====>", this.state.geoData);
+    console.log("GEOOOODATA =====>", this.state.lat);
 
     let hide;
     let editMode1;
@@ -236,11 +236,11 @@ class EventContainer extends Component {
     if (this.state.hideDiv === true) {
       hide = "invisible";
       editMode1 = "col-md-4 pb-3";
-      editMode2 = "col-md-5 pb-3";
+      editMode2 = "col-md-8 pb-3";
     } else {
       hide = "";
       editMode1 = "col-md-5 pb-3";
-      editMode2 = "col-md-3 pb-3";
+      editMode2 = "col-md-7 pb-3";
     }
 
     let photo;
@@ -386,16 +386,20 @@ class EventContainer extends Component {
           </div>
         </div>
 
-        <div className="row p-5">
+        <div className="row p-4">
           <div className={editMode1}>{events}</div>
           <div className={editMode2}>
-            <div>{photo}</div>
-          </div>
-          <div className="col-md-3 pb-3">
-            <Map
-              lat={parseFloat(this.state.lat)}
-              lng={parseFloat(this.state.lng)}
-            />
+            <div className="row">
+              <div className="col-sm-6 pb-2">
+                <div>{photo}</div>
+              </div>
+              <div className="col-sm-6 pb-2">
+                <Map
+                  lat={parseFloat(this.state.lat)}
+                  lng={parseFloat(this.state.lng)}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </React.Fragment>
