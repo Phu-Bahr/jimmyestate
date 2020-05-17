@@ -164,13 +164,17 @@ h6 {
 }
 
 .parallaxVenue {
-  background: url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  filter: grayscale(1%);
-  height: 400px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 400px;
 }
 
 .center {
@@ -530,13 +534,17 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // beginning Company component
 
 .parallaxCompany {
-  background: url("https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  filter: grayscale(10%);
-  height: 400px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 .companycontent {
@@ -556,20 +564,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 
 // end of company
 
-// reservation css
-
-.parallaxReservation {
-  background: url("https://bottle-service-vegas.com/wp-content/uploads/2019/04/Bottle-service-seating-areas.jpg");
-  filter: grayscale(100%);
-  height: 400px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-// end of reservation
-
 // login
 
 // end of login
@@ -584,13 +578,17 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 .parallaxEvents {
-  background: url("https://s.yimg.com/ny/api/res/1.2/xUn.BetJqVS0KMZFtfKJKQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-images/2019-11/15a1f0d0-04ce-11ea-b6fb-3a78ae8a00a2");
-  filter: grayscale(1%);
-  height: 400px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://s.yimg.com/ny/api/res/1.2/xUn.BetJqVS0KMZFtfKJKQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-images/2019-11/15a1f0d0-04ce-11ea-b6fb-3a78ae8a00a2");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 400px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -667,55 +665,17 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // beginning SHOWPAGE
 
 .parallaxShowPage {
-  background: url("https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.darken-pseudo:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: block;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.darken-with-text h1 {
   font-size: 5.5vw;
   color: white;
   position: relative; // relative pushes it to the top
   z-index: 1;
-}
-
-.darken-with-text h4 {
-  font-size: 4.5vw;
-  color: white;
-  position: relative; // relative pushes it to the top
-  z-index: 1;
-}
-
-// bigger than mobile
-@media only screen and (min-width: 600px) {
-  .darken-with-text h1 {
-    font-size: 3vw;
-    color: white;
-    position: relative; // relative pushes it to the top
-    z-index: 1;
-  }
-
-  .darken-with-text h4 {
-    font-size: 2vw;
-    color: white;
-    position: relative; // relative pushes it to the top
-    z-index: 1;
-  }
+  height: 300px;
 }
 
 //wrap span with this class and no wrap.
@@ -733,13 +693,17 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // BEGINNING About Jimmy Page
 
 .parallaxAboutJimmyPage {
-  background: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 // END About Jimmy Page
@@ -763,25 +727,33 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 
 // About company page
 .parallaxAboutCompanyPage {
-  background: url("https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 //end about company page
 
 // About Portfolio page
 .parallaxAboutPortfolioPage {
-  background: url("https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 .caption {
@@ -872,13 +844,17 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // Contact page
 
 .parallaxContactPage {
-  background: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 // end of contact page
@@ -886,52 +862,68 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // home worth
 
 .parallaxHomeWorthPage {
-  background: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 // end of home worth
 // relocation page
 
 .parallaxRelocationPage {
-  background: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 // end of relocation page
 
 // buying page
 .parallaxBuyingPage {
-  background: url("https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
-  background-position: top;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 80%;
+  background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 //  end of buying page
 
 // selling page
 .parallaxSellingPage {
-  background: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  filter: grayscale(1%);
-  height: 300px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 90%;
+  background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
 }
 
 //end of selling

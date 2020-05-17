@@ -4,6 +4,7 @@ import TownLinks from "./TownLinks";
 import { FadeIn } from "../../Constants/Constants";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
+import { Link } from "react-router-dom";
 
 class TownShowPage extends Component {
   constructor(props) {
@@ -161,6 +162,17 @@ class TownShowPage extends Component {
     if (this.props.user.admin) {
       adminToggle = (
         <div className="container pb-5 pt-3">
+          <div className="container text-center">
+            <Link to={`/editcommunity/${this.props.match.params.id}`}>
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={this.clickEdit}
+              >
+                Edit Town/Header
+              </button>
+            </Link>
+          </div>
           <Editor
             editorState={this.state.editorState}
             wrapperClassName="wrapperClassName"
@@ -191,7 +203,7 @@ class TownShowPage extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxShowPage darken-pseudo darken-with-text">
+          <div className="parallaxShowPage">
             <div className="container py-5">
               <h1>{this.state.townData.headerText1}</h1>
               <h4>{this.state.townData.headerText2}</h4>
