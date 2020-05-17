@@ -8,7 +8,7 @@ const EventTile = props => {
 
   return (
     <React.Fragment>
-      <div className="event-border p-3">
+      <div className="hvr-bounce-to-right p-3 mobile-view">
         <div onClick={props.payload}>
           <div>{props.title}</div>
           <div>{props.location}</div>
@@ -62,6 +62,15 @@ const EventTile = props => {
                     onChange={props.onChange}
                     value={props.locationState}
                   />
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-info"
+                      onClick={props.handleUpdateGeocode}
+                    >
+                      Update Geocode
+                    </button>
+                  </div>
                 </div>
                 <div className="col-sm-12 col-lg-6">
                   <label>Date of Event</label>
@@ -123,15 +132,6 @@ const EventTile = props => {
                 Submit Update
               </button>
             </form>
-            <div>
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={props.handleUpdateGeocode}
-              >
-                Update Geocode
-              </button>
-            </div>
           </div>
         </div>
       </div>
