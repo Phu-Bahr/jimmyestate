@@ -10,18 +10,7 @@ class EditTown extends Component {
       name: "",
       headerText1: "",
       headerText2: "",
-      paragraph1: "",
-      paragraph2: "",
-      paragraph3: "",
-      paragraph4: "",
-      paragraph5: "",
-      townheader: "",
-      townlink1: "",
-      townlink2: "",
-      townlink3: "",
-      townlinkdescription1: "",
-      townlinkdescription2: "",
-      townlinkdescription3: ""
+      townheader: ""
     };
     this.fetchTownData = this.fetchTownData.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -35,40 +24,13 @@ class EditTown extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = `/api/v1/towns/${this.state.id}`;
-    const {
-      name,
-      headerText1,
-      headerText2,
-      paragraph1,
-      paragraph2,
-      paragraph3,
-      paragraph4,
-      paragraph5,
-      townheader,
-      townlink1,
-      townlink2,
-      townlink3,
-      townlinkdescription1,
-      townlinkdescription2,
-      townlinkdescription3
-    } = this.state;
+    const { name, headerText1, headerText2, townheader } = this.state;
 
     const body = {
       name,
       headerText1,
       headerText2,
-      paragraph1,
-      paragraph2,
-      paragraph3,
-      paragraph4,
-      paragraph5,
-      townheader,
-      townlink1,
-      townlink2,
-      townlink3,
-      townlinkdescription1,
-      townlinkdescription2,
-      townlinkdescription3
+      townheader
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -123,18 +85,7 @@ class EditTown extends Component {
           name: body.name,
           headerText1: body.headerText1,
           headerText2: body.headerText2,
-          paragraph1: body.paragraph1,
-          paragraph2: body.paragraph2,
-          paragraph3: body.paragraph3,
-          paragraph4: body.paragraph4,
-          paragraph5: body.paragraph5,
-          townheader: body.townheader,
-          townlink1: body.townlink1,
-          townlink2: body.townlink2,
-          townlink3: body.townlink3,
-          townlinkdescription1: body.townlinkdescription1,
-          townlinkdescription2: body.townlinkdescription2,
-          townlinkdescription3: body.townlinkdescription3
+          townheader: body.townheader
         });
       });
   }
@@ -160,102 +111,27 @@ class EditTown extends Component {
                 />
               </div>
 
-              <div className="parallaxShowPage" style={{ color: "white" }}>
-                <div className="container py-5">
-                  <div>
-                    <label htmlFor="headerText1">headerText1</label>
-                    <input
-                      type="text"
-                      name="headerText1"
-                      id="headerText1"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      value={this.state.headerText1}
-                    />
+              <label htmlFor="headerText1">headerText1</label>
+              <input
+                type="text"
+                name="headerText1"
+                id="headerText1"
+                className="form-control"
+                required
+                onChange={this.onChange}
+                value={this.state.headerText1}
+              />
 
-                    <div>
-                      <label htmlFor="headerText2">headerText2</label>
-                      <input
-                        type="text"
-                        name="headerText2"
-                        id="headerText2"
-                        className="form-control"
-                        required
-                        onChange={this.onChange}
-                        value={this.state.headerText2}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph1">Paragraph1</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph1"
-                  id="paragraph1"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.paragraph1}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph2">Paragraph2</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph2"
-                  id="paragraph2"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.paragraph2}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph3">Paragraph3</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph3"
-                  id="paragraph3"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.paragraph3}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph4">Paragraph4</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph4"
-                  id="paragraph4"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.paragraph4}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph5">Paragraph5</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph5"
-                  id="paragraph5"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.paragraph5}
-                />
-              </div>
+              <label htmlFor="headerText2">headerText2</label>
+              <input
+                type="text"
+                name="headerText2"
+                id="headerText2"
+                className="form-control"
+                required
+                onChange={this.onChange}
+                value={this.state.headerText2}
+              />
 
               <div className="form-group">
                 <label htmlFor="townheader">Townheader</label>
@@ -268,87 +144,6 @@ class EditTown extends Component {
                   onChange={this.onChange}
                   value={this.state.townheader}
                   placeholder="ex: Town Links"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="townlinkdescription1">
-                  Town Link Description 1
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription1"
-                  id="townlinkdescription1"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.townlinkdescription1}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlink1">Town Link 1</label>
-                <input
-                  type="text"
-                  name="townlink1"
-                  id="townlink1"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.townlink1}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="townlinkdescription2">
-                  Town Link Description 2
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription2"
-                  id="townlinkdescription2"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.townlinkdescription2}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlink2">Town Link 2</label>
-                <input
-                  type="text"
-                  name="townlink2"
-                  id="townlink2"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.townlink2}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="townlinkdescription3">
-                  Town Link Description 3
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription3"
-                  id="townlinkdescription3"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.townlinkdescription3}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlink3">Town Link 3</label>
-                <input
-                  type="text"
-                  name="townlink3"
-                  id="townlink3"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.townlink3}
                 />
               </div>
 
