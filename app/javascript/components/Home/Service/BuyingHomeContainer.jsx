@@ -99,7 +99,7 @@ class BuyingHomeContainer extends Component {
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
             onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={this.state.readOnly}
+            readOnly={false}
           />
           <div className="pt-3">
             <button onClick={this.onSubmit}>Save your content</button>
@@ -115,7 +115,7 @@ class BuyingHomeContainer extends Component {
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
             onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={this.state.readOnly}
+            readOnly={true}
           />
         </div>
       );
