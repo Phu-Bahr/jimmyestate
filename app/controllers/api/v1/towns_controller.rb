@@ -38,7 +38,7 @@ class Api::V1::TownsController < ApplicationController
     private
 
     def town_params
-      params.require(:town).permit(:name, :headerText1, :headerText2, :paragraph1, :paragraph2, :paragraph3, :paragraph4, :paragraph5, :townheader, :townlink1, :townlink2, :townlink3, :townlinkdescription1, :townlinkdescription2, :townlinkdescription3 )
+      params.require(:town).permit(:name, :headerText1, :headerText2, :townheader, :content)
     end
 
     def town

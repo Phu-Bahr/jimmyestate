@@ -175,6 +175,7 @@ class TownLinks extends Component {
         .then(response => response.json())
         .then(body => {
           let newTownLinkData = body;
+
           this.setState({
             townLinkData: newTownLinkData,
             id: newTownLinkData[0].town_id,
@@ -231,8 +232,8 @@ class TownLinks extends Component {
         });
       };
       return (
-        <React.Fragment>
-          <div key={element.id} className="row">
+        <React.Fragment key={element.id}>
+          <div className="row">
             <div className="col-sm-6">
               <Link
                 to={`//` + element.townlink}

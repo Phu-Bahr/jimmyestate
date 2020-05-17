@@ -235,11 +235,11 @@ class EventContainer extends Component {
     let editMode2;
     if (this.state.hideDiv === true) {
       hide = "invisible";
-      editMode1 = "col-md-4 pb-3";
+      editMode1 = "col-md-4 pb-1";
       editMode2 = "col-md-8 pb-3";
     } else {
       hide = "";
-      editMode1 = "col-md-5 pb-3";
+      editMode1 = "col-md-5 pb-1";
       editMode2 = "col-md-7 pb-3";
     }
 

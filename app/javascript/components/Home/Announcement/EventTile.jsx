@@ -8,8 +8,8 @@ const EventTile = props => {
 
   return (
     <React.Fragment>
-      <div className="hvr-bounce-to-right p-3 mobile-view">
-        <div onClick={props.payload}>
+      <div className="mobile-view">
+        <div className="hvr-bounce-to-right p-3" onClick={props.payload}>
           <div>{props.title}</div>
           <div>{props.location}</div>
           <div>

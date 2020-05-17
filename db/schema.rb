@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_030227) do
+ActiveRecord::Schema.define(version: 2020_05_17_040912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,20 +200,10 @@ ActiveRecord::Schema.define(version: 2020_05_15_030227) do
     t.string "name"
     t.string "headerText1"
     t.string "headerText2"
-    t.string "paragraph1"
-    t.string "paragraph2"
-    t.string "paragraph3"
-    t.string "paragraph4"
-    t.string "paragraph5"
     t.string "townheader"
-    t.string "townlink1"
-    t.string "townlink2"
-    t.string "townlink3"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "townlinkdescription1"
-    t.string "townlinkdescription2"
-    t.string "townlinkdescription3"
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,18 +8,8 @@ class NewTown extends React.Component {
       name: "",
       headerText1: "",
       headerText2: "",
-      paragraph1: "",
-      paragraph2: "",
-      paragraph3: "",
-      paragraph4: "",
-      paragraph5: "",
       townheader: "",
-      townlink1: "",
-      townlink2: "",
-      townlink3: "",
-      townlinkdescription1: "",
-      townlinkdescription2: "",
-      townlinkdescription3: ""
+      content: null
     };
 
     this.onChange = this.onChange.bind(this);
@@ -33,40 +23,14 @@ class NewTown extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = "/api/v1/towns";
-    const {
-      name,
-      headerText1,
-      headerText2,
-      paragraph1,
-      paragraph2,
-      paragraph3,
-      paragraph4,
-      paragraph5,
-      townheader,
-      townlink1,
-      townlink2,
-      townlink3,
-      townlinkdescription1,
-      townlinkdescription2,
-      townlinkdescription3
-    } = this.state;
+    const { name, headerText1, headerText2, townheader, content } = this.state;
 
     const body = {
       name,
       headerText1,
       headerText2,
-      paragraph1,
-      paragraph2,
-      paragraph3,
-      paragraph4,
-      paragraph5,
       townheader,
-      townlink1,
-      townlink2,
-      townlink3,
-      townlinkdescription1,
-      townlinkdescription2,
-      townlinkdescription3
+      content
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -143,66 +107,14 @@ class NewTown extends React.Component {
               </div>
 
               <div className="form-group">
-                <label htmlFor="paragraph1">Paragraph1</label>
+                <label htmlFor="paragraph1">Paragraph 1</label>
                 <textarea
                   rows="3"
                   type="text"
                   name="paragraph1"
                   id="paragraph1"
                   className="form-control"
-                  required
-                  onChange={this.onChange}
-                  placeholder="required"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph2">Paragraph2</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph2"
-                  id="paragraph2"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  placeholder="required"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph3">Paragraph3</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph3"
-                  id="paragraph3"
-                  className="form-control"
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph4">Paragraph4</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph4"
-                  id="paragraph4"
-                  className="form-control"
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="paragraph5">Paragraph5</label>
-                <textarea
-                  rows="3"
-                  type="text"
-                  name="paragraph5"
-                  id="paragraph5"
-                  className="form-control"
-                  onChange={this.onChange}
+                  value="Just a placeholder, fill in data on town link itself."
                 />
               </div>
 
@@ -216,81 +128,6 @@ class NewTown extends React.Component {
                   required
                   onChange={this.onChange}
                   placeholder="ex: Town Links"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="townlinkdescription1">
-                  Town Link Description 1
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription1"
-                  id="townlinkdescription1"
-                  className="form-control"
-                  onChange={this.onChange}
-                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlink1">Town Link 1</label>
-                <input
-                  type="text"
-                  name="townlink1"
-                  id="townlink1"
-                  className="form-control"
-                  onChange={this.onChange}
-                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="townlinkdescription2">
-                  Town Link Description 2
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription2"
-                  id="townlinkdescription2"
-                  className="form-control"
-                  onChange={this.onChange}
-                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlink2">Town Link 2</label>
-                <input
-                  type="text"
-                  name="townlink2"
-                  id="townlink2"
-                  className="form-control"
-                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="townlinkdescription3">
-                  Town Link Description 3
-                </label>
-                <input
-                  type="text"
-                  name="townlinkdescription3"
-                  id="townlinkdescription3"
-                  className="form-control"
-                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="townlink3">Town Link 3</label>
-                <input
-                  type="text"
-                  name="townlink3"
-                  id="townlink3"
-                  className="form-control"
-                  placeholder="Placeholder for something else, go to the town in Admin mode to add there."
-                  onChange={this.onChange}
                 />
               </div>
 
