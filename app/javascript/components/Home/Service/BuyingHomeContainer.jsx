@@ -114,7 +114,10 @@ class BuyingHomeContainer extends Component {
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <form onSubmit={this.onSubmit}>
-              <label htmlFor="headerText1">headerText1</label>
+              <h5 className="text-center pb-3">
+                Update will work after Draft Content has been created
+              </h5>
+              <label htmlFor="headerText1">Header Text 1</label>
               <input
                 type="text"
                 name="headerText1"
@@ -125,7 +128,7 @@ class BuyingHomeContainer extends Component {
                 value={this.state.headerText1}
               />
 
-              <label htmlFor="headerText2">headerText2</label>
+              <label htmlFor="headerText2">Header Text 2</label>
               <input
                 type="text"
                 name="headerText2"
