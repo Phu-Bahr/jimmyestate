@@ -13,7 +13,7 @@ class JimmysTipsContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxBuyingPage">
+          <div className="parallaxJimmyTipPage">
             <div className="container py-5">
               <h1>Hi there</h1>
               <h4>helloooo there</h4>
