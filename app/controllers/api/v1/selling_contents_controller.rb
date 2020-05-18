@@ -25,19 +25,14 @@ class Api::V1::SellingContentsController < ApplicationController
         end
     end
 
-    def destroy
-        selling_content&.destroy
-        render json: { message: 'selling_content deleted'}
-    end
+   
 
     private
 
     def selling_content_params
-        params.require(:selling_content).permit(:content)
+        params.require(:selling_content).permit(:content, :headerText1, :headerText2)
     end
 
-    def selling_content
-        @selling_content ||= SellingContent.find(params[:id])
-    end
+
     
 end
