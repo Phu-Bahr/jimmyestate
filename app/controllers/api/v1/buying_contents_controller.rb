@@ -25,19 +25,14 @@ class Api::V1::BuyingContentsController < ApplicationController
         end
     end
 
-    def destroy
-        buying_content&.destroy
-        render json: { message: 'buying_content deleted'}
-    end
+
 
     private
 
     def buying_content_params
-        params.require(:buying_content).permit(:content)
+        params.require(:buying_content).permit(:content, :headerText1, :headerText2)
     end
 
-    def buying_content
-        @buying_content ||= BuyingContent.find(params[:id])
-    end
+
     
 end
