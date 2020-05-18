@@ -14,7 +14,7 @@ class Map extends Component {
   }
 
   render() {
-    console.log("map being loaded COUNT");
+    console.log("Map event loader", this.state);
 
     const WrappedMap = withScriptjs(
       withGoogleMap(props => {

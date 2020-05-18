@@ -1,0 +1,2 @@
+class JimmyTip < ApplicationRecord
+end

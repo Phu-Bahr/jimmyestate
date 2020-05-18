@@ -11,6 +11,7 @@ import Registration from "../components/Home/User/Registration";
 import Login from "../components/Home/User/Login";
 import AboutContainer from "../components/Home/About/AboutContainer";
 import AboutCompanyContainer from "../components/Home/AboutCompany/AboutCompanyContainer";
+import JimmysTipsContainer from "../components/Home/JimmysTips/JimmysTipsContainer";
 import ContactContainer from "../components/Home/Contact/ContactContainer";
 import NavbarContainer from "../components/Home/Navbar/NavbarContainer";
 import NewTown from "../components/Home/Town/NewTown";
@@ -220,6 +221,17 @@ class App extends Component {
               path="/portfolio"
               render={props => (
                 <PortfolioContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/jimmys-tips"
+              render={props => (
+                <JimmysTipsContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   user={this.state.user}

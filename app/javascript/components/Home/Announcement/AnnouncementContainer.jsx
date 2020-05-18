@@ -104,6 +104,8 @@ class AnnouncementContainer extends Component {
   }
 
   render() {
+    console.log("announcement container log", this.state);
+
     let hide;
     if (this.state.hideEditAnnounce === true) {
       hide = "invisible";
