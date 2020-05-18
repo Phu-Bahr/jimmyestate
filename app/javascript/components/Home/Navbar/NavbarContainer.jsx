@@ -167,6 +167,15 @@ class NavbarContainer extends Component {
                 About RTN Realty Advisors
               </Link>
             </div>
+            <div className="container py-1">
+              <Link
+                to="/jimmys-tips"
+                className="dropdown-item navbar-underline"
+                onClick={this.scrollToTop}
+              >
+                Jimmy's Tips
+              </Link>
+            </div>
           </div>
         </li>
 
