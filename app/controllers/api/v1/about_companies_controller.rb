@@ -7,6 +7,15 @@ class Api::V1::AboutCompaniesController < ApplicationController
         render json: aboutcompany
     end
 
+    def create
+        aboutcompany = AboutCompany.create!(aboutcompany_params)
+        if aboutcompany
+            render json: aboutcompany
+        else 
+            render json: aboutcompany.errors
+        end
+    end
+
     def update
         aboutcompany = AboutCompany.find(params[:id])
         if aboutcompany.update_attributes(aboutcompany_params)
@@ -18,7 +27,7 @@ class Api::V1::AboutCompaniesController < ApplicationController
 
     private
         def aboutcompany_params
-            params.require(:about_company).permit(:bannerText1, :bannerText2, :paragraph1, :paragraph2, :paragraph3, :paragraph4, :paragraph5, :paragraph6, :paragraph7, :paragraph8, :photo, :photoname, :photonumber, :photoemail, :photoaddress1, :photoaddress2)
+            params.require(:about_company).permit(:content, :image, :headerText1, :headerText2)
             # :about_company needs to be singular from config route, not match the other method's variables
         end
 end

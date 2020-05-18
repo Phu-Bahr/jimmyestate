@@ -47,11 +47,9 @@ class ContactContainer extends Component {
       <React.Fragment>
         <FadeIn>
           <div className="parallaxContactPage">
-            <div className="darken-pseudo darken-with-text">
-              <div className="container py-5">
-                <h1>Contact Jimmy Chao</h1>
-                <h4>Let's Talk and get you a house!</h4>
-              </div>
+            <div className="container py-5">
+              <h1>Contact Jimmy Chao</h1>
+              <h4>Let's Talk and get you a house!</h4>
             </div>
           </div>
         </FadeIn>

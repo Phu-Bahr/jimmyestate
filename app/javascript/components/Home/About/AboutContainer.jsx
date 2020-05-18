@@ -246,7 +246,7 @@ class AboutContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxAboutJimmyPage darken-pseudo darken-with-text">
+          <div className="parallaxAboutJimmyPage">
             <div className="container py-5">{banner}</div>
           </div>
 

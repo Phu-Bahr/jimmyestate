@@ -234,9 +234,7 @@ class RelocationContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxRelocationPage darken-pseudo darken-with-text">
-            {bannerContent}
-          </div>
+          <div className="parallaxRelocationPage">{bannerContent}</div>
         </FadeIn>
         <div className={"container py-3" + " " + hideEditButton}>
           <div className="row">

@@ -97,9 +97,16 @@
 # )
 
 
-relocationEdit = RelocationEdit.create!(
-    paragraph1: "test", 
-    paragraph2: "test", 
-    bannerText1: "test", 
-    bannerText2: "test"
+# relocationEdit = RelocationEdit.create!(
+#     paragraph1: "test", 
+#     paragraph2: "test", 
+#     bannerText1: "test", 
+#     bannerText2: "test"
+# )
+
+aboutCompanySeed = AboutCompany.create!(
+    content: "test",
+    headerText1: "test",
+    headerText2: "test",
+    image: "test"
 )

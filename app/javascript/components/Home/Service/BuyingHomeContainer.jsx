@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { FadeInUp, FadeIn } from "../../Constants/Constants";
+import { FadeIn } from "../../Constants/Constants";
 
 class BuyingHomeContainer extends Component {
   constructor(props) {
@@ -116,6 +116,7 @@ class BuyingHomeContainer extends Component {
             editorClassName="editorClassName"
             onEditorStateChange={this.updateEditorState.bind(this)}
             readOnly={true}
+            placeholder="Sign In to Admin to edit"
           />
         </div>
       );
@@ -124,7 +125,7 @@ class BuyingHomeContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxBuyingPage darken-pseudo darken-with-text">
+          <div className="parallaxBuyingPage">
             <div className="container py-5">
               <h1>Hi there</h1>
               <h4>helloooo there</h4>

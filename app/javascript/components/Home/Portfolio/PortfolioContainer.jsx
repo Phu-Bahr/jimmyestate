@@ -509,7 +509,7 @@ class PortfolioContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxAboutPortfolioPage darken-pseudo darken-with-text">
+          <div className="parallaxAboutPortfolioPage">
             <h1 className="text-center caption">PORTFOLIO</h1>
           </div>
         </FadeIn>

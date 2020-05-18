@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       resources :registrations, only: [:create]
       resources :sessions, only: [:create]
       resources :abouts, only: [:index, :update]
-      resources :about_companies, only: [:index, :update]
+      resources :about_companies, only: [:index, :update, :create]
       resources :portfolios, only: [:index, :create, :update, :destroy]
       resources :contacts, only: [:create]
       resources :home_worths, only: [:create]

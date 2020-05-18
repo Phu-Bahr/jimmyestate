@@ -116,6 +116,7 @@ class SellingHomeContainer extends Component {
             editorClassName="editorClassName"
             onEditorStateChange={this.updateEditorState.bind(this)}
             readOnly={true}
+            placeholder="Sign In to Admin to edit"
           />
         </div>
       );
@@ -124,7 +125,7 @@ class SellingHomeContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxSellingPage darken-pseudo darken-with-text">
+          <div className="parallaxSellingPage">
             <div className="container py-5">
               <h1>Hi there</h1>
               <h4>helloooo there</h4>
