@@ -10,28 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_040912) do
+ActiveRecord::Schema.define(version: 2020_05_18_012540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "about_companies", force: :cascade do |t|
-    t.string "bannerText1"
-    t.string "bannerText2"
-    t.string "paragraph1"
-    t.string "paragraph2"
-    t.string "paragraph3"
-    t.string "paragraph4"
-    t.string "paragraph5"
-    t.string "paragraph6"
-    t.string "paragraph7"
-    t.string "paragraph8"
-    t.string "photo"
-    t.string "photoname"
-    t.string "photonumber"
-    t.string "photoemail"
-    t.string "photoaddress1"
-    t.string "photoaddress2"
+    t.string "content"
+    t.string "image"
+    t.string "headerText1"
+    t.string "headerText2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

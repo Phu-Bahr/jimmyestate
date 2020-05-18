@@ -314,9 +314,7 @@ class HomeWorthContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxHomeWorthPage darken-pseudo darken-with-text">
-            {bannerContent}
-          </div>
+          <div className="parallaxHomeWorthPage">{bannerContent}</div>
         </FadeIn>
         <div className={"container py-3" + " " + hideEditButton}>
           <div className="row">
