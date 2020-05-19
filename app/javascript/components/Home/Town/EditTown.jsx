@@ -93,7 +93,7 @@ class EditTown extends Component {
   render() {
     return (
       <div className="container mt-5">
-        <div className="row">
+        <div className="row pb-5">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <h1 className="font-weight-normal mb-5">Edit your Town here.</h1>
 

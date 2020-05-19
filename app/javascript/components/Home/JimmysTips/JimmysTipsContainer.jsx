@@ -110,7 +110,7 @@ class JimmyTipContainer extends Component {
 
   render() {
     let parallaxEditForm = (
-      <div className="container mt-5">
+      <div className="container pt-5">
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <form onSubmit={this.onSubmit}>
