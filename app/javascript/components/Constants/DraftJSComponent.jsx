@@ -130,23 +130,33 @@ class DraftJSContainer extends Component {
   }
 
   render() {
+    console.log("draft js log", this.state);
+
     let adminToggle;
     if (this.props.user.admin) {
       adminToggle = (
         <div className="container pb-5 pt-3">
-          <Editor
-            editorState={this.state.editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={false}
-          />
-          <div className="row">
-            <div className="pr-3 pt-3">
-              <button onClick={this.onSubmit}>Save your content</button>
-            </div>
-            <div className="pt-3">
-              <button onClick={this.onSubmitUpdate}>Update your content</button>
+          <div className="p-3" style={{ borderStyle: "dotted" }}>
+            <Editor
+              editorState={this.state.editorState}
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={this.updateEditorState.bind(this)}
+              readOnly={false}
+            />
+            <div className="row">
+              {this.state.id > 1 ? (
+                ""
+              ) : (
+                <div className="pr-3 pt-3">
+                  <button onClick={this.onSubmit}>Save your content</button>
+                </div>
+              )}
+              <div className="p-3">
+                <button onClick={this.onSubmitUpdate}>
+                  Update your content
+                </button>
+              </div>
             </div>
           </div>
         </div>
