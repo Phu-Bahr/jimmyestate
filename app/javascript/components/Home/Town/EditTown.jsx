@@ -151,8 +151,11 @@ class EditTown extends Component {
                 Submit Town changes
               </button>
 
-              <Link to="/" className="btn btn-link mt-3">
-                Back to Home Page
+              <Link
+                to={`/towns/${this.state.id}`}
+                className="btn btn-link mt-3"
+              >
+                Back to Town
               </Link>
             </form>
           </div>

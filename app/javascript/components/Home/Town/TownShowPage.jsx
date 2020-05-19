@@ -173,15 +173,17 @@ class TownShowPage extends Component {
               </button>
             </Link>
           </div>
-          <Editor
-            editorState={this.state.editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={false}
-          />
-          <div className="pt-3">
-            <button onClick={this.onSubmit}>Save your content</button>
+          <div className="p-3" style={{ borderStyle: "dotted" }}>
+            <Editor
+              editorState={this.state.editorState}
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={this.updateEditorState.bind(this)}
+              readOnly={false}
+            />
+            <div className="pt-3">
+              <button onClick={this.onSubmit}>Save your content</button>
+            </div>
           </div>
         </div>
       );

@@ -145,7 +145,7 @@ class DraftJSContainer extends Component {
               readOnly={false}
             />
             <div className="row">
-              {this.state.id > 1 ? (
+              {this.state.id >= 1 ? (
                 ""
               ) : (
                 <div className="pr-3 pt-3">
