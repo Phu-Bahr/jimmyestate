@@ -60,7 +60,7 @@ class NewTown extends React.Component {
     return (
       <div className="container my-5">
         <div className="row">
-          <div className="col-sm-12 col-lg-12">
+          <div className="col-sm-12 col-lg-6 offset-lg-3">
             <h1 className="font-weight-normal mb-5">
               Add your new Community here.
             </h1>
@@ -75,34 +75,31 @@ class NewTown extends React.Component {
                   className="form-control"
                   required
                   onChange={this.onChange}
+                  placeholder="This will be on the nav bar"
                 />
               </div>
 
-              <div className="parallaxShowPage" style={{ color: "white" }}>
-                <div className="container py-5">
-                  <div className="">
-                    <label htmlFor="headerText1">headerText1</label>
-                    <input
-                      type="text"
-                      name="headerText1"
-                      id="headerText1"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
+              <div className="">
+                <label htmlFor="headerText1">headerText1</label>
+                <input
+                  type="text"
+                  name="headerText1"
+                  id="headerText1"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
 
-                    <div className="">
-                      <label htmlFor="headerText2">headerText2</label>
-                      <input
-                        type="text"
-                        name="headerText2"
-                        id="headerText2"
-                        className="form-control"
-                        required
-                        onChange={this.onChange}
-                      />
-                    </div>
-                  </div>
+                <div className="">
+                  <label htmlFor="headerText2">headerText2</label>
+                  <input
+                    type="text"
+                    name="headerText2"
+                    id="headerText2"
+                    className="form-control"
+                    required
+                    onChange={this.onChange}
+                  />
                 </div>
               </div>
 
