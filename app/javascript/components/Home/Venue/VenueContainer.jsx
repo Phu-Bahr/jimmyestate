@@ -136,11 +136,7 @@ class VenueContainer extends Component {
 
     return (
       <div id="venueTag" className="venueBackground">
-        <div className="parallaxVenue">
-          <div className="center">
-            <h1 className="companyfont">Venues</h1>
-          </div>
-        </div>
+        <div className="parallaxVenue"></div>
 
         <div className="container p-5">
           <div className={"col text-center" + " " + this.props.hideEditButton}>

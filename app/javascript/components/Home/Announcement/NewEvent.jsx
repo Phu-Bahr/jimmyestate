@@ -29,9 +29,7 @@ class NewEvent extends Component {
   onSubmit(event) {
     let location = `${this.state.location}`;
 
-    fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
-    )
+    fetch(`/api/v1/events/search?location=${location}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -43,12 +41,10 @@ class NewEvent extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log(body.results[0].geometry.location.lat);
-
+        console.log("geocode update body", body);
         this.setState({
-          geoData: body,
-          lat: body.results[0].geometry.location.lat,
-          lng: body.results[0].geometry.location.lng
+          lat: body.data[0].lat,
+          lng: body.data[1].lng
         });
       })
       .then(setTimeout(this.submit, 1000))
@@ -171,3 +167,7 @@ class NewEvent extends Component {
 }
 
 export default NewEvent;
+
+// fetch(
+//   `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
+// )

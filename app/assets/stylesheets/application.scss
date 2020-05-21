@@ -660,6 +660,23 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+
+#event-box {
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+@media only screen and (min-width: 780px) {
+  #event-box {
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}
+
 // end of announcements
 
 // beginning SHOWPAGE

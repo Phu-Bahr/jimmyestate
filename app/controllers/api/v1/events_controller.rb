@@ -2,6 +2,14 @@ class Api::V1::EventsController < ApplicationController
 
     protect_from_forgery unless: -> { request.format.json? }
 
+    def search
+        puts "reached search"
+        geo_parser = GeoParser.new
+        location = params[:location]
+        geo_parser.search(location)
+        render json: {data: geo_parser.data}
+    end
+
     def index
         event = Event.all
         render json: event

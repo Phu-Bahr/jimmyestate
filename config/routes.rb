@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :companies, only: [:index, :update]
       resources :announcements, only: [:index, :update]
       resources :events, only: [:index, :create, :update, :destroy]
+      get "/events/search", to: "events#search"
       resources :towns, only: [:index, :create, :update, :destroy, :show] do
         resources :town_links, only: [:index, :create, :update, :destroy]
       end
