@@ -41,11 +41,15 @@ class NewEvent extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log("geocode update body", body);
-        this.setState({
-          lat: body.data[0].lat,
-          lng: body.data[1].lng
-        });
+        if (body.data[0].result === "No Results") {
+          alert("No such place for geocode, try again");
+        } else {
+          alert("Geocode updated");
+          this.setState({
+            lat: body.data[0].lat,
+            lng: body.data[0].lng
+          });
+        }
       })
       .then(setTimeout(this.submit, 1000))
       .catch(error => console.log("error message =>", error.message));
