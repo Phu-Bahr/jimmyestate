@@ -125,11 +125,7 @@ class AnnouncementContainer extends Component {
 
     return (
       <div>
-        <div className="parallaxEvents">
-          <div className="center">
-            <h1 className="companyfont">Events</h1>
-          </div>
-        </div>
+        <div className="parallaxEvents"></div>
 
         <div className="container-fluid companycontent pt-5">
           <div className="text-center">

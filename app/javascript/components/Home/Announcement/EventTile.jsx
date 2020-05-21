@@ -16,9 +16,7 @@ const EventTile = props => {
             {moment(props.date).format("MMMM Do YYYY")}, {convert(props.time)}
           </div>
         </div>
-
-        <br />
-        <div className={"px-3" + " " + props.hide}>
+        <div className={"pb-3" + " " + props.hide}>
           <button
             type="button"
             className="btn btn-info"

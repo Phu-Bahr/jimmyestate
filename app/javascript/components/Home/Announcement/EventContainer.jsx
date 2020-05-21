@@ -203,9 +203,7 @@ class EventContainer extends Component {
   onUpdateGeocode(event) {
     let location = `${this.state.location}`;
 
-    fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
-    )
+    fetch(`/api/v1/events/search?location=${location}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -217,11 +215,10 @@ class EventContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log(body.results[0].geometry.location.lat);
-
+        console.log("geocode update body", body);
         this.setState({
-          lat: body.results[0].geometry.location.lat,
-          lng: body.results[0].geometry.location.lng
+          lat: body.data[0].lat,
+          lng: body.data[1].lng
         });
       })
       .catch(error => console.log("error message =>", error.message));
@@ -235,7 +232,7 @@ class EventContainer extends Component {
     let editMode2;
     if (this.state.hideDiv === true) {
       hide = "invisible";
-      editMode1 = "col-md-4 pb-1";
+      editMode1 = "col-md-4 py-2";
       editMode2 = "col-md-8 pb-3";
     } else {
       hide = "";
@@ -387,11 +384,19 @@ class EventContainer extends Component {
         </div>
 
         <div className="row p-4">
-          <div className={editMode1}>{events}</div>
+          <div id="event-box" className={editMode1}>
+            {events}
+          </div>
           <div className={editMode2}>
             <div className="row">
-              <div className="col-sm-6 pb-2">
+              <div className="col-sm-6 py-2">
                 <div>{photo}</div>
+              </div>
+              <div className="col-sm-6 py-2">
+                <Map
+                  lat={parseFloat(this.state.lat)}
+                  lng={parseFloat(this.state.lng)}
+                />
               </div>
             </div>
           </div>
@@ -402,10 +407,3 @@ class EventContainer extends Component {
 }
 
 export default EventContainer;
-
-// {/* <div className="col-sm-6 pb-2">
-// <Map
-//   lat={parseFloat(this.state.lat)}
-//   lng={parseFloat(this.state.lng)}
-// />
-// </div> */}
