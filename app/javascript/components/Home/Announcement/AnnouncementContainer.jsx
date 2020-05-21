@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EventContainer from "./EventContainer";
+import { ParallaxBanner } from "../../Constants/Constants";
 
 class AnnouncementContainer extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class AnnouncementContainer extends Component {
       hideEditAnnounce: true,
       description: "",
       title: "",
-      refreshKey: false
+      refreshKey: false,
+      bannerImage: ""
     };
 
     this.clickEdit = this.clickEdit.bind(this);
@@ -38,11 +40,12 @@ class AnnouncementContainer extends Component {
     event.preventDefault();
     // need to make url more dynamic than hard code 1
     const urls = "/api/v1/announcements/1";
-    const { description, title } = this.state;
+    const { description, title, bannerImage } = this.state;
 
     const body = {
       description,
-      title
+      title,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -77,7 +80,8 @@ class AnnouncementContainer extends Component {
         this.setState({
           announcementData: response1,
           description: response1[0].description,
-          title: response1[0].title
+          title: response1[0].title,
+          bannerImage: response1[0].bannerImage
         });
       })
       // need to add error messages
@@ -94,7 +98,8 @@ class AnnouncementContainer extends Component {
           this.setState({
             announcementData: response1,
             description: response1[0].description,
-            title: response1[0].title
+            title: response1[0].titlej,
+            bannerImage: response1[0].bannerImage
           });
         })
         // need to add error messages
@@ -104,8 +109,6 @@ class AnnouncementContainer extends Component {
   }
 
   render() {
-    console.log("announcement container log", this.state);
-
     let hide;
     if (this.state.hideEditAnnounce === true) {
       hide = "invisible";
@@ -113,29 +116,19 @@ class AnnouncementContainer extends Component {
       hide = "";
     }
 
-    let announcementData = this.state.announcementData;
-
-    let announcementDescription = announcementData.map(element => {
-      return element.description;
-    });
-
-    let announcementTitle = announcementData.map(element => {
-      return element.title;
-    });
-
     return (
       <div>
-        <div className="parallaxEvents"></div>
+        <ParallaxBanner imageURL={this.state.bannerImage} />
 
         <div className="container-fluid companycontent pt-5">
           <div className="text-center">
             <div>
-              <h1>{announcementTitle}</h1>
+              <h1>{this.state.title}</h1>
             </div>
             <div className="container">
               <div className="row">
                 <div className="col-md-10 offset-lg-1">
-                  <p>{announcementDescription}</p>
+                  <p>{this.state.description}</p>
                 </div>
               </div>
             </div>
@@ -153,6 +146,17 @@ class AnnouncementContainer extends Component {
                 <div className="row">
                   <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
                     <form onSubmit={this.onSubmit}>
+                      <label htmlFor="bannerImage">Banner Image</label>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="bannerImage"
+                          id="bannerImage"
+                          className="form-control"
+                          onChange={this.onChange}
+                          value={this.state.bannerImage}
+                        />
+                      </div>
                       <div className="form-group">
                         <input
                           type="text"

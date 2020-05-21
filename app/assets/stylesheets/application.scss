@@ -164,8 +164,7 @@ h6 {
 }
 
 .parallaxVenue {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background: url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -577,20 +576,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.parallaxEvents {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://s.yimg.com/ny/api/res/1.2/xUn.BetJqVS0KMZFtfKJKQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-images/2019-11/15a1f0d0-04ce-11ea-b6fb-3a78ae8a00a2");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-size: 5.5vw;
-  color: white;
-  position: relative; // relative pushes it to the top
-  z-index: 1;
-  height: 400px;
-}
-
 @media only screen and (max-width: 600px) {
   .mobile-view {
     font-size: 20px;
@@ -958,3 +943,30 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 //end of selling
+
+.parallaxStyleHome {
+  background: url("https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 400px;
+}
+
+.parallaxStyleRoutes {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 5.5vw;
+  color: white;
+  position: relative; // relative pushes it to the top
+  z-index: 1;
+  height: 300px;
+}
