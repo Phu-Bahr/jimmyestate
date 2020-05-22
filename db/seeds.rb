@@ -39,6 +39,7 @@
 #     description: "hello, we are going to party soon", 
 #     flier: "https://images.pexels.com/photos/207983/pexels-photo-207983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
 #     title: "place title here"
+#     bannerImage: "test"
 # )
 
 # event = Event.create!([
