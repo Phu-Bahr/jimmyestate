@@ -112,6 +112,6 @@
 #     image: "test"
 # )
 
-venueEditSeed - VenueEdit.create!(
+venueEditSeed = VenueEdit.create!(
     bannerImage: "test"
 )

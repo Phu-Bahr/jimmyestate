@@ -142,8 +142,10 @@ class VenueContainer extends Component {
     })
       .then(response => {
         if (response.ok) {
+          alert("update complete");
           return response;
         } else {
+          alert("something went wrong with update");
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
           throw error;
@@ -209,6 +211,7 @@ class VenueContainer extends Component {
                   id="bannerImage"
                   className="form-control"
                   onChange={this.onChange}
+                  value={this.state.bannerImage}
                 />
               </div>
 
