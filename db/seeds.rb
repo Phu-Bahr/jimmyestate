@@ -105,9 +105,13 @@
 #     bannerText2: "test"
 # )
 
-aboutCompanySeed = AboutCompany.create!(
-    content: "test",
-    headerText1: "test",
-    headerText2: "test",
-    image: "test"
+# aboutCompanySeed = AboutCompany.create!(
+#     content: "test",
+#     headerText1: "test",
+#     headerText2: "test",
+#     image: "test"
+# )
+
+venueEditSeed - VenueEdit.create!(
+    bannerImage: "test"
 )

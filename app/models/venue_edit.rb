@@ -1,0 +1,2 @@
+class VenueEdit < ApplicationRecord
+end

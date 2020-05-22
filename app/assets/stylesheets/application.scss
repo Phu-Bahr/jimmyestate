@@ -163,19 +163,6 @@ h6 {
   border: none;
 }
 
-.parallaxVenue {
-  background: url("https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-size: 5.5vw;
-  color: white;
-  position: relative; // relative pushes it to the top
-  z-index: 1;
-  height: 400px;
-}
-
 .center {
   margin: 0;
   position: absolute;

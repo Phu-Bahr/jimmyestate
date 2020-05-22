@@ -42,7 +42,7 @@ class Home extends Component {
           <AnnouncementContainer hideEditButton={hideEditButton} />
         </ScrollAnimation>
         <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
-          <VenueContainer hideEditButton={hideEditButton} />
+          <VenueContainer hideEditButton={hideEditButton} {...this.props} />
         </ScrollAnimation>
       </div>
     );
