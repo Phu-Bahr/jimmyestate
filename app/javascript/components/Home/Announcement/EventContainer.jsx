@@ -394,12 +394,6 @@ class EventContainer extends Component {
               <div className="col-sm-6 py-2">
                 <div>{photo}</div>
               </div>
-              <div className="col-sm-6 py-2">
-                <Map
-                  lat={parseFloat(this.state.lat)}
-                  lng={parseFloat(this.state.lng)}
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -409,3 +403,10 @@ class EventContainer extends Component {
 }
 
 export default EventContainer;
+
+// {/* <div className="col-sm-6 py-2">
+// <Map
+//   lat={parseFloat(this.state.lat)}
+//   lng={parseFloat(this.state.lng)}
+// />
+// </div> */}

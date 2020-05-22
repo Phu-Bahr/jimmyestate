@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   delete :logout, to: "api/v1/sessions#logout"
   get :logged_in, to: "api/v1/sessions#logged_in"
- 
-
   
   namespace :api do
     namespace :v1 do
@@ -39,6 +37,7 @@ Rails.application.routes.draw do
       resources :relocation_photos, only: [:index, :create, :destroy]
       resources :buying_contents, only: [:index, :create, :update, :destroy]
       resources :selling_contents, only: [:index, :create, :update, :destroy]
+      resources :venue_edits, only: [:index, :update]
     end
   end
 

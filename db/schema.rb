@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_184441) do
+ActiveRecord::Schema.define(version: 2020_05_22_185907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "headerText2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "abouts", force: :cascade do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "photoaddress2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "announcements", force: :cascade do |t|
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.datetime "updated_at", null: false
     t.string "headerText1"
     t.string "headerText2"
+    t.string "bannerImage"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -74,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "events", force: :cascade do |t|
@@ -128,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "headerText2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "jumbotrons", force: :cascade do |t|
@@ -150,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "relocation_edits", force: :cascade do |t|
@@ -159,6 +165,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "bannerText2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "relocation_photos", force: :cascade do |t|
@@ -186,6 +193,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.datetime "updated_at", null: false
     t.string "headerText1"
     t.string "headerText2"
+    t.string "bannerImage"
   end
 
   create_table "town_links", force: :cascade do |t|
@@ -205,12 +213,19 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "venue_edits", force: :cascade do |t|
+    t.string "bannerImage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -226,6 +241,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "venue_image", default: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwipzcXPktHlAhXrQ98KHSdKCeQQjRx6BAgBEAQ&url=https%3A%2F%2Fvollrath.com%2FProducts%2FSmallwares%2FBuffet-Tabletop-Service%2FKondi-Keeper-Replacement-Lids&psig=AOvVaw0LqwqgCNgtGbIq8mXXbpiH&ust=1572977005119341"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "worth_edits", force: :cascade do |t|
@@ -235,6 +251,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_184441) do
     t.string "bannerText2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bannerImage"
   end
 
   create_table "worth_photos", force: :cascade do |t|
