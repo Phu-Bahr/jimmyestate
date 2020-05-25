@@ -16,13 +16,14 @@ class RelocationPhotoContainer extends Component {
     this.deleteEvent = this.deleteEvent.bind(this);
   }
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
-  toggleRefreshKeyFalse(event) {
+  toggleRefreshKeyFalse() {
     this.setState({ refreshKey: false });
   }
+
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -94,17 +95,16 @@ class RelocationPhotoContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newPhotoData = body;
         this.setState({
-          photoData: newPhotoData,
-          photo: newPhotoData[0].photo
+          photoData: body,
+          photo: body[0].photo
         });
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
+    if (this.state.refreshKey) {
       fetch("/api/v1/relocation_photos")
         .then(response => {
           if (response.ok) {
@@ -117,9 +117,8 @@ class RelocationPhotoContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newPhotoData = body;
           this.setState({
-            photoData: newPhotoData
+            photoData: body
           });
         })
         .then(this.toggleRefreshKeyFalse)
@@ -128,8 +127,6 @@ class RelocationPhotoContainer extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
         let result = confirm(`Are you sure you want to delete this photo?`);
@@ -163,30 +160,35 @@ class RelocationPhotoContainer extends Component {
       );
     });
 
+    let photoInput = (
+      <div className={"pb-3" + " " + this.props.hide}>
+        {photoInput}
+        <form
+          onSubmit={event => {
+            this.onSubmit(event);
+            event.target.reset();
+          }}
+        >
+          <label htmlFor="photo">Photo URL</label>
+          <input
+            type="url"
+            name="photo"
+            id="photo"
+            className="form-control"
+            required
+            onChange={this.onChange}
+          />
+          <button className="btn btn-info mt-3" onClick={this.onSubmitEdit}>
+            Add Photo
+          </button>
+        </form>
+      </div>
+    );
+
     return (
       <React.Fragment>
         <div className="card border-0 col-md-6">
-          <div className={"pb-3" + " " + this.props.hide}>
-            <form
-              onSubmit={event => {
-                this.onSubmit(event);
-                event.target.reset();
-              }}
-            >
-              <label htmlFor="photo">Photo URL</label>
-              <input
-                type="url"
-                name="photo"
-                id="photo"
-                className="form-control"
-                required
-                onChange={this.onChange}
-              />
-              <button className="btn btn-info mt-3" onClick={this.onSubmitEdit}>
-                Add Photo
-              </button>
-            </form>
-          </div>
+          {photoInput}
           {photos}
         </div>
       </React.Fragment>

@@ -128,8 +128,6 @@ class WorthPhotoContainer extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
         let result = confirm(`Are you sure you want to delete this photo?`);

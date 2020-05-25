@@ -30,7 +30,7 @@ class Api::V1::SellingContentsController < ApplicationController
     private
 
     def selling_content_params
-        params.require(:selling_content).permit(:content, :headerText1, :headerText2)
+        params.require(:selling_content).permit(:content, :headerText1, :headerText2, :bannerImage)
     end
 
 

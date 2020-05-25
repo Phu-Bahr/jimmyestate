@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FadeIn } from "../../Constants/Constants";
+import { FadeIn, ParallaxBannerRoutes } from "../../Constants/Constants";
 import DraftJSContainer from "../../Constants/DraftJSComponent";
 import { animateScroll as scroll } from "react-scroll";
 
@@ -10,7 +10,8 @@ class SellingHomeContainer extends Component {
       urlGET: "selling_contents",
       headerText1: "",
       headerText2: "",
-      id: null
+      id: null,
+      bannerImage: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
@@ -32,11 +33,12 @@ class SellingHomeContainer extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
-    const { headerText1, headerText2 } = this.state;
+    const { headerText1, headerText2, bannerImage } = this.state;
 
     const body = {
       headerText1,
-      headerText2
+      headerText2,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -77,7 +79,8 @@ class SellingHomeContainer extends Component {
         this.setState({
           headerText1: body[body.length - 1].headerText1,
           headerText2: body[body.length - 1].headerText2,
-          id: body[body.length - 1].id
+          id: body[body.length - 1].id,
+          bannerImage: body[body.length - 1].bannerImage
         });
       })
 
@@ -101,7 +104,8 @@ class SellingHomeContainer extends Component {
           this.setState({
             headerText1: body[body.length - 1].headerText1,
             headerText2: body[body.length - 1].headerText2,
-            id: body[body.length - 1].id
+            id: body[body.length - 1].id,
+            bannerImage: body[body.length - 1].bannerImage
           });
         })
         .then(this.setState({ refreshKey: false }))
@@ -118,6 +122,18 @@ class SellingHomeContainer extends Component {
               <h5 className="text-center pb-3">
                 Update will work after Draft Content has been created
               </h5>
+
+              <label htmlFor="bannerImage">Banner Image</label>
+              <input
+                type="text"
+                name="bannerImage"
+                id="bannerImage"
+                className="form-control"
+                required
+                onChange={this.onChange}
+                value={this.state.bannerImage}
+              />
+
               <label htmlFor="headerText1">Header Text 1</label>
               <input
                 type="text"
@@ -152,12 +168,7 @@ class SellingHomeContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxBuyingPage">
-            <div className="container py-5">
-              <h1>{this.state.headerText1}</h1>
-              <h4>{this.state.headerText2}</h4>
-            </div>
-          </div>
+          <ParallaxBannerRoutes {...this.state} />
           {this.props.user.admin === true ? parallaxEditForm : ""}
         </FadeIn>
 

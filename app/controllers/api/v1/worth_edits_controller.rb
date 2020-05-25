@@ -18,6 +18,6 @@ class Api::V1::WorthEditsController < ApplicationController
 
     private
         def worth_edit_params
-            params.require(:worth_edit).permit(:bannerText1, :bannerText2, :paragraph1, :paragraph2)
+            params.require(:worth_edit).permit(:bannerText1, :bannerText2, :paragraph1, :paragraph2, :bannerImage)
         end
 end
