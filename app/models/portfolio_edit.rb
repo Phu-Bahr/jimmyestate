@@ -1,0 +1,2 @@
+class PortfolioEdit < ApplicationRecord
+end

@@ -73,3 +73,45 @@ export const FormMaps = props => {
 
   return keyValuePair;
 };
+
+// as long as original component's state has the 3 keys below to send state down and up, this should work
+export const ParallaxEditForm = props => {
+  const parallaxFormContent = {
+    bannerImage: "Banner Image",
+    headerText1: "Header text 1",
+    headerText2: "Header text 2"
+  };
+
+  const keyValuePair = Object.entries(parallaxFormContent).map(
+    ([key, value]) => {
+      return (
+        <div key={key} className="form-group">
+          <label htmlFor={key}>{value}</label>
+          <input
+            className="form-control"
+            type="text"
+            id={key}
+            name={key}
+            onChange={props.onChange}
+            value={props.value[key]}
+          />
+        </div>
+      );
+    }
+  );
+
+  return (
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-sm-12 col-lg-6 offset-lg-3">
+          <form onSubmit={props.onSubmit}>
+            {keyValuePair}
+            <button type="submit" className="btn custom-button mt-3">
+              Submit Header changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
