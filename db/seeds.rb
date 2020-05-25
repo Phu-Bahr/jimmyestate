@@ -112,6 +112,12 @@
 #     image: "test"
 # )
 
-venueEditSeed = VenueEdit.create!(
-    bannerImage: "test"
+# venueEditSeed = VenueEdit.create!(
+#     bannerImage: "test"
+# )
+
+portfolioEdit = PortfolioEdit.create!(
+    bannerImage: "test",
+    headerText1: "test",
+    headerText2: "test"
 )
