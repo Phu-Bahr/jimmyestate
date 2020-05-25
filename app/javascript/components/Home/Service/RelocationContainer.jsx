@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
 import RelocationPhotoContainer from "./RelocationPhotoContainer";
-import { FadeIn, FadeInLeft } from "../../Constants/Constants";
+import {
+  FadeIn,
+  FadeInLeft,
+  ParallaxBannerRoutes
+} from "../../Constants/Constants";
 
 class RelocationContainer extends Component {
   constructor(props) {
@@ -22,7 +26,8 @@ class RelocationContainer extends Component {
       bannerText1: "",
       bannerText2: "",
       refreshKey: false,
-      hideDiv: true
+      hideDiv: true,
+      bannerImage: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -122,14 +127,14 @@ class RelocationContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newRelocationEditData = body;
         this.setState({
-          relocationEditData: newRelocationEditData,
-          id: newRelocationEditData[0].id,
-          bannerText1: newRelocationEditData[0].bannerText1,
-          bannerText2: newRelocationEditData[0].bannerText2,
-          paragraph1: newRelocationEditData[0].paragraph1,
-          paragraph2: newRelocationEditData[0].paragraph2
+          relocationEditData: body,
+          id: body[0].id,
+          bannerText1: body[0].bannerText1,
+          bannerText2: body[0].bannerText2,
+          paragraph1: body[0].paragraph1,
+          paragraph2: body[0].paragraph2,
+          bannerImage: body[0].bannerImage
         });
       })
 
@@ -150,9 +155,8 @@ class RelocationContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newRelocationEditData = body;
           this.setState({
-            relocationEditData: newRelocationEditData
+            relocationEditData: body
           });
         })
         .then(this.setState({ refreshKey: false }))
@@ -163,13 +167,20 @@ class RelocationContainer extends Component {
   onSubmitEdit(event) {
     event.preventDefault();
     const urls = "/api/v1/relocation_edits/1";
-    const { bannerText1, bannerText2, paragraph1, paragraph2 } = this.state;
+    const {
+      bannerText1,
+      bannerText2,
+      paragraph1,
+      paragraph2,
+      bannerImage
+    } = this.state;
 
     const body = {
       bannerText1,
       bannerText2,
       paragraph1,
-      paragraph2
+      paragraph2,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -184,8 +195,10 @@ class RelocationContainer extends Component {
     })
       .then(response => {
         if (response.ok) {
+          alert("Edit successful");
           return response;
         } else {
+          alert("something went wrong");
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
           throw error;
@@ -196,8 +209,6 @@ class RelocationContainer extends Component {
   }
 
   render() {
-    console.log(this.state.bannerText1);
-
     let hideEditButton;
     if (this.props.user.admin) {
       hideEditButton = "";
@@ -222,229 +233,241 @@ class RelocationContainer extends Component {
       );
     });
 
-    let bannerContent = this.state.relocationEditData.map(element => {
-      return (
-        <div key={element.id} className="container py-5">
-          <h1>{element.bannerText1}</h1>
-          <h4>{element.bannerText2}</h4>
+    let editRelocationInfo = (
+      <div className="container">
+        <form
+          onSubmit={event => {
+            this.onSubmitEdit(event);
+            event.target.reset();
+          }}
+          className={hide}
+        >
+          <div className="form-group">
+            <label htmlFor="bannerImage">Banner Image</label>
+            <input
+              type="text"
+              name="bannerImage"
+              id="bannerImage"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.bannerImage}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="bannerText1">Your bannerText1</label>
+            <input
+              type="text"
+              name="bannerText1"
+              id="bannerText1"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.bannerText1}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="bannerText2">Your bannerText2</label>
+            <input
+              type="text"
+              name="bannerText2"
+              id="bannerText2"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.bannerText2}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="paragraph1">Your paragraph1</label>
+            <input
+              type="text"
+              name="paragraph1"
+              id="paragraph1"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.paragraph1}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="paragraph2">Your paragraph2</label>
+            <input
+              type="text"
+              name="paragraph2"
+              id="paragraph2"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.paragraph2}
+            />
+          </div>
+          <div className="pb-3">
+            <button type="submit" className="btn custom-button">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+
+    let contactRelocationForm = (
+      <form
+        onSubmit={event => {
+          this.onSubmit(event);
+          event.target.reset();
+        }}
+      >
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="name">Your Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="form-control"
+              onChange={this.onChange}
+              required
+            />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="email">Your Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              className="form-control"
+              onChange={this.onChange}
+              required
+            />
+          </div>
         </div>
-      );
-    });
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="phone">Phone Number</label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              className="form-control"
+              onChange={this.onChange}
+              required
+            />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="time">Best time to reach you?</label>
+            <select
+              type="text"
+              name="time"
+              id="time"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.time}
+            >
+              <option>Anytime</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="destinationaddress">Your Destination Address</label>
+          <input
+            type="text"
+            name="destinationaddress"
+            id="destinationaddress"
+            className="form-control"
+            onChange={this.onChange}
+            required
+          />
+        </div>
+        <div className="form-row">
+          <div className="form-group col-md-7">
+            <label htmlFor="timeframe">Moving time frame?</label>
+            <input
+              type="text"
+              name="timeframe"
+              id="timeframe"
+              className="form-control"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group col-md-5">
+            <label htmlFor="assistsell">Need assistance selling?</label>
+            <select
+              type="text"
+              name="assistsell"
+              id="assistsell"
+              className="form-control"
+              onChange={this.onChange}
+              required
+              value={this.state.propertytype}
+            >
+              <option>Maybe</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="message">Message</label>
+          <textarea
+            rows="5"
+            type="text"
+            name="message"
+            id="message"
+            className="form-control"
+            onChange={this.onChange}
+            required
+            placeholder="Additional information you'd like to tell me."
+          />
+        </div>
+        <button type="submit" className="btn custom-button mt-3">
+          Send
+        </button>
+        <Recaptcha
+          ref={ref => (this.recaptcha = ref)}
+          sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
+          onResolved={this.onResolved}
+        />
+      </form>
+    );
 
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxRelocationPage">{bannerContent}</div>
+          <ParallaxBannerRoutes
+            bannerImage={this.state.bannerImage}
+            headerText1={this.state.bannerText1}
+            headerText2={this.state.bannerText2}
+          />
         </FadeIn>
-        <div className={"container py-3" + " " + hideEditButton}>
-          <div className="row">
-            <div className="col text-center">
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.clickEdit}
-              >
-                Edit
-              </button>
+        {this.props.user.admin ? (
+          <div className="container py-3">
+            <div className="row">
+              <div className="col text-center">
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={this.clickEdit}
+                >
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
 
         <div className="container py-5">
           <div className="row">
             <div className="col-sm-6 pb-3">
               <FadeInLeft>
                 {locationContent}
-                <div className="container">
-                  <form
-                    onSubmit={event => {
-                      this.onSubmitEdit(event);
-                      event.target.reset();
-                    }}
-                    className={hide}
-                  >
-                    <div className="form-group">
-                      <label htmlFor="bannerText1">Your bannerText1</label>
-                      <input
-                        type="text"
-                        name="bannerText1"
-                        id="bannerText1"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                        value={this.state.bannerText1}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="bannerText2">Your bannerText2</label>
-                      <input
-                        type="text"
-                        name="bannerText2"
-                        id="bannerText2"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                        value={this.state.bannerText2}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="paragraph1">Your paragraph1</label>
-                      <input
-                        type="text"
-                        name="paragraph1"
-                        id="paragraph1"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                        value={this.state.paragraph1}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="paragraph2">Your paragraph2</label>
-                      <input
-                        type="text"
-                        name="paragraph2"
-                        id="paragraph2"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                        value={this.state.paragraph2}
-                      />
-                    </div>
-                    <div className="pb-3">
-                      <button type="submit" className="btn custom-button">
-                        Update
-                      </button>
-                    </div>
-                  </form>
-                </div>
-
-                <form
-                  onSubmit={event => {
-                    this.onSubmit(event);
-                    event.target.reset();
-                  }}
-                >
-                  <div className="form-row">
-                    <div className="form-group col-md-6">
-                      <label htmlFor="name">Your Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                      />
-                    </div>
-                    <div className="form-group col-md-6">
-                      <label htmlFor="email">Your Email</label>
-                      <input
-                        type="text"
-                        name="email"
-                        id="email"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group col-md-6">
-                      <label htmlFor="phone">Phone Number</label>
-                      <input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                      />
-                    </div>
-                    <div className="form-group col-md-6">
-                      <label htmlFor="time">Best time to reach you?</label>
-                      <select
-                        type="text"
-                        name="time"
-                        id="time"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                        value={this.state.time}
-                      >
-                        <option>Anytime</option>
-                        <option>Morning</option>
-                        <option>Afternoon</option>
-                        <option>Evening</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="destinationaddress">
-                      Your Destination Address
-                    </label>
-                    <input
-                      type="text"
-                      name="destinationaddress"
-                      id="destinationaddress"
-                      className="form-control"
-                      onChange={this.onChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group col-md-7">
-                      <label htmlFor="timeframe">Moving time frame?</label>
-                      <input
-                        type="text"
-                        name="timeframe"
-                        id="timeframe"
-                        className="form-control"
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    <div className="form-group col-md-5">
-                      <label htmlFor="assistsell">
-                        Need assistance selling?
-                      </label>
-                      <select
-                        type="text"
-                        name="assistsell"
-                        id="assistsell"
-                        className="form-control"
-                        onChange={this.onChange}
-                        required
-                        value={this.state.propertytype}
-                      >
-                        <option>Maybe</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="message">Message</label>
-                    <textarea
-                      rows="5"
-                      type="text"
-                      name="message"
-                      id="message"
-                      className="form-control"
-                      onChange={this.onChange}
-                      required
-                      placeholder="Additional information you'd like to tell me."
-                    />
-                  </div>
-                  <button type="submit" className="btn custom-button mt-3">
-                    Send
-                  </button>
-                  <Recaptcha
-                    ref={ref => (this.recaptcha = ref)}
-                    sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
-                    onResolved={this.onResolved}
-                  />
-                </form>
+                {editRelocationInfo}
+                {contactRelocationForm}
               </FadeInLeft>
             </div>
             <RelocationPhotoContainer user={this.props.user} hide={hide} />

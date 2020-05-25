@@ -18,6 +18,6 @@ class Api::V1::RelocationEditsController < ApplicationController
 
     private
         def relocation_edit_params
-            params.require(:relocation_edit).permit(:bannerText1, :bannerText2, :paragraph1, :paragraph2)
+            params.require(:relocation_edit).permit(:bannerText1, :bannerText2, :paragraph1, :paragraph2, :bannerImage)
         end
 end

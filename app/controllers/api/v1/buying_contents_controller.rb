@@ -30,7 +30,7 @@ class Api::V1::BuyingContentsController < ApplicationController
     private
 
     def buying_content_params
-        params.require(:buying_content).permit(:content, :headerText1, :headerText2)
+        params.require(:buying_content).permit(:content, :headerText1, :headerText2, :bannerImage)
     end
 
 
