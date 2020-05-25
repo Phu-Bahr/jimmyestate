@@ -39,9 +39,12 @@ export const ParallaxBanner = props => (
 
 export const ParallaxBannerRoutes = props => (
   <div
-    className="parallaxStyleHome"
+    className="parallaxStyleRoutes"
     style={{
-      backgroundImage: "url(" + props.bannerImage + ")"
+      backgroundImage:
+        "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
+        props.bannerImage +
+        ")"
     }}
   >
     <div className="container py-5">
