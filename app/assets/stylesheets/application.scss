@@ -653,20 +653,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 
 // beginning SHOWPAGE
 
-.parallaxShowPage {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-size: 5.5vw;
-  color: white;
-  position: relative; // relative pushes it to the top
-  z-index: 1;
-  height: 300px;
-}
-
 //wrap span with this class and no wrap.
 .text-nowrap {
   white-space: nowrap;
@@ -932,7 +918,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 //end of selling
 
 .parallaxStyleHome {
-  background: url("https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -945,8 +930,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 .parallaxStyleRoutes {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
