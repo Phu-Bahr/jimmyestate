@@ -9,7 +9,8 @@ class NewTown extends React.Component {
       headerText1: "",
       headerText2: "",
       townheader: "",
-      content: null
+      content: null,
+      bannerImage: null
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,14 +24,22 @@ class NewTown extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = "/api/v1/towns";
-    const { name, headerText1, headerText2, townheader, content } = this.state;
+    const {
+      name,
+      headerText1,
+      headerText2,
+      townheader,
+      content,
+      bannerImage
+    } = this.state;
 
     const body = {
       name,
       headerText1,
       headerText2,
       townheader,
-      content
+      content,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -51,7 +60,7 @@ class NewTown extends React.Component {
       })
       .then(body => {
         this.props.history.push(`/towns/${body.id}`);
-        window.location.reload(false);
+        // window.location.reload(false);
       })
       .catch(error => console.log(error.message));
   }
@@ -79,7 +88,19 @@ class NewTown extends React.Component {
                 />
               </div>
 
-              <div className="">
+              <div className="form-group">
+                <label htmlFor="bannerImage">Banner Image</label>
+                <input
+                  type="text"
+                  name="bannerImage"
+                  id="bannerImage"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
+              </div>
+
+              <div className="form-group">
                 <label htmlFor="headerText1">headerText1</label>
                 <input
                   type="text"
@@ -89,18 +110,18 @@ class NewTown extends React.Component {
                   required
                   onChange={this.onChange}
                 />
+              </div>
 
-                <div className="">
-                  <label htmlFor="headerText2">headerText2</label>
-                  <input
-                    type="text"
-                    name="headerText2"
-                    id="headerText2"
-                    className="form-control"
-                    required
-                    onChange={this.onChange}
-                  />
-                </div>
+              <div className="form-group">
+                <label htmlFor="headerText2">headerText2</label>
+                <input
+                  type="text"
+                  name="headerText2"
+                  id="headerText2"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
               </div>
 
               <div className="form-group">

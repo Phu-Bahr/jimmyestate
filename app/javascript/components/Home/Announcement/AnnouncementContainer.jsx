@@ -118,7 +118,7 @@ class AnnouncementContainer extends Component {
 
     return (
       <div>
-        <ParallaxBanner imageURL={this.state.bannerImage} />
+        <ParallaxBanner {...this.state} />
 
         <div className="container-fluid companycontent pt-5">
           <div className="text-center">

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import TownLinks from "./TownLinks";
-import { FadeIn } from "../../Constants/Constants";
+import { FadeIn, ParallaxBannerRoutes } from "../../Constants/Constants";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Link } from "react-router-dom";
@@ -25,7 +25,6 @@ class TownShowPage extends Component {
   updateEditorState(editorState) {
     const contentState = editorState.getCurrentContent();
     this.saveContent(contentState);
-    console.log("content state raw", convertToRaw(contentState));
     this.setState({ editorState });
   }
 
@@ -156,7 +155,7 @@ class TownShowPage extends Component {
   }
 
   render() {
-    console.log(this.state.editorState);
+    console.log("townshowpage", this.state.townData);
 
     let adminToggle;
     if (this.props.user.admin) {
@@ -205,12 +204,7 @@ class TownShowPage extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxShowPage">
-            <div className="container py-5">
-              <h1>{this.state.townData.headerText1}</h1>
-              <h4>{this.state.townData.headerText2}</h4>
-            </div>
-          </div>
+          <ParallaxBannerRoutes {...this.state.townData} />
 
           <div>{adminToggle}</div>
 

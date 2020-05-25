@@ -32,7 +32,21 @@ export const ParallaxBanner = props => (
   <div
     className="parallaxStyleHome"
     style={{
-      backgroundImage: "url(" + props.imageURL + ")"
+      backgroundImage: "url(" + props.bannerImage + ")"
     }}
   />
+);
+
+export const ParallaxBannerRoutes = props => (
+  <div
+    className="parallaxStyleHome"
+    style={{
+      backgroundImage: "url(" + props.bannerImage + ")"
+    }}
+  >
+    <div className="container py-5">
+      <h1>{props.headerText1}</h1>
+      <h4>{props.headerText2}</h4>
+    </div>
+  </div>
 );
