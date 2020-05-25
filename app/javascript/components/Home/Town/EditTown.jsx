@@ -10,7 +10,8 @@ class EditTown extends Component {
       name: "",
       headerText1: "",
       headerText2: "",
-      townheader: ""
+      townheader: "",
+      bannerImage: ""
     };
     this.fetchTownData = this.fetchTownData.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -24,13 +25,20 @@ class EditTown extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = `/api/v1/towns/${this.state.id}`;
-    const { name, headerText1, headerText2, townheader } = this.state;
+    const {
+      name,
+      headerText1,
+      headerText2,
+      townheader,
+      bannerImage
+    } = this.state;
 
     const body = {
       name,
       headerText1,
       headerText2,
-      townheader
+      townheader,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -45,17 +53,18 @@ class EditTown extends Component {
     })
       .then(response => {
         if (response.ok) {
+          alert("Town has been updated.");
           return response;
         } else {
+          alert("Something went wrong");
           let errorMessage = `${resopnse.status} (${response.statusText})`,
             error = new Error(errorMessage);
           throw error;
         }
       })
-      .then(alert("Town has been updated."))
       .then(body => {
         this.props.history.push(`/towns/${this.state.id}`);
-        window.location.reload(false);
+        // window.location.reload(false);
       })
       .then(window.scrollTo(0, 0))
       .catch(error => console.log(error.message));
@@ -85,7 +94,8 @@ class EditTown extends Component {
           name: body.name,
           headerText1: body.headerText1,
           headerText2: body.headerText2,
-          townheader: body.townheader
+          townheader: body.townheader,
+          bannerImage: body.bannerImage
         });
       });
   }
@@ -110,6 +120,17 @@ class EditTown extends Component {
                   value={this.state.name}
                 />
               </div>
+
+              <label htmlFor="bannerImage">Banner Image</label>
+              <input
+                type="text"
+                name="bannerImage"
+                id="bannerImage"
+                className="form-control"
+                required
+                onChange={this.onChange}
+                value={this.state.bannerImage}
+              />
 
               <label htmlFor="headerText1">headerText1</label>
               <input
