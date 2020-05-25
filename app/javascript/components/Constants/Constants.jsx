@@ -53,3 +53,23 @@ export const ParallaxBannerRoutes = props => (
     </div>
   </div>
 );
+
+export const FormMaps = props => {
+  const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
+    return (
+      <div key={key} className="form-group">
+        <label htmlFor={key}>{value}</label>
+        <input
+          className="form-control"
+          type="text"
+          id={key}
+          name={key}
+          onChange={props.onChange}
+          value={props.value[key]}
+        />
+      </div>
+    );
+  });
+
+  return keyValuePair;
+};
