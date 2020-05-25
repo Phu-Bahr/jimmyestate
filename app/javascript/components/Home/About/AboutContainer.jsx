@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
-import { FadeIn } from "../../../components/Constants/Constants";
+import {
+  FadeIn,
+  ParallaxBannerRoutes,
+  FormMaps
+} from "../../../components/Constants/Constants";
 
 class AboutContainer extends Component {
   constructor(props) {
@@ -26,7 +30,8 @@ class AboutContainer extends Component {
       photoaddress1: "",
       photoaddress2: "",
       refreshKey: false,
-      hideDiv: true
+      hideDiv: true,
+      bannerImage: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -37,7 +42,7 @@ class AboutContainer extends Component {
     scroll.scrollToTop();
   };
 
-  clickEdit(event) {
+  clickEdit() {
     if (this.state.hideDiv === false) {
       this.setState({ hideDiv: true });
     } else {
@@ -45,7 +50,7 @@ class AboutContainer extends Component {
     }
   }
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
@@ -72,7 +77,8 @@ class AboutContainer extends Component {
       photonumber,
       photoemail,
       photoaddress1,
-      photoaddress2
+      photoaddress2,
+      bannerImage
     } = this.state;
 
     const body = {
@@ -91,7 +97,8 @@ class AboutContainer extends Component {
       photonumber,
       photoemail,
       photoaddress1,
-      photoaddress2
+      photoaddress2,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -130,33 +137,33 @@ class AboutContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newAboutData = body;
         this.setState({
-          aboutData: newAboutData,
-          id: newAboutData[0].id,
-          bannerText1: newAboutData[0].bannerText1,
-          bannerText2: newAboutData[0].bannerText2,
-          paragraph1: newAboutData[0].paragraph1,
-          paragraph2: newAboutData[0].paragraph2,
-          paragraph3: newAboutData[0].paragraph3,
-          paragraph4: newAboutData[0].paragraph4,
-          paragraph5: newAboutData[0].paragraph5,
-          paragraph6: newAboutData[0].paragraph6,
-          paragraph7: newAboutData[0].paragraph7,
-          paragraph8: newAboutData[0].paragraph8,
-          photo: newAboutData[0].photo,
-          photoname: newAboutData[0].photoname,
-          photonumber: newAboutData[0].photonumber,
-          photoemail: newAboutData[0].photoemail,
-          photoaddress1: newAboutData[0].photoaddress1,
-          photoaddress2: newAboutData[0].photoaddress2
+          aboutData: body,
+          id: body[0].id,
+          bannerText1: body[0].bannerText1,
+          bannerText2: body[0].bannerText2,
+          paragraph1: body[0].paragraph1,
+          paragraph2: body[0].paragraph2,
+          paragraph3: body[0].paragraph3,
+          paragraph4: body[0].paragraph4,
+          paragraph5: body[0].paragraph5,
+          paragraph6: body[0].paragraph6,
+          paragraph7: body[0].paragraph7,
+          paragraph8: body[0].paragraph8,
+          photo: body[0].photo,
+          photoname: body[0].photoname,
+          photonumber: body[0].photonumber,
+          photoemail: body[0].photoemail,
+          photoaddress1: body[0].photoaddress1,
+          photoaddress2: body[0].photoaddress2,
+          bannerImage: body[0].bannerImage
         });
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
+    if (this.state.refreshKey) {
       fetch("api/v1/abouts")
         .then(response => {
           if (response.ok) {
@@ -169,9 +176,26 @@ class AboutContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newAboutData = body;
           this.setState({
-            aboutData: newAboutData
+            aboutData: body,
+            id: body[0].id,
+            bannerText1: body[0].bannerText1,
+            bannerText2: body[0].bannerText2,
+            paragraph1: body[0].paragraph1,
+            paragraph2: body[0].paragraph2,
+            paragraph3: body[0].paragraph3,
+            paragraph4: body[0].paragraph4,
+            paragraph5: body[0].paragraph5,
+            paragraph6: body[0].paragraph6,
+            paragraph7: body[0].paragraph7,
+            paragraph8: body[0].paragraph8,
+            photo: body[0].photo,
+            photoname: body[0].photoname,
+            photonumber: body[0].photonumber,
+            photoemail: body[0].photoemail,
+            photoaddress1: body[0].photoaddress1,
+            photoaddress2: body[0].photoaddress2,
+            bannerImage: body[0].bannerImage
           });
         })
         .then(this.setState({ refreshKey: false }));
@@ -179,13 +203,7 @@ class AboutContainer extends Component {
   }
 
   render() {
-    let hideEditButton;
-    if (this.props.user.admin === true) {
-      hideEditButton = "";
-    } else {
-      // set below to blank string to default show edit buttons
-      hideEditButton = "invisible";
-    }
+    console.log(this.state);
 
     let hide;
     if (this.state.hideDiv === true) {
@@ -195,14 +213,6 @@ class AboutContainer extends Component {
     }
 
     let aboutData = this.state.aboutData;
-    let banner = aboutData.map(element => {
-      return (
-        <div key={element.id}>
-          <h1>{element.bannerText1}</h1>
-          <h4>{element.bannerText2}</h4>
-        </div>
-      );
-    });
 
     let paragraphs = aboutData.map(element => {
       return (
@@ -243,12 +253,86 @@ class AboutContainer extends Component {
       );
     });
 
+    let paragraphForms = {
+      paragraph1: "Paragraph 1",
+      paragraph2: "Paragraph 2",
+      paragraph3: "Paragraph 3",
+      paragraph4: "Paragraph 4",
+      paragraph5: "Paragraph 5",
+      paragraph6: "Paragraph 6",
+      paragraph7: "Paragraph 7",
+      paragraph8: "Paragraph 8"
+    };
+
+    let photoForms = {
+      photo: "Photo URL",
+      photoname: "Name",
+      photonumber: "Phone Number",
+      photoemail: "Email",
+      photoaddress1: "Street Address",
+      photoaddress2: "City State Zip"
+    };
+
+    let bannerForms = {
+      bannerImage: "Banner Image",
+      bannerText1: "Banner Text 1",
+      bannerText2: "Banner Text 2"
+    };
+
+    let formInput = (
+      <div className={"container" + " " + hide}>
+        <form onSubmit={this.onSubmit}>
+          <div className="parallaxShowPage">
+            <div className="container py-5">
+              <FormMaps
+                formConst={bannerForms}
+                onChange={this.onChange}
+                value={this.state}
+              />
+            </div>
+          </div>
+
+          <div className="container py-5">
+            <div className="row">
+              <div className="col-md-9">
+                <FormMaps
+                  formConst={paragraphForms}
+                  onChange={this.onChange}
+                  value={this.state}
+                />
+              </div>
+              <div className="col-md-3">
+                <FormMaps
+                  formConst={photoForms}
+                  onChange={this.onChange}
+                  value={this.state}
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="btn custom-button mt-3"
+              onClick={this.scrollToTop}
+            >
+              Submit changes
+            </button>
+
+            <Link to="/" className="btn btn-link mt-3">
+              Back to Home Page
+            </Link>
+          </div>
+        </form>
+      </div>
+    );
+
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxAboutJimmyPage">
-            <div className="container py-5">{banner}</div>
-          </div>
+          <ParallaxBannerRoutes
+            bannerImage={this.state.bannerImage}
+            headerText1={this.state.bannerText1}
+            headerText2={this.state.bannerText2}
+          />
 
           <div className="container">
             <div className="row py-5">
@@ -260,248 +344,26 @@ class AboutContainer extends Component {
           </div>
         </FadeIn>
 
-        <div className={"container pb-3" + " " + hideEditButton}>
-          <div className="row">
-            <div className="col text-center">
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.clickEdit}
-              >
-                Edit
-              </button>
+        {this.props.user.admin ? (
+          <div className="container pb-3">
+            <div className="row">
+              <div className="col text-center">
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={this.clickEdit}
+                >
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
 
-        <div className={"container" + " " + hide}>
-          <form onSubmit={this.onSubmit}>
-            <div className="parallaxShowPage">
-              <div className="container py-5">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="bannerText1"
-                    id="bannerText1"
-                    className="form-control"
-                    required
-                    onChange={this.onChange}
-                    value={this.state.bannerText1}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="bannerText2"
-                    id="bannerText2"
-                    className="form-control"
-                    required
-                    onChange={this.onChange}
-                    value={this.state.bannerText2}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="container py-5">
-              <div className="row">
-                <div className="col-md-9">
-                  <div className="form-group">
-                    <label htmlFor="paragraph1">Paragraph1</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph1"
-                      id="paragraph1"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      value={this.state.paragraph1}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="paragraph2">Paragraph2</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph2"
-                      id="paragraph2"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      value={this.state.paragraph2}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="paragraph3">Paragraph3</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph3"
-                      id="paragraph3"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      value={this.state.paragraph3}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="paragraph4">Paragraph4</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph4"
-                      id="paragraph4"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.paragraph4}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="paragraph5">Paragraph5</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph5"
-                      id="paragraph5"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.paragraph5}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="paragraph6">Paragraph6</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph6"
-                      id="paragraph6"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.paragraph6}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="paragraph7">Paragraph7</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph7"
-                      id="paragraph7"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.paragraph7}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="paragraph8">Paragraph8</label>
-                    <textarea
-                      rows="3"
-                      type="text"
-                      name="paragraph8"
-                      id="paragraph8"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.paragraph8}
-                    />
-                  </div>
-                </div>
-
-                <div className="col-md-3">
-                  <div className="form-group">
-                    <label htmlFor="photo">photo</label>
-                    <input
-                      type="text"
-                      name="photo"
-                      id="photo"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.photo}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="photoname">photoname</label>
-                    <input
-                      type="text"
-                      name="photoname"
-                      id="photoname"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.photoname}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="photonumber">photonumber</label>
-                    <input
-                      type="text"
-                      name="photonumber"
-                      id="photonumber"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.photonumber}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="photoemail">photoemail</label>
-                    <input
-                      type="text"
-                      name="photoemail"
-                      id="photoemail"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.photoemail}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="photoaddress1">photoaddress1</label>
-                    <input
-                      type="text"
-                      name="photoaddress1"
-                      id="photoaddress1"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.photoaddress1}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="photoaddress2">photoaddress2</label>
-                    <input
-                      type="text"
-                      name="photoaddress2"
-                      id="photoaddress2"
-                      className="form-control"
-                      onChange={this.onChange}
-                      value={this.state.photoaddress2}
-                    />
-                  </div>
-                </div>
-              </div>
-              <button
-                type="submit"
-                className="btn custom-button mt-3"
-                onClick={this.scrollToTop}
-              >
-                Submit changes
-              </button>
-
-              <Link to="/" className="btn btn-link mt-3">
-                Back to Home Page
-              </Link>
-            </div>
-          </form>
-        </div>
+        {formInput}
       </React.Fragment>
     );
   }
 }
 
 export default AboutContainer;
-
-// {/* <div className="container py-4">
-// <div className="row">
-//   <div className="col-md-8">{paragraphs}</div>
-//   <div className="col-md-4">{photoArea}</div>
-// </div>
-// </div> */}

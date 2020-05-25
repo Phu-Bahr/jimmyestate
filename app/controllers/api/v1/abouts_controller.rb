@@ -18,6 +18,23 @@ class Api::V1::AboutsController < ApplicationController
 
     private
         def about_params
-            params.require(:about).permit(:bannerText1, :bannerText2, :paragraph1, :paragraph2, :paragraph3, :paragraph4, :paragraph5, :paragraph6, :paragraph7, :paragraph8, :photo, :photoname, :photonumber, :photoemail, :photoaddress1, :photoaddress2)
+            params.require(:about).permit(
+                :bannerText1, 
+                :bannerText2, 
+                :paragraph1,
+                :paragraph2,
+                :paragraph3,
+                :paragraph4,
+                :paragraph5,
+                :paragraph6,
+                :paragraph7,
+                :paragraph8,
+                :photo,
+                :photoname,
+                :photonumber,
+                :photoemail,
+                :photoaddress1,
+                :photoaddress2,
+                :bannerImage)
         end
 end
