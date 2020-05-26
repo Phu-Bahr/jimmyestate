@@ -238,7 +238,17 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/contact" component={ContactContainer} />
+            <Route
+              exact
+              path="/contact"
+              render={props => (
+                <ContactContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route
               exact
               path="/towns/:id?"
