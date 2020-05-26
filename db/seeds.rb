@@ -122,8 +122,14 @@
 #     headerText2: "test"
 # )
 
-# portfolioEdit = PortfolioEdit.create!(
-#     bannerImage: "test",
-#     headerText1: "test",
-#     headerText2: "test"
-# )
+contactEdit = ContactEdit.create!(
+    bannerImage: "test",
+    headerText1: "test",
+    headerText2: "test",
+    name: "test",
+    address: "test",
+    phonenumber: "test",
+    email: "test",
+    lat: "test",
+    lng: "test"
+)

@@ -5,7 +5,7 @@ import {
   ParallaxBannerRoutes,
   FormMaps
 } from "../../Constants/Constants";
-import { Link } from "react-router-dom";
+
 import DraftJSContainer from "../../Constants/DraftJSComponent";
 
 class AboutCompanyContainer extends Component {
@@ -24,7 +24,7 @@ class AboutCompanyContainer extends Component {
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
@@ -92,7 +92,7 @@ class AboutCompanyContainer extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
+    if (this.state.refreshKey) {
       fetch(`api/v1/${this.state.urlGET}`)
         .then(response => {
           if (response.ok) {

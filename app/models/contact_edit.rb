@@ -1,0 +1,2 @@
+class ContactEdit < ApplicationRecord
+end

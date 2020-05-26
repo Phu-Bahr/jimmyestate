@@ -28,16 +28,16 @@ class Map extends Component {
       withGoogleMap(props => {
         return (
           <GoogleMap
-            defaultZoom={13}
-            defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+            defaultZoom={15}
+            defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
           >
             <Marker
-              position={{ lat: this.state.lat, lng: this.state.lng }}
+              position={{ lat: this.props.lat, lng: this.props.lng }}
               onClick={this.onClick}
             />
             {this.state.window && (
               <InfoWindow
-                position={{ lat: this.state.lat, lng: this.state.lng }}
+                position={{ lat: this.props.lat, lng: this.props.lng }}
               >
                 <React.Fragment>
                   <div>RTN Headquarters</div>
