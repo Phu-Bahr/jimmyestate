@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { FadeIn, FadeInUp } from "../../Constants/Constants";
+import {
+  FadeIn,
+  FadeInUp,
+  ParallaxBannerRoutes,
+  FormMaps
+} from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import DraftJSContainer from "../../Constants/DraftJSComponent";
 
@@ -11,7 +16,8 @@ class AboutCompanyContainer extends Component {
       headerText2: "",
       image: "",
       id: null,
-      urlGET: "about_companies"
+      urlGET: "about_companies",
+      bannerImage: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -29,12 +35,13 @@ class AboutCompanyContainer extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
-    const { headerText1, headerText2, image } = this.state;
+    const { headerText1, headerText2, image, bannerImage } = this.state;
 
     const body = {
       headerText1,
       headerText2,
-      image
+      image,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -76,7 +83,8 @@ class AboutCompanyContainer extends Component {
             headerText1: body[body.length - 1].headerText1,
             headerText2: body[body.length - 1].headerText2,
             image: body[body.length - 1].image,
-            id: body[body.length - 1].id
+            id: body[body.length - 1].id,
+            bannerImage: body[body.length - 1].bannerImage
           });
         }
       })
@@ -101,7 +109,8 @@ class AboutCompanyContainer extends Component {
             headerText1: body[body.length - 1].headerText1,
             headerText2: body[body.length - 1].headerText2,
             image: body[body.length - 1].image,
-            id: body[body.length - 1].id
+            id: body[body.length - 1].id,
+            bannerImage: body[body.length - 1].bannerImage
           });
         })
         .then(this.setState({ refreshKey: false }));
@@ -111,45 +120,23 @@ class AboutCompanyContainer extends Component {
   render() {
     console.log("STATE", this.state);
 
+    const parallaxFormContent = {
+      bannerImage: "Banner Image",
+      headerText1: "Header text 1",
+      headerText2: "Header text 2",
+      image: "Logo URL"
+    };
+
     let editMenu = (
       <React.Fragment>
         <div className="container pb-5">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="headerText1">Header Text 1</label>
-                <input
-                  type="text"
-                  name="headerText1"
-                  id="headerText1"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.headerText1}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="headerText2">Header Text 2</label>
-                <input
-                  type="text"
-                  name="headerText2"
-                  id="headerText2"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.headerText2}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="image">image</label>
-                <input
-                  type="text"
-                  name="image"
-                  id="image"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.image}
-                />
-              </div>
+              <FormMaps
+                formConst={parallaxFormContent}
+                onChange={this.onChange}
+                value={this.state}
+              />
 
               <button
                 type="submit"
@@ -167,12 +154,7 @@ class AboutCompanyContainer extends Component {
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxAboutCompanyPage">
-            <div className="container py-5">
-              <h1>{this.state.headerText1}</h1>
-              <h4>{this.state.headerText2}</h4>
-            </div>
-          </div>
+          <ParallaxBannerRoutes {...this.state} {...this.props} />
         </FadeIn>
         <FadeInUp>
           <div className="pt-4 pb-3 text-center">

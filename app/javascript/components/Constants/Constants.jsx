@@ -54,6 +54,7 @@ export const ParallaxBannerRoutes = props => (
   </div>
 );
 
+// pass down formConst as object from main component, onchange, and value=this.state
 export const FormMaps = props => {
   const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
     return (
@@ -75,6 +76,7 @@ export const FormMaps = props => {
 };
 
 // as long as original component's state has the 3 keys below to send state down and up, this should work
+// value=this.state, onchange, onsubmit
 export const ParallaxEditForm = props => {
   const parallaxFormContent = {
     bannerImage: "Banner Image",

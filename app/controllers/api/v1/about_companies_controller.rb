@@ -27,7 +27,7 @@ class Api::V1::AboutCompaniesController < ApplicationController
 
     private
         def aboutcompany_params
-            params.require(:about_company).permit(:content, :image, :headerText1, :headerText2)
+            params.require(:about_company).permit(:content, :image, :headerText1, :headerText2, :bannerImage)
             # :about_company needs to be singular from config route, not match the other method's variables
         end
 end

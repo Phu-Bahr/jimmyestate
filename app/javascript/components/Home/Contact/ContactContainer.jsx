@@ -8,7 +8,10 @@ class ContactContainer extends Component {
     super(props);
     this.state = {
       contactData: [],
-      geoData: []
+      geoData: [],
+      headerText1: "",
+      headerText2: "",
+      bannerImage: ""
     };
   }
 

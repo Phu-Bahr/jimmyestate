@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :jumbotrons, only: [:index, :update]
       resources :footers, only: [:index, :update]
-      resources :companies, only: [:index, :update]
       resources :announcements, only: [:index, :update]
       resources :events, only: [:index, :create, :update, :destroy]
       get "/events/search", to: "events#search"

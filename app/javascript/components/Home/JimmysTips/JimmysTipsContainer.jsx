@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { FadeIn } from "../../Constants/Constants";
+import {
+  FadeIn,
+  ParallaxBannerRoutes,
+  ParallaxEditForm
+} from "../../Constants/Constants";
 import DraftJSContainer from "../../Constants/DraftJSComponent";
 import { animateScroll as scroll } from "react-scroll";
 
@@ -10,7 +14,8 @@ class JimmyTipContainer extends Component {
       urlGET: "jimmy_tips",
       headerText1: "",
       headerText2: "",
-      id: null
+      id: null,
+      bannerImage: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
@@ -21,7 +26,7 @@ class JimmyTipContainer extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
@@ -32,11 +37,12 @@ class JimmyTipContainer extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
-    const { headerText1, headerText2 } = this.state;
+    const { headerText1, headerText2, bannerImage } = this.state;
 
     const body = {
       headerText1,
-      headerText2
+      headerText2,
+      bannerImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -54,6 +60,7 @@ class JimmyTipContainer extends Component {
           alert("Content has been updated");
           return response.json();
         }
+        alert("something went wrong");
         throw new Error("Network response was not ok.");
       })
       .then(this.toggleRefreshKey)
@@ -76,7 +83,8 @@ class JimmyTipContainer extends Component {
         this.setState({
           headerText1: body[body.length - 1].headerText1,
           headerText2: body[body.length - 1].headerText2,
-          id: body[body.length - 1].id
+          id: body[body.length - 1].id,
+          bannerImage: body[body.length - 1].bannerImage
         });
       })
 
@@ -84,7 +92,7 @@ class JimmyTipContainer extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
+    if (this.state.refreshKey) {
       fetch(`/api/v1/${this.state.urlGET}`)
         .then(response => {
           if (response.ok) {
@@ -100,7 +108,8 @@ class JimmyTipContainer extends Component {
           this.setState({
             headerText1: body[body.length - 1].headerText1,
             headerText2: body[body.length - 1].headerText2,
-            id: body[body.length - 1].id
+            id: body[body.length - 1].id,
+            bannerImage: body[body.length - 1].bannerImage
           });
         })
         .then(this.setState({ refreshKey: false }))
@@ -109,55 +118,19 @@ class JimmyTipContainer extends Component {
   }
 
   render() {
-    let parallaxEditForm = (
-      <div className="container pt-5">
-        <div className="row">
-          <div className="col-sm-12 col-lg-6 offset-lg-3">
-            <form onSubmit={this.onSubmit}>
-              <h5 className="text-center pb-3">
-                Update will work after Draft Content has been created
-              </h5>
-              <label htmlFor="headerText1">Header Text 1</label>
-              <input
-                type="text"
-                name="headerText1"
-                id="headerText1"
-                className="form-control"
-                required
-                onChange={this.onChange}
-                value={this.state.headerText1}
-              />
-
-              <label htmlFor="headerText2">Header Text 2</label>
-              <input
-                type="text"
-                name="headerText2"
-                id="headerText2"
-                className="form-control"
-                required
-                onChange={this.onChange}
-                value={this.state.headerText2}
-              />
-
-              <button type="submit" className="btn custom-button mt-3">
-                Submit Header changes
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
-
     return (
       <React.Fragment>
         <FadeIn>
-          <div className="parallaxJimmyTipPage">
-            <div className="container py-5">
-              <h1>{this.state.headerText1}</h1>
-              <h4>{this.state.headerText2}</h4>
-            </div>
-          </div>
-          {this.props.user.admin === true ? parallaxEditForm : ""}
+          <ParallaxBannerRoutes {...this.state} />
+          {this.props.user.admin === true ? (
+            <ParallaxEditForm
+              value={this.state}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
+          ) : (
+            ""
+          )}
         </FadeIn>
 
         <div>
