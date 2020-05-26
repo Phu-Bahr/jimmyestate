@@ -28,7 +28,7 @@ class Api::V1::JimmyTipsController < ApplicationController
     private
 
     def jimmy_tip_params
-        params.require(:jimmy_tip).permit(:content, :headerText1, :headerText2)
+        params.require(:jimmy_tip).permit(:content, :headerText1, :headerText2, :bannerImage)
     end
     
 end
