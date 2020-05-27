@@ -28,6 +28,7 @@ export const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
 `;
 
+// needs ...state or banner state
 export const ParallaxBanner = props => (
   <div
     className="parallaxStyleHome"

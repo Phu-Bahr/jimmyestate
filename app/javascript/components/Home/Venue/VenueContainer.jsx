@@ -226,7 +226,6 @@ class VenueContainer extends Component {
 
     return (
       <React.Fragment>
-        <ParallaxBanner {...this.state} />
         {this.props.user.admin === true ? <div>{bannerForm}</div> : null}
 
         <div className="container p-5">

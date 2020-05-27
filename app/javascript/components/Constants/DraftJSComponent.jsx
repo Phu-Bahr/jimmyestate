@@ -6,6 +6,7 @@ import { FadeIn } from "./Constants";
 //parent component needs to supply urlGET state
 //send {...this.state}, and user={this.props.user} <- for admin
 //have a content column in their Model
+//:content in params controller
 
 class DraftJSContainer extends Component {
   constructor(props) {
