@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :abouts, only: [:index, :update]
       resources :about_companies, only: [:index, :update, :create]
       resources :jimmy_tips, only: [:index, :update, :create]
+      resources :jimmy_partners, only: [:index, :update, :create]
       resources :portfolios, only: [:index, :create, :update, :destroy]
       resources :portfolio_edits, only: [:index, :update]
       resources :contacts, only: [:create]

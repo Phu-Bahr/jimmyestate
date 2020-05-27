@@ -1,0 +1,2 @@
+class JimmyPartner < ApplicationRecord
+end
