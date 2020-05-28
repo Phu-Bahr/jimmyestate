@@ -23,7 +23,7 @@ Rail’s ActionMailer
 Bcrypt\
 Rack-cors\
 
-**The fund stuff:**\
+**The fun stuff:**\
 Bootstrap 4\
 Fontawesome\
 React-Animations\
