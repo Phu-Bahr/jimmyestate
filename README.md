@@ -4,7 +4,7 @@ Working off of Boston Last Call repo, Jimmy Estate is a personal CMS website. My
 
 To reach this goal, my objective was to practice coding and understanding logic in the front end and back. The app was started with Rails and adding React/Webpacker
 
-**Jimmy Estate is using the following technology:**
+**Jimmy Estate is using the following technology:**\
 React v16
 Ruby on Rails v5.2.3
 Ruby 2.6.5
