@@ -198,36 +198,34 @@ class VenueContainer extends Component {
       );
     });
 
-    let bannerForm = (
-      <div className="container pt-5">
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
-            <form onSubmit={this.onSubmitEdit}>
-              <label htmlFor="bannerImage">Banner Image</label>
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="bannerImage"
-                  id="bannerImage"
-                  className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.bannerImage}
-                />
-              </div>
+    // let bannerForm = (
+    //   <div className="container pt-5">
+    //     <div className="row">
+    //       <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
+    //         <form onSubmit={this.onSubmitEdit}>
+    //           <label htmlFor="bannerImage">Banner Image</label>
+    //           <div className="form-group">
+    //             <input
+    //               type="text"
+    //               name="bannerImage"
+    //               id="bannerImage"
+    //               className="form-control"
+    //               onChange={this.onChange}
+    //               value={this.state.bannerImage}
+    //             />
+    //           </div>
 
-              <button type="submit" className="btn custom-button">
-                Submit Update
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
+    //           <button type="submit" className="btn custom-button">
+    //             Submit Update
+    //           </button>
+    //         </form>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
 
     return (
       <React.Fragment>
-        {this.props.user.admin === true ? <div>{bannerForm}</div> : null}
-
         <div className="container p-5">
           <div className={"col text-center" + " " + this.props.hideEditButton}>
             <Link to="/newVenue">

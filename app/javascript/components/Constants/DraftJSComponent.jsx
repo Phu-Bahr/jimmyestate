@@ -131,8 +131,6 @@ class DraftJSContainer extends Component {
   }
 
   render() {
-    console.log("draft js log", this.state);
-
     let adminToggle;
     if (this.props.user.admin) {
       adminToggle = (

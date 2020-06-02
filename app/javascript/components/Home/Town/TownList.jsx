@@ -21,15 +21,9 @@ class TownList extends Component {
       townlink3: "",
       townlinkdescription1: "",
       townlinkdescription2: "",
-      townlinkdescription3: "",
-      refreshKey: false
+      townlinkdescription3: ""
     };
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
-  }
-
-  toggleRefreshKey(event) {
-    this.setState({ refreshKey: true });
   }
 
   componentDidMount() {
@@ -52,7 +46,7 @@ class TownList extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
+    if (this.props.refreshKey === true) {
       fetch("api/v1/towns")
         .then(response => {
           if (response.ok) {
@@ -65,10 +59,9 @@ class TownList extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newTownData = body;
-          this.setState({ townData: newTownData });
+          this.setState({ townData: body });
         })
-        .then(this.setState({ refreshKey: false }))
+        .then(this.props.toggleRefreshFalse())
         .catch(error => console.log("error message =>", error.message));
     }
   }
@@ -93,8 +86,9 @@ class TownList extends Component {
           throw error;
         }
       })
+      .then(this.props.toggleRefreshKey)
       .then(this.props.history.push("/"))
-      .then(window.location.reload(false))
+      // .then(window.location.reload(false))
       .catch(error => console.log(error.message));
   }
 

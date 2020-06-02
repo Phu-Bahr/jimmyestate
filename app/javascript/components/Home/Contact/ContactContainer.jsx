@@ -186,8 +186,6 @@ class ContactContainer extends Component {
   };
 
   render() {
-    console.log("contact state", this.state);
-
     let contactData = (
       <React.Fragment>
         <div>

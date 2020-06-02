@@ -14,8 +14,6 @@ class Map extends Component {
   }
 
   render() {
-    console.log("Map event loader", this.state);
-
     const WrappedMap = withScriptjs(
       withGoogleMap(props => {
         return (

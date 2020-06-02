@@ -101,8 +101,6 @@ class NewEvent extends Component {
       .catch(error => console.log(error.message));
   }
   render() {
-    console.log("new event container log", this.state);
-
     return (
       <React.Fragment>
         <div className="px-3">

@@ -229,8 +229,6 @@ class EventContainer extends Component {
   }
 
   render() {
-    console.log("event container log", this.state);
-
     let hide;
     let editMode1;
     let editMode2;

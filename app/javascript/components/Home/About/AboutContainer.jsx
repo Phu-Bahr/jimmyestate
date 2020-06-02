@@ -203,8 +203,6 @@ class AboutContainer extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     let hide;
     if (this.state.hideDiv === true) {
       hide = "invisible";
