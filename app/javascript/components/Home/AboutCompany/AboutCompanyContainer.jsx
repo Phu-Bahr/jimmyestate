@@ -118,8 +118,6 @@ class AboutCompanyContainer extends Component {
   }
 
   render() {
-    console.log("STATE", this.state);
-
     const parallaxFormContent = {
       bannerImage: "Banner Image",
       headerText1: "Header text 1",

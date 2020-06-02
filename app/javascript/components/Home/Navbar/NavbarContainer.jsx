@@ -7,8 +7,16 @@ import { FadeInDown } from "../../Constants/Constants";
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
-    this.setState = { refreshKey: false };
+    this.state = { refreshKey: false };
   }
+
+  toggleRefreshKey = () => {
+    this.setState({ refreshKey: true });
+  };
+
+  toggleRefreshFalse = () => {
+    this.setState({ refreshKey: false });
+  };
 
   scrollToTop = () => {
     scroll.scrollToTop();
@@ -54,6 +62,9 @@ class NavbarContainer extends Component {
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
               hideEditButton={hideEditButton}
+              refreshKey={this.state.refreshKey}
+              toggleRefreshKey={this.toggleRefreshKey}
+              toggleRefreshFalse={this.toggleRefreshFalse}
             />
             <div className={hideEditButton}>
               <div className="dropdown-divider"></div>

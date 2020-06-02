@@ -39,6 +39,8 @@ class App extends Component {
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.refreshTownList = this.refreshTownList.bind(this);
+    this.refreshingTownList = React.createRef();
   }
 
   handleLogin(data) {
@@ -92,6 +94,10 @@ class App extends Component {
     this.checkLoginStatus();
   }
 
+  refreshTownList() {
+    this.refreshingTownList.current.toggleRefreshKey();
+  }
+
   render() {
     const ProtectedRoute = ({ component: Comp, path }) => {
       return (
@@ -105,6 +111,7 @@ class App extends Component {
                 user={this.state.user}
                 handleLogin={this.handleLogin}
                 handleLogout={this.handleLogout}
+                refreshTownList={this.refreshTownList}
               />
             ) : (
               <Redirect
@@ -135,6 +142,8 @@ class App extends Component {
           <NavbarContainer
             loggedInStatus={this.state.loggedInStatus}
             user={this.state.user}
+            refreshTownList={this.refreshTownList}
+            ref={this.refreshingTownList}
           />
 
           <Switch>

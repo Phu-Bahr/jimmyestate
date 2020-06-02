@@ -63,8 +63,6 @@ class EmailForm extends Component {
   }
 
   render() {
-    console.log("state contact page form", this.state);
-
     return (
       <React.Fragment>
         <form

@@ -155,8 +155,6 @@ class TownShowPage extends Component {
   }
 
   render() {
-    console.log("townshowpage", this.state.townData);
-
     let adminToggle;
     if (this.props.user.admin) {
       adminToggle = (

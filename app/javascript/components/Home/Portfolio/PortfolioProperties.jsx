@@ -246,8 +246,6 @@ class PortfolioProperties extends Component {
   }
 
   render() {
-    console.log("portfolio prop state", this.state);
-
     let hide;
     if (this.state.hideDiv === true) {
       hide = "invisible";

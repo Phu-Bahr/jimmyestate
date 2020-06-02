@@ -15,6 +15,11 @@ class NewTown extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.refreshTownList = this.refreshTownList.bind(this);
+  }
+
+  refreshTownList(event) {
+    this.props.refreshTownList();
   }
 
   onChange(event) {
@@ -60,8 +65,9 @@ class NewTown extends React.Component {
       })
       .then(body => {
         this.props.history.push(`/towns/${body.id}`);
-        // window.location.reload(false);
+        // window.location.reload(false); <-- refreshes page but logs off admin.
       })
+      .then(this.refreshTownList())
       .catch(error => console.log(error.message));
   }
 
@@ -128,11 +134,8 @@ class NewTown extends React.Component {
                 <label htmlFor="paragraph1">Paragraph 1</label>
                 <textarea
                   rows="3"
-                  type="text"
-                  name="paragraph1"
-                  id="paragraph1"
                   className="form-control"
-                  value="Just a placeholder, fill in data on town link itself."
+                  placeholder="Just a placeholder, fill in data on town link itself."
                 />
               </div>
 
