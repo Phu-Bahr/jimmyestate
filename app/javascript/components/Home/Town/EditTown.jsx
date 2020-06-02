@@ -16,6 +16,11 @@ class EditTown extends Component {
     this.fetchTownData = this.fetchTownData.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.refreshTownList = this.refreshTownList.bind(this);
+  }
+
+  refreshTownList(event) {
+    this.props.refreshTownList();
   }
 
   onChange(event) {
@@ -66,6 +71,7 @@ class EditTown extends Component {
         this.props.history.push(`/towns/${this.state.id}`);
         // window.location.reload(false);
       })
+      .then(this.refreshTownList())
       .then(window.scrollTo(0, 0))
       .catch(error => console.log(error.message));
   }
@@ -73,6 +79,13 @@ class EditTown extends Component {
   componentDidMount() {
     let id = this.props.match.params.id;
     this.fetchTownData(id);
+  }
+
+  componentDidUpdate() {
+    let id = this.props.match.params.id;
+    if (this.state.id != id) {
+      this.fetchTownData(id);
+    }
   }
 
   fetchTownData(id) {
