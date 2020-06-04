@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import VenueTile from "./VenueTile";
 import { Link } from "react-router-dom";
 import { ParallaxBanner } from "../../Constants/Constants";
+import HelperLinks from "./HelperLinks";
 
 class VenueContainer extends Component {
   constructor(props) {
@@ -236,6 +237,8 @@ class VenueContainer extends Component {
           </div>
 
           <div className="row">{venueList}</div>
+          <hr style={{ border: "2px solid blue" }} />
+          <HelperLinks user={this.props.user} />
         </div>
       </React.Fragment>
     );
