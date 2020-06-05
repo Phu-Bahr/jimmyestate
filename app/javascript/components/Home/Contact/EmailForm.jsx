@@ -72,7 +72,7 @@ class EmailForm extends Component {
           }}
         >
           <div className="form-group">
-            <label htmlFor="name">Your Name (required)</label>
+            <label htmlFor="name">Your Name:</label>
             <input
               type="text"
               name="name"
@@ -83,7 +83,7 @@ class EmailForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Your Email (required)</label>
+            <label htmlFor="email">Your Email:</label>
             <input
               type="text"
               name="email"
@@ -94,7 +94,9 @@ class EmailForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="message">Your Message (required)</label>
+            <label htmlFor="message">
+              Please tell me about your Real Estate Goals:
+            </label>
             <textarea
               rows="5"
               type="text"
@@ -102,6 +104,7 @@ class EmailForm extends Component {
               id="message"
               className="form-control"
               onChange={this.onChange}
+              placeholder="Message"
               required
             />
           </div>

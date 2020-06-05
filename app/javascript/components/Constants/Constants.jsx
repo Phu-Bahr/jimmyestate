@@ -5,7 +5,8 @@ import {
   fadeInUp,
   fadeInDown,
   fadeInRight,
-  fadeInLeft
+  fadeInLeft,
+  fadeOut
 } from "react-animations";
 
 export const FadeIn = styled.div`
@@ -26,6 +27,10 @@ export const FadeInRight = styled.div`
 
 export const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
+`;
+
+export const FadeOut = styled.div`
+  animation: 1s ${keyframes`${fadeOut}`};
 `;
 
 // needs ...state or banner state
