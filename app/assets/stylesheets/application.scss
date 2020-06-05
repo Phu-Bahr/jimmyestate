@@ -82,8 +82,7 @@ h6 {
 }
 
 .venueDetails {
-  background: black;
-  color: whitesmoke;
+  background: #d6d6d6;
 }
 
 .parent {
@@ -170,6 +169,40 @@ h6 {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.helperL {
+  background-size: 0% 100%;
+  border: none;
+  border-radius: 2px;
+  color: black;
+  display: inline-block;
+  font-size: 20px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.5s, color 0.3s;
+  width: 100%;
+}
+
+.helperL:hover {
+  background-color: #8cce3c;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  transition: background-size 1s, background-color 1s, color 0.2s;
+  color: white;
+  text-decoration: none;
+}
+
+.helperL:active {
+  background-color: #8cce3c;
+  transition: background-size 0;
 }
 
 // end of venue

@@ -55,7 +55,8 @@ class VenueContainer extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ bannerImage: body[0].bannerImage });
-      });
+      })
+      .catch(error => console.log("error message =>", error.message));
   }
 
   fetchVenueList() {
@@ -73,7 +74,8 @@ class VenueContainer extends Component {
       .then(body => {
         let newVenues = body;
         this.setState({ venues: newVenues });
-      });
+      })
+      .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
@@ -236,8 +238,6 @@ class VenueContainer extends Component {
             </Link>
           </div>
 
-          <div className="row">{venueList}</div>
-          <hr style={{ border: "2px solid blue" }} />
           <HelperLinks user={this.props.user} />
         </div>
       </React.Fragment>
@@ -246,3 +246,10 @@ class VenueContainer extends Component {
 }
 
 export default VenueContainer;
+
+{
+  /* <hr style={{ border: "2px solid blue" }} /> */
+}
+{
+  /* <div className="row">{venueList}</div> */
+}
