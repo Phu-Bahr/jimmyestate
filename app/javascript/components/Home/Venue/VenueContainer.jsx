@@ -238,6 +238,8 @@ class VenueContainer extends Component {
             </Link>
           </div>
 
+          <div className="row">{venueList}</div>
+          <hr style={{ border: "2px solid blue" }} />
           <HelperLinks user={this.props.user} />
         </div>
       </React.Fragment>
@@ -248,8 +250,6 @@ class VenueContainer extends Component {
 export default VenueContainer;
 
 {
-  /* <hr style={{ border: "2px solid blue" }} /> */
 }
 {
-  /* <div className="row">{venueList}</div> */
 }
