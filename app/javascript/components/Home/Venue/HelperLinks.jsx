@@ -6,7 +6,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 const HelperLinks = props => {
   return (
     <div className="col-md-6 col-middle px-3 py-2">
-      <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+      <ScrollAnimation animateIn="fadeIn">
         <Link to={`/${props.route}`}>
           <div className="card border-0">
             <div className="parent m-0">
