@@ -5,12 +5,6 @@ class EditHelperLinks extends Component {
     super(props);
     this.state = {
       name: this.props.name,
-      street: this.props.street,
-      city: this.props.city,
-      state: this.props.state,
-      zip: this.props.zip,
-      telephone: this.props.telephone,
-      url: this.props.url,
       venue_image: this.props.venueImage
     };
 
@@ -25,25 +19,10 @@ class EditHelperLinks extends Component {
   onSubmit(event) {
     event.preventDefault();
     const urls = `/api/v1/venues/update/${this.props.id}`;
-    const {
-      name,
-      street,
-      city,
-      state,
-      zip,
-      telephone,
-      url,
-      venue_image
-    } = this.state;
+    const { name, venue_image } = this.state;
 
     const body = {
       name,
-      street,
-      city,
-      state,
-      zip,
-      telephone,
-      url,
       venue_image
     };
 
@@ -74,7 +53,7 @@ class EditHelperLinks extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="row">
             <div className="col-sm-6 pt-2">
-              <label htmlFor="venueName">Venue name</label>
+              <label htmlFor="venueName">Card Title</label>
               <input
                 type="text"
                 name="name"
@@ -87,7 +66,7 @@ class EditHelperLinks extends Component {
             </div>
 
             <div className="col-sm-6 pt-2">
-              <label htmlFor="venueImage">Venue Image Link</label>
+              <label htmlFor="venueImage">Card Image Link</label>
               <input
                 type="text"
                 name="venue_image"

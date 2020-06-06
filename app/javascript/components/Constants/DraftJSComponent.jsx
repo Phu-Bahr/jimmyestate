@@ -162,7 +162,7 @@ class DraftJSContainer extends Component {
       );
     } else {
       adminToggle = (
-        <div className="container pb-5 pt-3">
+        <div className="container py-3">
           <Editor
             toolbarHidden
             editorState={this.state.editorState}
