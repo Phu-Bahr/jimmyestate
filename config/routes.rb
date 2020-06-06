@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   delete :logout, to: "api/v1/sessions#logout"
   get :logged_in, to: "api/v1/sessions#logged_in"
   
-  namespace :api do
-    namespace :v1 do
-      get 'venues/index'
-      post 'venues/create'
-      put 'venues/update/:id', to: 'venues#update'
-      delete '/destroy/:id', to: 'venues#destroy'
-    end
-  end
+  # namespace :api do
+  #   namespace :v1 do
+  #     get 'venues/index'
+  #     post 'venues/create'
+  #     put 'venues/update/:id', to: 'venues#update'
+  #     delete '/destroy/:id', to: 'venues#destroy'
+  #   end
+  # end
 
   namespace :api do
     namespace :v1 do
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :registrations, only: [:create]
       resources :sessions, only: [:create]
       resources :abouts, only: [:index, :update]
+      resources :helper_links, only: [:index, :update, :create, :destroy]
       resources :about_companies, only: [:index, :update, :create]
       resources :jimmy_tips, only: [:index, :update, :create]
       resources :jimmy_partners, only: [:index, :update, :create]
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
       resources :relocation_photos, only: [:index, :create, :destroy]
       resources :buying_contents, only: [:index, :create, :update, :destroy]
       resources :selling_contents, only: [:index, :create, :update, :destroy]
-      resources :venue_edits, only: [:index, :update]
+     
     end
   end
 

@@ -1,0 +1,2 @@
+class HelperLink < ApplicationRecord
+end

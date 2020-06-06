@@ -6,7 +6,6 @@ import {
   Redirect
 } from "react-router-dom";
 import Home from "../components/Home/Home";
-import NewVenue from "../components/Home/Venue/NewVenue";
 import Registration from "../components/Home/User/Registration";
 import Login from "../components/Home/User/Login";
 import AboutContainer from "../components/Home/About/AboutContainer";
@@ -269,7 +268,7 @@ class App extends Component {
                 />
               )}
             />
-            <ProtectedRoute path="/newVenue" component={NewVenue} />
+
             <ProtectedRoute exact path="/addcommunity" component={NewTown} />
             <ProtectedRoute
               exact
