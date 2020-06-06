@@ -1,23 +1,24 @@
 import React, { Component } from "react";
-import VenueTile from "./VenueTile";
 import { Link } from "react-router-dom";
-import { ParallaxBanner } from "../../Constants/Constants";
 import HelperLinks from "./HelperLinks";
 import ScrollAnimation from "react-animate-on-scroll";
+import NewHelperCard from "./NewHelperCard";
+import { FadeIn } from "../../Constants/Constants";
 
 class VenueContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      venues: [],
+      townListData: [],
+      helperListData: [],
       selectedStepId: null,
       refreshKey: false,
-      bannerImage: ""
+      bannerImage: "",
+      visible: false
     };
-    this.deleteVenue = this.deleteVenue.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
     this.setSelectedStep = this.setSelectedStep.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.onSubmitEdit = this.onSubmitEdit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
@@ -25,7 +26,13 @@ class VenueContainer extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  toggleRefreshKey(event) {
+  onClick = () => {
+    this.state.visible
+      ? this.setState({ visible: false })
+      : this.setState({ visible: true });
+  };
+
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
@@ -38,12 +45,12 @@ class VenueContainer extends Component {
   }
 
   componentDidMount() {
-    this.fetchVenueList();
-    this.fetchVenueEdits();
+    this.fetchTownList();
+    this.fetchHelperList();
   }
 
-  fetchVenueEdits() {
-    fetch("/api/v1/venue_edits")
+  fetchTownList() {
+    fetch("/api/v1/towns")
       .then(response => {
         if (response.ok) {
           return response;
@@ -55,13 +62,13 @@ class VenueContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ bannerImage: body[0].bannerImage });
+        this.setState({ townListData: body });
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
-  fetchVenueList() {
-    fetch("/api/v1/venues/index")
+  fetchHelperList() {
+    fetch("/api/v1/helper_links")
       .then(response => {
         if (response.ok) {
           return response;
@@ -73,15 +80,16 @@ class VenueContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newVenues = body;
-        this.setState({ venues: newVenues });
+        this.setState({
+          helperListData: body
+        });
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch("/api/v1/venues/index")
+      fetch("/api/v1/helper_links")
         .then(response => {
           if (response.ok) {
             return response;
@@ -93,16 +101,15 @@ class VenueContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newVenues = body;
-          this.setState({ venues: newVenues });
+          this.setState({ helperListData: body });
         })
         .then(this.setState({ refreshKey: false }))
         .catch(error => console.log(error.message));
     }
   }
 
-  deleteVenue(id) {
-    const urls = `/api/v1/destroy/${id}`;
+  deleteCard(id) {
+    const urls = `/api/v1/helper_links/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(urls, {
       method: "DELETE",
@@ -124,126 +131,73 @@ class VenueContainer extends Component {
       .catch(error => console.log(error.message));
   }
 
-  onSubmitEdit(event) {
-    event.preventDefault();
-    // need to make url more dynamic than hard code 1
-    const urls = "/api/v1/venue_edits/1";
-    const { bannerImage } = this.state;
-
-    const body = {
-      bannerImage
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(urls, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("update complete");
-          return response;
-        } else {
-          alert("something went wrong with update");
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
-
   render() {
-    const venueData = this.state.venues;
-    let venueList = venueData.map(venue => {
-      let hideUpdate;
-      if (venue.id === this.state.selectedStepId) {
-        //using fadein and out will cause white space on footer.
-        hideUpdate = "";
-      } else {
-        hideUpdate = "invisible";
-      }
+    console.log("venuecontainer state", this.state);
 
+    let cards = this.state.helperListData.map(element => {
       let handleClick = () => {
         let result = confirm("Are you sure?");
         if (result) {
-          this.deleteVenue(venue.id);
+          this.deleteCard(element.id);
         }
       };
 
-      let clickHideUpdate = () => {
-        this.setSelectedStep(venue.id);
-      };
-
       return (
-        <VenueTile
-          key={venue.id}
-          id={venue.id}
-          name={venue.name}
-          street={venue.street}
-          city={venue.city}
-          state={venue.state}
-          zip={venue.zip}
-          telephone={venue.telephone}
-          url={venue.url}
-          venueImage={venue.venue_image}
+        <HelperLinks
+          key={element.id}
+          id={element.id}
+          image={element.image}
+          title={element.title}
+          route={element.route}
           handleClick={handleClick}
-          clickHideUpdate={clickHideUpdate}
-          hideUpdate={hideUpdate}
-          hideEditButton={this.props.hideEditButton}
           toggleRefreshKey={this.toggleRefreshKey}
+          user={this.props.user}
         />
       );
     });
 
-    // let bannerForm = (
-    //   <div className="container pt-5">
-    //     <div className="row">
-    //       <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
-    //         <form onSubmit={this.onSubmitEdit}>
-    //           <label htmlFor="bannerImage">Banner Image</label>
-    //           <div className="form-group">
-    //             <input
-    //               type="text"
-    //               name="bannerImage"
-    //               id="bannerImage"
-    //               className="form-control"
-    //               onChange={this.onChange}
-    //               value={this.state.bannerImage}
-    //             />
-    //           </div>
-
-    //           <button type="submit" className="btn custom-button">
-    //             Submit Update
-    //           </button>
-    //         </form>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
+    let townlist = this.state.townListData.map(element => {
+      return (
+        <div className="col-md-6" key={element.id}>
+          <Link to={`/towns/${element.id}`} className="helperL py-1">
+            {element.name}
+          </Link>
+        </div>
+      );
+    });
 
     return (
       <React.Fragment>
         <div className="container pb-5 pt-2 px-5">
-          <div className={"col text-center" + " " + this.props.hideEditButton}>
-            <Link to="/newVenue">
-              <button type="button" className="btn-info mb-3">
-                Add new venue
-              </button>
-            </Link>
+          {this.props.user.admin ? (
+            <NewHelperCard toggleRefreshKey={this.toggleRefreshKey} />
+          ) : null}
+
+          <div className="row">
+            <div className="col-md-6 col-middle py-2">
+              <div className="card border-0" onClick={this.onClick}>
+                <div className="parent m-0">
+                  <div className="child particles">
+                    <img
+                      className="venueImage card-img-top"
+                      src="https://lh3.googleusercontent.com/pw/ACtC-3fX36AGNlgvaqYaNLDdUMZPw7xXuOgORVB6qcCIt3cEDRvrlDXXzMKM_YFa4FteDWZVekUn4SBSgzkyllikMHJoC0gcX9WN47V0auJqFF8pHqRJAp8dtRlRKkHIQpujtN5sf4p6QeO1ynxzS9v_U1qdxA=w952-h634-no?authuser=0"
+                    />
+                    <div className="venueTitle">Communities of Expertise</div>
+                  </div>
+                </div>
+              </div>
+
+              {this.state.visible ? (
+                <FadeIn>
+                  <div className="card-body venueDetails container">
+                    <div className="row">{townlist}</div>
+                  </div>
+                </FadeIn>
+              ) : null}
+            </div>
+
+            {cards}
           </div>
-          {/* 
-          <div className="row">{venueList}</div>
-          <hr style={{ border: "2px solid blue" }} /> */}
-          <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
-            <HelperLinks user={this.props.user} />
-          </ScrollAnimation>
         </div>
       </React.Fragment>
     );
@@ -251,8 +205,3 @@ class VenueContainer extends Component {
 }
 
 export default VenueContainer;
-
-{
-}
-{
-}
