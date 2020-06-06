@@ -46,9 +46,8 @@ class Home extends Component {
         <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
           <JimmyBusinessPartners user={this.props.user} />
         </ScrollAnimation>
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
-          <VenueContainer hideEditButton={hideEditButton} {...this.props} />
-        </ScrollAnimation>
+
+        <VenueContainer hideEditButton={hideEditButton} {...this.props} />
       </div>
     );
   }

@@ -3,6 +3,7 @@ import VenueTile from "./VenueTile";
 import { Link } from "react-router-dom";
 import { ParallaxBanner } from "../../Constants/Constants";
 import HelperLinks from "./HelperLinks";
+import ScrollAnimation from "react-animate-on-scroll";
 
 class VenueContainer extends Component {
   constructor(props) {
@@ -229,7 +230,7 @@ class VenueContainer extends Component {
 
     return (
       <React.Fragment>
-        <div className="container p-5">
+        <div className="container pb-5 pt-2 px-5">
           <div className={"col text-center" + " " + this.props.hideEditButton}>
             <Link to="/newVenue">
               <button type="button" className="btn-info mb-3">
@@ -237,10 +238,12 @@ class VenueContainer extends Component {
               </button>
             </Link>
           </div>
-
+          {/* 
           <div className="row">{venueList}</div>
-          <hr style={{ border: "2px solid blue" }} />
-          <HelperLinks user={this.props.user} />
+          <hr style={{ border: "2px solid blue" }} /> */}
+          <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+            <HelperLinks user={this.props.user} />
+          </ScrollAnimation>
         </div>
       </React.Fragment>
     );
