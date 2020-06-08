@@ -509,6 +509,32 @@ h6 {
   animation-name: slideIn;
 }
 
+.navbar .nav-item:not(:last-child) {
+  margin-right: 10px;
+}
+
+// .dropdown-toggle::after {
+//   transition: transform 0.15s linear;
+// }
+
+// .show.dropdown:hover .dropdown-toggle::after {
+//   transform: translateY(3px);
+// }
+
+@media only screen and (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-toggle::after {
+    transform: translateY(3px);
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+}
+
 // end of navbar
 
 // footer
