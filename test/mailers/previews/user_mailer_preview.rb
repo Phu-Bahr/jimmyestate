@@ -14,4 +14,9 @@ class UserMailerPreview < ActionMailer::Preview
         relocation = Relocation.new(name: "Tony Dog", email: "tp@hotmail.com", message: "testing this dog!")
         UserMailer.with(relocation: relocation).relocation
     end
+
+    def market_report
+        market_report = MarketReport.new(name: "Tony Dog", email: "tp@hotmail.com", message: "testing this dog!")
+        UserMailer.with(market_report: market_report).market_report
+    end
 end

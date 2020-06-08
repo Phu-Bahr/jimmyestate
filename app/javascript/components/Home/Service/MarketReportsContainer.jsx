@@ -18,7 +18,7 @@ class MarketReportsContainer extends Component {
       time: "Anytime",
       destinationaddress: "",
       timeframe: "",
-      assistsell: "Maybe",
+      assistsell: "One Time",
       message: "",
       marketEditData: [],
       paragraph1: "",
@@ -38,7 +38,7 @@ class MarketReportsContainer extends Component {
     this.clickEdit = this.clickEdit.bind(this);
   }
 
-  clickEdit(event) {
+  clickEdit() {
     if (this.state.hideDiv === false) {
       this.setState({ hideDiv: true });
     } else {
@@ -46,7 +46,7 @@ class MarketReportsContainer extends Component {
     }
   }
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
@@ -67,7 +67,7 @@ class MarketReportsContainer extends Component {
 
     this.recaptcha.execute();
 
-    const urls = "/api/v1/relocations";
+    const urls = "/api/v1/market_reports";
 
     const {
       name,
@@ -210,14 +210,6 @@ class MarketReportsContainer extends Component {
   }
 
   render() {
-    let hideEditButton;
-    if (this.props.user.admin) {
-      hideEditButton = "";
-    } else {
-      // set below to blank string to default show edit buttons
-      hideEditButton = "invisible";
-    }
-
     let hide;
     if (this.state.hideDiv) {
       hide = "invisible";
@@ -256,7 +248,7 @@ class MarketReportsContainer extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="bannerText1">Your bannerText1</label>
+            <label htmlFor="bannerText1">Your Banner Text 1</label>
             <input
               type="text"
               name="bannerText1"
@@ -268,7 +260,7 @@ class MarketReportsContainer extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="bannerText2">Your bannerText2</label>
+            <label htmlFor="bannerText2">Your Banner Text 2</label>
             <input
               type="text"
               name="bannerText2"
@@ -280,7 +272,7 @@ class MarketReportsContainer extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="paragraph1">Your paragraph1</label>
+            <label htmlFor="paragraph1">Your Paragraph 1</label>
             <input
               type="text"
               name="paragraph1"
@@ -292,7 +284,7 @@ class MarketReportsContainer extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="paragraph2">Your paragraph2</label>
+            <label htmlFor="paragraph2">Your Paragraph 2</label>
             <input
               type="text"
               name="paragraph2"
@@ -374,7 +366,7 @@ class MarketReportsContainer extends Component {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="destinationaddress">Your Destination Address</label>
+          <label htmlFor="destinationaddress">Neighborhood of Interest</label>
           <input
             type="text"
             name="destinationaddress"
@@ -396,7 +388,7 @@ class MarketReportsContainer extends Component {
             />
           </div>
           <div className="form-group col-md-5">
-            <label htmlFor="assistsell">Need assistance selling?</label>
+            <label htmlFor="assistsell">Report Frequency</label>
             <select
               type="text"
               name="assistsell"
@@ -406,9 +398,10 @@ class MarketReportsContainer extends Component {
               required
               value={this.state.propertytype}
             >
-              <option>Maybe</option>
-              <option>Yes</option>
-              <option>No</option>
+              <option>One Time</option>
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
             </select>
           </div>
         </div>

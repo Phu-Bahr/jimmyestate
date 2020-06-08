@@ -27,4 +27,13 @@ class UserMailer < ApplicationMailer
             subject: "Jimmy Estates - Relocation Inquiry - #{params[:relocation].name}"
         )
     end
+
+    def market_report
+        @market_report = params[:market_report]
+
+        mail(
+            to: Rails.application.credentials.gmail[:admin],
+            subject: "Jimmy Estates - Market Report Inquiry - #{params[:market_report].name}"
+        )
+    end
 end

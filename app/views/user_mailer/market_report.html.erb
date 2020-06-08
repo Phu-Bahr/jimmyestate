@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Email from Jimmy Estates Site </h1>
+    <h2>Market Report Inquiry</h2>
+    <p>
+      <strong>From:</strong> <%= @market_report.name %><br>
+      <strong>Email:</strong> <%= @market_report.email %><br>
+      <strong>Phone:</strong> <%= @market_report.phone %><br>
+      <strong>Best time to call:</strong> <%= @market_report.time %><br>
+      <strong>Destination Address:</strong> <%= @market_report.destinationaddress %><br>
+      <strong>Moving Timeframe:</strong> <%= @market_report.timeframe %><br>
+      <strong>Report Frequency:</strong> <%= @market_report.assistsell %><br>
+   
+    </p>
+    <p>
+    <strong>Message:</strong><br><%= @market_report.message %>.
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>
+
