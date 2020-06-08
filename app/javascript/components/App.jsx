@@ -26,6 +26,7 @@ import HomeWorthContainer from "../components/Home/Service/HomeWorthContainer";
 import RelocationContainer from "../components/Home/Service/RelocationContainer";
 import BuyingHomeContainer from "../components/Home/Service/BuyingHomeContainer";
 import SellingHomeContainer from "../components/Home/Service/SellingHomeContainer";
+import MarketReportsContainer from "../components/Home/Service/MarketReportsContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -196,6 +197,17 @@ class App extends Component {
               path="/relocation"
               render={props => (
                 <RelocationContainer
+                  {...props}
+                  loggedInStatus={this.state.loggedInStatus}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/market-reports"
+              render={props => (
+                <MarketReportsContainer
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   user={this.state.user}

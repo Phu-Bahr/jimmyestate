@@ -1,0 +1,2 @@
+class MarketReportEdit < ApplicationRecord
+end
