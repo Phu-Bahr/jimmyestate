@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 
 class EditTown extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class EditTown extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.refreshTownList = this.refreshTownList.bind(this);
   }
+
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   refreshTownList(event) {
     this.props.refreshTownList();
@@ -188,6 +193,7 @@ class EditTown extends Component {
               <Link
                 to={`/towns/${this.state.id}`}
                 className="btn btn-link mt-3"
+                onClick={this.scrollToTop}
               >
                 Back to Town
               </Link>

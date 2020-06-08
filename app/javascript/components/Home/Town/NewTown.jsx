@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 
 class NewTown extends React.Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class NewTown extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.refreshTownList = this.refreshTownList.bind(this);
   }
+
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   refreshTownList(event) {
     this.props.refreshTownList();
@@ -156,7 +161,11 @@ class NewTown extends React.Component {
                 Create Community
               </button>
 
-              <Link to="/" className="btn btn-link mt-3">
+              <Link
+                to="/"
+                className="btn btn-link mt-3 
+                onClick={this.scrollToTop}"
+              >
                 Back to Home Page
               </Link>
             </form>

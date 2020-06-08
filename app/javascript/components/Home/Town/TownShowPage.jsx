@@ -161,11 +161,7 @@ class TownShowPage extends Component {
         <div className="container pb-5 pt-3">
           <div className="container text-center">
             <Link to={`/editcommunity/${this.props.match.params.id}`}>
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.clickEdit}
-              >
+              <button type="button" className="btn btn-info">
                 Edit Town/Header
               </button>
             </Link>
