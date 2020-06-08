@@ -1,0 +1,2 @@
+class MarketReportPhoto < ApplicationRecord
+end

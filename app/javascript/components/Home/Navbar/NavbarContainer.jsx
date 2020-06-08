@@ -132,6 +132,15 @@ class NavbarContainer extends Component {
                 Relocation Assistance
               </Link>
             </div>
+            <div className="container py-1">
+              <Link
+                to="/market-reports"
+                className="dropdown-item navbar-underline"
+                onClick={this.scrollToTop}
+              >
+                Market Reports
+              </Link>
+            </div>
           </div>
         </li>
         <li className="nav-item dropdown">

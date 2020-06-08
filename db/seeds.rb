@@ -134,4 +134,10 @@
 #     lng: "test"
 # )
 
-
+marketReportSeed = MarketReportEdit.create!(
+    bannerImage: "test",
+    paragraph1: "test", 
+    paragraph2: "test", 
+    bannerText1: "test", 
+    bannerText2: "test"
+)
