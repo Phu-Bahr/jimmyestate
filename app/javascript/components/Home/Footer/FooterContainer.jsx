@@ -25,7 +25,8 @@ class FooterContainer extends Component {
       other: "",
       zillow: "",
       realtor: "",
-      refreshKey: false
+      refreshKey: false,
+      urlGET: "footers"
     };
 
     this.clickEdit = this.clickEdit.bind(this);
@@ -34,11 +35,11 @@ class FooterContainer extends Component {
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey() {
     this.setState({ refreshKey: true });
   }
 
-  clickEdit(event) {
+  clickEdit() {
     if (this.state.hideDiv === false) {
       this.setState({ hideDiv: true });
     } else {
@@ -52,7 +53,7 @@ class FooterContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/footers/1";
+    const urls = `/api/v1/${this.state.urlGET}/1`;
     const {
       name,
       street,
@@ -110,7 +111,7 @@ class FooterContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/footers")
+    fetch(`/api/v1/${this.state.urlGET}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -145,7 +146,7 @@ class FooterContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch("api/v1/footers")
+      fetch(`api/v1/${this.state.urlGET}`)
         .then(response => {
           if (response.ok) {
             return response;
@@ -433,7 +434,6 @@ class FooterContainer extends Component {
               to="/login"
               className="float-left btn"
               style={{ height: 40, width: 40 }}
-              onClick={this.props.adminMode}
             ></Link>
           </div>
         </div>

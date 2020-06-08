@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import HelperLinks from "./HelperLinks";
-import ScrollAnimation from "react-animate-on-scroll";
 import NewHelperCard from "./NewHelperCard";
 import { FadeIn } from "../../Constants/Constants";
+import { animateScroll as scroll } from "react-scroll";
 
 class VenueContainer extends Component {
   constructor(props) {
@@ -43,6 +43,10 @@ class VenueContainer extends Component {
       this.setState({ selectedStepId: stepId });
     }
   }
+
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   componentDidMount() {
     this.fetchTownList();
@@ -159,7 +163,11 @@ class VenueContainer extends Component {
     let townlist = this.state.townListData.map(element => {
       return (
         <div className="col-md-6" key={element.id}>
-          <Link to={`/towns/${element.id}`} className="helperL py-1">
+          <Link
+            to={`/towns/${element.id}`}
+            className="helperL py-1"
+            onClick={this.scrollToTop}
+          >
             {element.name}
           </Link>
         </div>

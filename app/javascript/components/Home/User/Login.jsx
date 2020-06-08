@@ -160,5 +160,3 @@ class Login extends Component {
 }
 
 export default Login;
-
-// you can only have one button in a form apparently. having log out button IN the form is same as pressing log in.
