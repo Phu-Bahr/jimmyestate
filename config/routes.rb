@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :relocation_photos, only: [:index, :create, :destroy]
       resources :buying_contents, only: [:index, :create, :update, :destroy]
       resources :selling_contents, only: [:index, :create, :update, :destroy]
+      resources :market_reports, only: [:create]
       resources :market_report_edits, only: [:index, :update]
       resources :market_report_photos, only: [:index, :create, :destroy]
      
