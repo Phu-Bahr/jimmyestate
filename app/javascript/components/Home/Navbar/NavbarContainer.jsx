@@ -4,6 +4,35 @@ import TownList from "../Town/TownList";
 import { animateScroll as scroll } from "react-scroll";
 import { FadeInDown } from "../../Constants/Constants";
 
+// const $dropdown = $(".dropdown");
+// const $dropdownToggle = $(".dropdown-toggle");
+// const $dropdownMenu = $(".dropdown-menu");
+// const showClass = "show";
+
+// $(window).on("load resize", function() {
+//   if (this.matchMedia("(min-width: 768px)").matches) {
+//     $dropdown.hover(
+//       function() {
+//         const $this = $(this);
+//         $this.addClass(showClass);
+//         $this.find($dropdownToggle).attr("aria-expanded", "true");
+//         $this.find($dropdownMenu).addClass(showClass);
+//       },
+//       function() {
+//         const $this = $(this);
+//         $this.removeClass(showClass);
+//         $this.find($dropdownToggle).attr("aria-expanded", "false");
+//         $this.find($dropdownMenu).removeClass(showClass);
+//       }
+//     );
+//   } else {
+//     $dropdown.off("mouseenter mouseleave");
+//   }
+// });
+
+//if window size is over 768px, add show class on hover change dropdown toggle to aria expanded true
+//off hover remove show class
+
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
