@@ -214,76 +214,79 @@ class ContactContainer extends Component {
 
     let editMenu = (
       <React.Fragment>
-        <div className="container pb-5">
-          <form onSubmit={this.onSubmit}>
-            <div className="form-row">
-              <div className="col-md-6">
-                <FormMaps
-                  formConst={bannerFormContent}
-                  onChange={this.onChange}
-                  value={this.state}
-                />
+        <div className="flex-container">
+          <div className="container pb-5">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-row">
+                <div className="col-md-6">
+                  <FormMaps
+                    formConst={bannerFormContent}
+                    onChange={this.onChange}
+                    value={this.state}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <FormMaps
+                    formConst={dataFormContent}
+                    onChange={this.onChange}
+                    value={this.state}
+                  />
+                </div>
               </div>
-              <div className="col-md-6">
-                <FormMaps
-                  formConst={dataFormContent}
-                  onChange={this.onChange}
-                  value={this.state}
-                />
-              </div>
-            </div>
 
-            <div className="text-center">
-              <div>
-                <button type="submit" className="btn custom-button">
-                  Submit changes
-                </button>
+              <div className="text-center">
+                <div>
+                  <button type="submit" className="btn custom-button">
+                    Submit changes
+                  </button>
+                </div>
+                <div className="py-3">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.onUpdateGeocode}
+                  >
+                    Update Geocode
+                  </button>
+                </div>
               </div>
-              <div className="py-3">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.onUpdateGeocode}
-                >
-                  Update Geocode
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </React.Fragment>
     );
-
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes {...this.state} />
-        </FadeIn>
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes {...this.state} />
+          </FadeIn>
 
-        <div className="container py-5">
-          <div className="row">
-            <div className="col-md-6 pb-3">
-              <FadeInLeft>
-                <EmailForm />
-              </FadeInLeft>
-            </div>
-            <div className="col-md-6">
-              <FadeInRight>
-                <div className="text-center pb-3">{contactData}</div>
-              </FadeInRight>
-              <div>
+          <div className="container py-5">
+            <div className="row">
+              <div className="col-md-6 pb-3">
+                <FadeInLeft>
+                  <EmailForm />
+                </FadeInLeft>
+              </div>
+              <div className="col-md-6">
                 <FadeInRight>
-                  <Map
-                    lat={parseFloat(this.state.lat)}
-                    lng={parseFloat(this.state.lng)}
-                  />
+                  <div className="text-center pb-3">{contactData}</div>
                 </FadeInRight>
+                <div>
+                  <FadeInRight>
+                    <Map
+                      lat={parseFloat(this.state.lat)}
+                      lng={parseFloat(this.state.lng)}
+                    />
+                  </FadeInRight>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {this.props.user.admin ? editMenu : null}
+          {this.props.user.admin ? editMenu : null}
+        </div>
       </React.Fragment>
     );
   }

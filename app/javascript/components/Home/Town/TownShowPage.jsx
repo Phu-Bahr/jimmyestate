@@ -197,24 +197,26 @@ class TownShowPage extends Component {
     }
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes {...this.state.townData} />
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes {...this.state.townData} />
 
-          <div>{adminToggle}</div>
+            <div>{adminToggle}</div>
 
-          <div className="container pb-5">
-            <div className="townheader-font">
-              {this.state.townData.townheader}
+            <div className="container pb-5">
+              <div className="townheader-font">
+                {this.state.townData.townheader}
+              </div>
+              <ul>
+                <TownLinks
+                  loggedInStatus={this.props.loggedInStatus}
+                  user={this.props.user}
+                  paramID={this.props.match.params.id}
+                />
+              </ul>
             </div>
-            <ul>
-              <TownLinks
-                loggedInStatus={this.props.loggedInStatus}
-                user={this.props.user}
-                paramID={this.props.match.params.id}
-              />
-            </ul>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
       </React.Fragment>
     );
   }

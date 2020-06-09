@@ -81,10 +81,8 @@ export const ParallaxBannerRoutes = props => (
     }}
   >
     <div className="container py-5">
-      <div className="pt-5">
-        <h1>{props.headerText1}</h1>
-        <h4>{props.headerText2}</h4>
-      </div>
+      <h1>{props.headerText1}</h1>
+      <h4>{props.headerText2}</h4>
     </div>
   </div>
 );
@@ -95,6 +93,25 @@ export const FormMaps = props => {
     return (
       <div key={key} className="form-group">
         <label htmlFor={key}>{value}</label>
+        <input
+          className="form-control"
+          type="text"
+          id={key}
+          name={key}
+          onChange={props.onChange}
+          value={props.value[key]}
+        />
+      </div>
+    );
+  });
+
+  return keyValuePair;
+};
+
+export const FormNoLabel = props => {
+  const keyValuePair = Object.entries(props.data).map(([key, value]) => {
+    return (
+      <div key={key} className="form-group">
         <input
           className="form-control"
           type="text"

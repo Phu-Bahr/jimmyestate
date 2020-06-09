@@ -130,189 +130,183 @@ class App extends Component {
     };
 
     return (
-      <React.Fragment>
-        <Router>
-          <AdminBanner
-            loggedInStatus={this.state.loggedInStatus}
-            user={this.state.user}
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
+      <Router>
+        <AdminBanner
+          loggedInStatus={this.state.loggedInStatus}
+          user={this.state.user}
+          handleLogin={this.handleLogin}
+          handleLogout={this.handleLogout}
+        />
+
+        <NavbarContainer
+          loggedInStatus={this.state.loggedInStatus}
+          user={this.state.user}
+          refreshTownList={this.refreshTownList}
+          ref={this.refreshingTownList}
+        />
+
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Home
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                handleLogout={this.handleLogout}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/buying-a-home"
+            render={props => (
+              <BuyingHomeContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/selling-a-home"
+            render={props => (
+              <SellingHomeContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/homeworth"
+            render={props => (
+              <HomeWorthContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/relocation"
+            render={props => (
+              <RelocationContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/market-reports"
+            render={props => (
+              <MarketReportsContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/about"
+            render={props => (
+              <AboutContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/aboutcompany"
+            render={props => (
+              <AboutCompanyContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/portfolio"
+            render={props => (
+              <PortfolioContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/jimmys-tips"
+            render={props => (
+              <JimmysTipsContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/contact"
+            render={props => (
+              <ContactContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/towns/:id?"
+            render={props => (
+              <TownShowPage
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
           />
 
-          <NavbarContainer
-            loggedInStatus={this.state.loggedInStatus}
-            user={this.state.user}
-            refreshTownList={this.refreshTownList}
-            ref={this.refreshingTownList}
+          <ProtectedRoute exact path="/addcommunity" component={NewTown} />
+          <ProtectedRoute
+            exact
+            path="/editcommunity/:id?"
+            component={EditTown}
           />
-
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Home
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  handleLogout={this.handleLogout}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/buying-a-home"
-              render={props => (
-                <BuyingHomeContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/selling-a-home"
-              render={props => (
-                <SellingHomeContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/homeworth"
-              render={props => (
-                <HomeWorthContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/relocation"
-              render={props => (
-                <RelocationContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/market-reports"
-              render={props => (
-                <MarketReportsContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/about"
-              render={props => (
-                <AboutContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/aboutcompany"
-              render={props => (
-                <AboutCompanyContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/portfolio"
-              render={props => (
-                <PortfolioContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/jimmys-tips"
-              render={props => (
-                <JimmysTipsContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/contact"
-              render={props => (
-                <ContactContainer
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/towns/:id?"
-              render={props => (
-                <TownShowPage
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                />
-              )}
-            />
-
-            <ProtectedRoute exact path="/addcommunity" component={NewTown} />
-            <ProtectedRoute
-              exact
-              path="/editcommunity/:id?"
-              component={EditTown}
-            />
-            <Route
-              exact
-              path="/login"
-              render={props => (
-                <Login
-                  {...props}
-                  loggedInStatus={this.state.loggedInStatus}
-                  user={this.state.user}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/registration"
-              component={Registration}
-            />
-            <Route path="*" component={() => "404 NOT FOUND"} />
-          </Switch>
-          <FooterContainer
-            loggedInStatus={this.state.loggedInStatus}
-            user={this.state.user}
+          <Route
+            exact
+            path="/login"
+            render={props => (
+              <Login
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+                handleLogin={this.handleLogin}
+                handleLogout={this.handleLogout}
+              />
+            )}
           />
-        </Router>
-      </React.Fragment>
+          <ProtectedRoute exact path="/registration" component={Registration} />
+          <Route path="*" component={() => "404 NOT FOUND"} />
+        </Switch>
+        <FooterContainer
+          loggedInStatus={this.state.loggedInStatus}
+          user={this.state.user}
+        />
+      </Router>
     );
   }
 }

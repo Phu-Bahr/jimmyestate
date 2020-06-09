@@ -438,39 +438,41 @@ class RelocationContainer extends Component {
 
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes
-            bannerImage={this.state.bannerImage}
-            headerText1={this.state.bannerText1}
-            headerText2={this.state.bannerText2}
-          />
-        </FadeIn>
-        {this.props.user.admin ? (
-          <div className="container py-3">
-            <div className="row">
-              <div className="col text-center">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.clickEdit}
-                >
-                  Edit
-                </button>
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes
+              bannerImage={this.state.bannerImage}
+              headerText1={this.state.bannerText1}
+              headerText2={this.state.bannerText2}
+            />
+          </FadeIn>
+          {this.props.user.admin ? (
+            <div className="container py-3">
+              <div className="row">
+                <div className="col text-center">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.clickEdit}
+                  >
+                    Edit
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ) : null}
+          ) : null}
 
-        <div className="container py-5">
-          <div className="row">
-            <div className="col-sm-6 pb-3">
-              <FadeInLeft>
-                {locationContent}
-                {editRelocationInfo}
-                {contactRelocationForm}
-              </FadeInLeft>
+          <div className="container py-5">
+            <div className="row">
+              <div className="col-sm-6 pb-3">
+                <FadeInLeft>
+                  {locationContent}
+                  {editRelocationInfo}
+                  {contactRelocationForm}
+                </FadeInLeft>
+              </div>
+              <RelocationPhotoContainer user={this.props.user} hide={hide} />
             </div>
-            <RelocationPhotoContainer user={this.props.user} hide={hide} />
           </div>
         </div>
       </React.Fragment>

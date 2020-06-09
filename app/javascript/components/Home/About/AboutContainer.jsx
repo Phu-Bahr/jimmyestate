@@ -325,40 +325,42 @@ class AboutContainer extends Component {
 
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes
-            bannerImage={this.state.bannerImage}
-            headerText1={this.state.bannerText1}
-            headerText2={this.state.bannerText2}
-          />
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes
+              bannerImage={this.state.bannerImage}
+              headerText1={this.state.bannerText1}
+              headerText2={this.state.bannerText2}
+            />
 
-          <div className="container">
-            <div className="row py-5">
-              <div className="col-md-12">
-                <div className="float-left ml-4 pr-4 mb-3">{photoArea}</div>
-                <div className="">{paragraphs}</div>
+            <div className="container">
+              <div className="row py-5">
+                <div className="col-md-12">
+                  <div className="float-left ml-4 pr-4 mb-3">{photoArea}</div>
+                  <div className="">{paragraphs}</div>
+                </div>
               </div>
             </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
 
-        {this.props.user.admin ? (
-          <div className="container pb-3">
-            <div className="row">
-              <div className="col text-center">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.clickEdit}
-                >
-                  Edit
-                </button>
+          {this.props.user.admin ? (
+            <div className="container pb-3">
+              <div className="row">
+                <div className="col text-center">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.clickEdit}
+                  >
+                    Edit
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ) : null}
+          ) : null}
 
-        {formInput}
+          {formInput}
+        </div>
       </React.Fragment>
     );
   }

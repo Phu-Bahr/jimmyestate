@@ -28,6 +28,12 @@ body,
   background: white;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 74vh;
+}
+
 .master {
   // font-family: "Lato", sans-serif;
   font-weight: 300;
@@ -703,6 +709,13 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 
 // end of social css
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; /* Footer height */
+}
 
 // end of footer
 

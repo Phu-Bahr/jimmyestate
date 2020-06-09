@@ -113,17 +113,19 @@ class PortfolioContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes {...this.state} />
-          {this.props.user.admin ? (
-            <ParallaxEditForm
-              onSubmit={this.onSubmit}
-              onChange={this.onChange}
-              value={this.state}
-            />
-          ) : null}
-        </FadeIn>
-        <PortfolioProperties {...this.props} />
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes {...this.state} />
+            {this.props.user.admin ? (
+              <ParallaxEditForm
+                onSubmit={this.onSubmit}
+                onChange={this.onChange}
+                value={this.state}
+              />
+            ) : null}
+          </FadeIn>
+          <PortfolioProperties {...this.props} />
+        </div>
       </React.Fragment>
     );
   }
