@@ -40,10 +40,10 @@ class Home extends Component {
       <div className="master">
         <JumbotronContainer hideEditButton={hideEditButton} />
 
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+        <ScrollAnimation animateIn="fadeIn">
           <AnnouncementContainer hideEditButton={hideEditButton} />
         </ScrollAnimation>
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+        <ScrollAnimation animateIn="fadeIn">
           <JimmyBusinessPartners user={this.props.user} />
         </ScrollAnimation>
 

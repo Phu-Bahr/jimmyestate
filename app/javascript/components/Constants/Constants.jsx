@@ -33,6 +33,33 @@ export const FadeOut = styled.div`
   animation: 1s ${keyframes`${fadeOut}`};
 `;
 
+export const StyledNavbar = styled.div`
+  position: fixed;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1000;
+`;
+
+export const Transition = styled.div`
+  .active {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s linear, all 0.8s ease-in;
+  }
+  .hidden {
+    visibility: hidden;
+    transform: translate(0, -350%);
+    opacity: 0;
+    transition: visibility 0s, opacity 0.1s linear, all 4s ease-out;
+  }
+  .top {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s linear, all 0.9s ease-in;
+    position: sticky;
+  }
+`;
+
 // needs ...state or banner state
 export const ParallaxBanner = props => (
   <div
@@ -54,8 +81,10 @@ export const ParallaxBannerRoutes = props => (
     }}
   >
     <div className="container py-5">
-      <h1>{props.headerText1}</h1>
-      <h4>{props.headerText2}</h4>
+      <div className="pt-5">
+        <h1>{props.headerText1}</h1>
+        <h4>{props.headerText2}</h4>
+      </div>
     </div>
   </div>
 );
