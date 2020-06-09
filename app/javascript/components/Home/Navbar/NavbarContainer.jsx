@@ -2,41 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TownList from "../Town/TownList";
 import { animateScroll as scroll } from "react-scroll";
-import { FadeInDown } from "../../Constants/Constants";
-
-// const $dropdown = $(".dropdown");
-// const $dropdownToggle = $(".dropdown-toggle");
-// const $dropdownMenu = $(".dropdown-menu");
-// const showClass = "show";
-
-// $(window).on("load resize", function() {
-//   if (this.matchMedia("(min-width: 768px)").matches) {
-//     $dropdown.hover(
-//       function() {
-//         const $this = $(this);
-//         $this.addClass(showClass);
-//         $this.find($dropdownToggle).attr("aria-expanded", "true");
-//         $this.find($dropdownMenu).addClass(showClass);
-//       },
-//       function() {
-//         const $this = $(this);
-//         $this.removeClass(showClass);
-//         $this.find($dropdownToggle).attr("aria-expanded", "false");
-//         $this.find($dropdownMenu).removeClass(showClass);
-//       }
-//     );
-//   } else {
-//     $dropdown.off("mouseenter mouseleave");
-//   }
-// });
-
-//if window size is over 768px, add show class on hover change dropdown toggle to aria expanded true
-//off hover remove show class
+import {
+  FadeInDown,
+  Transition,
+  StyledNavbar
+} from "../../Constants/Constants";
 
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { refreshKey: false };
+    this.state = { refreshKey: false, show: true, scrollPos: 0 };
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   toggleRefreshKey = () => {
@@ -50,6 +26,24 @@ class NavbarContainer extends Component {
   scrollToTop = () => {
     scroll.scrollToTop();
   };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    const { scrollPos } = this.state;
+    console.log("pos top", document.body.getBoundingClientRect().top);
+
+    this.setState({
+      scrollPos: document.body.getBoundingClientRect().top,
+      show: document.body.getBoundingClientRect().top > scrollPos
+    });
+  }
 
   render() {
     let hideEditButton;
@@ -81,47 +75,10 @@ class NavbarContainer extends Component {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Featured Communities
-          </Link>
-          <div
-            className="dropdown-menu dropdown-menu-right animate slideIn"
-            aria-labelledby="navbarDropdown"
-          >
-            <TownList
-              loggedInStatus={this.props.loggedInStatus}
-              user={this.props.user}
-              hideEditButton={hideEditButton}
-              refreshKey={this.state.refreshKey}
-              toggleRefreshKey={this.toggleRefreshKey}
-              toggleRefreshFalse={this.toggleRefreshFalse}
-            />
-            <div className={hideEditButton}>
-              <div className="dropdown-divider"></div>
-              <Link
-                to="/addcommunity"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Add Community
-              </Link>
-            </div>
-          </div>
-        </li>
-
-        <li className="nav-item dropdown">
-          <Link
-            to="/"
-            className="nav-link dropdown-toggle navbar-underline"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
             Services
           </Link>
           <div
-            className="dropdown-menu dropdown-menu-right animate slideIn"
+            className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
             id="about"
             aria-labelledby="navbarDropdown"
           >
@@ -172,6 +129,7 @@ class NavbarContainer extends Component {
             </div>
           </div>
         </li>
+
         <li className="nav-item dropdown">
           <Link
             to="/"
@@ -185,7 +143,7 @@ class NavbarContainer extends Component {
             About
           </Link>
           <div
-            className="dropdown-menu dropdown-menu-right animate slideIn"
+            className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
             id="about"
             aria-labelledby="navbarDropdown"
           >
@@ -228,6 +186,43 @@ class NavbarContainer extends Component {
           </div>
         </li>
 
+        <li className="nav-item dropdown">
+          <Link
+            to="/"
+            className="nav-link dropdown-toggle navbar-underline"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Featured Communities
+          </Link>
+          <div
+            className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
+            aria-labelledby="navbarDropdown"
+          >
+            <TownList
+              loggedInStatus={this.props.loggedInStatus}
+              user={this.props.user}
+              hideEditButton={hideEditButton}
+              refreshKey={this.state.refreshKey}
+              toggleRefreshKey={this.toggleRefreshKey}
+              toggleRefreshFalse={this.toggleRefreshFalse}
+            />
+            <div className={hideEditButton}>
+              <div className="dropdown-divider"></div>
+              <Link
+                to="/addcommunity"
+                className="dropdown-item navbar-underline"
+                onClick={this.scrollToTop}
+              >
+                Add Community
+              </Link>
+            </div>
+          </div>
+        </li>
+
         <li>
           <Link
             to="/contact"
@@ -257,42 +252,48 @@ class NavbarContainer extends Component {
     console.log("window width==>", window.innerWidth);
 
     return (
-      <div className="sticky-top">
-        <FadeInDown>
-          <nav className="navbar navbar-expand-lg navbar-light site-header py-4 navbar-font-type">
-            <div className="container-fluid" style={{ maxWidth: 1150 }}>
-              <Link to="/login">
-                <div className="navbar-font" onClick={this.scrollToTop}>
-                  Jimmy Chao
+      <Transition>
+        <StyledNavbar
+          className={
+            document.body.getBoundingClientRect().top === 0
+              ? "top"
+              : this.state.show
+              ? "active"
+              : "hidden"
+          }
+        >
+          <FadeInDown>
+            <nav className="navbar navbar-expand-lg navbar-light site-header py-4 navbar-font-type">
+              <div className="container-fluid" style={{ maxWidth: 1150 }}>
+                <Link to="/login">
+                  <div className="navbar-font" onClick={this.scrollToTop}>
+                    Jimmy Chao
+                  </div>
+                </Link>
+                <button
+                  type="button"
+                  className="navbar-toggler"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div
+                  className="collapse navbar-collapse justify-content-between"
+                  id="navbarSupportedContent"
+                >
+                  {collapseMenuLogic}
                 </div>
-              </Link>
-              <button
-                type="button"
-                className="navbar-toggler"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div
-                className="collapse navbar-collapse justify-content-between"
-                id="navbarSupportedContent"
-              >
-                {collapseMenuLogic}
               </div>
-            </div>
-          </nav>
-        </FadeInDown>
-      </div>
+            </nav>
+          </FadeInDown>
+        </StyledNavbar>
+      </Transition>
     );
   }
 }
 
 export default NavbarContainer;
-
-// below will close hamburger but UX is super ugly.
-// data-toggle="collapse"
-// data-target="#navbarSupportedContent"

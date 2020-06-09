@@ -244,7 +244,7 @@ class JumbotronContainer extends Component {
 
     return (
       <React.Fragment>
-        <ScrollAnimation animateIn="fadeIn" animateOut="fadeOut">
+        <ScrollAnimation animateIn="fadeIn">
           <div className="text-black text-center">
             <div className="pt-5 jumboBackground">
               <div className=" ">
