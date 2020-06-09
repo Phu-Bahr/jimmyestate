@@ -63,7 +63,7 @@ class Registration extends Component {
 
   render() {
     return (
-      <div>
+      <div className="flex-container">
         <div className="container text-center my-5">
           <div>
             <div className="col-sm-12 col-lg-6 offset-lg-3">

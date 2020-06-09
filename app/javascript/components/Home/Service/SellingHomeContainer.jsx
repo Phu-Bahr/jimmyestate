@@ -167,13 +167,15 @@ class SellingHomeContainer extends Component {
 
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes {...this.state} />
-          {this.props.user.admin === true ? parallaxEditForm : ""}
-        </FadeIn>
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes {...this.state} />
+            {this.props.user.admin === true ? parallaxEditForm : ""}
+          </FadeIn>
 
-        <div>
-          <DraftJSContainer {...this.state} {...this.props} />
+          <div>
+            <DraftJSContainer {...this.state} {...this.props} />
+          </div>
         </div>
       </React.Fragment>
     );

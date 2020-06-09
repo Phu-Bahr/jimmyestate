@@ -37,8 +37,6 @@ class NavbarContainer extends Component {
 
   handleScroll() {
     const { scrollPos } = this.state;
-    console.log("pos top", document.body.getBoundingClientRect().top);
-
     this.setState({
       scrollPos: document.body.getBoundingClientRect().top,
       show: document.body.getBoundingClientRect().top > scrollPos

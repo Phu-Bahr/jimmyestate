@@ -120,21 +120,23 @@ class JimmyTipContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes {...this.state} />
-          {this.props.user.admin === true ? (
-            <ParallaxEditForm
-              value={this.state}
-              onChange={this.onChange}
-              onSubmit={this.onSubmit}
-            />
-          ) : (
-            ""
-          )}
-        </FadeIn>
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes {...this.state} />
+            {this.props.user.admin === true ? (
+              <ParallaxEditForm
+                value={this.state}
+                onChange={this.onChange}
+                onSubmit={this.onSubmit}
+              />
+            ) : (
+              ""
+            )}
+          </FadeIn>
 
-        <div>
-          <DraftJSContainer {...this.state} {...this.props} />
+          <div>
+            <DraftJSContainer {...this.state} {...this.props} />
+          </div>
         </div>
       </React.Fragment>
     );

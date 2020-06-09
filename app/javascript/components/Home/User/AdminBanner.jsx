@@ -24,15 +24,10 @@ class AdminBanner extends Component {
   }
 
   render() {
-    let hideEditButton = "invisible";
-    if (this.props.user.admin === true) {
-      hideEditButton = "";
-    }
-
     return (
       <React.Fragment>
-        <div className={"container text-center p-4" + " " + hideEditButton}>
-          <div>
+        {this.props.user.admin ? (
+          <div className="container text-center p-4">
             <h1>Administration Mode</h1>
             <div className="row d-flex justify-content-center">
               <div className="px-1">
@@ -52,7 +47,7 @@ class AdminBanner extends Component {
               </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </React.Fragment>
     );
   }

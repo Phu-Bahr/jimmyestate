@@ -540,37 +540,39 @@ class HomeWorthContainer extends Component {
 
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes
-            bannerImage={this.state.bannerImage}
-            headerText1={this.state.bannerText1}
-            headerText2={this.state.bannerText2}
-          />
-        </FadeIn>
-        {this.props.user.admin ? (
-          <div className="container py-3">
-            <div className="row">
-              <div className="col text-center">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.clickEdit}
-                >
-                  Edit
-                </button>
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes
+              bannerImage={this.state.bannerImage}
+              headerText1={this.state.bannerText1}
+              headerText2={this.state.bannerText2}
+            />
+          </FadeIn>
+          {this.props.user.admin ? (
+            <div className="container py-3">
+              <div className="row">
+                <div className="col text-center">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.clickEdit}
+                  >
+                    Edit
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ) : null}
-        <div className="container py-5">
-          <div className="row">
-            <WorthPhotoContainer user={this.props.user} hide={hide} />
-            <div className="col-sm-6">
-              <FadeInRight>
-                {homeContent}
-                {editForm}
-                {contactHomeWorthForm}
-              </FadeInRight>
+          ) : null}
+          <div className="container py-5">
+            <div className="row">
+              <WorthPhotoContainer user={this.props.user} hide={hide} />
+              <div className="col-sm-6">
+                <FadeInRight>
+                  {homeContent}
+                  {editForm}
+                  {contactHomeWorthForm}
+                </FadeInRight>
+              </div>
             </div>
           </div>
         </div>

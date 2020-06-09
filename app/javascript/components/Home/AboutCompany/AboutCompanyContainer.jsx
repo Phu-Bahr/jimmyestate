@@ -151,18 +151,20 @@ class AboutCompanyContainer extends Component {
 
     return (
       <React.Fragment>
-        <FadeIn>
-          <ParallaxBannerRoutes {...this.state} {...this.props} />
-        </FadeIn>
-        <FadeInUp>
-          <div className="pt-4 pb-3 text-center">
-            <img className="img-fluid rounded" src={this.state.image}></img>
-          </div>
-        </FadeInUp>
-        {this.props.user.admin === true ? editMenu : ""}
-        <FadeIn>
-          <DraftJSContainer {...this.state} {...this.props} />
-        </FadeIn>
+        <div className="flex-container">
+          <FadeIn>
+            <ParallaxBannerRoutes {...this.state} {...this.props} />
+          </FadeIn>
+          <FadeInUp>
+            <div className="pt-4 pb-3 text-center">
+              <img className="img-fluid rounded" src={this.state.image}></img>
+            </div>
+          </FadeInUp>
+          {this.props.user.admin === true ? editMenu : ""}
+          <FadeIn>
+            <DraftJSContainer {...this.state} {...this.props} />
+          </FadeIn>
+        </div>
       </React.Fragment>
     );
   }

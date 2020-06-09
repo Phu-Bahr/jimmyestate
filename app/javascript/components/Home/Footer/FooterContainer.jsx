@@ -3,7 +3,7 @@ import FooterEditOffice from "./FooterEditOffice";
 import FooterEditContactUs from "./FooterEditContactUs";
 import FooterEditSocial from "./FooterEditSocial";
 import { Link } from "react-router-dom";
-import { FadeIn } from "../../Constants/Constants";
+import { FormNoLabel } from "../../Constants/Constants";
 
 class FooterContainer extends Component {
   constructor(props) {
@@ -169,13 +169,6 @@ class FooterContainer extends Component {
   }
 
   render() {
-    let hideEditButton;
-    if (this.props.user.admin === true) {
-      hideEditButton = "";
-    } else {
-      hideEditButton = "invisible";
-    }
-
     let hide;
     if (this.state.hideDiv === true) {
       hide = "invisible";
@@ -225,219 +218,127 @@ class FooterContainer extends Component {
       );
     });
 
-    return (
-      <FadeIn>
-        <div id="contactTag">
-          <div className="footerbackground py-5">
-            <div className="container">
-              <div className="row">
-                <div className="col-xs-12 col-sm-4 col-md-4 ">
-                  <h3 className="d-flex justify-content-center">OFFICE</h3>
-                  {footerOfficeData}
-                </div>
-                <div className="col-xs-12 col-sm-4 col-md-4">
-                  <h3 className="d-flex justify-content-center">CONTACT ME</h3>
-                  {footerContactUsData}
-                </div>
-                <div className="col-xs-12 col-sm-4 col-md-4">
-                  <h3 className="d-flex justify-content-center">SOCIAL</h3>
-                  {footerSocialData}
-                </div>
-              </div>
-            </div>
+    const officeData = {
+      name: "name",
+      street: "street",
+      citystate: "citystate"
+    };
 
-            <div className={hideEditButton}>
-              <div className="col-sm-12 mt-5 text-center">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.clickEdit}
-                >
-                  Edit
+    const contactData = {
+      contact1: "contact1",
+      contact2: "contact2",
+      contact3: "contact3",
+      contact4: "contact4"
+    };
+
+    const socialData = {
+      facebook: "facebook",
+      twitter: "twitter",
+      instagram: "instagram",
+      other: "other",
+      zillow: "zillow",
+      realtor: "realtor"
+    };
+
+    let editForm = (
+      <React.Fragment>
+        <div className="col-sm-12 mt-5 text-center">
+          <button
+            type="button"
+            className="btn btn-info"
+            onClick={this.clickEdit}
+          >
+            Edit
+          </button>
+        </div>
+        <div className={"container" + " " + hide}>
+          <div className="row">
+            <div className="col-xs-12 col-sm-4 col-md-4 mt-3">
+              <form
+                onSubmit={event => {
+                  this.onSubmit(event);
+                  event.target.reset();
+                }}
+              >
+                <FormNoLabel
+                  data={officeData}
+                  onChange={this.onChange}
+                  value={this.state}
+                />
+                <button type="submit" className="btn custom-button mt-n3">
+                  Edit Office
                 </button>
-              </div>
-
-              <div className={"container" + " " + hide}>
-                <div className="row">
-                  <div className="col-xs-12 col-sm-4 col-md-4 mt-3">
-                    <form
-                      onSubmit={event => {
-                        this.onSubmit(event);
-                        event.target.reset();
-                      }}
-                    >
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.name}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="street"
-                          id="street"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.street}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="citystate"
-                          id="citystate"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.citystate}
-                        />
-                      </div>
-                      <button type="submit" className="btn custom-button mt-n3">
-                        Edit Office
-                      </button>
-                    </form>
-                  </div>
-
-                  <div className="col-xs-12 col-sm-4 col-md-4 mt-3">
-                    <form
-                      onSubmit={event => {
-                        this.onSubmit(event);
-                        event.target.reset();
-                      }}
-                    >
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="contact1"
-                          id="contact1"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.contact1}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="contact2"
-                          id="contact2"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.contact2}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="contact3"
-                          id="contact3"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.contact3}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="contact4"
-                          id="contact4"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.contact4}
-                        />
-                      </div>
-                      <button type="submit" className="btn custom-button mt-n3">
-                        Edit Contact Info
-                      </button>
-                    </form>
-                  </div>
-
-                  <div className="col-xs-12 col-sm-4 col-md-4 mt-3">
-                    <form
-                      onSubmit={event => {
-                        this.onSubmit(event);
-                        event.target.reset();
-                      }}
-                    >
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="facebook"
-                          id="facebook"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.facebook}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="twitter"
-                          id="twitter"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.twitter}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="instagram"
-                          id="instagram"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.instagram}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="other"
-                          id="other"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.other}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="zillow"
-                          id="zillow"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.zillow}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          name="realtor"
-                          id="realtor"
-                          className="form-control"
-                          onChange={this.onChange}
-                          value={this.state.realtor}
-                        />
-                      </div>
-                      <button type="submit" className="btn custom-button mt-n3">
-                        Edit Social
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+              </form>
             </div>
-            <Link
-              to="/login"
-              className="float-left btn"
-              style={{ height: 40, width: 40 }}
-            ></Link>
+
+            <div className="col-xs-12 col-sm-4 col-md-4 mt-3">
+              <form
+                onSubmit={event => {
+                  this.onSubmit(event);
+                  event.target.reset();
+                }}
+              >
+                <FormNoLabel
+                  data={contactData}
+                  onChange={this.onChange}
+                  value={this.state}
+                />
+                <button type="submit" className="btn custom-button mt-n3">
+                  Edit Contact Info
+                </button>
+              </form>
+            </div>
+
+            <div className="col-xs-12 col-sm-4 col-md-4 mt-3">
+              <form
+                onSubmit={event => {
+                  this.onSubmit(event);
+                  event.target.reset();
+                }}
+              >
+                <FormNoLabel
+                  data={socialData}
+                  onChange={this.onChange}
+                  value={this.state}
+                />
+                <button type="submit" className="btn custom-button mt-n3">
+                  Edit Social
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </FadeIn>
+      </React.Fragment>
+    );
+    return (
+      <React.Fragment>
+        <div className="footerbackground py-5">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12 col-sm-4 col-md-4 ">
+                <h3 className="d-flex justify-content-center">OFFICE</h3>
+                {footerOfficeData}
+              </div>
+              <div className="col-xs-12 col-sm-4 col-md-4">
+                <h3 className="d-flex justify-content-center">CONTACT ME</h3>
+                {footerContactUsData}
+              </div>
+              <div className="col-xs-12 col-sm-4 col-md-4">
+                <h3 className="d-flex justify-content-center">SOCIAL</h3>
+                {footerSocialData}
+              </div>
+            </div>
+          </div>
+
+          {this.props.user.admin ? editForm : null}
+
+          <Link
+            to="/login"
+            className="float-left btn"
+            style={{ height: 40, width: 40 }}
+          ></Link>
+        </div>
+      </React.Fragment>
     );
   }
 }
