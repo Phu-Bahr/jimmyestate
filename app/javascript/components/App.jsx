@@ -136,10 +136,6 @@ class App extends Component {
           user={this.state.user}
           refreshTownList={this.refreshTownList}
           ref={this.refreshingTownList}
-        />
-        <AdminBanner
-          loggedInStatus={this.state.loggedInStatus}
-          user={this.state.user}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
         />

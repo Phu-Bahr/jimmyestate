@@ -7,6 +7,7 @@ import {
   Transition,
   StyledNavbar
 } from "../../Constants/Constants";
+import AdminBanner from "../User/AdminBanner";
 
 class NavbarContainer extends Component {
   constructor(props) {
@@ -263,11 +264,20 @@ class NavbarContainer extends Component {
           <FadeInDown>
             <nav className="navbar navbar-expand-lg navbar-light site-header py-4 navbar-font-type">
               <div className="container-fluid" style={{ maxWidth: 1150 }}>
-                <Link to="/login">
-                  <div className="navbar-font" onClick={this.scrollToTop}>
-                    Jimmy Chao
-                  </div>
-                </Link>
+                {this.props.user.admin ? (
+                  <AdminBanner
+                    user={this.props.user}
+                    loggedInStatus={this.props.loggedInStatus}
+                    handleLogin={this.props.handleLogin}
+                    handleLogout={this.props.handleLogout}
+                  />
+                ) : (
+                  <Link to="/login">
+                    <div className="navbar-font" onClick={this.scrollToTop}>
+                      Jimmy Chao
+                    </div>
+                  </Link>
+                )}
                 <button
                   type="button"
                   className="navbar-toggler"
