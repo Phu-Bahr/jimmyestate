@@ -30,7 +30,7 @@ class Api::V1::JimmyPartnersController < ApplicationController
     private
 
     def jimmy_partner_params
-        params.require(:jimmy_partner).permit(:bannerImage, :headerText1, :headerText2, :content)
+        params.require(:jimmy_partner).permit(:bannerImage, :headerText1, :headerText2, :content, :image)
     end
 
 

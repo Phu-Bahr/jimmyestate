@@ -11,7 +11,8 @@ class JimmyBusinessPartners extends Component {
       headerText1: "",
       headerText2: "",
       id: null,
-      refreshKey: false
+      refreshKey: false,
+      image: ""
     };
   }
 
@@ -26,12 +27,13 @@ class JimmyBusinessPartners extends Component {
   onSubmit = event => {
     event.preventDefault();
     const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
-    const { headerText1, headerText2, bannerImage } = this.state;
+    const { headerText1, headerText2, bannerImage, image } = this.state;
 
     const body = {
       headerText1,
       headerText2,
-      bannerImage
+      bannerImage,
+      image
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -73,7 +75,8 @@ class JimmyBusinessPartners extends Component {
           headerText1: body[body.length - 1].headerText1,
           headerText2: body[body.length - 1].headerText2,
           id: body[body.length - 1].id,
-          bannerImage: body[body.length - 1].bannerImage
+          bannerImage: body[body.length - 1].bannerImage,
+          image: body[body.length - 1].image
         });
       })
 
@@ -98,7 +101,8 @@ class JimmyBusinessPartners extends Component {
             headerText1: body[body.length - 1].headerText1,
             headerText2: body[body.length - 1].headerText2,
             id: body[body.length - 1].id,
-            bannerImage: body[body.length - 1].bannerImage
+            bannerImage: body[body.length - 1].bannerImage,
+            image: body[body.length - 1].image
           });
         })
         .then(this.setState({ refreshKey: false }))
@@ -108,13 +112,14 @@ class JimmyBusinessPartners extends Component {
 
   render() {
     let contentInfo = {
-      bannerImage: "Banner Image"
+      bannerImage: "Banner Image",
+      image: "Image"
     };
 
     let bannerForm = (
       <div className="container pt-5">
         <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
+          <div className="col-xs-12 col-sm-12 col-md-12">
             <form onSubmit={this.onSubmit}>
               <FormMaps
                 onChange={this.onChange}
@@ -135,6 +140,9 @@ class JimmyBusinessPartners extends Component {
       <React.Fragment>
         <ParallaxBanner {...this.state} />
         {this.props.user.admin ? bannerForm : null}
+        <div className="container text-center pt-5">
+          <img className="img-fluid rounded" src={this.state.image}></img>
+        </div>
         <div>
           <DraftJSContainer {...this.state} {...this.props} />
         </div>
