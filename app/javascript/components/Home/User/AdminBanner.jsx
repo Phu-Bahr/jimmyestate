@@ -28,9 +28,11 @@ class AdminBanner extends Component {
       <React.Fragment>
         {this.props.user.admin ? (
           <div className="container text-center p-4">
-            <h1>Administration Mode</h1>
-            <div className="row d-flex justify-content-center">
-              <div className="px-1">
+            <div className="row ">
+              <div className="col-sm-6">
+                <h4>Administration Mode</h4>
+              </div>
+              <div className="col-sm-2">
                 <button
                   className="btn btn-info"
                   onClick={this.handleLogoutClick}
@@ -38,10 +40,10 @@ class AdminBanner extends Component {
                   Logout
                 </button>
               </div>
-              <div className="px-1">
+              <div className="col-sm-4">
                 <button className="btn btn-info">
                   <Link to="/registration" style={{ color: "white" }}>
-                    Register New User
+                    Register User
                   </Link>
                 </button>
               </div>
