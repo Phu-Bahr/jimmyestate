@@ -243,8 +243,8 @@ class AboutContainer extends Component {
             <div className="container mt-2">
               <div>{element.photonumber}</div>
               <div>{element.photoemail}</div>
-              <div>{element.photoaddress2}</div>
               <div>{element.photoaddress1}</div>
+              <div>{element.photoaddress2}</div>
             </div>
           </div>
         </div>

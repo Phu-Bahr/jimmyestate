@@ -20,10 +20,7 @@ class Api::V1::MarketReportsController < ApplicationController
             :name,
             :email,
             :phone,
-            :time,
             :destinationaddress,
-            :timeframe,
-            :assistsell,
             :message
         )
 

@@ -20,13 +20,7 @@ class Api::V1::HomeWorthsController < ApplicationController
             :name,
             :email,
             :phone,
-            :time,
             :address,
-            :squarefootage,
-            :numberbedrooms,
-            :numberbathrooms,
-            :propertytype,
-            :addfeatures,
             :message
         )
     end
