@@ -15,26 +15,7 @@ class HomeWorthContainer extends Component {
       name: "",
       email: "",
       phone: "",
-      time: "Anytime",
       address: "",
-      squarefootage: "",
-      numberbedrooms: "",
-      numberbathrooms: "",
-      propertytype: "Single Family",
-      addfeatures: {
-        HardwoodFloors: false,
-        Garage: false,
-        EatinKitchen: false,
-        FamilyRoom: false,
-        CentralAir: false,
-        GasHeat: false,
-        SwimmingPool: false,
-        HotTub: false,
-        BreakfastArea: false,
-        GameRoom: false,
-        DenStudy: false,
-        Views: false
-      },
       message: "",
       homeWorthEditData: [],
       paragraph1: "",
@@ -47,7 +28,6 @@ class HomeWorthContainer extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onAddFeatureChange = this.onAddFeatureChange.bind(this);
     this.onResolved = this.onResolved.bind(this);
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
     this.onSubmitEdit = this.onSubmitEdit.bind(this);
@@ -64,54 +44,6 @@ class HomeWorthContainer extends Component {
 
   toggleRefreshKey(event) {
     this.setState({ refreshKey: true });
-  }
-
-  renderAddFeatures() {
-    const features = {
-      HardwoodFloors: "Hardwood Floors",
-      Garage: "Garage",
-      EatinKitchen: "Eat-in Kitchen",
-      FamilyRoom: "Family Room",
-      CentralAir: "Central Air",
-      GasHeat: "Gas Heat",
-      SwimmingPool: "Swimming Pool",
-      HotTub: "Hot Tub",
-      BreakfastArea: "Breakfast Area",
-      GameRoom: "Game Room",
-      DenStudy: "Den/Study",
-      Views: "Views"
-    };
-
-    const featurePair = Object.entries(features).map(([key, value]) => {
-      return (
-        <div key={key} className="col-md-4">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id={key}
-            name={key}
-            onChange={this.onAddFeatureChange}
-            value={this.state.addfeatures[key]}
-          />
-          <label className="form-check-label" htmlFor={key}>
-            {value}
-          </label>
-        </div>
-      );
-    });
-
-    return featurePair;
-  }
-
-  onAddFeatureChange(e) {
-    const val = e.target.checked;
-    const name = e.target.name;
-    let updateFeatures = Object.assign({}, this.state.addfeatures, {
-      [name]: val
-    });
-    this.setState({
-      addfeatures: updateFeatures
-    });
   }
 
   onResolved() {
@@ -132,42 +64,14 @@ class HomeWorthContainer extends Component {
     this.recaptcha.execute();
 
     const urls = "/api/v1/home_worths";
-    const bodyFeatures = featureObject => {
-      let parsedFeatures = [];
-      for (let [key, value] of Object.entries(featureObject)) {
-        if (value) {
-          parsedFeatures.push(key);
-        }
-      }
-      return parsedFeatures.join(", ").toString();
-    };
 
-    let addfeatures = bodyFeatures(this.state.addfeatures);
-
-    const {
-      name,
-      email,
-      phone,
-      time,
-      address,
-      squarefootage,
-      numberbedrooms,
-      numberbathrooms,
-      propertytype,
-      message
-    } = this.state;
+    const { name, email, phone, address, message } = this.state;
 
     const body = {
       name,
       email,
       phone,
-      time,
       address,
-      squarefootage,
-      numberbedrooms,
-      numberbathrooms,
-      propertytype,
-      addfeatures,
       message
     };
 
@@ -405,19 +309,7 @@ class HomeWorthContainer extends Component {
               required
             />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="email">Your Email</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="form-row">
+
           <div className="form-group col-md-6">
             <label htmlFor="phone">Phone Number</label>
             <input
@@ -429,26 +321,24 @@ class HomeWorthContainer extends Component {
               required
             />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="time">Best time to reach you</label>
-            <select
+        </div>
+        <div className="form-row">
+          <div className="form-group col-md-12">
+            <label htmlFor="email">Your Email</label>
+            <input
               type="text"
-              name="time"
-              id="time"
+              name="email"
+              id="email"
               className="form-control"
               onChange={this.onChange}
               required
-              value={this.state.time}
-            >
-              <option>Anytime</option>
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
-            </select>
+            />
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="address">Your Address</label>
+          <label htmlFor="address">
+            Full Address for Comparative Market Analysis
+          </label>
           <input
             type="text"
             name="address"
@@ -457,61 +347,6 @@ class HomeWorthContainer extends Component {
             onChange={this.onChange}
             required
           />
-        </div>
-        <div className="form-row">
-          <div className="form-group col-md-4">
-            <label htmlFor="squarefootage">Square Footage</label>
-            <input
-              type="text"
-              name="squarefootage"
-              id="squarefootage"
-              className="form-control"
-              onChange={this.onChange}
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="numberbedrooms"># of Bedrooms</label>
-            <input
-              type="text"
-              name="numberbedrooms"
-              id="numberbedrooms"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="numberbathrooms"># of Bathrooms</label>
-            <input
-              type="text"
-              name="numberbathrooms"
-              id="numberbathrooms"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="propertytype">Property Type</label>
-          <select
-            type="text"
-            name="propertytype"
-            id="propertytype"
-            className="form-control"
-            onChange={this.onChange}
-            required
-            value={this.state.propertytype}
-          >
-            <option>Single Family</option>
-            <option>Condo</option>
-            <option>Multi Family</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="addfeatures">Additional Features</label>
-          <br />
-          <div className="row pl-5">{this.renderAddFeatures()}</div>
         </div>
 
         <div className="form-group">
@@ -524,7 +359,7 @@ class HomeWorthContainer extends Component {
             className="form-control"
             onChange={this.onChange}
             required
-            placeholder="Additional information you'd like to tell me."
+            placeholder="Please provide any additional questions or information."
           />
         </div>
         <button type="submit" className="btn custom-button mt-3">

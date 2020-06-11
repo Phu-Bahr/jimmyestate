@@ -15,10 +15,7 @@ class MarketReportsContainer extends Component {
       name: "",
       email: "",
       phone: "",
-      time: "Anytime",
       destinationaddress: "",
-      timeframe: "",
-      assistsell: "One Time",
       message: "",
       marketEditData: [],
       paragraph1: "",
@@ -69,25 +66,13 @@ class MarketReportsContainer extends Component {
 
     const urls = "/api/v1/market_reports";
 
-    const {
-      name,
-      email,
-      phone,
-      time,
-      destinationaddress,
-      timeframe,
-      assistsell,
-      message
-    } = this.state;
+    const { name, email, phone, destinationaddress, message } = this.state;
 
     const body = {
       name,
       email,
       phone,
-      time,
       destinationaddress,
-      timeframe,
-      assistsell,
       message
     };
 
@@ -323,19 +308,7 @@ class MarketReportsContainer extends Component {
               required
             />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="email">Your Email</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="form-row">
+
           <div className="form-group col-md-6">
             <label htmlFor="phone">Phone Number</label>
             <input
@@ -347,26 +320,24 @@ class MarketReportsContainer extends Component {
               required
             />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="time">Best time to reach you?</label>
-            <select
+        </div>
+        <div className="form-row">
+          <div className="form-group col-md-12">
+            <label htmlFor="email">Your Email</label>
+            <input
               type="text"
-              name="time"
-              id="time"
+              name="email"
+              id="email"
               className="form-control"
               onChange={this.onChange}
               required
-              value={this.state.time}
-            >
-              <option>Anytime</option>
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
-            </select>
+            />
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="destinationaddress">Neighborhood of Interest</label>
+          <label htmlFor="destinationaddress">
+            Town/Neighborhood of Interest
+          </label>
           <input
             type="text"
             name="destinationaddress"
@@ -375,35 +346,6 @@ class MarketReportsContainer extends Component {
             onChange={this.onChange}
             required
           />
-        </div>
-        <div className="form-row">
-          <div className="form-group col-md-7">
-            <label htmlFor="timeframe">Moving time frame?</label>
-            <input
-              type="text"
-              name="timeframe"
-              id="timeframe"
-              className="form-control"
-              onChange={this.onChange}
-            />
-          </div>
-          <div className="form-group col-md-5">
-            <label htmlFor="assistsell">Report Frequency</label>
-            <select
-              type="text"
-              name="assistsell"
-              id="assistsell"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.propertytype}
-            >
-              <option>One Time</option>
-              <option>Daily</option>
-              <option>Weekly</option>
-              <option>Monthly</option>
-            </select>
-          </div>
         </div>
 
         <div className="form-group">
@@ -416,7 +358,7 @@ class MarketReportsContainer extends Component {
             className="form-control"
             onChange={this.onChange}
             required
-            placeholder="Additional information you'd like to tell me."
+            placeholder="Please provide any additional questions or information."
           />
         </div>
         <button type="submit" className="btn custom-button mt-3">
