@@ -22,6 +22,10 @@ class DraftJSContainer extends Component {
     this.onSubmitUpdate = this.onSubmitUpdate.bind(this);
   }
 
+  toggleRefreshKey = () => {
+    this.setState({ refreshKey: true });
+  };
+
   updateEditorState(editorState) {
     const contentState = editorState.getCurrentContent();
     this.saveContent(contentState);
@@ -64,6 +68,7 @@ class DraftJSContainer extends Component {
           }
           throw new Error("Network response was not ok.");
         })
+        .then(this.toggleRefreshKey())
         .catch(error => console.log(error.message));
     }
   }
@@ -130,6 +135,12 @@ class DraftJSContainer extends Component {
       .catch(error => console.log("error message =>", error.message));
   }
 
+  componentDidUpdate() {
+    if (this.state.refreshKey) {
+      this.setState({ id: "1", refreshKey: false });
+    }
+  }
+
   render() {
     let adminToggle;
     if (this.props.user.admin) {
@@ -178,6 +189,13 @@ class DraftJSContainer extends Component {
 
     return (
       <React.Fragment>
+        {this.state.id >= 1 ? (
+          ""
+        ) : (
+          <div className="container text-center">
+            <p>You must make first post before editing banners/headers.</p>
+          </div>
+        )}
         <FadeIn>{adminToggle}</FadeIn>
       </React.Fragment>
     );

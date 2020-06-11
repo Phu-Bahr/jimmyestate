@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_011846) do
+ActiveRecord::Schema.define(version: 2020_06_11_014959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,16 @@ ActiveRecord::Schema.define(version: 2020_06_11_011846) do
 
   create_table "venue_edits", force: :cascade do |t|
     t.string "bannerImage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "venue_templates", force: :cascade do |t|
+    t.string "bannerImage"
+    t.string "headerText1"
+    t.string "headerText2"
+    t.string "content"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
