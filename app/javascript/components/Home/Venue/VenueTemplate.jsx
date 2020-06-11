@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ParallaxBanner, FormMaps } from "../../Constants/Constants";
 import DraftJSContainer from "../../Constants/DraftJSComponent";
+import ScrollAnimation from "react-animate-on-scroll";
 
 class VenueTemplate extends Component {
   constructor(props) {
@@ -138,18 +139,20 @@ class VenueTemplate extends Component {
 
     return (
       <React.Fragment>
-        <ParallaxBanner {...this.state} />
-        {this.props.user.admin ? bannerForm : null}
-        <div className="container text-center pt-5">
-          <img className="img-fluid rounded" src={this.state.image}></img>
-        </div>
-        <div>
-          <DraftJSContainer
-            {...this.state}
-            {...this.props}
-            hocRefresh={this.toggleRefreshKey}
-          />
-        </div>
+        <ScrollAnimation animateIn="fadeIn">
+          <ParallaxBanner {...this.state} />
+          {this.props.user.admin ? bannerForm : null}
+          <div className="container text-center pt-5">
+            <img className="img-fluid rounded" src={this.state.image}></img>
+          </div>
+          <div>
+            <DraftJSContainer
+              {...this.state}
+              {...this.props}
+              hocRefresh={this.toggleRefreshKey}
+            />
+          </div>
+        </ScrollAnimation>
       </React.Fragment>
     );
   }
