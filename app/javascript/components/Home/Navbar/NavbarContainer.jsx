@@ -182,6 +182,15 @@ class NavbarContainer extends Component {
                 Jimmy's Tips
               </Link>
             </div>
+            <div className="container py-1">
+              <Link
+                to="/testimonials"
+                className="dropdown-item navbar-underline"
+                onClick={this.scrollToTop}
+              >
+                Testimonials
+              </Link>
+            </div>
           </div>
         </li>
 

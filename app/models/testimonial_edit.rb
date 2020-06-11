@@ -1,0 +1,2 @@
+class TestimonialEdit < ApplicationRecord
+end
