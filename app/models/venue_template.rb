@@ -1,0 +1,2 @@
+class VenueTemplate < ApplicationRecord
+end

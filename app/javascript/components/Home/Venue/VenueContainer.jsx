@@ -4,6 +4,7 @@ import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
 import { FadeIn } from "../../Constants/Constants";
 import { animateScroll as scroll } from "react-scroll";
+import VenueTemplate from "./VenueTemplate";
 
 class VenueContainer extends Component {
   constructor(props) {
@@ -176,6 +177,7 @@ class VenueContainer extends Component {
 
     return (
       <React.Fragment>
+        <VenueTemplate user={this.props.user} />
         <div className="container pb-5 pt-2 px-5">
           {this.props.user.admin ? (
             <NewHelperCard toggleRefreshKey={this.toggleRefreshKey} />
