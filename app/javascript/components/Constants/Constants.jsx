@@ -33,6 +33,7 @@ export const FadeOut = styled.div`
   animation: 1s ${keyframes`${fadeOut}`};
 `;
 
+//for navbar
 export const StyledNavbar = styled.div`
   position: fixed;
   width: 100%;
@@ -40,6 +41,7 @@ export const StyledNavbar = styled.div`
   z-index: 1000;
 `;
 
+//for navbar
 export const Transition = styled.div`
   .active {
     visibility: visible;
@@ -87,46 +89,6 @@ export const ParallaxBannerRoutes = props => (
   </div>
 );
 
-// pass down formConst as object from main component, onchange, and value=this.state
-export const FormMaps = props => {
-  const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
-    return (
-      <div key={key} className="form-group">
-        <label htmlFor={key}>{value}</label>
-        <input
-          className="form-control"
-          type="text"
-          id={key}
-          name={key}
-          onChange={props.onChange}
-          value={props.value[key]}
-        />
-      </div>
-    );
-  });
-
-  return keyValuePair;
-};
-
-export const FormNoLabel = props => {
-  const keyValuePair = Object.entries(props.data).map(([key, value]) => {
-    return (
-      <div key={key} className="form-group">
-        <input
-          className="form-control"
-          type="text"
-          id={key}
-          name={key}
-          onChange={props.onChange}
-          value={props.value[key]}
-        />
-      </div>
-    );
-  });
-
-  return keyValuePair;
-};
-
 // as long as original component's state has the 3 keys below to send state down and up, this should work
 // value=this.state, onchange, onsubmit
 export const ParallaxEditForm = props => {
@@ -168,4 +130,44 @@ export const ParallaxEditForm = props => {
       </div>
     </div>
   );
+};
+
+// pass down formConst as object from main component, onchange, and value=this.state
+export const FormMaps = props => {
+  const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
+    return (
+      <div key={key} className="form-group">
+        <label htmlFor={key}>{value}</label>
+        <input
+          className="form-control"
+          type="text"
+          id={key}
+          name={key}
+          onChange={props.onChange}
+          value={props.value[key]}
+        />
+      </div>
+    );
+  });
+
+  return keyValuePair;
+};
+
+export const FormNoLabel = props => {
+  const keyValuePair = Object.entries(props.data).map(([key, value]) => {
+    return (
+      <div key={key} className="form-group">
+        <input
+          className="form-control"
+          type="text"
+          id={key}
+          name={key}
+          onChange={props.onChange}
+          value={props.value[key]}
+        />
+      </div>
+    );
+  });
+
+  return keyValuePair;
 };

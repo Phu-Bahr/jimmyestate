@@ -1067,3 +1067,129 @@
 }
 
 /*# sourceMappingURL=react-draft-wysiwyg.css.map*/
+
+// for react carousel
+.slider {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.slider a.previousButton,
+.slider a.nextButton {
+  font-size: 22px;
+  line-height: 0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  z-index: 1;
+  color: #8cce3c;
+  padding: 10px;
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* prevent jump effect when scaling */
+}
+
+.slider a.previousButton:not(.disabled):hover,
+.slider a.nextButton:not(.disabled):hover {
+  -webkit-transform: translateY(-50%) scale(1.25);
+  transform: translateY(-50%) scale(1.25);
+  cursor: pointer;
+}
+
+.slider a.previousButton {
+  left: 20px;
+}
+
+.slider a.nextButton {
+  right: 20px;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+.slide.hidden {
+  visibility: hidden;
+}
+
+.slide.previous {
+  left: -100%;
+}
+
+.slide.current {
+  left: 0;
+}
+
+.slide.next {
+  left: 100%;
+}
+
+.slide.animateIn,
+.slide.animateOut {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.slide.animateIn.previous,
+.slide.animateIn.next {
+  left: 0;
+  visibility: visible;
+}
+
+.slide.animateOut.previous {
+  left: 100%;
+}
+
+.slide.animateOut.next {
+  left: -100%;
+}
+
+.slider-border {
+  padding: 40px;
+}
+
+.slide-content {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  padding: 30px;
+  width: 65%;
+  border-radius: 2px;
+}
+
+.slide-content .name {
+  text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+  .slide-content {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    padding: 10px;
+    width: 95%;
+    border-radius: 2px;
+    font-size: 3vw;
+  }
+
+  .slider-border {
+    padding: 10px;
+  }
+
+  .slider a.previousButton {
+    top: 90%;
+    left: 10px;
+  }
+
+  .slider a.nextButton {
+    top: 90%;
+    right: 10px;
+  }
+}

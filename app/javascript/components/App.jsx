@@ -20,13 +20,13 @@ import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import FooterContainer from "../components/Home/Footer/FooterContainer";
 import TownShowPage from "../components/Home/Town/TownShowPage";
 import EditTown from "../components/Home/Town/EditTown";
-import AdminBanner from "../components/Home/User/AdminBanner";
 import PortfolioContainer from "./Home/Portfolio/PortfolioContainer";
 import HomeWorthContainer from "../components/Home/Service/HomeWorthContainer";
 import RelocationContainer from "../components/Home/Service/RelocationContainer";
 import BuyingHomeContainer from "../components/Home/Service/BuyingHomeContainer";
 import SellingHomeContainer from "../components/Home/Service/SellingHomeContainer";
 import MarketReportsContainer from "../components/Home/Service/MarketReportsContainer";
+import Testimonials from "./Home/Testimonials/TestimonialsContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -246,6 +246,17 @@ class App extends Component {
             path="/jimmys-tips"
             render={props => (
               <JimmysTipsContainer
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/testimonials"
+            render={props => (
+              <Testimonials
                 {...props}
                 loggedInStatus={this.state.loggedInStatus}
                 user={this.state.user}

@@ -142,3 +142,8 @@
 #     bannerText2: "test"
 # )
 
+testimonialEdit = TestimonialEdit.create!(
+    bannerImage: "test",
+    headerText1: "test",
+    headerText2: "test"
+)
