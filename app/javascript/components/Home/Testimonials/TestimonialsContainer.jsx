@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Slider from "react-animated-slider";
 import {
   FadeIn,
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
+import Testimonials from "./Testimonials";
 
-class Testimonials extends Component {
+class TestimonialsContainer extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -14,7 +14,8 @@ class Testimonials extends Component {
       headerText1: "",
       headerText2: "",
       bannerImage: "",
-      id: null
+      id: null,
+      visibility: false
     };
   }
 
@@ -28,6 +29,12 @@ class Testimonials extends Component {
 
   scrollToTop = () => {
     scroll.scrollToTop();
+  };
+
+  editBanner = () => {
+    this.state.visibility
+      ? this.setState({ visibility: false })
+      : this.setState({ visibility: true });
   };
 
   onSubmit = event => {
@@ -64,6 +71,14 @@ class Testimonials extends Component {
   };
 
   componentDidMount() {
+    this.mountTestTemplate();
+  }
+
+  componentDidUpdate() {
+    this.updateTestTemplate();
+  }
+
+  mountTestTemplate() {
     fetch(`/api/v1/${this.state.urlGET}`)
       .then(response => {
         if (response.ok) {
@@ -87,7 +102,7 @@ class Testimonials extends Component {
       .catch(error => console.log("error message =>", error.message));
   }
 
-  componentDidUpdate() {
+  updateTestTemplate() {
     if (this.state.refreshKey) {
       fetch(`/api/v1/${this.state.urlGET}`)
         .then(response => {
@@ -114,35 +129,19 @@ class Testimonials extends Component {
   }
 
   render() {
-    const slides = [
-      {
-        title: "Great Helper..",
-        description:
-          "Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me Alex was so kind to me ",
-        name: "Tony P - Newton, MA",
-        image:
-          "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-      },
-      {
-        title: "Second item",
-        description: "Lorem ipsum",
-        image:
-          "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-      },
-      {
-        title: "Third item",
-        description: "Lorem ipsum",
-        image:
-          "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-      }
-    ];
-
     return (
       <React.Fragment>
         <div className="flex-container">
           <FadeIn>
             <ParallaxBannerRoutes {...this.state} />
-            {this.props.user.admin === true ? (
+            {this.props.user.admin ? (
+              <div className="container text-center pt-4">
+                <button className="btn custom-button" onClick={this.editBanner}>
+                  Edit Banner
+                </button>
+              </div>
+            ) : null}
+            {this.state.visibility === true ? (
               <ParallaxEditForm
                 value={this.state}
                 onChange={this.onChange}
@@ -152,29 +151,11 @@ class Testimonials extends Component {
               ""
             )}
           </FadeIn>
-          <div className="slider-border">
-            <Slider>
-              {slides.map((item, index) => (
-                <div
-                  key={index}
-                  style={{
-                    background: `url('${item.image}') no-repeat center`,
-                    color: "white"
-                  }}
-                >
-                  <div className="center slide-content">
-                    <h1>{item.title}</h1>
-                    <p>"{item.description}"</p>
-                    <p className="name">-{item.name}</p>
-                  </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
+          <Testimonials user={this.props.user} />
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default Testimonials;
+export default TestimonialsContainer;
