@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :market_report_photos, only: [:index, :create, :destroy]
       resources :venue_templates, only: [:index, :update, :create]
       resources :testimonial_edits, only: [:index, :update]
+      resources :testimonials, only: [:index, :create, :update, :destroy]
      
     end
   end

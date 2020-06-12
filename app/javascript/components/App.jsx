@@ -26,7 +26,7 @@ import RelocationContainer from "../components/Home/Service/RelocationContainer"
 import BuyingHomeContainer from "../components/Home/Service/BuyingHomeContainer";
 import SellingHomeContainer from "../components/Home/Service/SellingHomeContainer";
 import MarketReportsContainer from "../components/Home/Service/MarketReportsContainer";
-import Testimonials from "./Home/Testimonials/TestimonialsContainer";
+import TestimonialsContainer from "./Home/Testimonials/TestimonialsContainer";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -256,7 +256,7 @@ class App extends Component {
             exact
             path="/testimonials"
             render={props => (
-              <Testimonials
+              <TestimonialsContainer
                 {...props}
                 loggedInStatus={this.state.loggedInStatus}
                 user={this.state.user}
