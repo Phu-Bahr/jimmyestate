@@ -290,9 +290,9 @@ class Testimonials extends Component {
           <div
             key={index}
             style={{
-              background: `url('${item.image}') no-repeat center`,
-              color: "white"
+              background: `url('${item.image}')`
             }}
+            className="slider-background-format"
           >
             <div className="center slide-content">
               <h1>{item.title}</h1>
