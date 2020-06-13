@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-animated-slider";
-import { FormMaps } from "../../Constants/Constants";
+import { FormMaps, FadeInDown, FadeInUp } from "../../Constants/Constants";
 import { animateScroll as scroll } from "react-scroll";
 
 class Testimonials extends Component {
@@ -295,9 +295,13 @@ class Testimonials extends Component {
             className="slider-background-format"
           >
             <div className="center slide-content">
-              <h1>{item.title}</h1>
-              <p>"{item.description}"</p>
-              <p className="name">-{item.name}</p>
+              <FadeInDown>
+                <h1>{item.title}</h1>
+              </FadeInDown>
+              <FadeInUp>
+                <p>"{item.description}"</p>
+                <p className="name">-{item.name}</p>
+              </FadeInUp>
               {admin ? (
                 <React.Fragment>
                   <button

@@ -1137,8 +1137,8 @@
 
 .slide.animateIn,
 .slide.animateOut {
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+  -webkit-transition: all 2.5s ease;
+  transition: all 2.5s ease;
 }
 
 .slide.animateIn.previous,
@@ -1212,4 +1212,52 @@
     height: 300px;
     border-radius: 4px;
   }
+}
+
+// carousel animate
+
+.slide h1 {
+  transition: all 0.3s ease;
+  -webkit-transform: translateY(-20px);
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.slide button {
+  transition: all 0.3s ease;
+  -webkit-transform: translateY(20px);
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.slide p {
+  transition: all 0.3s ease;
+  -webkit-transform: translateY(20px);
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.slide section img {
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+  opacity: 0;
+}
+
+.slide.animateIn.previous h1,
+.slide.current h1,
+.slide.animateIn.next h1,
+.slide.animateIn.previous button,
+.slide.current button,
+.slide.animateIn.next button,
+.slide.animateIn.previous p,
+.slide.current p,
+.slide.animateIn.next p,
+.slide.animateIn.previous section *,
+.slide.current section *,
+.slide.animateIn.next section * {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition-delay: 0.9s;
+  transition-delay: 0.9s;
+  opacity: 1;
 }
