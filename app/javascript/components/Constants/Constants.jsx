@@ -55,10 +55,12 @@ export const Transition = styled.div`
     transition: visibility 0s, opacity 0.1s linear, all 4s ease-out;
   }
   .top {
-    visibility: visible;
-    opacity: 1;
-    transition: visibility 0s, opacity 0.5s linear, all 0.9s ease-in;
-    position: sticky;
+    @media only screen and (max-width: 600px) {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.5s linear, all 0.9s ease-in;
+      position: sticky;
+    }
   }
 `;
 
@@ -82,9 +84,11 @@ export const ParallaxBannerRoutes = props => (
         ")"
     }}
   >
-    <div className="container py-5">
-      <h1>{props.headerText1}</h1>
-      <h4>{props.headerText2}</h4>
+    <div className="container">
+      <div className="header-alignment">
+        <h1 id="header1">{props.headerText1}</h1>
+        <h4 id="header2">{props.headerText2}</h4>
+      </div>
     </div>
   </div>
 );
