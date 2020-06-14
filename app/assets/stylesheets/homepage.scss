@@ -1137,8 +1137,8 @@
 
 .slide.animateIn,
 .slide.animateOut {
-  -webkit-transition: all 2.5s ease;
-  transition: all 2.5s ease;
+  -webkit-transition: all 1.8s ease;
+  transition: all 1.8s ease;
 }
 
 .slide.animateIn.previous,
@@ -1212,6 +1212,12 @@
     height: 300px;
     border-radius: 4px;
   }
+
+  .slide.animateIn,
+  .slide.animateOut {
+    -webkit-transition: all 1.6s ease;
+    transition: all 1.6s ease;
+  }
 }
 
 // carousel animate
@@ -1231,7 +1237,7 @@
 }
 
 .slide p {
-  transition: all 0.3s ease;
+  transition: all 0.7s ease;
   -webkit-transform: translateY(20px);
   transform: translateY(20px);
   opacity: 0;
