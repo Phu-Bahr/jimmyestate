@@ -30,7 +30,7 @@ class AdminBanner extends Component {
           <div className="container text-center p-4">
             <div className="row ">
               <div className="col-sm-6">
-                <h4>Administration Mode</h4>
+                <h4 style={{ fontWeight: "bold" }}>Administration Mode</h4>
               </div>
               <div className="col-sm-2">
                 <button
@@ -43,7 +43,7 @@ class AdminBanner extends Component {
               <div className="col-sm-4">
                 <button className="btn btn-info">
                   <Link to="/registration" style={{ color: "white" }}>
-                    Register User
+                    Register
                   </Link>
                 </button>
               </div>

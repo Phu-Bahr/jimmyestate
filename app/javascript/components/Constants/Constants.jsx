@@ -46,13 +46,13 @@ export const Transition = styled.div`
   .active {
     visibility: visible;
     opacity: 1;
-    transition: visibility 0s, opacity 0.5s linear, all 0.8s ease-in;
+    transition: visibility 0s, opacity 0.5s linear, all 0.5s ease-in;
   }
   .hidden {
     visibility: hidden;
     transform: translate(0, -350%);
     opacity: 0;
-    transition: visibility 0s, opacity 0.1s linear, all 4s ease-out;
+    transition: visibility 0s, opacity 0.1s linear, all 2s ease-out;
   }
   .top {
     @media only screen and (max-width: 600px) {
