@@ -27,6 +27,9 @@ import BuyingHomeContainer from "../components/Home/Service/BuyingHomeContainer"
 import SellingHomeContainer from "../components/Home/Service/SellingHomeContainer";
 import MarketReportsContainer from "../components/Home/Service/MarketReportsContainer";
 import TestimonialsContainer from "./Home/Testimonials/TestimonialsContainer";
+import NewPartner from "../components/Home/JimmyPartners/NewPartner";
+import PartnerShowPage from "../components/Home/JimmyPartners/PartnerShowPage";
+import EditPartner from "../components/Home/JimmyPartners/EditPartner";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -285,12 +288,33 @@ class App extends Component {
               />
             )}
           />
+          <Route
+            exact
+            path="/partner/:id?"
+            render={props => (
+              <PartnerShowPage
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
 
           <ProtectedRoute exact path="/addcommunity" component={NewTown} />
           <ProtectedRoute
             exact
+            path="/add-partner-category"
+            component={NewPartner}
+          />
+          <ProtectedRoute
+            exact
             path="/editcommunity/:id?"
             component={EditTown}
+          />
+          <ProtectedRoute
+            exact
+            path="/edit-partner-category/:id?"
+            component={EditPartner}
           />
           <Route
             exact

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TownList from "../Town/TownList";
+import PartnerList from "../JimmyPartners/PartnerList";
 import { animateScroll as scroll } from "react-scroll";
 import {
   FadeInDown,
@@ -226,6 +227,43 @@ class NavbarContainer extends Component {
                 onClick={this.scrollToTop}
               >
                 Add Community
+              </Link>
+            </div>
+          </div>
+        </li>
+
+        <li className="nav-item dropdown">
+          <Link
+            to="/"
+            className="nav-link dropdown-toggle navbar-underline"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Business Partners
+          </Link>
+          <div
+            className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
+            aria-labelledby="navbarDropdown"
+          >
+            <PartnerList
+              loggedInStatus={this.props.loggedInStatus}
+              user={this.props.user}
+              hideEditButton={hideEditButton}
+              refreshKey={this.state.refreshKey}
+              toggleRefreshKey={this.toggleRefreshKey}
+              toggleRefreshFalse={this.toggleRefreshFalse}
+            />
+            <div className={hideEditButton}>
+              <div className="dropdown-divider"></div>
+              <Link
+                to="/add-partner-category"
+                className="dropdown-item navbar-underline"
+                onClick={this.scrollToTop}
+              >
+                Add Partner Category
               </Link>
             </div>
           </div>

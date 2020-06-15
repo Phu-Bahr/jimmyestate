@@ -1,0 +1,2 @@
+class PartnerCategory < ApplicationRecord
+end

@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :venue_templates, only: [:index, :update, :create]
       resources :testimonial_edits, only: [:index, :update]
       resources :testimonials, only: [:index, :create, :update, :destroy]
+      resources :partner_categories, only: [:index, :create, :update, :destroy, :show]
      
     end
   end

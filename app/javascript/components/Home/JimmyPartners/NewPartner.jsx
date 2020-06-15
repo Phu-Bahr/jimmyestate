@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 import { FadeIn } from "../../Constants/Constants";
 
-class NewTown extends React.Component {
+class NewPartner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
       headerText1: "",
       headerText2: "",
-      townheader: "",
       content: null,
       bannerImage: null
     };
@@ -24,7 +23,7 @@ class NewTown extends React.Component {
     scroll.scrollToTop();
   };
 
-  refreshTownList(event) {
+  refreshTownList() {
     this.props.refreshTownList();
   }
 
@@ -34,21 +33,13 @@ class NewTown extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/towns";
-    const {
-      name,
-      headerText1,
-      headerText2,
-      townheader,
-      content,
-      bannerImage
-    } = this.state;
+    const urls = "/api/v1/partner_categories";
+    const { name, headerText1, headerText2, content, bannerImage } = this.state;
 
     const body = {
       name,
       headerText1,
       headerText2,
-      townheader,
       content,
       bannerImage
     };
@@ -70,7 +61,7 @@ class NewTown extends React.Component {
         throw new Error("Network response was not ok.");
       })
       .then(body => {
-        this.props.history.push(`/towns/${body.id}`);
+        this.props.history.push(`/partner/${body.id}`);
         // window.location.reload(false); <-- refreshes page but logs off admin.
       })
       .then(this.refreshTownList())
@@ -94,12 +85,12 @@ class NewTown extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-lg-6 offset-lg-3">
                 <h1 className="font-weight-normal mb-5">
-                  Add your new Community here.
+                  Add new partner here
                 </h1>
 
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
-                    <label htmlFor="name">Town</label>
+                    <label htmlFor="name">Type of Partner</label>
                     <input
                       type="text"
                       name="name"
@@ -147,21 +138,8 @@ class NewTown extends React.Component {
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="townheader">Townheader</label>
-                    <input
-                      type="text"
-                      name="townheader"
-                      id="townheader"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      placeholder="ex: Town Links"
-                    />
-                  </div>
-
                   <button type="submit" className="btn custom-button mt-3">
-                    Create Community
+                    Create Partner Category
                   </button>
 
                   <Link
@@ -181,4 +159,4 @@ class NewTown extends React.Component {
   }
 }
 
-export default NewTown;
+export default NewPartner;
