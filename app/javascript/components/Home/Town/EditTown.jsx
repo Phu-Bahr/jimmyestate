@@ -120,87 +120,98 @@ class EditTown extends Component {
 
   render() {
     return (
-      <div className="container mt-5">
-        <div className="row pb-5">
-          <div className="col-sm-12 col-lg-6 offset-lg-3">
-            <h1 className="font-weight-normal mb-5">Edit your Town here.</h1>
+      <React.Fragment>
+        <div
+          className="parallaxStyleRoutes"
+          style={{
+            backgroundImage:
+              "url(" +
+              "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
+              ")"
+          }}
+        />
+        <div className="container mt-5">
+          <div className="row pb-5">
+            <div className="col-sm-12 col-lg-6 offset-lg-3">
+              <h1 className="font-weight-normal mb-5">Edit your Town here.</h1>
 
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Town</label>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label htmlFor="name">Town</label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="form-control"
+                    required
+                    onChange={this.onChange}
+                    value={this.state.name}
+                  />
+                </div>
+
+                <label htmlFor="bannerImage">Banner Image</label>
                 <input
                   type="text"
-                  name="name"
-                  id="name"
+                  name="bannerImage"
+                  id="bannerImage"
                   className="form-control"
                   required
                   onChange={this.onChange}
-                  value={this.state.name}
+                  value={this.state.bannerImage}
                 />
-              </div>
 
-              <label htmlFor="bannerImage">Banner Image</label>
-              <input
-                type="text"
-                name="bannerImage"
-                id="bannerImage"
-                className="form-control"
-                required
-                onChange={this.onChange}
-                value={this.state.bannerImage}
-              />
-
-              <label htmlFor="headerText1">headerText1</label>
-              <input
-                type="text"
-                name="headerText1"
-                id="headerText1"
-                className="form-control"
-                required
-                onChange={this.onChange}
-                value={this.state.headerText1}
-              />
-
-              <label htmlFor="headerText2">headerText2</label>
-              <input
-                type="text"
-                name="headerText2"
-                id="headerText2"
-                className="form-control"
-                required
-                onChange={this.onChange}
-                value={this.state.headerText2}
-              />
-
-              <div className="form-group">
-                <label htmlFor="townheader">Townheader</label>
+                <label htmlFor="headerText1">headerText1</label>
                 <input
                   type="text"
-                  name="townheader"
-                  id="townheader"
+                  name="headerText1"
+                  id="headerText1"
                   className="form-control"
                   required
                   onChange={this.onChange}
-                  value={this.state.townheader}
-                  placeholder="ex: Town Links"
+                  value={this.state.headerText1}
                 />
-              </div>
 
-              <button type="submit" className="btn custom-button mt-3">
-                Submit Town changes
-              </button>
+                <label htmlFor="headerText2">headerText2</label>
+                <input
+                  type="text"
+                  name="headerText2"
+                  id="headerText2"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                  value={this.state.headerText2}
+                />
 
-              <Link
-                to={`/towns/${this.state.id}`}
-                className="btn btn-link mt-3"
-                onClick={this.scrollToTop}
-              >
-                Back to Town
-              </Link>
-            </form>
+                <div className="form-group">
+                  <label htmlFor="townheader">Townheader</label>
+                  <input
+                    type="text"
+                    name="townheader"
+                    id="townheader"
+                    className="form-control"
+                    required
+                    onChange={this.onChange}
+                    value={this.state.townheader}
+                    placeholder="ex: Town Links"
+                  />
+                </div>
+
+                <button type="submit" className="btn custom-button mt-3">
+                  Submit Town changes
+                </button>
+
+                <Link
+                  to={`/towns/${this.state.id}`}
+                  className="btn btn-link mt-3"
+                  onClick={this.scrollToTop}
+                >
+                  Back to Town
+                </Link>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -81,17 +81,17 @@ class Login extends Component {
   }
 
   render() {
-    const backGround =
-      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-
     return (
       <React.Fragment>
         <div
           className="parallaxStyleRoutes"
           style={{
-            backgroundImage: "url(" + backGround + ")"
+            backgroundImage:
+              "url(" +
+              "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
+              ")"
           }}
-        ></div>
+        />
         <div className="flex-container">
           <div className="container text-center my-5">
             <div>
