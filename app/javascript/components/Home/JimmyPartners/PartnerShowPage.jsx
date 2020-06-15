@@ -160,7 +160,7 @@ class PartnerShowPage extends Component {
       adminToggle = (
         <div className="container pb-5 pt-3">
           <div className="container text-center">
-            <Link to={`/editcommunity/${this.props.match.params.id}`}>
+            <Link to={`/edit-partner-category/${this.props.match.params.id}`}>
               <button type="button" className="btn btn-info">
                 Edit Town/Header
               </button>

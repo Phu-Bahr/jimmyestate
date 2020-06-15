@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :testimonial_edits, only: [:index, :update]
       resources :testimonials, only: [:index, :create, :update, :destroy]
       resources :partner_categories, only: [:index, :create, :update, :destroy, :show]
+      resources :custom_cards, only: [:index, :update]
      
     end
   end

@@ -142,8 +142,13 @@
 #     bannerText2: "test"
 # )
 
-testimonialEdit = TestimonialEdit.create!(
-    bannerImage: "test",
-    headerText1: "test",
-    headerText2: "test"
-)
+# testimonialEdit = TestimonialEdit.create!(
+#     bannerImage: "test",
+#     headerText1: "test",
+#     headerText2: "test"
+# )
+
+customCards = CustomCard.create!([
+        { image: "test1", title: "test1" },
+        { image: "test2", title: "test2" }
+])
