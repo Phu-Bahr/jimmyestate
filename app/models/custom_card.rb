@@ -1,0 +1,2 @@
+class CustomCard < ApplicationRecord
+end
