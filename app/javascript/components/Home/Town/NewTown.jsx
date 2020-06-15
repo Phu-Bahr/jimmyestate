@@ -78,18 +78,18 @@ class NewTown extends React.Component {
   }
 
   render() {
-    const backGround =
-      "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-
     return (
       <React.Fragment>
         <FadeIn>
           <div
             className="parallaxStyleRoutes"
             style={{
-              backgroundImage: "url(" + backGround + ")"
+              backgroundImage:
+                "url(" +
+                "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
+                ")"
             }}
-          ></div>
+          />
           <div className="container my-5">
             <div className="row">
               <div className="col-sm-12 col-lg-6 offset-lg-3">
