@@ -11,11 +11,13 @@ class VenueContainer extends Component {
     super(props);
     this.state = {
       townListData: [],
+      partnerListData: [],
       helperListData: [],
       selectedStepId: null,
       refreshKey: false,
       bannerImage: "",
-      visible: false
+      visible: false,
+      visible1: false
     };
     this.deleteCard = this.deleteCard.bind(this);
     this.setSelectedStep = this.setSelectedStep.bind(this);
@@ -29,8 +31,14 @@ class VenueContainer extends Component {
 
   onClick = () => {
     this.state.visible
-      ? this.setState({ visible: false })
-      : this.setState({ visible: true });
+      ? this.setState({ visible: false, visible1: false })
+      : this.setState({ visible: true, visible1: false });
+  };
+
+  onClick1 = () => {
+    this.state.visible1
+      ? this.setState({ visible1: false, visible: false })
+      : this.setState({ visible1: true, visible: false });
   };
 
   toggleRefreshKey() {
@@ -51,6 +59,7 @@ class VenueContainer extends Component {
 
   componentDidMount() {
     this.fetchTownList();
+    this.fetchPartnerList();
     this.fetchHelperList();
   }
 
@@ -68,6 +77,24 @@ class VenueContainer extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ townListData: body });
+      })
+      .catch(error => console.log("error message =>", error.message));
+  }
+
+  fetchPartnerList() {
+    fetch("/api/v1/partner_categories")
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ partnerListData: body });
       })
       .catch(error => console.log("error message =>", error.message));
   }
@@ -175,6 +202,20 @@ class VenueContainer extends Component {
       );
     });
 
+    let partnerlist = this.state.partnerListData.map(element => {
+      return (
+        <div className="col-md-6" key={element.id}>
+          <Link
+            to={`/partner/${element.id}`}
+            className="helperL py-1"
+            onClick={this.scrollToTop}
+          >
+            {element.name}
+          </Link>
+        </div>
+      );
+    });
+
     return (
       <React.Fragment>
         <VenueTemplate user={this.props.user} />
@@ -201,6 +242,28 @@ class VenueContainer extends Component {
                 <FadeIn>
                   <div className="card-body venueDetails container">
                     <div className="row">{townlist}</div>
+                  </div>
+                </FadeIn>
+              ) : null}
+            </div>
+
+            <div className="col-md-6 col-middle py-2">
+              <div className="card border-0" onClick={this.onClick1}>
+                <div className="parent m-0">
+                  <div className="child particles">
+                    <img
+                      className="venueImage card-img-top"
+                      src="https://lh3.googleusercontent.com/pw/ACtC-3fX36AGNlgvaqYaNLDdUMZPw7xXuOgORVB6qcCIt3cEDRvrlDXXzMKM_YFa4FteDWZVekUn4SBSgzkyllikMHJoC0gcX9WN47V0auJqFF8pHqRJAp8dtRlRKkHIQpujtN5sf4p6QeO1ynxzS9v_U1qdxA=w952-h634-no?authuser=0"
+                    />
+                    <div className="venueTitle">Business Partners</div>
+                  </div>
+                </div>
+              </div>
+
+              {this.state.visible1 ? (
+                <FadeIn>
+                  <div className="card-body venueDetails container">
+                    <div className="row">{partnerlist}</div>
                   </div>
                 </FadeIn>
               ) : null}
