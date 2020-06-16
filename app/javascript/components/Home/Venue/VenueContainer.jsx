@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
 import { animateScroll as scroll } from "react-scroll";
