@@ -139,7 +139,7 @@ class JumbotronContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/jumbotrons/1";
+    const url = "/api/v1/jumbotrons/1";
     const { line1, line2, line3 } = this.state;
 
     const body = {
@@ -150,7 +150,7 @@ class JumbotronContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

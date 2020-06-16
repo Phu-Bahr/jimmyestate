@@ -64,7 +64,7 @@ class MarketReportsContainer extends Component {
 
     this.recaptcha.execute();
 
-    const urls = "/api/v1/market_reports";
+    const url = "/api/v1/market_reports";
 
     const { name, email, phone, destinationaddress, message } = this.state;
 
@@ -78,7 +78,7 @@ class MarketReportsContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -102,7 +102,7 @@ class MarketReportsContainer extends Component {
 
   onSubmitEdit(event) {
     event.preventDefault();
-    const urls = `/api/v1/market_report_edits/${this.state.id}`;
+    const url = `/api/v1/market_report_edits/${this.state.id}`;
     const {
       bannerText1,
       bannerText2,
@@ -121,7 +121,7 @@ class MarketReportsContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

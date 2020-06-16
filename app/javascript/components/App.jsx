@@ -59,9 +59,9 @@ class App extends Component {
   }
 
   checkLoginStatus() {
-    const urls = "/logged_in";
+    const url = "/logged_in";
 
-    fetch(urls, { credentials: "include" })
+    fetch(url, { credentials: "include" })
       .then(response => {
         if (response.ok) {
           return response;

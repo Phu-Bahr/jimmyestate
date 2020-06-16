@@ -3,7 +3,7 @@ import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { FadeIn } from "./Constants";
 
-//parent component needs to supply urlGET state
+//parent component needs to supply url state
 //send {...this.state}, and user={this.props.user} <- for admin
 //have a content column in their Model
 //:content in params controller
@@ -44,7 +44,7 @@ class DraftJSContainer extends Component {
       alert("Can't save on Read Only");
     } else {
       event.preventDefault();
-      const urls = `/api/v1/${this.props.urlGET}`;
+      const url = `/api/v1/${this.props.url}`;
       const { content } = this.state;
 
       const body = {
@@ -53,7 +53,7 @@ class DraftJSContainer extends Component {
 
       const token = document.querySelector('meta[name="csrf-token"]').content;
 
-      fetch(urls, {
+      fetch(url, {
         method: "POST",
         headers: {
           "X-CSRF-Token": token,
@@ -78,7 +78,7 @@ class DraftJSContainer extends Component {
       alert("Can't update first post.");
     } else {
       event.preventDefault();
-      const urls = `/api/v1/${this.props.urlGET}/${this.state.id}`;
+      const url = `/api/v1/${this.props.url}/${this.state.id}`;
       const { content } = this.state;
 
       const body = {
@@ -87,7 +87,7 @@ class DraftJSContainer extends Component {
 
       const token = document.querySelector('meta[name="csrf-token"]').content;
 
-      fetch(urls, {
+      fetch(url, {
         method: "PUT",
         headers: {
           "X-CSRF-Token": token,
@@ -107,7 +107,7 @@ class DraftJSContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/${this.props.urlGET}`)
+    fetch(`/api/v1/${this.props.url}`)
       .then(response => {
         if (response.ok) {
           return response;

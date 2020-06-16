@@ -72,7 +72,7 @@ class PortfolioProperties extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/portfolios";
+    const url = "/api/v1/portfolios";
     const {
       photo,
       price,
@@ -99,7 +99,7 @@ class PortfolioProperties extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -121,10 +121,10 @@ class PortfolioProperties extends Component {
   }
 
   deleteEvent(id) {
-    const urls = `/api/v1/portfolios/${id}`;
+    const url = `/api/v1/portfolios/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "X-CSRF-Token": token,
@@ -151,7 +151,7 @@ class PortfolioProperties extends Component {
       alert("Nothing to edit");
     } else {
       event.preventDefault();
-      const urls = `/api/v1/portfolios/${this.state.propertyID}`;
+      const url = `/api/v1/portfolios/${this.state.propertyID}`;
       const {
         photo,
         price,
@@ -178,7 +178,7 @@ class PortfolioProperties extends Component {
 
       const token = document.querySelector('meta[name="csrf-token"]').content;
 
-      fetch(urls, {
+      fetch(url, {
         method: "PUT",
         headers: {
           "X-CSRF-Token": token,

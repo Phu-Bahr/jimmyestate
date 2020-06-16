@@ -74,10 +74,10 @@ class EventContainer extends Component {
   }
 
   deleteEvent(id) {
-    const urls = `/api/v1/events/${id}`;
+    const url = `/api/v1/events/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "X-CSRF-Token": token,
@@ -99,7 +99,7 @@ class EventContainer extends Component {
 
   updateEvent(id) {
     event.preventDefault();
-    const urls = `/api/v1/events/${id}`;
+    const url = `/api/v1/events/${id}`;
     const { title, location, date, time, flier, lat, lng } = this.state;
 
     const body = {
@@ -114,7 +114,7 @@ class EventContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

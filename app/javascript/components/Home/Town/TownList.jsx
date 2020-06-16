@@ -52,10 +52,10 @@ class TownList extends Component {
   }
 
   deleteEvent(id) {
-    const urls = `/api/v1/towns/${id}`;
+    const url = `/api/v1/towns/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "X-CSRF-Token": token,

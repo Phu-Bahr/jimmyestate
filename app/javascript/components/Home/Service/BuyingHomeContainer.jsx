@@ -12,7 +12,7 @@ class BuyingHomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      urlGET: "buying_contents",
+      url: "buying_contents",
       headerText1: "",
       headerText2: "",
       id: null,
@@ -34,7 +34,7 @@ class BuyingHomeContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage } = this.state;
 
     const body = {
@@ -61,7 +61,7 @@ class BuyingHomeContainer extends Component {
   };
 
   componentDidMount() {
-    getFetch(this.state.urlGET)
+    getFetch(this.state.url)
       .then(body => {
         this.mountState(body);
       })
@@ -70,7 +70,7 @@ class BuyingHomeContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      getFetch(this.state.urlGET)
+      getFetch(this.state.url)
         .then(body => {
           this.mountState(body);
         })

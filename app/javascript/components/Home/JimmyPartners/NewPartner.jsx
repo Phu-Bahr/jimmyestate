@@ -33,7 +33,7 @@ class NewPartner extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/partner_categories";
+    const url = "/api/v1/partner_categories";
     const { name, headerText1, headerText2, content, bannerImage } = this.state;
 
     const body = {
@@ -46,7 +46,7 @@ class NewPartner extends React.Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,

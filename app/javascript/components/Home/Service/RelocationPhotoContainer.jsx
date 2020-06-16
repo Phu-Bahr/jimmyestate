@@ -30,7 +30,7 @@ class RelocationPhotoContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/relocation_photos";
+    const url = "/api/v1/relocation_photos";
     const { photo } = this.state;
 
     const body = {
@@ -39,7 +39,7 @@ class RelocationPhotoContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -59,10 +59,10 @@ class RelocationPhotoContainer extends Component {
   }
 
   deleteEvent(id) {
-    const urls = `/api/v1/relocation_photos/${id}`;
+    const url = `/api/v1/relocation_photos/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "X-CSRF-Token": token,

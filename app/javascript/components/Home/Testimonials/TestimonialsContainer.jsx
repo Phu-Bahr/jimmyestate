@@ -10,7 +10,7 @@ class TestimonialsContainer extends Component {
   constructor(props) {
     super();
     this.state = {
-      urlGET: "testimonial_edits",
+      url: "testimonial_edits",
       headerText1: "",
       headerText2: "",
       bannerImage: "",
@@ -39,7 +39,7 @@ class TestimonialsContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage } = this.state;
 
     const body = {
@@ -50,7 +50,7 @@ class TestimonialsContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -79,7 +79,7 @@ class TestimonialsContainer extends Component {
   }
 
   mountTestTemplate() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -104,7 +104,7 @@ class TestimonialsContainer extends Component {
 
   updateTestTemplate() {
     if (this.state.refreshKey) {
-      fetch(`/api/v1/${this.state.urlGET}`)
+      fetch(`/api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

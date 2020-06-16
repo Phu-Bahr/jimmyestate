@@ -37,7 +37,7 @@ class TownLinks extends Component {
   onSubmit(event) {
     event.preventDefault();
     let town_id = this.props.paramID;
-    const urls = `/api/v1/towns/${town_id}/town_links`;
+    const url = `/api/v1/towns/${town_id}/town_links`;
     const { townlink, townlinkdescription } = this.state;
 
     const body = {
@@ -47,7 +47,7 @@ class TownLinks extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -73,7 +73,7 @@ class TownLinks extends Component {
       alert("Nothing to edit");
     } else {
       event.preventDefault();
-      const urls = `/api/v1/towns/${this.props.paramID}/town_links/${this.state.townlinkID}`;
+      const url = `/api/v1/towns/${this.props.paramID}/town_links/${this.state.townlinkID}`;
       const { townlink, townlinkdescription, townlinkID } = this.state;
 
       const body = {
@@ -84,7 +84,7 @@ class TownLinks extends Component {
 
       const token = document.querySelector('meta[name="csrf-token"]').content;
 
-      fetch(urls, {
+      fetch(url, {
         method: "PUT",
         headers: {
           "X-CSRF-Token": token,
@@ -115,10 +115,10 @@ class TownLinks extends Component {
   }
 
   deleteEvent(id) {
-    const urls = `/api/v1/towns/${this.props.paramID}/town_links/${id}`;
+    const url = `/api/v1/towns/${this.props.paramID}/town_links/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "X-CSRF-Token": token,

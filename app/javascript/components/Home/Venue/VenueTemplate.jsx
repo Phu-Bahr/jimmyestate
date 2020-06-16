@@ -7,7 +7,7 @@ class VenueTemplate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      urlGET: "venue_templates",
+      url: "venue_templates",
       bannerImage: "",
       headerText1: "",
       headerText2: "",
@@ -27,7 +27,7 @@ class VenueTemplate extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage, image } = this.state;
 
     const body = {
@@ -39,7 +39,7 @@ class VenueTemplate extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -60,7 +60,7 @@ class VenueTemplate extends Component {
   };
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -86,7 +86,7 @@ class VenueTemplate extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch(`/api/v1/${this.state.urlGET}`)
+      fetch(`/api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

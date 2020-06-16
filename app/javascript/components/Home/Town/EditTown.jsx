@@ -34,7 +34,7 @@ class EditTown extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = `/api/v1/towns/${this.state.id}`;
+    const url = `/api/v1/towns/${this.state.id}`;
     const {
       name,
       headerText1,
@@ -53,7 +53,7 @@ class EditTown extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

@@ -39,7 +39,7 @@ class AnnouncementContainer extends Component {
   onSubmit(event) {
     event.preventDefault();
     // need to make url more dynamic than hard code 1
-    const urls = "/api/v1/announcements/1";
+    const url = "/api/v1/announcements/1";
     const { description, title, bannerImage } = this.state;
 
     const body = {
@@ -50,7 +50,7 @@ class AnnouncementContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

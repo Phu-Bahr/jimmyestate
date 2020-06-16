@@ -18,7 +18,7 @@ class CustomEditLinks extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = `/api/v1/custom_cards/${this.props.id}`;
+    const url = `/api/v1/custom_cards/${this.props.id}`;
     const { image, title } = this.state;
 
     const body = {
@@ -28,7 +28,7 @@ class CustomEditLinks extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

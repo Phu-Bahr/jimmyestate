@@ -16,7 +16,7 @@ class AboutCompanyContainer extends Component {
       headerText2: "",
       image: "",
       id: null,
-      urlGET: "about_companies",
+      url: "about_companies",
       bannerImage: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -34,7 +34,7 @@ class AboutCompanyContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { headerText1, headerText2, image, bannerImage } = this.state;
 
     const body = {
@@ -46,7 +46,7 @@ class AboutCompanyContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -66,7 +66,7 @@ class AboutCompanyContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -93,7 +93,7 @@ class AboutCompanyContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      fetch(`api/v1/${this.state.urlGET}`)
+      fetch(`api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

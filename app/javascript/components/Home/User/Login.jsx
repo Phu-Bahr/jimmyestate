@@ -21,9 +21,9 @@ class Login extends Component {
   };
 
   handleLogoutClick() {
-    const urls = "/logout";
+    const url = "/logout";
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       credentials: "include"
     })
@@ -41,7 +41,7 @@ class Login extends Component {
 
   handleLoginSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/sessions";
+    const url = "/api/v1/sessions";
     const { email, password } = this.state;
 
     const body = {
@@ -51,7 +51,7 @@ class Login extends Component {
       }
     };
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

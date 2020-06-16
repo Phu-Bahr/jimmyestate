@@ -20,7 +20,7 @@ class Registration extends Component {
 
   handleRegSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/registrations";
+    const url = "/api/v1/registrations";
     const { email, password, password_confirmation } = this.state;
 
     const body = {
@@ -31,7 +31,7 @@ class Registration extends Component {
       }
     };
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

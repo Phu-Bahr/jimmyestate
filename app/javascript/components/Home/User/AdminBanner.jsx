@@ -9,9 +9,9 @@ class AdminBanner extends Component {
   }
 
   handleLogoutClick() {
-    const urls = "/logout";
+    const url = "/logout";
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       credentials: "include"
     })

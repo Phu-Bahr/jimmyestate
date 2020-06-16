@@ -29,7 +29,7 @@ class WorthPhotoContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/worth_photos";
+    const url = "/api/v1/worth_photos";
     const { photo } = this.state;
 
     const body = {
@@ -38,7 +38,7 @@ class WorthPhotoContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -58,10 +58,10 @@ class WorthPhotoContainer extends Component {
   }
 
   deleteEvent(id) {
-    const urls = `/api/v1/worth_photos/${id}`;
+    const url = `/api/v1/worth_photos/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "DELETE",
       headers: {
         "X-CSRF-Token": token,
