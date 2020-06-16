@@ -4,7 +4,7 @@ import {
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
-import { Fetcher } from "../../Constants/FetchComponent";
+import { getFetch, putFetch } from "../../Constants/FetchComponent";
 import DraftJSContainer from "../../Constants/DraftJSComponent";
 import { animateScroll as scroll } from "react-scroll";
 
@@ -16,8 +16,7 @@ class BuyingHomeContainer extends Component {
       headerText1: "",
       headerText2: "",
       id: null,
-      bannerImage: "",
-      data: []
+      bannerImage: ""
     };
   }
 
@@ -35,7 +34,7 @@ class BuyingHomeContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.urlGET}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage } = this.state;
 
     const body = {
@@ -46,7 +45,7 @@ class BuyingHomeContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    Fetcher.putFetch(urls, token, body)
+    putFetch(url, token, body)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
   };
@@ -62,8 +61,7 @@ class BuyingHomeContainer extends Component {
   };
 
   componentDidMount() {
-    let url = this.state.urlGET;
-    Fetcher.getFetch(url)
+    getFetch(this.state.urlGET)
       .then(body => {
         this.mountState(body);
       })
@@ -72,8 +70,7 @@ class BuyingHomeContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      const url = this.state.urlGET;
-      Fetcher.getFetch(url)
+      getFetch(this.state.urlGET)
         .then(body => {
           this.mountState(body);
         })

@@ -216,8 +216,6 @@ class CustomCards extends Component {
       }
     });
 
-    console.log("custom cards", this.state);
-
     return (
       <React.Fragment>
         {communityCard}
