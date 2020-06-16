@@ -65,7 +65,7 @@ class EventContainer extends Component {
     }
   }
 
-  clickEventEdit(event) {
+  clickEventEdit() {
     if (this.state.hideDiv === false) {
       this.setState({ hideDiv: true });
     } else {

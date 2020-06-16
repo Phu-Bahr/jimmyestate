@@ -44,7 +44,6 @@ class CustomEditLinks extends Component {
         throw new Error("Network response was not ok.");
       })
       .then(this.props.toggleRefreshKey)
-
       .catch(error => console.log(error.message));
   }
 
