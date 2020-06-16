@@ -39,7 +39,7 @@ class PartnerShowPage extends Component {
       alert("Can't save on Read Only");
     } else {
       event.preventDefault();
-      const urls = `/api/v1/${this.state.getURL}/${this.props.match.params.id}`;
+      const url = `/api/v1/${this.state.getURL}/${this.props.match.params.id}`;
       const { content } = this.state;
 
       const body = {
@@ -48,7 +48,7 @@ class PartnerShowPage extends Component {
 
       const token = document.querySelector('meta[name="csrf-token"]').content;
 
-      fetch(urls, {
+      fetch(url, {
         method: "PUT",
         headers: {
           "X-CSRF-Token": token,

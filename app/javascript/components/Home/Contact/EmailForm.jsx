@@ -29,7 +29,7 @@ class EmailForm extends Component {
 
     this.recaptcha.execute();
 
-    const urls = "/api/v1/contacts";
+    const url = "/api/v1/contacts";
     const { name, email, message } = this.state;
 
     const body = {
@@ -40,7 +40,7 @@ class EmailForm extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,

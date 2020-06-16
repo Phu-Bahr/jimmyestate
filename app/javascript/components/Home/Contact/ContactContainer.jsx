@@ -25,7 +25,7 @@ class ContactContainer extends Component {
       email: "",
       lat: "",
       lng: "",
-      urlGET: "contact_edits",
+      url: "contact_edits",
       refreshKey: false,
       id: null
     };
@@ -45,7 +45,7 @@ class ContactContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const {
       headerText1,
       headerText2,
@@ -74,7 +74,7 @@ class ContactContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -96,7 +96,7 @@ class ContactContainer extends Component {
   };
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -127,7 +127,7 @@ class ContactContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      fetch(`api/v1/${this.state.urlGET}`)
+      fetch(`api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

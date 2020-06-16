@@ -11,7 +11,7 @@ class JimmyTipContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      urlGET: "jimmy_tips",
+      url: "jimmy_tips",
       headerText1: "",
       headerText2: "",
       id: null,
@@ -36,7 +36,7 @@ class JimmyTipContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage } = this.state;
 
     const body = {
@@ -47,7 +47,7 @@ class JimmyTipContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -68,7 +68,7 @@ class JimmyTipContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -93,7 +93,7 @@ class JimmyTipContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      fetch(`/api/v1/${this.state.urlGET}`)
+      fetch(`/api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

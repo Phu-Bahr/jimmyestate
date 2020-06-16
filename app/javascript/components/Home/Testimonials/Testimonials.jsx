@@ -7,7 +7,7 @@ class Testimonials extends Component {
   constructor(props) {
     super();
     this.state = {
-      urlGET: "testimonials",
+      url: "testimonials",
       image: "",
       title: "",
       description: "",
@@ -73,7 +73,7 @@ class Testimonials extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}`;
+    const url = `/api/v1/${this.state.url}`;
     const { image, title, description, name } = this.state;
 
     const body = {
@@ -85,7 +85,7 @@ class Testimonials extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -115,7 +115,7 @@ class Testimonials extends Component {
   }
 
   mountTestimonials() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -137,7 +137,7 @@ class Testimonials extends Component {
 
   updateTestimonials() {
     if (this.state.refreshKey) {
-      fetch(`/api/v1/${this.state.urlGET}`)
+      fetch(`/api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;
@@ -162,9 +162,9 @@ class Testimonials extends Component {
     event.preventDefault();
     let result = confirm("Are you sure you want to delete?");
     if (result) {
-      const urls = `/api/v1/${this.state.urlGET}/${id}`;
+      const url = `/api/v1/${this.state.url}/${id}`;
       const token = document.querySelector('meta[name="csrf-token"]').content;
-      fetch(urls, {
+      fetch(url, {
         method: "DELETE",
         headers: {
           "X-CSRF-Token": token,
@@ -191,7 +191,7 @@ class Testimonials extends Component {
     if (this.state.id) {
     }
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { image, title, description, name } = this.state;
 
     const body = {
@@ -203,7 +203,7 @@ class Testimonials extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

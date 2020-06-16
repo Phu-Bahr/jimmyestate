@@ -11,7 +11,7 @@ class PortfolioContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      urlGET: "portfolio_edits",
+      url: "portfolio_edits",
       bannerImage: "",
       headerText1: "",
       headerText2: "",
@@ -29,7 +29,7 @@ class PortfolioContainer extends Component {
   };
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -53,7 +53,7 @@ class PortfolioContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/${this.state.id}`;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const { bannerImage, headerText1, headerText2 } = this.state;
 
     const body = {
@@ -64,7 +64,7 @@ class PortfolioContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -86,7 +86,7 @@ class PortfolioContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch(`/api/v1/${this.state.urlGET}`)
+      fetch(`/api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

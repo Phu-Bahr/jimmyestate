@@ -66,7 +66,7 @@ class RelocationContainer extends Component {
 
     this.recaptcha.execute();
 
-    const urls = "/api/v1/relocations";
+    const url = "/api/v1/relocations";
 
     const {
       name,
@@ -92,7 +92,7 @@ class RelocationContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -166,7 +166,7 @@ class RelocationContainer extends Component {
 
   onSubmitEdit(event) {
     event.preventDefault();
-    const urls = "/api/v1/relocation_edits/1";
+    const url = "/api/v1/relocation_edits/1";
     const {
       bannerText1,
       bannerText2,
@@ -185,7 +185,7 @@ class RelocationContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

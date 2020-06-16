@@ -34,7 +34,7 @@ class NewTown extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = "/api/v1/towns";
+    const url = "/api/v1/towns";
     const {
       name,
       headerText1,
@@ -55,7 +55,7 @@ class NewTown extends React.Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,

@@ -19,7 +19,7 @@ class EditHelperLinks extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = `/api/v1/helper_links/${this.props.id}`;
+    const url = `/api/v1/helper_links/${this.props.id}`;
     const { image, title, route } = this.state;
 
     const body = {
@@ -30,7 +30,7 @@ class EditHelperLinks extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,

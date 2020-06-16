@@ -26,7 +26,7 @@ class FooterContainer extends Component {
       zillow: "",
       realtor: "",
       refreshKey: false,
-      urlGET: "footers"
+      url: "footers"
     };
 
     this.clickEdit = this.clickEdit.bind(this);
@@ -53,7 +53,7 @@ class FooterContainer extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const urls = `/api/v1/${this.state.urlGET}/1`;
+    const url = `/api/v1/${this.state.url}/1`;
     const {
       name,
       street,
@@ -89,7 +89,7 @@ class FooterContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -111,7 +111,7 @@ class FooterContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.urlGET}`)
+    fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -146,7 +146,7 @@ class FooterContainer extends Component {
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch(`api/v1/${this.state.urlGET}`)
+      fetch(`api/v1/${this.state.url}`)
         .then(response => {
           if (response.ok) {
             return response;

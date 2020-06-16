@@ -26,44 +26,38 @@ class HomeWorthContainer extends Component {
       hideDiv: true,
       bannerImage: ""
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onResolved = this.onResolved.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.onSubmitEdit = this.onSubmitEdit.bind(this);
-    this.clickEdit = this.clickEdit.bind(this);
   }
 
-  clickEdit(event) {
+  clickEdit = () => {
     if (this.state.hideDiv === false) {
       this.setState({ hideDiv: true });
     } else {
       this.setState({ hideDiv: false });
     }
-  }
+  };
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey = () => {
     this.setState({ refreshKey: true });
-  }
+  };
 
-  onResolved() {
+  onResolved = () => {
     console.log("Captcha all set");
-  }
+  };
 
   scrollToTop = () => {
     scroll.scrollToTop();
   };
 
-  onChange(event) {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
 
     this.recaptcha.execute();
 
-    const urls = "/api/v1/home_worths";
+    const url = "/api/v1/home_worths";
 
     const { name, email, phone, address, message } = this.state;
 
@@ -77,7 +71,7 @@ class HomeWorthContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
@@ -97,7 +91,7 @@ class HomeWorthContainer extends Component {
       })
       .then(this.scrollToTop)
       .catch(error => console.log(error.message));
-  }
+  };
 
   componentDidMount() {
     fetch("/api/v1/worth_edits")
@@ -151,9 +145,9 @@ class HomeWorthContainer extends Component {
     }
   }
 
-  onSubmitEdit(event) {
+  onSubmitEdit = event => {
     event.preventDefault();
-    const urls = "/api/v1/worth_edits/1";
+    const url = "/api/v1/worth_edits/1";
     const {
       bannerText1,
       bannerText2,
@@ -172,7 +166,7 @@ class HomeWorthContainer extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
@@ -193,7 +187,7 @@ class HomeWorthContainer extends Component {
       })
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
 
   render() {
     let hide;

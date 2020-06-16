@@ -56,7 +56,7 @@ class NewEvent extends Component {
   }
 
   submit(event) {
-    const urls = "/api/v1/events";
+    const url = "/api/v1/events";
     const { title, location, date, time, flier, lat, lng } = this.state;
 
     const body = {
@@ -71,7 +71,7 @@ class NewEvent extends Component {
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(urls, {
+    fetch(url, {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
