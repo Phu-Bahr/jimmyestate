@@ -149,6 +149,7 @@ export const FormMaps = props => {
           name={key}
           onChange={props.onChange}
           value={props.value[key]}
+          required
         />
       </div>
     );
@@ -168,6 +169,7 @@ export const FormNoLabel = props => {
           name={key}
           onChange={props.onChange}
           value={props.value[key]}
+          required
         />
       </div>
     );
