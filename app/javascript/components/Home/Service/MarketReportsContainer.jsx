@@ -5,13 +5,22 @@ import MarketPhotoContainer from "./MarketPhotoContainer";
 import {
   FadeIn,
   FadeInLeft,
-  ParallaxBannerRoutes
+  ParallaxBannerRoutes,
+  FormMaps
 } from "../../Constants/Constants";
+import {
+  postFetch,
+  postFetchEmail,
+  putFetch,
+  getFetch
+} from "../../Constants/FetchComponent";
 
 class MarketReportsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      url: "market_report_edits",
+      urlEmailForm: "market_reports",
       name: "",
       email: "",
       phone: "",
@@ -23,51 +32,40 @@ class MarketReportsContainer extends Component {
       bannerText1: "",
       bannerText2: "",
       refreshKey: false,
-      hideDiv: true,
+      hideDiv: false,
       bannerImage: "",
       id: ""
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onResolved = this.onResolved.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.onSubmitEdit = this.onSubmitEdit.bind(this);
-    this.clickEdit = this.clickEdit.bind(this);
   }
 
-  clickEdit() {
-    if (this.state.hideDiv === false) {
-      this.setState({ hideDiv: true });
-    } else {
-      this.setState({ hideDiv: false });
-    }
-  }
+  clickEdit = () => {
+    this.state.hideDiv
+      ? this.setState({ hideDiv: false })
+      : this.setState({ hideDiv: true });
+  };
 
-  toggleRefreshKey() {
+  toggleRefreshKey = () => {
     this.setState({ refreshKey: true });
-  }
+  };
 
-  onResolved() {
+  onResolved = () => {
     console.log("Captcha all set");
-  }
+  };
 
   scrollToTop = () => {
     scroll.scrollToTop();
   };
 
-  onChange(event) {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-
     this.recaptcha.execute();
-
-    const url = "/api/v1/market_reports";
-
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const url = `/api/v1/${this.state.urlEmailForm}`;
     const { name, email, phone, destinationaddress, message } = this.state;
-
     const body = {
       name,
       email,
@@ -76,33 +74,15 @@ class MarketReportsContainer extends Component {
       message
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Your inquiry has been received!");
-          return response.json();
-        }
-        alert(
-          "There was a network issue, please try again or Email Jimmy directly."
-        );
-        throw new Error("Network response was not ok.");
-      })
+    postFetchEmail(url, token, body)
       .then(this.scrollToTop)
       .catch(error => console.log(error.message));
-  }
+  };
 
-  onSubmitEdit(event) {
+  onSubmitEdit = event => {
     event.preventDefault();
-    const url = `/api/v1/market_report_edits/${this.state.id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
     const {
       bannerText1,
       bannerText2,
@@ -119,75 +99,35 @@ class MarketReportsContainer extends Component {
       bannerImage
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Edit successful");
-          return response;
-        } else {
-          alert("something went wrong");
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
+    putFetch(url, token, body)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
 
+  mountState = body => {
+    this.setState({
+      marketEditData: body,
+      id: body[body.length - 1].id,
+      bannerText1: body[body.length - 1].bannerText1,
+      bannerText2: body[body.length - 1].bannerText2,
+      paragraph1: body[body.length - 1].paragraph1,
+      paragraph2: body[body.length - 1].paragraph2,
+      bannerImage: body[body.length - 1].bannerImage
+    });
+  };
   componentDidMount() {
-    fetch("/api/v1/market_report_edits")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
+    getFetch(this.state.url)
       .then(body => {
-        this.setState({
-          marketEditData: body,
-          id: body[0].id,
-          bannerText1: body[0].bannerText1,
-          bannerText2: body[0].bannerText2,
-          paragraph1: body[0].paragraph1,
-          paragraph2: body[0].paragraph2,
-          bannerImage: body[0].bannerImage
-        });
+        this.mountState(body);
       })
-
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch("api/v1/market_report_edits")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
+      getFetch(this.state.url)
         .then(body => {
-          this.setState({
-            marketEditData: body
-          });
+          this.mountState(body);
         })
         .then(this.setState({ refreshKey: false }))
         .then(this.scrollToTop);
@@ -195,21 +135,13 @@ class MarketReportsContainer extends Component {
   }
 
   render() {
-    let hide;
-    if (this.state.hideDiv) {
-      hide = "invisible";
-    } else {
-      hide = "";
-    }
-
-    let locationContent = this.state.marketEditData.map(element => {
-      return (
-        <div key={element.id}>
-          <p className="pb-2">{element.paragraph1}</p>
-          <p className="pb-2">{element.paragraph2}</p>
-        </div>
-      );
-    });
+    const marketFormData = {
+      bannerImage: "Banner Image",
+      bannerText1: "Banner Text 1",
+      bannerText2: "Banner Text 2",
+      paragraph1: "Paragraph 1",
+      paragraph2: "Paragraph 2"
+    };
 
     let editMarketReportInfo = (
       <div className="container">
@@ -218,68 +150,12 @@ class MarketReportsContainer extends Component {
             this.onSubmitEdit(event);
             event.target.reset();
           }}
-          className={hide}
         >
-          <div className="form-group">
-            <label htmlFor="bannerImage">Banner Image</label>
-            <input
-              type="text"
-              name="bannerImage"
-              id="bannerImage"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.bannerImage}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="bannerText1">Your Banner Text 1</label>
-            <input
-              type="text"
-              name="bannerText1"
-              id="bannerText1"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.bannerText1}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="bannerText2">Your Banner Text 2</label>
-            <input
-              type="text"
-              name="bannerText2"
-              id="bannerText2"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.bannerText2}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="paragraph1">Your Paragraph 1</label>
-            <input
-              type="text"
-              name="paragraph1"
-              id="paragraph1"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.paragraph1}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="paragraph2">Your Paragraph 2</label>
-            <input
-              type="text"
-              name="paragraph2"
-              id="paragraph2"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.paragraph2}
-            />
-          </div>
+          <FormMaps
+            formConst={marketFormData}
+            onChange={this.onChange}
+            value={this.state}
+          />
           <div className="pb-3">
             <button type="submit" className="btn custom-button">
               Update
@@ -321,19 +197,19 @@ class MarketReportsContainer extends Component {
             />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group col-md-12">
-            <label htmlFor="email">Your Email</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
+
+        <div className="form-group">
+          <label htmlFor="email">Your Email</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            className="form-control"
+            onChange={this.onChange}
+            required
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="destinationaddress">
             Town/Neighborhood of Interest
@@ -402,12 +278,18 @@ class MarketReportsContainer extends Component {
             <div className="row">
               <div className="col-sm-6 pb-3">
                 <FadeInLeft>
-                  {locationContent}
-                  {editMarketReportInfo}
+                  <div>
+                    <p className="pb-2">{this.state.paragraph1}</p>
+                    <p className="pb-2">{this.state.paragraph2}</p>
+                  </div>
+                  {this.state.hideDiv ? editMarketReportInfo : null}
                   {contactRelocationForm}
                 </FadeInLeft>
               </div>
-              <MarketPhotoContainer user={this.props.user} hide={hide} />
+              <MarketPhotoContainer
+                user={this.props.user}
+                hide={this.state.hideDiv}
+              />
             </div>
           </div>
         </div>
