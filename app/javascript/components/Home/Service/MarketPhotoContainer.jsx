@@ -1,127 +1,74 @@
 import React, { Component } from "react";
 import { FadeInRight } from "../../Constants/Constants";
+import {
+  postFetch,
+  deleteFetch,
+  getFetch
+} from "../../Constants/FetchComponent";
 
 class MarketPhotoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      url: "market_report_photos",
       photoData: [],
       photo: ""
     };
-
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.toggleRefreshKeyFalse = this.toggleRefreshKeyFalse.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
-  toggleRefreshKey() {
+  toggleRefreshKey = () => {
     this.setState({ refreshKey: true });
-  }
+  };
 
-  toggleRefreshKeyFalse() {
-    this.setState({ refreshKey: false });
-  }
-
-  onChange(event) {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = "/api/v1/market_report_photos";
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const url = `/api/v1/${this.state.url}`;
     const { photo } = this.state;
-
     const body = {
       photo
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Property has been added.");
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
+    postFetch(url, token, body)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
 
-  deleteEvent(id) {
-    const url = `/api/v1/market_report_photos/${id}`;
+  deleteEvent = id => {
+    const url = `/api/v1/${this.state.url}/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
+    deleteFetch(url, token)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
+
+  mountState = body => {
+    this.setState({
+      photoData: body,
+      photo: body[0].photo
+    });
+  };
 
   componentDidMount() {
-    fetch("/api/v1/market_report_photos")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
+    getFetch(this.state.url)
       .then(body => {
-        this.setState({
-          photoData: body,
-          photo: body[0].photo
-        });
+        this.mountState(body);
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      fetch("/api/v1/market_report_photos")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
+      getFetch(this.state.url)
         .then(body => {
-          this.setState({
-            photoData: body
-          });
+          this.mountState(body);
         })
-        .then(this.toggleRefreshKeyFalse)
+        .then(this.setState({ refreshKey: false }))
         .catch(error => console.log("error message =>", error.message));
     }
   }
@@ -145,15 +92,17 @@ class MarketPhotoContainer extends Component {
                   src={element.photo}
                 />
               </div>
-              <div className={"portfolioTitle" + " " + this.props.hide}>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleDelete}
-                >
-                  Delete Property
-                </button>
-              </div>
+              {this.props.hide ? (
+                <div className="portfolioTitle">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleDelete}
+                  >
+                    Delete Property
+                  </button>
+                </div>
+              ) : null}
             </div>
           </FadeInRight>
         </div>
@@ -161,8 +110,7 @@ class MarketPhotoContainer extends Component {
     });
 
     let photoInput = (
-      <div className={"pb-3" + " " + this.props.hide}>
-        {photoInput}
+      <div className="pb-3">
         <form
           onSubmit={event => {
             this.onSubmit(event);
@@ -188,7 +136,7 @@ class MarketPhotoContainer extends Component {
     return (
       <React.Fragment>
         <div className="card border-0 col-md-6">
-          {photoInput}
+          {this.props.hide ? photoInput : null}
           {photos}
         </div>
       </React.Fragment>

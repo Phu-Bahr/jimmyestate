@@ -40,7 +40,7 @@ export const postFetch = (url, token, body) => {
     body: JSON.stringify(body)
   }).then(response => {
     if (response.ok) {
-      alert("Your inquiry has been received!");
+      alert("Submission Successful");
       return response.json();
     }
     alert(
@@ -67,5 +67,25 @@ export const postFetchEmail = (url, token, body) => {
       "There was a network issue, please try again or Email Jimmy directly."
     );
     throw new Error("Network response was not ok.");
+  });
+};
+
+export const deleteFetch = (url, token) => {
+  return fetch(url, {
+    method: "DELETE",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    }
+  }).then(response => {
+    if (response.ok) {
+      alert("Delete successful");
+      return response;
+    } else {
+      alert("Something went wrong");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
+    }
   });
 };
