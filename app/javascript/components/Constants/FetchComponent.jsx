@@ -29,3 +29,43 @@ export const putFetch = (url, token, body) => {
     throw new Error("Network response was not ok.");
   });
 };
+
+export const postFetch = (url, token, body) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  }).then(response => {
+    if (response.ok) {
+      alert("Your inquiry has been received!");
+      return response.json();
+    }
+    alert(
+      "There was a network issue, please try again or Email Jimmy directly."
+    );
+    throw new Error("Network response was not ok.");
+  });
+};
+
+export const postFetchEmail = (url, token, body) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  }).then(response => {
+    if (response.ok) {
+      alert("Your inquiry has been received!");
+      return response.json();
+    }
+    alert(
+      "There was a network issue, please try again or Email Jimmy directly."
+    );
+    throw new Error("Network response was not ok.");
+  });
+};

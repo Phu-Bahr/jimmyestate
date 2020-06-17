@@ -146,15 +146,17 @@ class WorthPhotoContainer extends Component {
                   src={element.photo}
                 />
               </div>
-              <div className={"portfolioTitle" + " " + this.props.hide}>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleDelete}
-                >
-                  Delete Property
-                </button>
-              </div>
+              {this.props.hide ? (
+                <div className="portfolioTitle">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleDelete}
+                  >
+                    Delete Property
+                  </button>
+                </div>
+              ) : null}
             </div>
           </FadeInLeft>
         </div>
@@ -164,27 +166,32 @@ class WorthPhotoContainer extends Component {
     return (
       <React.Fragment>
         <div className="card border-0 col-md-6">
-          <div className={"pb-3" + " " + this.props.hide}>
-            <form
-              onSubmit={event => {
-                this.onSubmit(event);
-                event.target.reset();
-              }}
-            >
-              <label htmlFor="photo">Photo URL</label>
-              <input
-                type="url"
-                name="photo"
-                id="photo"
-                className="form-control"
-                required
-                onChange={this.onChange}
-              />
-              <button className="btn btn-info mt-3" onClick={this.onSubmitEdit}>
-                Add Photo
-              </button>
-            </form>
-          </div>
+          {this.props.hide ? (
+            <div className="pb-3">
+              <form
+                onSubmit={event => {
+                  this.onSubmit(event);
+                  event.target.reset();
+                }}
+              >
+                <label htmlFor="photo">Photo URL</label>
+                <input
+                  type="url"
+                  name="photo"
+                  id="photo"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                />
+                <button
+                  className="btn btn-info mt-3"
+                  onClick={this.onSubmitEdit}
+                >
+                  Add Photo
+                </button>
+              </form>
+            </div>
+          ) : null}
           {photos}
         </div>
       </React.Fragment>
