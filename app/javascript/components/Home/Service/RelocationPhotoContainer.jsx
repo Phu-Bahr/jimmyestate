@@ -3,7 +3,7 @@ import { FadeInRight } from "../../Constants/Constants";
 
 class RelocationPhotoContainer extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       photoData: [],
       photo: ""
@@ -145,15 +145,17 @@ class RelocationPhotoContainer extends Component {
                   src={element.photo}
                 />
               </div>
-              <div className={"portfolioTitle" + " " + this.props.hide}>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleDelete}
-                >
-                  Delete Property
-                </button>
-              </div>
+              {this.props.hide ? (
+                <div className="portfolioTitle">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleDelete}
+                  >
+                    Delete Property
+                  </button>
+                </div>
+              ) : null}
             </div>
           </FadeInRight>
         </div>
@@ -161,28 +163,32 @@ class RelocationPhotoContainer extends Component {
     });
 
     let photoInput = (
-      <div className={"pb-3" + " " + this.props.hide}>
-        {photoInput}
-        <form
-          onSubmit={event => {
-            this.onSubmit(event);
-            event.target.reset();
-          }}
-        >
-          <label htmlFor="photo">Photo URL</label>
-          <input
-            type="url"
-            name="photo"
-            id="photo"
-            className="form-control"
-            required
-            onChange={this.onChange}
-          />
-          <button className="btn btn-info mt-3" onClick={this.onSubmitEdit}>
-            Add Photo
-          </button>
-        </form>
-      </div>
+      <React.Fragment>
+        {this.props.hide ? (
+          <div className="pb-3">
+            {photoInput}
+            <form
+              onSubmit={event => {
+                this.onSubmit(event);
+                event.target.reset();
+              }}
+            >
+              <label htmlFor="photo">Photo URL</label>
+              <input
+                type="url"
+                name="photo"
+                id="photo"
+                className="form-control"
+                required
+                onChange={this.onChange}
+              />
+              <button className="btn btn-info mt-3" onClick={this.onSubmitEdit}>
+                Add Photo
+              </button>
+            </form>
+          </div>
+        ) : null}
+      </React.Fragment>
     );
 
     return (

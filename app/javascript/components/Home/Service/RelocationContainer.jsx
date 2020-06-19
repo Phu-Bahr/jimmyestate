@@ -5,13 +5,17 @@ import RelocationPhotoContainer from "./RelocationPhotoContainer";
 import {
   FadeIn,
   FadeInLeft,
-  ParallaxBannerRoutes
+  ParallaxBannerRoutes,
+  FormMaps
 } from "../../Constants/Constants";
+import { getFetch, putFetch, postFetch } from "../../Constants/FetchComponent";
 
 class RelocationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      url: "relocation_edits",
+      urlEmailForm: "relocations",
       name: "",
       email: "",
       phone: "",
@@ -26,48 +30,38 @@ class RelocationContainer extends Component {
       bannerText1: "",
       bannerText2: "",
       refreshKey: false,
-      hideDiv: true,
+      hideDiv: false,
       bannerImage: ""
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onResolved = this.onResolved.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.onSubmitEdit = this.onSubmitEdit.bind(this);
-    this.clickEdit = this.clickEdit.bind(this);
   }
 
-  clickEdit(event) {
-    if (this.state.hideDiv === false) {
-      this.setState({ hideDiv: true });
-    } else {
-      this.setState({ hideDiv: false });
-    }
-  }
+  clickEdit = () => {
+    this.state.hideDiv
+      ? this.setState({ hideDiv: false })
+      : this.setState({ hideDiv: true });
+  };
 
-  toggleRefreshKey(event) {
+  toggleRefreshKey = () => {
     this.setState({ refreshKey: true });
-  }
+  };
 
-  onResolved() {
+  onResolved = () => {
     console.log("Captcha all set");
-  }
+  };
 
   scrollToTop = () => {
     scroll.scrollToTop();
   };
 
-  onChange(event) {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-
     this.recaptcha.execute();
-
-    const url = "/api/v1/relocations";
-
+    const url = `/api/v1/${this.state.urlEmailForm}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     const {
       name,
       email,
@@ -90,83 +84,46 @@ class RelocationContainer extends Component {
       message
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Your inquiry has been received!");
-          return response.json();
-        }
-        alert(
-          "There was a network issue, please try again or Email Jimmy directly."
-        );
-        throw new Error("Network response was not ok.");
-      })
+    postFetch(url, token, body)
       .then(this.scrollToTop)
       .catch(error => console.log(error.message));
-  }
+  };
+
+  mountState = body => {
+    this.setState({
+      relocationEditData: body,
+      id: body[body.length - 1].id,
+      bannerText1: body[body.length - 1].bannerText1,
+      bannerText2: body[body.length - 1].bannerText2,
+      paragraph1: body[body.length - 1].paragraph1,
+      paragraph2: body[body.length - 1].paragraph2,
+      bannerImage: body[body.length - 1].bannerImage
+    });
+  };
 
   componentDidMount() {
-    fetch("/api/v1/relocation_edits")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
+    getFetch(this.state.url)
       .then(body => {
-        this.setState({
-          relocationEditData: body,
-          id: body[0].id,
-          bannerText1: body[0].bannerText1,
-          bannerText2: body[0].bannerText2,
-          paragraph1: body[0].paragraph1,
-          paragraph2: body[0].paragraph2,
-          bannerImage: body[0].bannerImage
-        });
+        this.mountState(body);
       })
-
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      fetch("api/v1/relocation_edits")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
+      getFetch(this.state.url)
         .then(body => {
-          this.setState({
-            relocationEditData: body
-          });
+          this.mountState(body);
         })
         .then(this.setState({ refreshKey: false }))
         .then(this.scrollToTop);
     }
   }
 
-  onSubmitEdit(event) {
+  onSubmitEdit = event => {
     event.preventDefault();
-    const url = "/api/v1/relocation_edits/1";
+    const url = `/api/v1/${this.state.url}/${this.state.id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     const {
       bannerText1,
       bannerText2,
@@ -183,132 +140,45 @@ class RelocationContainer extends Component {
       bannerImage
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Edit successful");
-          return response;
-        } else {
-          alert("something went wrong");
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
+    putFetch(url, token, body)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
 
   render() {
-    let hideEditButton;
-    if (this.props.user.admin) {
-      hideEditButton = "";
-    } else {
-      // set below to blank string to default show edit buttons
-      hideEditButton = "invisible";
-    }
-
-    let hide;
-    if (this.state.hideDiv) {
-      hide = "invisible";
-    } else {
-      hide = "";
-    }
-
-    let locationContent = this.state.relocationEditData.map(element => {
-      return (
-        <div key={element.id}>
-          <p className="pb-2">{element.paragraph1}</p>
-          <p className="pb-2">{element.paragraph2}</p>
-        </div>
-      );
-    });
+    const relocationEditFormData = {
+      bannerImage: "Banner Image",
+      bannerText1: "Banner Text 1",
+      bannerText2: "Banner Text 2",
+      paragraph1: "Paragraph 1",
+      paragraph2: "Paragraph 2"
+    };
 
     let editRelocationInfo = (
-      <div className="container">
-        <form
-          onSubmit={event => {
-            this.onSubmitEdit(event);
-            event.target.reset();
-          }}
-          className={hide}
-        >
-          <div className="form-group">
-            <label htmlFor="bannerImage">Banner Image</label>
-            <input
-              type="text"
-              name="bannerImage"
-              id="bannerImage"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.bannerImage}
-            />
+      <React.Fragment>
+        {this.state.hideDiv ? (
+          <div className="container">
+            <form
+              onSubmit={event => {
+                this.onSubmitEdit(event);
+                event.target.reset();
+              }}
+            >
+              <FormMaps
+                formConst={relocationEditFormData}
+                onChange={this.onChange}
+                value={this.state}
+              />
+
+              <div className="pb-3">
+                <button type="submit" className="btn custom-button">
+                  Update
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="form-group">
-            <label htmlFor="bannerText1">Your bannerText1</label>
-            <input
-              type="text"
-              name="bannerText1"
-              id="bannerText1"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.bannerText1}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="bannerText2">Your bannerText2</label>
-            <input
-              type="text"
-              name="bannerText2"
-              id="bannerText2"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.bannerText2}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="paragraph1">Your paragraph1</label>
-            <input
-              type="text"
-              name="paragraph1"
-              id="paragraph1"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.paragraph1}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="paragraph2">Your paragraph2</label>
-            <input
-              type="text"
-              name="paragraph2"
-              id="paragraph2"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.paragraph2}
-            />
-          </div>
-          <div className="pb-3">
-            <button type="submit" className="btn custom-button">
-              Update
-            </button>
-          </div>
-        </form>
-      </div>
+        ) : null}
+      </React.Fragment>
     );
 
     let contactRelocationForm = (
@@ -447,18 +317,14 @@ class RelocationContainer extends Component {
             />
           </FadeIn>
           {this.props.user.admin ? (
-            <div className="container py-3">
-              <div className="row">
-                <div className="col text-center">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={this.clickEdit}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
+            <div className="text-center pt-3">
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={this.clickEdit}
+              >
+                Edit
+              </button>
             </div>
           ) : null}
 
@@ -466,12 +332,18 @@ class RelocationContainer extends Component {
             <div className="row">
               <div className="col-sm-6 pb-3">
                 <FadeInLeft>
-                  {locationContent}
+                  <div>
+                    <p className="pb-2">{this.state.paragraph1}</p>
+                    <p className="pb-2">{this.state.paragraph2}</p>
+                  </div>
                   {editRelocationInfo}
                   {contactRelocationForm}
                 </FadeInLeft>
               </div>
-              <RelocationPhotoContainer user={this.props.user} hide={hide} />
+              <RelocationPhotoContainer
+                user={this.props.user}
+                hide={this.state.hideDiv}
+              />
             </div>
           </div>
         </div>
