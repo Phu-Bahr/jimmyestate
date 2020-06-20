@@ -1,125 +1,75 @@
 import React, { Component } from "react";
 import { FadeInRight } from "../../Constants/Constants";
+import {
+  postFetch,
+  deleteFetch,
+  getFetch
+} from "../../Constants/FetchComponent";
 
 class RelocationPhotoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      url: "relocation_photos",
       photoData: [],
       photo: ""
     };
-
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.toggleRefreshKeyFalse = this.toggleRefreshKeyFalse.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
-  toggleRefreshKey() {
+  toggleRefreshKey = () => {
     this.setState({ refreshKey: true });
-  }
+  };
 
-  toggleRefreshKeyFalse() {
+  toggleRefreshKeyFalse = () => {
     this.setState({ refreshKey: false });
-  }
+  };
 
-  onChange(event) {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = "/api/v1/relocation_photos";
+    const url = `/api/v1/${this.state.url}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     const { photo } = this.state;
-
     const body = {
       photo
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Property has been added.");
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
+    postFetch(url, token, body)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
 
-  deleteEvent(id) {
-    const url = `/api/v1/relocation_photos/${id}`;
+  deleteEvent = id => {
+    const url = `/api/v1/${this.state.url}/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
+    deleteFetch(url, token)
       .then(this.toggleRefreshKey)
       .catch(error => console.log(error.message));
-  }
+  };
+
+  mountState = body => {
+    this.setState({
+      photoData: body
+    });
+  };
 
   componentDidMount() {
-    fetch("/api/v1/relocation_photos")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
+    getFetch(this.state.url)
       .then(body => {
-        this.setState({
-          photoData: body,
-          photo: body[0].photo
-        });
+        this.mountState(body);
       })
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
     if (this.state.refreshKey) {
-      fetch("/api/v1/relocation_photos")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
+      getFetch(this.state.url)
         .then(body => {
-          this.setState({
-            photoData: body
-          });
+          this.mountState(body);
         })
         .then(this.toggleRefreshKeyFalse)
         .catch(error => console.log("error message =>", error.message));
@@ -127,6 +77,8 @@ class RelocationPhotoContainer extends Component {
   }
 
   render() {
+    console.log(this.state.photo);
+
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
         let result = confirm(`Are you sure you want to delete this photo?`);
