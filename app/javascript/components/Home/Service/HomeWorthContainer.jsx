@@ -36,27 +36,13 @@ class HomeWorthContainer extends Component {
     };
   }
 
-  clickEdit = () => {
-    this.state.hideDiv === false
-      ? this.setState({ hideDiv: true })
-      : this.setState({ hideDiv: false });
-  };
+  clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
 
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
+  onResolved = () => console.log("Captcha all set");
 
-  onResolved = () => {
-    console.log("Captcha all set");
-  };
+  scrollToTop = () => scroll.scrollToTop();
 
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
@@ -74,7 +60,7 @@ class HomeWorthContainer extends Component {
 
     postFetchEmail(url, token, body)
       .then(this.scrollToTop)
-      .catch(error => console.log(error.message));
+      .catch(error => console.log("error message =>", error.message));
   };
 
   mountState = body => {
@@ -91,26 +77,24 @@ class HomeWorthContainer extends Component {
 
   componentDidMount() {
     getFetch(this.state.url)
-      .then(body => {
-        this.mountState(body);
-      })
+      .then(body => this.mountState(body))
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
-      getFetch(this.state.url)
-        .then(body => {
-          this.mountState(body);
-        })
-        .then(this.setState({ refreshKey: false }))
-        .then(this.scrollToTop);
-    }
+    this.state.refreshKey
+      ? getFetch(this.state.url)
+          .then(body => this.mountState(body))
+          .then(this.setState({ refreshKey: false }))
+          .then(this.scrollToTop)
+          .catch(error => console.log("error message =>", error.message))
+      : null;
   }
 
   onSubmitEdit = event => {
     event.preventDefault();
     const url = `/api/v1/${this.state.url}/${this.state.id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     const {
       bannerText1,
       bannerText2,
@@ -126,11 +110,10 @@ class HomeWorthContainer extends Component {
       paragraph2,
       bannerImage
     };
-    const token = document.querySelector('meta[name="csrf-token"]').content;
 
     putFetch(url, token, body)
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
+      .then(this.setState({ refreshKey: true }))
+      .catch(error => console.log("error message =>", error.message));
   };
 
   render() {

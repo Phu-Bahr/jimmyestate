@@ -43,9 +43,7 @@ export const postFetch = (url, token, body) => {
       alert("Submission Successful");
       return response.json();
     }
-    alert(
-      "There was a network issue, please try again or Email Jimmy directly."
-    );
+    alert("There was a network issue, please try again or contact admin.");
     throw new Error("Network response was not ok.");
   });
 };
