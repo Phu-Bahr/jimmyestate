@@ -89,7 +89,6 @@ class WorthPhotoContainer extends Component {
       );
     });
 
-    console.log(this.state);
     return (
       <React.Fragment>
         <div className="card border-0 col-md-6">

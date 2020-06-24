@@ -237,9 +237,17 @@ class MarketReportsContainer extends Component {
             placeholder="Please provide any additional questions or information."
           />
         </div>
-        <button type="submit" className="btn custom-button mt-3">
-          Send
-        </button>
+        <div className="buttons1">
+          <div className="container1">
+            <button
+              type="submit"
+              className="btn1 effect04"
+              data-sm-link-text="SEND"
+            >
+              <span>Contact Me</span>
+            </button>
+          </div>
+        </div>
         <Recaptcha
           ref={ref => (this.recaptcha = ref)}
           sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
