@@ -9,6 +9,7 @@ import {
   FormMaps
 } from "../../Constants/Constants";
 import { getFetch, putFetch, postFetch } from "../../Constants/FetchComponent";
+import { SubmitEmailButton } from "../../Constants/Buttons";
 
 class RelocationContainer extends Component {
   constructor(props) {
@@ -295,17 +296,7 @@ class RelocationContainer extends Component {
             placeholder="Additional information you'd like to tell me."
           />
         </div>
-        <div className="buttons1">
-          <div className="container1">
-            <button
-              type="submit"
-              className="btn1 effect04"
-              data-sm-link-text="SEND"
-            >
-              <span>Contact Me</span>
-            </button>
-          </div>
-        </div>
+        <SubmitEmailButton />
         <Recaptcha
           ref={ref => (this.recaptcha = ref)}
           sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"

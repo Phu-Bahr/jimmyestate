@@ -103,14 +103,10 @@ class WorthPhotoContainer extends Component {
                   name="photo"
                   id="photo"
                   className="form-control"
-                  required
                   onChange={this.onChange}
+                  required
                 />
-                <AddButton
-                  className="mt-3"
-                  onClick={this.onSubmitEdit}
-                  value="Add Photo"
-                />
+                <AddButton className="mt-3" value="Add Photo" />
               </form>
             </div>
           ) : null}

@@ -13,7 +13,11 @@ import {
   putFetch,
   postFetchEmail
 } from "../../Constants/FetchComponent";
-import { EditButton, UpdateButton } from "../../Constants/Buttons";
+import {
+  EditButton,
+  UpdateButton,
+  SubmitEmailButton
+} from "../../Constants/Buttons";
 
 class HomeWorthContainer extends Component {
   constructor(props) {
@@ -222,17 +226,9 @@ class HomeWorthContainer extends Component {
             placeholder="Please provide any additional questions or information."
           />
         </div>
-        <div className="buttons1">
-          <div className="container1">
-            <button
-              type="submit"
-              className="btn1 effect04"
-              data-sm-link-text="SEND"
-            >
-              <span>Contact Me</span>
-            </button>
-          </div>
-        </div>
+
+        <SubmitEmailButton />
+
         <Recaptcha
           ref={ref => (this.recaptcha = ref)}
           sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
