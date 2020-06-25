@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
+import { SubmitEmailButton } from "../../Constants/Buttons";
 
 class EmailForm extends Component {
   constructor(props) {
@@ -109,17 +110,7 @@ class EmailForm extends Component {
             />
           </div>
 
-          <div className="buttons1">
-            <div className="container1">
-              <button
-                type="submit"
-                className="btn1 effect04"
-                data-sm-link-text="SEND"
-              >
-                <span>Contact Me</span>
-              </button>
-            </div>
-          </div>
+          <SubmitEmailButton />
 
           <Recaptcha
             ref={ref => (this.recaptcha = ref)}

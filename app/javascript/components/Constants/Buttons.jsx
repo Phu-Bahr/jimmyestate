@@ -75,3 +75,21 @@ export const DeleteButton = ({ type, className, onClick, value }) => {
     </button>
   );
 };
+
+export const SubmitEmailButton = ({ className, value1, value2 }) => {
+  return (
+    <div className="buttons1">
+      <div className="container1">
+        <button
+          type="submit"
+          className={
+            className == null ? "btn1 effect04" : `btn1 effect04 ${className}`
+          }
+          data-sm-link-text={value2 == null ? "Send" : value2}
+        >
+          <span>{value1 == null ? "Contact Me" : value1}</span>
+        </button>
+      </div>
+    </div>
+  );
+};
