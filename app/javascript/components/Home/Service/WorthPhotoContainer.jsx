@@ -5,6 +5,7 @@ import {
   deleteFetch,
   getFetch
 } from "../../Constants/FetchComponent";
+import { DeleteButton, AddButton } from "../../Constants/Buttons";
 
 class WorthPhotoContainer extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class WorthPhotoContainer extends Component {
     };
   }
 
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
@@ -27,7 +30,7 @@ class WorthPhotoContainer extends Component {
     const body = { photo };
 
     postFetch(url, token, body)
-      .then(this.setState({ refreshKey: true }))
+      .then(this.toggleRefreshKey)
       .catch(error => console.log("error message =>", error.message));
   };
 
@@ -36,7 +39,7 @@ class WorthPhotoContainer extends Component {
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
     deleteFetch(url, token)
-      .then(this.setState({ refreshKey: true }))
+      .then(this.toggleRefreshKey)
       .catch(error => console.log("error message =>", error.message));
   };
 
@@ -74,13 +77,7 @@ class WorthPhotoContainer extends Component {
               </div>
               {this.props.hide ? (
                 <div className="portfolioTitle">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={handleDelete}
-                  >
-                    Delete Property
-                  </button>
+                  <DeleteButton onClick={handleDelete} />
                 </div>
               ) : null}
             </div>
@@ -109,12 +106,11 @@ class WorthPhotoContainer extends Component {
                   required
                   onChange={this.onChange}
                 />
-                <button
-                  className="btn btn-info mt-3"
+                <AddButton
+                  className="mt-3"
                   onClick={this.onSubmitEdit}
-                >
-                  Add Photo
-                </button>
+                  value="Add Photo"
+                />
               </form>
             </div>
           ) : null}
