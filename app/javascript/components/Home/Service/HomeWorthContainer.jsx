@@ -13,6 +13,7 @@ import {
   putFetch,
   postFetchEmail
 } from "../../Constants/FetchComponent";
+import { EditButton, UpdateButton } from "../../Constants/Buttons";
 
 class HomeWorthContainer extends Component {
   constructor(props) {
@@ -141,9 +142,7 @@ class HomeWorthContainer extends Component {
                 value={this.state}
               />
               <div className="pb-3">
-                <button type="submit" className="btn custom-button">
-                  Update
-                </button>
+                <UpdateButton type="submit" />
               </div>
             </form>
           </div>
@@ -255,13 +254,7 @@ class HomeWorthContainer extends Component {
 
           {this.props.user.admin ? (
             <div className="container text-center py-3">
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.clickEdit}
-              >
-                Edit
-              </button>
+              <EditButton onClick={this.clickEdit} />
             </div>
           ) : null}
 
