@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { ParallaxBanner, FormMaps } from "../../Constants/Constants";
-import DraftJSContainer from "../../Constants/DraftJSComponent";
+import { ParallaxBanner, FormMaps } from "../Constants/Constants";
+import DraftJSContainer from "../Constants/DraftJSComponent";
 
 class JimmyBusinessPartners extends Component {
   constructor(props) {

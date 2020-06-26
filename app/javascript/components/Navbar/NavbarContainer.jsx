@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import TownList from "../Town/TownList";
+import TownList from "../FeaturedCommunities/Town/TownList";
 import PartnerList from "../JimmyPartners/PartnerList";
 import { animateScroll as scroll } from "react-scroll";
-import {
-  FadeInDown,
-  Transition,
-  StyledNavbar
-} from "../../Constants/Constants";
+import { FadeInDown, Transition, StyledNavbar } from "../Constants/Constants";
 import AdminBanner from "../User/AdminBanner";
 
 class NavbarContainer extends Component {
