@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { FadeInLeft } from "../../Constants/Constants";
 import {
   postFetch,
@@ -6,6 +6,8 @@ import {
   getFetch
 } from "../../Constants/FetchComponent";
 import { DeleteButton, AddButton } from "../../Constants/Buttons";
+
+const url = "worth_photos";
 
 class WorthPhotoContainer extends Component {
   constructor(props) {
@@ -31,6 +33,7 @@ class WorthPhotoContainer extends Component {
 
     postFetch(url, token, body)
       .then(this.toggleRefreshKey)
+      .then(event.target.reset())
       .catch(error => console.log("error message =>", error.message));
   };
 
@@ -50,12 +53,11 @@ class WorthPhotoContainer extends Component {
   }
 
   componentDidUpdate() {
-    this.state.refreshKey
-      ? getFetch(this.state.url)
-          .then(body => this.setState({ photoData: body }))
-          .then(this.setState({ refreshKey: false }))
-          .catch(error => console.log("error message =>", error.message))
-      : null;
+    this.state.refreshKey &&
+      getFetch(this.state.url)
+        .then(body => this.setState({ photoData: body }))
+        .then(this.setState({ refreshKey: false }))
+        .catch(error => console.log("error message =>", error.message));
   }
 
   render() {
@@ -75,11 +77,11 @@ class WorthPhotoContainer extends Component {
                   src={element.photo}
                 />
               </div>
-              {this.props.hide ? (
+              {this.props.hide && (
                 <div className="portfolioTitle">
                   <DeleteButton onClick={handleDelete} />
                 </div>
-              ) : null}
+              )}
             </div>
           </FadeInLeft>
         </div>
@@ -87,16 +89,11 @@ class WorthPhotoContainer extends Component {
     });
 
     return (
-      <React.Fragment>
+      <Fragment>
         <div className="card border-0 col-md-6">
-          {this.props.hide ? (
+          {this.props.hide && (
             <div className="pb-3">
-              <form
-                onSubmit={event => {
-                  this.onSubmit(event);
-                  event.target.reset();
-                }}
-              >
+              <form onSubmit={this.onSubmit}>
                 <label htmlFor="photo">Photo URL</label>
                 <input
                   type="url"
@@ -109,10 +106,10 @@ class WorthPhotoContainer extends Component {
                 <AddButton className="mt-3" value="Add Photo" />
               </form>
             </div>
-          ) : null}
+          )}
           {photos}
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
