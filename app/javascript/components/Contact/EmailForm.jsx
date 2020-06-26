@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
-import { SubmitEmailButton } from "../../Constants/Buttons";
+import { SubmitEmailButton } from "../Constants/Buttons";
 
 class EmailForm extends Component {
   constructor(props) {

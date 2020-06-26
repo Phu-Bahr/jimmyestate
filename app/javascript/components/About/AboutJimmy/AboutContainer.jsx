@@ -5,7 +5,7 @@ import {
   FadeIn,
   ParallaxBannerRoutes,
   FormMaps
-} from "../../../components/Constants/Constants";
+} from "../../Constants/Constants";
 
 class AboutContainer extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import { FadeIn, ParallaxBannerRoutes } from "../../Constants/Constants";
+import { FadeIn, ParallaxBannerRoutes } from "../Constants/Constants";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Link } from "react-router-dom";

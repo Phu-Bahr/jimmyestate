@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import { FadeInUp } from "../../../components/Constants/Constants";
+import { FadeInUp } from "../../Constants/Constants";
 import ScrollAnimation from "react-animate-on-scroll";
 import { PortfolioPropertyForm } from "./PortfolioPropertyForm";
 

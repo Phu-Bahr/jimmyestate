@@ -3,7 +3,7 @@ import FooterEditOffice from "./FooterEditOffice";
 import FooterEditContactUs from "./FooterEditContactUs";
 import FooterEditSocial from "./FooterEditSocial";
 import { Link } from "react-router-dom";
-import { FormNoLabel } from "../../Constants/Constants";
+import { FormNoLabel } from "../Constants/Constants";
 
 class FooterContainer extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
-import { FadeIn } from "../../Constants/Constants";
+import { FadeIn } from "../Constants/Constants";
 
 class NewPartner extends React.Component {
   constructor(props) {

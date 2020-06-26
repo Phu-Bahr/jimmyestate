@@ -7,7 +7,7 @@ import {
   FadeInRight,
   ParallaxBannerRoutes,
   FormMaps
-} from "../../Constants/Constants";
+} from "../Constants/Constants";
 import { animateScroll as scroll } from "react-scroll";
 
 class ContactContainer extends Component {
