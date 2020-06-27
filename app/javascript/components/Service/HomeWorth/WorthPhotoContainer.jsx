@@ -6,8 +6,9 @@ import {
   getFetch
 } from "../../Constants/FetchComponent";
 import { DeleteButton, AddButton } from "../../Constants/Buttons";
+import SweetAlert from "react-bootstrap-sweetalert";
 
-const url = "worth_photos";
+const urlPath = "worth_photos";
 
 class WorthPhotoContainer extends Component {
   constructor(props) {
@@ -16,9 +17,36 @@ class WorthPhotoContainer extends Component {
       url: "worth_photos",
       photoData: [],
       photo: "",
-      refreshKey: false
+      refreshKey: false,
+      alert: null
     };
   }
+
+  sweetAlert = () => {
+    console.log("event triggerd");
+
+    const getAlert = () => (
+      <SweetAlert
+        warning
+        showCancel
+        confirmBtnText="Yes, delete it!"
+        confirmBtnBsStyle="danger"
+        title="Are you sure?"
+        onConfirm={this.deleteFile}
+        onCancel={this.onCancel}
+        focusCancelBtn
+      >
+        You will not be able to recover this imaginary file!
+      </SweetAlert>
+    );
+
+    this.setState({ alert: getAlert() });
+  };
+
+  hideAlert = () => {
+    console.log("hiding alert...");
+    this.setState({ alert: null });
+  };
 
   toggleRefreshKey = () => this.setState({ refreshKey: true });
 
@@ -26,7 +54,7 @@ class WorthPhotoContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/${this.state.url}`;
+    const url = `/api/v1/${urlPath}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
     const { photo } = this.state;
     const body = { photo };
@@ -38,7 +66,8 @@ class WorthPhotoContainer extends Component {
   };
 
   deleteEvent = id => {
-    const url = `/api/v1/${this.state.url}/${id}`;
+    this.setState({ alert: null });
+    const url = `/api/v1/${urlPath}/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
     deleteFetch(url, token)
@@ -47,14 +76,14 @@ class WorthPhotoContainer extends Component {
   };
 
   componentDidMount() {
-    getFetch(this.state.url)
+    getFetch(urlPath)
       .then(body => this.setState({ photoData: body }))
       .catch(error => console.log("error message =>", error.message));
   }
 
   componentDidUpdate() {
     this.state.refreshKey &&
-      getFetch(this.state.url)
+      getFetch(urlPath)
         .then(body => this.setState({ photoData: body }))
         .then(this.setState({ refreshKey: false }))
         .catch(error => console.log("error message =>", error.message));
@@ -63,8 +92,24 @@ class WorthPhotoContainer extends Component {
   render() {
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
-        let result = confirm(`Are you sure you want to delete this photo?`);
-        result ? this.deleteEvent(element.id) : null;
+        const getAlert = () => (
+          <SweetAlert
+            warning
+            showCancel
+            confirmBtnText="Yes, delete it!"
+            confirmBtnBsStyle="danger"
+            title="Are you sure?"
+            onConfirm={() => this.deleteEvent(element.id)}
+            onCancel={() => this.setState({ alert: null })}
+            focusCancelBtn
+          >
+            You will not be able to recover this imaginary file!
+          </SweetAlert>
+        );
+
+        this.setState({ alert: getAlert() });
+        // let result = confirm(`Are you sure you want to delete this photo?`);
+        // result ? this.deleteEvent(element.id) : null;
       };
 
       return (
@@ -90,6 +135,7 @@ class WorthPhotoContainer extends Component {
 
     return (
       <Fragment>
+        {this.state.alert}
         <div className="card border-0 col-md-6">
           {this.props.hide && (
             <div className="pb-3">
@@ -108,6 +154,7 @@ class WorthPhotoContainer extends Component {
             </div>
           )}
           {photos}
+          <button onClick={this.sweetAlert}>Click me</button>
         </div>
       </Fragment>
     );
