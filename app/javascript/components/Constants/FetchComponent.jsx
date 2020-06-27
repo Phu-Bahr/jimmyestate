@@ -68,7 +68,9 @@ export const postFetchEmail = (url, token, body) => {
   });
 };
 
-export const deleteFetch = (url, token) => {
+export const deleteFetch = (url, token, typeAlert) => {
+  console.log(typeAlert);
+
   return fetch(url, {
     method: "DELETE",
     headers: {
@@ -77,7 +79,11 @@ export const deleteFetch = (url, token) => {
     }
   }).then(response => {
     if (response.ok) {
-      alert("Delete successful");
+      if (typeAlert === undefined) {
+        alert("Item Deleted Successfully");
+      } else {
+        typeAlert();
+      }
       return response;
     } else {
       alert("Something went wrong");

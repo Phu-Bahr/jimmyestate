@@ -49,8 +49,7 @@ class MarketPhotoContainer extends Component {
 
   mountState = body => {
     this.setState({
-      photoData: body,
-      photo: body[0].photo
+      photoData: body
     });
   };
 

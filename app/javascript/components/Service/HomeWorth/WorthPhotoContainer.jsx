@@ -6,7 +6,7 @@ import {
   getFetch
 } from "../../Constants/FetchComponent";
 import { DeleteButton, AddButton } from "../../Constants/Buttons";
-import SweetAlert from "react-bootstrap-sweetalert";
+import AlertBox from "../../Constants/AlertComponent";
 
 const urlPath = "worth_photos";
 
@@ -18,38 +18,15 @@ class WorthPhotoContainer extends Component {
       photoData: [],
       photo: "",
       refreshKey: false,
-      alert: null
+      typeOfAlert: null,
+      showAlert: false,
+      idForAlert: null
     };
   }
 
-  sweetAlert = () => {
-    console.log("event triggerd");
-
-    const getAlert = () => (
-      <SweetAlert
-        warning
-        showCancel
-        confirmBtnText="Yes, delete it!"
-        confirmBtnBsStyle="danger"
-        title="Are you sure?"
-        onConfirm={this.deleteFile}
-        onCancel={this.onCancel}
-        focusCancelBtn
-      >
-        You will not be able to recover this imaginary file!
-      </SweetAlert>
-    );
-
-    this.setState({ alert: getAlert() });
-  };
-
-  hideAlert = () => {
-    console.log("hiding alert...");
-    this.setState({ alert: null });
-  };
-
+  hidingAlert = () => this.setState({ showAlert: false });
+  successfulDelete = () => this.setState({ typeOfAlert: "successDelete" });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
-
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
@@ -66,11 +43,12 @@ class WorthPhotoContainer extends Component {
   };
 
   deleteEvent = id => {
-    this.setState({ alert: null });
     const url = `/api/v1/${urlPath}/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
+    const typeAlert = this.successfulDelete;
 
-    deleteFetch(url, token)
+    deleteFetch(url, token, typeAlert)
+      .then(this.setState({ typeOfAlert: "successDelete" }))
       .then(this.toggleRefreshKey)
       .catch(error => console.log("error message =>", error.message));
   };
@@ -92,24 +70,11 @@ class WorthPhotoContainer extends Component {
   render() {
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
-        const getAlert = () => (
-          <SweetAlert
-            warning
-            showCancel
-            confirmBtnText="Yes, delete it!"
-            confirmBtnBsStyle="danger"
-            title="Are you sure?"
-            onConfirm={() => this.deleteEvent(element.id)}
-            onCancel={() => this.setState({ alert: null })}
-            focusCancelBtn
-          >
-            You will not be able to recover this imaginary file!
-          </SweetAlert>
-        );
-
-        this.setState({ alert: getAlert() });
-        // let result = confirm(`Are you sure you want to delete this photo?`);
-        // result ? this.deleteEvent(element.id) : null;
+        this.setState({
+          typeOfAlert: "delete",
+          showAlert: true,
+          idForAlert: element.id
+        });
       };
 
       return (
@@ -135,7 +100,13 @@ class WorthPhotoContainer extends Component {
 
     return (
       <Fragment>
-        {this.state.alert}
+        {this.state.showAlert && (
+          <AlertBox
+            {...this.state}
+            hidingAlert={this.hidingAlert}
+            deleteEvent={this.deleteEvent}
+          />
+        )}
         <div className="card border-0 col-md-6">
           {this.props.hide && (
             <div className="pb-3">
@@ -154,7 +125,6 @@ class WorthPhotoContainer extends Component {
             </div>
           )}
           {photos}
-          <button onClick={this.sweetAlert}>Click me</button>
         </div>
       </Fragment>
     );
