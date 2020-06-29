@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
-import { FadeInLeft } from "../../Constants/Constants";
 import {
   postFetch,
   deleteFetch,
   getFetch
-} from "../../Constants/FetchComponent";
-import { DeleteButton, AddButton } from "../../Constants/Buttons";
-import AlertBox from "../../Constants/AlertComponent";
+} from "../../../../Constants/FetchComponent";
+import AlertBox from "../../../../Constants/AlertComponent";
+import WorthPhotoTile from "./WorthPhotoTile";
+import WorthPhotoForm from "./WorthPhotoForm";
 
 const urlPath = "worth_photos";
 
@@ -67,8 +67,6 @@ class WorthPhotoContainer extends Component {
   }
 
   render() {
-    console.log("state type of alert =>", this.state.typeOfAlert);
-
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
         this.setState({
@@ -78,23 +76,12 @@ class WorthPhotoContainer extends Component {
       };
 
       return (
-        <div className="pb-3" key={element.id}>
-          <FadeInLeft>
-            <div className="parent1 m-0">
-              <div className="child1 particles">
-                <img
-                  className="portfolioImage card-img-top"
-                  src={element.photo}
-                />
-              </div>
-              {this.props.hide && (
-                <div className="portfolioTitle">
-                  <DeleteButton onClick={handleDelete} />
-                </div>
-              )}
-            </div>
-          </FadeInLeft>
-        </div>
+        <WorthPhotoTile
+          key={element.id}
+          photo={element.photo}
+          handleDelete={handleDelete}
+          hide={this.props.hide}
+        />
       );
     });
 
@@ -107,22 +94,10 @@ class WorthPhotoContainer extends Component {
             deleteEvent={this.deleteEvent}
           />
         )}
+
         <div className="card border-0 col-md-6">
           {this.props.hide && (
-            <div className="pb-3">
-              <form onSubmit={this.onSubmit}>
-                <label htmlFor="photo">Photo URL</label>
-                <input
-                  type="url"
-                  name="photo"
-                  id="photo"
-                  className="form-control"
-                  onChange={this.onChange}
-                  required
-                />
-                <AddButton className="mt-3" value="Add Photo" />
-              </form>
-            </div>
+            <WorthPhotoForm onChange={this.onChange} onSubmit={this.onSubmit} />
           )}
           {photos}
         </div>
@@ -132,5 +107,3 @@ class WorthPhotoContainer extends Component {
 }
 
 export default WorthPhotoContainer;
-
-//help

@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
-import WorthPhotoContainer from "./WorthPhotoContainer";
+import WorthPhotoContainer from "./WorthPhotoContainer/WorthPhotoContainer";
 import {
   FadeIn,
   FadeInRight,
   ParallaxBannerRoutes,
   FormMaps
-} from "../../Constants/Constants";
+} from "../../../Constants/Constants";
 import {
   getFetch,
   putFetch,
   postFetchEmail
-} from "../../Constants/FetchComponent";
+} from "../../../Constants/FetchComponent";
 import {
   EditButton,
   UpdateButton,
   SubmitEmailButton
-} from "../../Constants/Buttons";
+} from "../../../Constants/Buttons";
 
 class HomeWorthContainer extends Component {
   constructor(props) {
