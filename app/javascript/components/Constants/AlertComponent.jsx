@@ -5,13 +5,21 @@ const AlertBox = props => {
   console.log("alertbox props", props);
 
   const successfulDelete = (
-    <SweetAlert success title="Deleted!" onConfirm={() => props.hidingAlert()}>
+    <SweetAlert
+      success
+      title="Deleted!"
+      onConfirm={() => props.alertType(null)}
+    >
       Your item has been deleted.
     </SweetAlert>
   );
 
   const successfulAdd = (
-    <SweetAlert success title="Success!" onConfirm={() => props.hidingAlert()}>
+    <SweetAlert
+      success
+      title="Success!"
+      onConfirm={() => props.alertType(null)}
+    >
       Your content has been added.
     </SweetAlert>
   );
@@ -24,13 +32,13 @@ const AlertBox = props => {
       confirmBtnBsStyle="danger"
       title="Are you sure?"
       onConfirm={() => props.deleteEvent(props.idForAlert)}
-      onCancel={() => props.hidingAlert()}
+      onCancel={() => props.alertType(null)}
       focusCancelBtn
     ></SweetAlert>
   );
 
   const errorMessage = (
-    <SweetAlert warning title="ERROR" onConfirm={() => props.hidingAlert()}>
+    <SweetAlert warning title="ERROR" onConfirm={() => props.alertType(null)}>
       Error occurred. Contact Administrator or Jimmy.
     </SweetAlert>
   );

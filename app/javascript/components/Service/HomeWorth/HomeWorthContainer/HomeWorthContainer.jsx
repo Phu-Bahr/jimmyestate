@@ -42,11 +42,8 @@ class HomeWorthContainer extends Component {
   }
 
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
-
   onResolved = () => console.log("Captcha all set");
-
   scrollToTop = () => scroll.scrollToTop();
-
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
