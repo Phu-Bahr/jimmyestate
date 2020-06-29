@@ -2,15 +2,13 @@ import React from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 const AlertBox = props => {
-  console.log("alertbox props", props);
-
   const successfulDelete = (
     <SweetAlert
       success
       title="Deleted!"
       onConfirm={() => props.alertType(null)}
     >
-      Your item has been deleted.
+      Your content has been deleted.
     </SweetAlert>
   );
 
@@ -21,6 +19,23 @@ const AlertBox = props => {
       onConfirm={() => props.alertType(null)}
     >
       Your content has been added.
+    </SweetAlert>
+  );
+
+  const successfulEmail = (
+    <SweetAlert success title="Sent!" onConfirm={() => props.alertType(null)}>
+      Jimmy has received your inquiry and will get back to you as soon as he
+      can!
+    </SweetAlert>
+  );
+
+  const successfulEdit = (
+    <SweetAlert
+      success
+      title="Success!"
+      onConfirm={() => props.alertType(null)}
+    >
+      Your content has been edited.
     </SweetAlert>
   );
 
@@ -51,6 +66,10 @@ const AlertBox = props => {
     return successfulAdd;
   } else if (props.typeOfAlert == "error") {
     return errorMessage;
+  } else if (props.typeOfAlert == "successEmail") {
+    return successfulEmail;
+  } else if (props.typeOfAlert == "successEdit") {
+    return successfulEdit;
   }
 };
 
