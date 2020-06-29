@@ -1,30 +1,27 @@
 import React, { Component } from "react";
-import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
 import WorthPhotoContainer from "./WorthPhotoContainer/WorthPhotoContainer";
+import HomeWorthContentForm from "./HomeWorthContentForm";
 import {
   FadeIn,
   FadeInRight,
-  ParallaxBannerRoutes,
-  FormMaps
+  ParallaxBannerRoutes
 } from "../../../Constants/Constants";
 import {
   getFetch,
   putFetch,
   postFetchEmail
 } from "../../../Constants/FetchComponent";
-import {
-  EditButton,
-  UpdateButton,
-  SubmitEmailButton
-} from "../../../Constants/Buttons";
+import { EditButton, SubmitEmailButton } from "../../../Constants/Buttons";
+import AlertBox from "../../../Constants/AlertComponent";
+
+const urlPath = "worth_edits";
+const urlPathForEmails = "home_worths";
 
 class HomeWorthContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "worth_edits",
-      urlForEmails: "home_worths",
       name: "",
       email: "",
       phone: "",
@@ -37,20 +34,23 @@ class HomeWorthContainer extends Component {
       bannerText2: "",
       refreshKey: false,
       hideDiv: false,
-      bannerImage: ""
+      bannerImage: "",
+      id: "",
+      typeOfAlert: null,
+      idForAlert: null
     };
   }
 
+  alertType = payload => this.setState({ typeOfAlert: payload });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   onResolved = () => console.log("Captcha all set");
-  scrollToTop = () => scroll.scrollToTop();
   onChange = e => this.setState({ [e.target.name]: e.target.value });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
 
   onSubmit = event => {
     event.preventDefault();
     this.recaptcha.execute();
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    const url = `/api/v1/${this.state.urlForEmails}`;
+    const url = `/api/v1/${urlPathForEmails}`;
     const { name, email, phone, address, message } = this.state;
     const body = {
       name,
@@ -60,43 +60,12 @@ class HomeWorthContainer extends Component {
       message
     };
 
-    postFetchEmail(url, token, body)
-      .then(this.scrollToTop)
-      .catch(error => console.log("error message =>", error.message));
+    postFetchEmail(url, body, this.alertType).then(this.scrollToTop);
   };
-
-  mountState = body => {
-    this.setState({
-      homeWorthEditData: body,
-      id: body[body.length - 1].id,
-      bannerText1: body[body.length - 1].bannerText1,
-      bannerText2: body[body.length - 1].bannerText2,
-      paragraph1: body[body.length - 1].paragraph1,
-      paragraph2: body[body.length - 1].paragraph2,
-      bannerImage: body[body.length - 1].bannerImage
-    });
-  };
-
-  componentDidMount() {
-    getFetch(this.state.url)
-      .then(body => this.mountState(body))
-      .catch(error => console.log("error message =>", error.message));
-  }
-
-  componentDidUpdate() {
-    this.state.refreshKey
-      ? getFetch(this.state.url)
-          .then(body => this.mountState(body))
-          .then(this.setState({ refreshKey: false }))
-          .then(this.scrollToTop)
-          .catch(error => console.log("error message =>", error.message))
-      : null;
-  }
 
   onSubmitEdit = event => {
     event.preventDefault();
-    const url = `/api/v1/${this.state.url}/${this.state.id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const {
       bannerText1,
       bannerText2,
@@ -113,44 +82,33 @@ class HomeWorthContainer extends Component {
       bannerImage
     };
 
-    putFetch(url, token, body)
-      .then(this.setState({ refreshKey: true }))
-      .catch(error => console.log("error message =>", error.message));
+    putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
+  mountState = body => {
+    this.setState({
+      homeWorthEditData: body,
+      id: body[body.length - 1].id,
+      bannerText1: body[body.length - 1].bannerText1,
+      bannerText2: body[body.length - 1].bannerText2,
+      paragraph1: body[body.length - 1].paragraph1,
+      paragraph2: body[body.length - 1].paragraph2,
+      bannerImage: body[body.length - 1].bannerImage
+    });
+  };
+
+  componentDidMount() {
+    getFetch(urlPath, this.mountState);
+  }
+
+  componentDidUpdate() {
+    this.state.refreshKey &&
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
+  }
+
   render() {
-    const homeWorthEditForm = {
-      bannerImage: "Banner Image",
-      bannerText1: "Banner Text 1",
-      bannerText2: "Banner Text 2",
-      paragraph1: "Paragraph 1",
-      paragraph2: "Paragraph 2"
-    };
-
-    let editForm = (
-      <React.Fragment>
-        {this.state.hideDiv ? (
-          <div className="container">
-            <form
-              onSubmit={event => {
-                this.onSubmitEdit(event);
-                event.target.reset();
-              }}
-            >
-              <FormMaps
-                formConst={homeWorthEditForm}
-                onChange={this.onChange}
-                value={this.state}
-              />
-              <div className="pb-3">
-                <UpdateButton type="submit" />
-              </div>
-            </form>
-          </div>
-        ) : null}
-      </React.Fragment>
-    );
-
     let contactHomeWorthForm = (
       <form
         onSubmit={event => {
@@ -236,6 +194,9 @@ class HomeWorthContainer extends Component {
 
     return (
       <React.Fragment>
+        {this.state.typeOfAlert !== null && (
+          <AlertBox {...this.state} alertType={this.alertType} />
+        )}
         <div className="flex-container">
           <FadeIn>
             <ParallaxBannerRoutes
@@ -264,7 +225,14 @@ class HomeWorthContainer extends Component {
                     <p className="pb-2">{this.state.paragraph1}</p>
                     <p className="pb-2">{this.state.paragraph2}</p>
                   </div>
-                  {editForm}
+
+                  <HomeWorthContentForm
+                    {...this.state}
+                    onChange={this.onChange}
+                    onSubmitEdit={this.onSubmitEdit}
+                    value={this.state}
+                  />
+
                   {contactHomeWorthForm}
                 </FadeInRight>
               </div>
