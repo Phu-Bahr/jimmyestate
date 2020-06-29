@@ -33,6 +33,7 @@ Draft-js (for a more dynamic form template to produce blogging content)\
 React-draft-wysiwyg (instead of creating my own tool bar, used this for draft-js)\
 React-particles-js (clickable floaty things on main home page)\
 Styled-Components (wanted to learn)\
+React-bootstrap-sweetalert\
 Moment\
 Pry
 
