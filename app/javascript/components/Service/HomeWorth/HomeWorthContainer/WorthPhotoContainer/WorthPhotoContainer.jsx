@@ -24,44 +24,36 @@ class WorthPhotoContainer extends Component {
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
-  hidingAlert = () => this.setState({ typeOfAlert: null });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
     const url = `/api/v1/${urlPath}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
     const { photo } = this.state;
     const body = { photo };
 
-    postFetch(url, token, body, this.alertType)
-      .then(this.toggleRefreshKey)
-      .then(event.target.reset())
-      .catch(error => console.log("error message =>", error.message));
+    postFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    deleteFetch(url, this.alertType).then(this.toggleRefreshKey);
+  };
 
-    deleteFetch(url, token, this.alertType)
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log("error message =>", error.message));
+  mountState = body => {
+    this.setState({ photoData: body });
   };
 
   componentDidMount() {
-    getFetch(urlPath)
-      .then(body => this.setState({ photoData: body }))
-      .catch(error => console.log("error message =>", error.message));
+    getFetch(urlPath, this.mountState);
   }
 
   componentDidUpdate() {
     this.state.refreshKey &&
-      getFetch(urlPath)
-        .then(body => this.setState({ photoData: body }))
-        .then(this.setState({ refreshKey: false }))
-        .catch(error => console.log("error message =>", error.message));
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   }
 
   render() {
@@ -88,7 +80,7 @@ class WorthPhotoContainer extends Component {
         {this.state.typeOfAlert !== null && (
           <AlertBox
             {...this.state}
-            hidingAlert={this.hidingAlert}
+            alertType={this.alertType}
             deleteEvent={this.deleteEvent}
           />
         )}
