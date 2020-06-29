@@ -19,13 +19,14 @@ class WorthPhotoContainer extends Component {
       photo: "",
       refreshKey: false,
       typeOfAlert: null,
-      showAlert: false,
       idForAlert: null
     };
   }
 
-  hidingAlert = () => this.setState({ showAlert: false });
+  hidingAlert = () => this.setState({ typeOfAlert: null });
   successfulDelete = () => this.setState({ typeOfAlert: "successDelete" });
+  successfulAdd = () => this.setState({ typeOfAlert: "successAdd" });
+  errorAlert = () => this.setState({ typeOfAlert: "error" });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -36,7 +37,7 @@ class WorthPhotoContainer extends Component {
     const { photo } = this.state;
     const body = { photo };
 
-    postFetch(url, token, body)
+    postFetch(url, token, body, this.successfulAdd, this.errorAlert)
       .then(this.toggleRefreshKey)
       .then(event.target.reset())
       .catch(error => console.log("error message =>", error.message));
@@ -45,10 +46,8 @@ class WorthPhotoContainer extends Component {
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
-    const typeAlert = this.successfulDelete;
 
-    deleteFetch(url, token, typeAlert)
-      .then(this.setState({ typeOfAlert: "successDelete" }))
+    deleteFetch(url, token, this.successfulDelete, this.errorAlert)
       .then(this.toggleRefreshKey)
       .catch(error => console.log("error message =>", error.message));
   };
@@ -68,11 +67,12 @@ class WorthPhotoContainer extends Component {
   }
 
   render() {
+    console.log("state type of alert =>", this.state.typeOfAlert);
+
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
         this.setState({
           typeOfAlert: "delete",
-          showAlert: true,
           idForAlert: element.id
         });
       };
@@ -100,7 +100,7 @@ class WorthPhotoContainer extends Component {
 
     return (
       <Fragment>
-        {this.state.showAlert && (
+        {this.state.typeOfAlert !== null && (
           <AlertBox
             {...this.state}
             hidingAlert={this.hidingAlert}
