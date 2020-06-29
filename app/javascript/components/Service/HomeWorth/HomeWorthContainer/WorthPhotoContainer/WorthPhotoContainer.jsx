@@ -23,10 +23,8 @@ class WorthPhotoContainer extends Component {
     };
   }
 
+  alertType = payload => this.setState({ typeOfAlert: payload });
   hidingAlert = () => this.setState({ typeOfAlert: null });
-  successfulDelete = () => this.setState({ typeOfAlert: "successDelete" });
-  successfulAdd = () => this.setState({ typeOfAlert: "successAdd" });
-  errorAlert = () => this.setState({ typeOfAlert: "error" });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -37,7 +35,7 @@ class WorthPhotoContainer extends Component {
     const { photo } = this.state;
     const body = { photo };
 
-    postFetch(url, token, body, this.successfulAdd, this.errorAlert)
+    postFetch(url, token, body, this.alertType)
       .then(this.toggleRefreshKey)
       .then(event.target.reset())
       .catch(error => console.log("error message =>", error.message));
@@ -47,7 +45,7 @@ class WorthPhotoContainer extends Component {
     const url = `/api/v1/${urlPath}/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    deleteFetch(url, token, this.successfulDelete, this.errorAlert)
+    deleteFetch(url, token, this.alertType)
       .then(this.toggleRefreshKey)
       .catch(error => console.log("error message =>", error.message));
   };
@@ -70,9 +68,9 @@ class WorthPhotoContainer extends Component {
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
         this.setState({
-          typeOfAlert: "delete",
           idForAlert: element.id
         });
+        this.alertType("delete");
       };
 
       return (
@@ -99,6 +97,7 @@ class WorthPhotoContainer extends Component {
           {this.props.hide && (
             <WorthPhotoForm onChange={this.onChange} onSubmit={this.onSubmit} />
           )}
+
           {photos}
         </div>
       </Fragment>

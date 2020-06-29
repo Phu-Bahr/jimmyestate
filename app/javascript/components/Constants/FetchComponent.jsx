@@ -30,7 +30,7 @@ export const putFetch = (url, token, body) => {
   });
 };
 
-export const postFetch = (url, token, body, successfulAdd, errorAlert) => {
+export const postFetch = (url, token, body, alertType) => {
   return fetch(url, {
     method: "POST",
     headers: {
@@ -40,17 +40,17 @@ export const postFetch = (url, token, body, successfulAdd, errorAlert) => {
     body: JSON.stringify(body)
   }).then(response => {
     if (response.ok) {
-      if (successfulAdd === undefined) {
+      if (alertType === undefined) {
         alert("Submission Successful");
       } else {
-        successfulAdd();
+        alertType("successAdd");
       }
       return response.json();
     }
-    if (errorAlert === undefined) {
+    if (alertType === undefined) {
       alert("There was a network issue, please try again or contact admin.");
     } else {
-      errorAlert();
+      alertType("error");
     }
     throw new Error("Network response was not ok.");
   });
@@ -76,7 +76,7 @@ export const postFetchEmail = (url, token, body) => {
   });
 };
 
-export const deleteFetch = (url, token, successfulDelete, errorAlert) => {
+export const deleteFetch = (url, token, alertType) => {
   return fetch(url, {
     method: "DELETE",
     headers: {
@@ -85,17 +85,17 @@ export const deleteFetch = (url, token, successfulDelete, errorAlert) => {
     }
   }).then(response => {
     if (response.ok) {
-      if (successfulDelete === undefined) {
+      if (alertType === undefined) {
         alert("Item Deleted Successfully");
       } else {
-        successfulDelete();
+        alertType("successDelete");
       }
       return response;
     } else {
-      if (errorAlert === undefined) {
+      if (alertType === undefined) {
         alert("Something went wrong");
       } else {
-        errorAlert();
+        alertType("error");
       }
       let errorMessage = `${response.status} (${response.statusText})`,
         error = new Error(errorMessage);
