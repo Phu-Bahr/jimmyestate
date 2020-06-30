@@ -22,7 +22,7 @@ import TownShowPage from "./FeaturedCommunities/Town/TownShowPage";
 import EditTown from "./FeaturedCommunities/Town/EditTown";
 import PortfolioContainer from "./About/Portfolio/PortfolioContainer";
 import HomeWorthContainer from "./Service/HomeWorth/HomeWorthContainer/HomeWorthContainer";
-import RelocationContainer from "./Service/Relocation/RelocationContainer";
+import RelocationContainer from "./Service/Relocation/RelocationContainer/RelocationContainer";
 import BuyingHomeContainer from "./Service/BuyingHome/BuyingHomeContainer";
 import SellingHomeContainer from "./Service/SellingHome/SellingHomeContainer";
 import MarketReportsContainer from "./Service/MarketReports/MarketReportsContainer";

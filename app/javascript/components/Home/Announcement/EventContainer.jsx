@@ -243,14 +243,6 @@ class EventContainer extends Component {
     }
 
     let photo;
-    // if (this.state.flier === "") {
-    //   let photoDefault = [];
-
-    //   photo = this.state.eventData.forEach(element => {
-    //     photoDefault.push(element.flier);
-    //     return this.setState({ flier: photoDefault[0] });
-    //   });
-    // } else {
     photo = (
       <React.Fragment key={this.state.selectedStepId}>
         <FadeIn>

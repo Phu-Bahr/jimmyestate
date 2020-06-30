@@ -1,21 +1,26 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
-import RelocationPhotoContainer from "./RelocationPhotoContainer";
+import RelocationPhotoContainer from "./RelocationPhotoContainer/RelocationPhotoContainer";
 import {
   FadeIn,
   FadeInLeft,
   ParallaxBannerRoutes,
   FormMaps
-} from "../../Constants/Constants";
-import { getFetch, putFetch, postFetch } from "../../Constants/FetchComponent";
-import { SubmitEmailButton } from "../../Constants/Buttons";
+} from "../../../Constants/Constants";
+import {
+  getFetch,
+  putFetch,
+  postFetch
+} from "../../../Constants/FetchComponent";
+import { SubmitEmailButton } from "../../../Constants/Buttons";
+
+const urlPath = "relocation_edits";
 
 class RelocationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "relocation_edits",
       urlEmailForm: "relocations",
       name: "",
       email: "",
@@ -36,27 +41,11 @@ class RelocationContainer extends Component {
     };
   }
 
-  clickEdit = () => {
-    this.state.hideDiv
-      ? this.setState({ hideDiv: false })
-      : this.setState({ hideDiv: true });
-  };
-
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
-
-  onResolved = () => {
-    console.log("Captcha all set");
-  };
-
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  onResolved = () => console.log("Captcha all set");
+  scrollToTop = () => scroll.scrollToTop();
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
@@ -103,22 +92,14 @@ class RelocationContainer extends Component {
   };
 
   componentDidMount() {
-    getFetch(this.state.url)
-      .then(body => {
-        this.mountState(body);
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getFetch(urlPath, this.mountState);
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
-      getFetch(this.state.url)
-        .then(body => {
-          this.mountState(body);
-        })
-        .then(this.setState({ refreshKey: false }))
-        .then(this.scrollToTop);
-    }
+    this.state.refreshKey &&
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   }
 
   onSubmitEdit = event => {
