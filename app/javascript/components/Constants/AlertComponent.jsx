@@ -1,12 +1,14 @@
 import React from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 
+const payload = null;
+
 const AlertBox = props => {
   const successfulDelete = (
     <SweetAlert
       success
       title="Deleted!"
-      onConfirm={() => props.alertType(null)}
+      onConfirm={() => props.alertType(payload)}
     >
       Your content has been deleted.
     </SweetAlert>
@@ -16,16 +18,30 @@ const AlertBox = props => {
     <SweetAlert
       success
       title="Success!"
-      onConfirm={() => props.alertType(null)}
+      onConfirm={() => props.alertType(payload)}
     >
       Your content has been added.
     </SweetAlert>
   );
 
   const successfulEmail = (
-    <SweetAlert success title="Sent!" onConfirm={() => props.alertType(null)}>
-      Jimmy has received your inquiry and will get back to you as soon as he
-      can!
+    <SweetAlert
+      title={
+        <React.Fragment>
+          <img
+            style={{ height: "250px", width: "350px" }}
+            src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
+          />
+          <br />
+          <div>SENT</div>
+        </React.Fragment>
+      }
+      onConfirm={() => props.alertType(payload)}
+    >
+      <div className="container">
+        Jimmy has received your inquiry and will get back to you as soon as he
+        can!
+      </div>
     </SweetAlert>
   );
 
@@ -33,7 +49,7 @@ const AlertBox = props => {
     <SweetAlert
       success
       title="Success!"
-      onConfirm={() => props.alertType(null)}
+      onConfirm={() => props.alertType(payload)}
     >
       Your content has been edited.
     </SweetAlert>
@@ -47,13 +63,13 @@ const AlertBox = props => {
       confirmBtnBsStyle="danger"
       title="Are you sure?"
       onConfirm={() => props.deleteEvent(props.idForAlert)}
-      onCancel={() => props.alertType(null)}
+      onCancel={() => props.alertType(payload)}
       focusCancelBtn
     ></SweetAlert>
   );
 
   const errorMessage = (
-    <SweetAlert warning title="ERROR" onConfirm={() => props.alertType(null)}>
+    <SweetAlert error title="ERROR" onConfirm={() => props.alertType(payload)}>
       Error occurred. Contact Administrator or Jimmy.
     </SweetAlert>
   );

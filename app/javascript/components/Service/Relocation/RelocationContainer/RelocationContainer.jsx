@@ -1,19 +1,15 @@
-import React, { Component } from "react";
-import { animateScroll as scroll } from "react-scroll";
-import Recaptcha from "react-google-invisible-recaptcha";
+import React, { Component, Fragment } from "react";
 import RelocationPhotoContainer from "./RelocationPhotoContainer/RelocationPhotoContainer";
 import {
   FadeIn,
   FadeInLeft,
-  ParallaxBannerRoutes,
-  FormMaps
+  ParallaxBannerRoutes
 } from "../../../Constants/Constants";
-import {
-  getFetch,
-  putFetch,
-  postFetch
-} from "../../../Constants/FetchComponent";
-import { SubmitEmailButton } from "../../../Constants/Buttons";
+import { getFetch, putFetch } from "../../../Constants/FetchComponent";
+import RelocationContentForm from "./RelocationContentForm";
+import RelocationEmailForm from "./RelocationEmailForm";
+import { EditButton } from "../../../Constants/Buttons";
+import AlertBox from "../../../Constants/AlertComponent";
 
 const urlPath = "relocation_edits";
 
@@ -21,15 +17,6 @@ class RelocationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      urlEmailForm: "relocations",
-      name: "",
-      email: "",
-      phone: "",
-      time: "Anytime",
-      destinationaddress: "",
-      timeframe: "",
-      assistsell: "Maybe",
-      message: "",
       relocationEditData: [],
       paragraph1: "",
       paragraph2: "",
@@ -37,46 +24,37 @@ class RelocationContainer extends Component {
       bannerText2: "",
       refreshKey: false,
       hideDiv: false,
-      bannerImage: ""
+      bannerImage: "",
+      id: "",
+      typeOfAlert: null
     };
   }
 
+  alertType = payload => this.setState({ typeOfAlert: payload });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
-  onResolved = () => console.log("Captcha all set");
-  scrollToTop = () => scroll.scrollToTop();
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  onSubmit = event => {
+  onSubmitEdit = event => {
     event.preventDefault();
-    this.recaptcha.execute();
-    const url = `/api/v1/${this.state.urlEmailForm}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const {
-      name,
-      email,
-      phone,
-      time,
-      destinationaddress,
-      timeframe,
-      assistsell,
-      message
+      bannerText1,
+      bannerText2,
+      paragraph1,
+      paragraph2,
+      bannerImage
     } = this.state;
 
     const body = {
-      name,
-      email,
-      phone,
-      time,
-      destinationaddress,
-      timeframe,
-      assistsell,
-      message
+      bannerText1,
+      bannerText2,
+      paragraph1,
+      paragraph2,
+      bannerImage
     };
 
-    postFetch(url, token, body)
-      .then(this.scrollToTop)
-      .catch(error => console.log(error.message));
+    putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
   mountState = body => {
@@ -102,192 +80,12 @@ class RelocationContainer extends Component {
       );
   }
 
-  onSubmitEdit = event => {
-    event.preventDefault();
-    const url = `/api/v1/${this.state.url}/${this.state.id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    const {
-      bannerText1,
-      bannerText2,
-      paragraph1,
-      paragraph2,
-      bannerImage
-    } = this.state;
-
-    const body = {
-      bannerText1,
-      bannerText2,
-      paragraph1,
-      paragraph2,
-      bannerImage
-    };
-
-    putFetch(url, token, body)
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  };
-
   render() {
-    const relocationEditFormData = {
-      bannerImage: "Banner Image",
-      bannerText1: "Banner Text 1",
-      bannerText2: "Banner Text 2",
-      paragraph1: "Paragraph 1",
-      paragraph2: "Paragraph 2"
-    };
-
-    let editRelocationInfo = (
-      <React.Fragment>
-        {this.state.hideDiv ? (
-          <div className="container">
-            <form
-              onSubmit={event => {
-                this.onSubmitEdit(event);
-                event.target.reset();
-              }}
-            >
-              <FormMaps
-                formConst={relocationEditFormData}
-                onChange={this.onChange}
-                value={this.state}
-              />
-
-              <div className="pb-3">
-                <button type="submit" className="btn custom-button">
-                  Update
-                </button>
-              </div>
-            </form>
-          </div>
-        ) : null}
-      </React.Fragment>
-    );
-
-    let contactRelocationForm = (
-      <form
-        onSubmit={event => {
-          this.onSubmit(event);
-          event.target.reset();
-        }}
-      >
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="name">Your Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="email">Your Email</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="phone">Phone Number</label>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              className="form-control"
-              onChange={this.onChange}
-              required
-            />
-          </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="time">Best time to reach you?</label>
-            <select
-              type="text"
-              name="time"
-              id="time"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.time}
-            >
-              <option>Anytime</option>
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
-            </select>
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="destinationaddress">Your Destination Address</label>
-          <input
-            type="text"
-            name="destinationaddress"
-            id="destinationaddress"
-            className="form-control"
-            onChange={this.onChange}
-            required
-          />
-        </div>
-        <div className="form-row">
-          <div className="form-group col-md-7">
-            <label htmlFor="timeframe">Moving time frame?</label>
-            <input
-              type="text"
-              name="timeframe"
-              id="timeframe"
-              className="form-control"
-              onChange={this.onChange}
-            />
-          </div>
-          <div className="form-group col-md-5">
-            <label htmlFor="assistsell">Need assistance selling?</label>
-            <select
-              type="text"
-              name="assistsell"
-              id="assistsell"
-              className="form-control"
-              onChange={this.onChange}
-              required
-              value={this.state.propertytype}
-            >
-              <option>Maybe</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="message">Message</label>
-          <textarea
-            rows="5"
-            type="text"
-            name="message"
-            id="message"
-            className="form-control"
-            onChange={this.onChange}
-            required
-            placeholder="Additional information you'd like to tell me."
-          />
-        </div>
-        <SubmitEmailButton />
-        <Recaptcha
-          ref={ref => (this.recaptcha = ref)}
-          sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
-          onResolved={this.onResolved}
-        />
-      </form>
-    );
-
     return (
-      <React.Fragment>
+      <Fragment>
+        {this.state.typeOfAlert !== null && (
+          <AlertBox {...this.state} alertType={this.alertType} />
+        )}
         <div className="flex-container">
           <FadeIn>
             <ParallaxBannerRoutes
@@ -296,17 +94,11 @@ class RelocationContainer extends Component {
               headerText2={this.state.bannerText2}
             />
           </FadeIn>
-          {this.props.user.admin ? (
+          {this.props.user.admin && (
             <div className="text-center pt-3">
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.clickEdit}
-              >
-                Edit
-              </button>
+              <EditButton onClick={this.clickEdit} />
             </div>
-          ) : null}
+          )}
 
           <div className="container py-5">
             <div className="row">
@@ -316,8 +108,13 @@ class RelocationContainer extends Component {
                     <p className="pb-2">{this.state.paragraph1}</p>
                     <p className="pb-2">{this.state.paragraph2}</p>
                   </div>
-                  {editRelocationInfo}
-                  {contactRelocationForm}
+                  <RelocationContentForm
+                    hideDiv={this.state.hideDiv}
+                    onSubmitEdit={this.onSubmitEdit}
+                    onChange={this.onChange}
+                    value={this.state}
+                  />
+                  <RelocationEmailForm alertType={this.alertType} />
                 </FadeInLeft>
               </div>
               <RelocationPhotoContainer
@@ -327,7 +124,7 @@ class RelocationContainer extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
