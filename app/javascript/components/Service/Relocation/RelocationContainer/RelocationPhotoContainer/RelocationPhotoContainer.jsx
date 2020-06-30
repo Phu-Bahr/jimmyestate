@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import RelocationPhotoForm from "./RelocationPhotoForm";
+import RelocationPhotoTile from "./RelocationPhotoTile";
+import AlertBox from "../../../../Constants/AlertComponent";
 import {
   postFetch,
   deleteFetch,
   getFetch
 } from "../../../../Constants/FetchComponent";
-import AlertBox from "../../../../Constants/AlertComponent";
-import WorthPhotoTile from "./WorthPhotoTile";
-import WorthPhotoForm from "./WorthPhotoForm";
 
-const urlPath = "worth_photos";
+const urlPath = "relocation_photos";
 
-class WorthPhotoContainer extends Component {
+class RelocationPhotoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,9 +40,7 @@ class WorthPhotoContainer extends Component {
     deleteFetch(url, this.alertType).then(this.toggleRefreshKey);
   };
 
-  mountState = body => {
-    this.setState({ photoData: body });
-  };
+  mountState = body => this.setState({ photoData: body });
 
   componentDidMount() {
     getFetch(urlPath, this.mountState);
@@ -65,7 +63,7 @@ class WorthPhotoContainer extends Component {
       };
 
       return (
-        <WorthPhotoTile
+        <RelocationPhotoTile
           key={element.id}
           photo={element.photo}
           handleDelete={handleDelete}
@@ -75,7 +73,7 @@ class WorthPhotoContainer extends Component {
     });
 
     return (
-      <Fragment>
+      <React.Fragment>
         {this.state.typeOfAlert !== null && (
           <AlertBox
             {...this.state}
@@ -86,14 +84,18 @@ class WorthPhotoContainer extends Component {
 
         <div className="card border-0 col-md-6">
           {this.props.hide && (
-            <WorthPhotoForm onChange={this.onChange} onSubmit={this.onSubmit} />
+            <RelocationPhotoForm
+              hide={this.props.hide}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
           )}
 
           {photos}
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
 
-export default WorthPhotoContainer;
+export default RelocationPhotoContainer;
