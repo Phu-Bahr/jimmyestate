@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FormMaps } from "../../../Constants/Constants";
 import { UpdateButton } from "../../../Constants/Buttons";
 
@@ -10,24 +10,24 @@ const homeWorthEditForm = {
   paragraph2: "Paragraph 2"
 };
 
-const HomeWorthContentForm = props => {
+const HomeWorthContentForm = ({ hideDiv, onSubmitEdit, onChange, value }) => {
   return (
-    <React.Fragment>
-      {props.hideDiv ? (
+    <Fragment>
+      {hideDiv && (
         <div className="container">
-          <form onSubmit={props.onSubmitEdit}>
+          <form onSubmit={onSubmitEdit}>
             <FormMaps
               formConst={homeWorthEditForm}
-              onChange={props.onChange}
-              value={props.value}
+              onChange={onChange}
+              value={value}
             />
             <div className="pb-3">
               <UpdateButton type="submit" />
             </div>
           </form>
         </div>
-      ) : null}
-    </React.Fragment>
+      )}
+    </Fragment>
   );
 };
 

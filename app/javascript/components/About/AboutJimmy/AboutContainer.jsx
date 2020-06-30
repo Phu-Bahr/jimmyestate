@@ -6,6 +6,7 @@ import {
   ParallaxBannerRoutes,
   FormMaps
 } from "../../Constants/Constants";
+import { RollBoxLoading } from "react-loadingg";
 
 class AboutContainer extends Component {
   constructor(props) {
@@ -31,7 +32,8 @@ class AboutContainer extends Component {
       photoaddress2: "",
       refreshKey: false,
       hideDiv: true,
-      bannerImage: ""
+      bannerImage: "",
+      loading: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -125,6 +127,7 @@ class AboutContainer extends Component {
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     fetch("/api/v1/abouts")
       .then(response => {
         if (response.ok) {
@@ -159,6 +162,7 @@ class AboutContainer extends Component {
           bannerImage: body[0].bannerImage
         });
       })
+      .then(this.setState({ loading: false }))
       .catch(error => console.log("error message =>", error.message));
   }
 
@@ -327,12 +331,15 @@ class AboutContainer extends Component {
       <React.Fragment>
         <div className="flex-container">
           <FadeIn>
-            <ParallaxBannerRoutes
-              bannerImage={this.state.bannerImage}
-              headerText1={this.state.bannerText1}
-              headerText2={this.state.bannerText2}
-            />
-
+            {this.state.loading ? (
+              <RollBoxLoading />
+            ) : (
+              <ParallaxBannerRoutes
+                bannerImage={this.state.bannerImage}
+                headerText1={this.state.bannerText1}
+                headerText2={this.state.bannerText2}
+              />
+            )}
             <div className="container">
               <div className="row py-5">
                 <div className="col-md-12">

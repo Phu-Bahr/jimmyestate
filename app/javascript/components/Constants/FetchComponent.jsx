@@ -96,6 +96,7 @@ export const putFetch = (url, body, alertType) => {
       }
       throw new Error("Network response was not ok.");
     })
+    .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
 };
 
@@ -126,6 +127,7 @@ export const postFetchEmail = (url, body, alertType) => {
       }
       throw new Error("Network response was not ok.");
     })
+    .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
 };
 
@@ -154,6 +156,7 @@ export const postFetch = (url, body, alertType) => {
       }
       throw new Error("Network response was not ok.");
     })
+    .then(scrollToTop)
     .then(event.target.reset())
     .catch(error => console.log("error message =>", error.message));
 };
@@ -202,5 +205,6 @@ export const deleteFetch = (url, alertType) => {
         throw error;
       }
     })
+    .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
 };
