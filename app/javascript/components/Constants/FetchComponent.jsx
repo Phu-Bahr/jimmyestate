@@ -128,6 +128,7 @@ export const postFetchEmail = (url, body, alertType) => {
       throw new Error("Network response was not ok.");
     })
     .then(scrollToTop)
+    .then(event.target.reset())
     .catch(error => console.log("error message =>", error.message));
 };
 
