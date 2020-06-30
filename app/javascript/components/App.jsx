@@ -25,7 +25,7 @@ import HomeWorthContainer from "./Service/HomeWorth/HomeWorthContainer/HomeWorth
 import RelocationContainer from "./Service/Relocation/RelocationContainer/RelocationContainer";
 import BuyingHomeContainer from "./Service/BuyingHome/BuyingHomeContainer";
 import SellingHomeContainer from "./Service/SellingHome/SellingHomeContainer";
-import MarketReportsContainer from "./Service/MarketReports/MarketReportsContainer";
+import MarketReportsContainer from "./Service/MarketReports/MarketReportsContainer/MarketReportsContainer";
 import TestimonialsContainer from "./About/Testimonials/TestimonialsContainer";
 import NewPartner from "./JimmyPartners/NewPartner";
 import PartnerShowPage from "./JimmyPartners/PartnerShowPage";

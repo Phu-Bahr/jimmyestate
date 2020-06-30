@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
-import MarketPhotoContainer from "./MarketPhotoContainer";
+import MarketPhotoContainer from "../MarketPhotoContainer/MarketPhotoContainer";
 import {
   FadeIn,
   FadeInLeft,
   ParallaxBannerRoutes,
   FormMaps
-} from "../../Constants/Constants";
+} from "../../../Constants/Constants";
 import {
-  postFetch,
   postFetchEmail,
   putFetch,
   getFetch
-} from "../../Constants/FetchComponent";
-import { SubmitEmailButton } from "../../Constants/Buttons";
+} from "../../../Constants/FetchComponent";
+import { SubmitEmailButton } from "../../../Constants/Buttons";
+
+const urlPath = "market_report_edits";
 
 class MarketReportsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "market_report_edits",
       urlEmailForm: "market_reports",
       name: "",
       email: "",
@@ -83,7 +83,7 @@ class MarketReportsContainer extends Component {
   onSubmitEdit = event => {
     event.preventDefault();
     const token = document.querySelector('meta[name="csrf-token"]').content;
-    const url = `/api/v1/${this.state.url}/${this.state.id}`;
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const {
       bannerText1,
       bannerText2,
@@ -116,17 +116,14 @@ class MarketReportsContainer extends Component {
       bannerImage: body[body.length - 1].bannerImage
     });
   };
+
   componentDidMount() {
-    getFetch(this.state.url)
-      .then(body => {
-        this.mountState(body);
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getFetch(urlPath, this.mountState);
   }
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {
-      getFetch(this.state.url)
+      getFetch(urlPath, this.mountState)
         .then(body => {
           this.mountState(body);
         })
