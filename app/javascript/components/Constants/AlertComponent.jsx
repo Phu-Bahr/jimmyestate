@@ -2,18 +2,24 @@ import React, { Fragment } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 const payload = null;
+const fitGif = {
+  height: "100%",
+  width: "100%"
+};
 
 const AlertBox = props => {
   const successfulDelete = (
     <SweetAlert
       title={
         <Fragment>
-          <img
-            style={{ height: "250px", width: "350px" }}
-            src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
-          />
-          <br />
-          <div>Deleted!</div>
+          <div style={({ overflow: "hidden" }, fitGif)}>
+            <img
+              style={fitGif}
+              src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
+            />
+            <br />
+            <div>Deleted!</div>
+          </div>
         </Fragment>
       }
       onConfirm={() => props.alertType(payload)}
@@ -36,12 +42,14 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <img
-            style={{ height: "250px", width: "350px" }}
-            src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
-          />
-          <br />
-          <div>SENT</div>
+          <div style={({ overflow: "hidden" }, fitGif)}>
+            <img
+              style={fitGif}
+              src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
+            />
+            <br />
+            <div>SENT</div>
+          </div>
         </Fragment>
       }
       onConfirm={() => props.alertType(payload)}
@@ -70,12 +78,14 @@ const AlertBox = props => {
       confirmBtnBsStyle="danger"
       title={
         <Fragment>
-          <img
-            style={{ height: "250px", width: "350px" }}
-            src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
-          />
-          <br />
-          <div>Are you sure?</div>
+          <div style={({ overflow: "hidden" }, fitGif)}>
+            <img
+              style={fitGif}
+              src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
+            />
+            <br />
+            <div>Are you sure?</div>
+          </div>
         </Fragment>
       }
       onConfirm={() => props.deleteEvent(props.idForAlert)}
