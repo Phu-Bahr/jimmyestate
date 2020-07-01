@@ -177,3 +177,24 @@ export const FormNoLabel = props => {
 
   return keyValuePair;
 };
+
+//takes in array of objects instead of key value
+export const FormMapsV2 = props => {
+  const formValue = props.formConst.map(element => {
+    return (
+      <div key={element.name} className={"form-group" + " " + element.subclass}>
+        <label htmlFor={element.name}>{element.label}</label>
+        <input
+          className="form-control"
+          type={element.type}
+          id={element.name}
+          name={element.name}
+          onChange={props.onChange}
+          value={props.value[element.name]}
+          required
+        />
+      </div>
+    );
+  });
+  return formValue;
+};
