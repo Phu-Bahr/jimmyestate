@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { FadeIn } from "./Constants";
+import { AddButton, UpdateButton } from "./Buttons";
 
 //parent component needs to supply url state
 //send {...this.state}, and user={this.props.user} <- for admin
@@ -44,7 +45,12 @@ class DraftJSContainer extends Component {
       alert("Can't save on Read Only");
     } else {
       event.preventDefault();
-      const url = `/api/v1/${this.props.url}`;
+      let url;
+      if (this.props.url === undefined) {
+        url = `/api/v1/${this.props.urlPath}`;
+      } else {
+        url = `/api/v1/${this.props.url}`;
+      }
       const { content } = this.state;
 
       const body = {
@@ -78,7 +84,13 @@ class DraftJSContainer extends Component {
       alert("Can't update first post.");
     } else {
       event.preventDefault();
-      const url = `/api/v1/${this.props.url}/${this.state.id}`;
+      let url;
+      if (this.props.url === undefined) {
+        url = `/api/v1/${this.props.urlPath}/${this.state.id}`;
+      } else {
+        url = `/api/v1/${this.props.url}/${this.state.id}`;
+      }
+
       const { content } = this.state;
 
       const body = {
@@ -107,7 +119,14 @@ class DraftJSContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/${this.props.url}`)
+    let url;
+    if (this.props.url === undefined) {
+      url = `/api/v1/${this.props.urlPath}`;
+    } else {
+      url = `/api/v1/${this.props.url}`;
+    }
+
+    fetch(url)
       .then(response => {
         if (response.ok) {
           return response;
@@ -159,13 +178,17 @@ class DraftJSContainer extends Component {
                 ""
               ) : (
                 <div className="pr-3 pt-3">
-                  <button onClick={this.onSubmit}>Save your content</button>
+                  <AddButton
+                    onClick={this.onSubmit}
+                    value="Save your content"
+                  />
                 </div>
               )}
               <div className="p-3">
-                <button onClick={this.onSubmitUpdate}>
-                  Update your content
-                </button>
+                <UpdateButton
+                  onClick={this.onSubmitUpdate}
+                  value="Update your content"
+                />
               </div>
             </div>
           </div>

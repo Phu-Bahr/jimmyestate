@@ -8,6 +8,7 @@ import {
   fadeInLeft,
   fadeOut
 } from "react-animations";
+import { UpdateButton } from "./Buttons";
 
 export const FadeIn = styled.div`
   animation: 1s ${keyframes`${fadeIn}`};
@@ -126,9 +127,11 @@ export const ParallaxEditForm = props => {
         <div className="col-sm-12 col-lg-6 offset-lg-3">
           <form onSubmit={props.onSubmit}>
             {keyValuePair}
-            <button type="submit" className="btn custom-button mt-3">
-              Submit Header changes
-            </button>
+            <UpdateButton
+              type="submit"
+              value="Submit Header Changes"
+              className="mt-3"
+            />
           </form>
         </div>
       </div>
