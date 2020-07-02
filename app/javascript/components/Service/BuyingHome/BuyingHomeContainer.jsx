@@ -61,6 +61,8 @@ class BuyingHomeContainer extends Component {
   }
 
   render() {
+    console.log("buying home state", this.state);
+
     return (
       <Fragment>
         {this.state.typeOfAlert !== null && (
@@ -84,6 +86,7 @@ class BuyingHomeContainer extends Component {
               {...this.state}
               {...this.props}
               urlPath={urlPath}
+              uppertoggleRefreshKey={this.toggleRefreshKey}
             />
           </div>
         </div>

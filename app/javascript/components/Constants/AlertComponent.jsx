@@ -67,7 +67,7 @@ const AlertBox = props => {
       title="Success!"
       onConfirm={() => props.alertType(payload)}
     >
-      Your content has been edited.
+      Your content has been updated.
     </SweetAlert>
   );
 

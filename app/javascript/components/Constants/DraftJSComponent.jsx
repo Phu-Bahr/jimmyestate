@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { FadeIn } from "./Constants";
 import { AddButton, UpdateButton } from "./Buttons";
+import { FadeIn } from "./Constants";
+import AlertBox from "./AlertComponent";
+import { postFetchDraft, putFetch, getFetch } from "./FetchComponent";
 
 //parent component needs to supply url state
 //send {...this.state}, and user={this.props.user} <- for admin
@@ -17,15 +19,15 @@ class DraftJSContainer extends Component {
       content: null,
       refreshKey: false,
       readOnly: false,
-      id: null
+      id: null,
+      typeOfAlert: null
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onSubmitUpdate = this.onSubmitUpdate.bind(this);
   }
 
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
 
   updateEditorState(editorState) {
     const contentState = editorState.getCurrentContent();
@@ -34,11 +36,10 @@ class DraftJSContainer extends Component {
     this.setState({ editorState });
   }
 
-  saveContent = contentData => {
+  saveContent = contentData =>
     this.setState({
       content: JSON.stringify(convertToRaw(contentData))
     });
-  };
 
   onSubmit(event) {
     if (this.state.readOnly) {
@@ -46,36 +47,14 @@ class DraftJSContainer extends Component {
     } else {
       event.preventDefault();
       let url;
-      if (this.props.url === undefined) {
-        url = `/api/v1/${this.props.urlPath}`;
-      } else {
-        url = `/api/v1/${this.props.url}`;
-      }
+      this.props.url === undefined
+        ? (url = `/api/v1/${this.props.urlPath}`)
+        : (url = `/api/v1/${this.props.url}`);
+
       const { content } = this.state;
+      const body = { content };
 
-      const body = {
-        content
-      };
-
-      const token = document.querySelector('meta[name="csrf-token"]').content;
-
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "X-CSRF-Token": token,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      })
-        .then(response => {
-          if (response.ok) {
-            alert("Content has been saved");
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then(this.toggleRefreshKey())
-        .catch(error => console.log(error.message));
+      postFetchDraft(url, body, this.alertType).then(this.toggleRefreshKey());
     }
   }
 
@@ -85,137 +64,100 @@ class DraftJSContainer extends Component {
     } else {
       event.preventDefault();
       let url;
-      if (this.props.url === undefined) {
-        url = `/api/v1/${this.props.urlPath}/${this.state.id}`;
-      } else {
-        url = `/api/v1/${this.props.url}/${this.state.id}`;
-      }
+      this.props.url === undefined
+        ? (url = `/api/v1/${this.props.urlPath}/${this.state.id}`)
+        : (url = `/api/v1/${this.props.url}/${this.state.id}`);
 
       const { content } = this.state;
+      const body = { content };
 
-      const body = {
-        content
-      };
-
-      const token = document.querySelector('meta[name="csrf-token"]').content;
-
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "X-CSRF-Token": token,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      })
-        .then(response => {
-          if (response.ok) {
-            alert("Content has been updated");
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .catch(error => console.log(error.message));
+      putFetch(url, body, this.alertType);
     }
   }
+
+  mountState = rawContent => {
+    if (rawContent) {
+      this.setState({
+        editorState: EditorState.createWithContent(
+          convertFromRaw(JSON.parse(rawContent[rawContent.length - 1].content))
+        ),
+        id: rawContent[rawContent.length - 1].id
+      });
+    } else {
+      this.setState({ editorState: EditorState.createEmpty() });
+    }
+  };
 
   componentDidMount() {
     let url;
-    if (this.props.url === undefined) {
-      url = `/api/v1/${this.props.urlPath}`;
-    } else {
-      url = `/api/v1/${this.props.url}`;
-    }
+    this.props.url === undefined
+      ? (url = this.props.urlPath)
+      : (url = this.props.url);
 
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(rawContent => {
-        if (rawContent) {
-          this.setState({
-            editorState: EditorState.createWithContent(
-              convertFromRaw(
-                JSON.parse(rawContent[rawContent.length - 1].content)
-              )
-            ),
-            id: rawContent[rawContent.length - 1].id
-          });
-        } else {
-          this.setState({ editorState: EditorState.createEmpty() });
-        }
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getFetch(url, this.mountState);
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey) {
-      this.setState({ id: "1", refreshKey: false });
-    }
+    let url;
+    this.props.url === undefined
+      ? (url = this.props.urlPath)
+      : (url = this.props.url);
+
+    this.state.refreshKey &&
+      getFetch(url, this.mountState)
+        .then(this.setState({ refreshKey: false }))
+        .then(this.props.uppertoggleRefreshKey);
   }
 
   render() {
-    let adminToggle;
-    if (this.props.user.admin) {
-      adminToggle = (
-        <div className="container pb-5 pt-3">
-          <div className="p-3" style={{ borderStyle: "dotted" }}>
-            <Editor
-              editorState={this.state.editorState}
-              wrapperClassName="wrapperClassName"
-              editorClassName="editorClassName"
-              onEditorStateChange={this.updateEditorState.bind(this)}
-              readOnly={false}
-            />
-            <div className="row">
-              {this.state.id >= 1 ? (
-                ""
-              ) : (
-                <div className="pr-3 pt-3">
-                  <AddButton
-                    onClick={this.onSubmit}
-                    value="Save your content"
-                  />
-                </div>
-              )}
-              <div className="p-3">
-                <UpdateButton
-                  onClick={this.onSubmitUpdate}
-                  value="Update your content"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      adminToggle = (
-        <div className="container py-3">
+    console.log("state", this.state);
+
+    let adminToggle = this.props.user.admin ? (
+      <div className="container pb-5 pt-3">
+        <div className="p-3" style={{ borderStyle: "dotted" }}>
           <Editor
-            toolbarHidden
             editorState={this.state.editorState}
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
             onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={true}
-            placeholder="Sign In to Admin to edit"
+            readOnly={false}
           />
+          <div className="row">
+            {this.state.id === null && (
+              <div className="pr-3 pt-3">
+                <AddButton onClick={this.onSubmit} value="Save your content" />
+              </div>
+            )}
+            <div className="p-3">
+              <UpdateButton
+                onClick={this.onSubmitUpdate}
+                value="Update your content"
+              />
+            </div>
+          </div>
         </div>
-      );
-    }
+      </div>
+    ) : (
+      <div className="container py-3">
+        <Editor
+          toolbarHidden
+          editorState={this.state.editorState}
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={this.updateEditorState.bind(this)}
+          readOnly={true}
+          placeholder="Sign In to Admin to edit"
+        />
+      </div>
+    );
 
     return (
       <React.Fragment>
-        {this.state.id >= 1 ? (
-          ""
-        ) : (
-          <div className="container text-center">
+        {this.state.typeOfAlert !== null && (
+          <AlertBox {...this.state} alertType={this.alertType} />
+        )}
+        {this.state.id === null && (
+          <div className="container text-center pt-3">
             <p>You must make first post before editing banners/headers.</p>
           </div>
         )}

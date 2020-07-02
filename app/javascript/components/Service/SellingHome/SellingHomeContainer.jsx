@@ -83,6 +83,7 @@ class SellingHomeContainer extends Component {
               {...this.state}
               {...this.props}
               urlPath={urlPath}
+              uppertoggleRefreshKey={this.toggleRefreshKey}
             />
           </div>
         </div>
