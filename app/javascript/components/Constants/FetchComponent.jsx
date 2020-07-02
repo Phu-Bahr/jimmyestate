@@ -97,6 +97,7 @@ export const putFetch = (url, body, alertType) => {
       throw new Error("Network response was not ok.");
     })
     .then(scrollToTop)
+    .then(event.target.reset())
     .catch(error => console.log("error message =>", error.message));
 };
 
@@ -205,6 +206,35 @@ export const deleteFetch = (url, alertType) => {
           error = new Error(errorMessage);
         throw error;
       }
+    })
+    .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const postFetchDraft = (url, body, alertType) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      if (response.ok) {
+        if (alertType === undefined) {
+          alert("Submission Successful");
+        } else {
+          alertType("successAdd");
+        }
+        return response.json();
+      }
+      if (alertType === undefined) {
+        alert("There was a network issue, please try again or contact admin.");
+      } else {
+        alertType("error");
+      }
+      throw new Error("Network response was not ok.");
     })
     .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
