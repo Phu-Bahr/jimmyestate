@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
+import { getFetch, putFetch } from "../../Constants/FetchComponent";
+import DraftJSContainer from "../../Constants/DraftJSComponent";
+import AlertBox from "../../Constants/AlertComponent";
 import {
   FadeIn,
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
-import { getFetch, putFetch } from "../../Constants/FetchComponent";
-import DraftJSContainer from "../../Constants/DraftJSComponent";
-import AlertBox from "../../Constants/AlertComponent";
 
 const urlPath = "buying_contents";
 
@@ -14,7 +14,6 @@ class BuyingHomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: [],
       headerText1: "",
       headerText2: "",
       id: null,
@@ -43,7 +42,6 @@ class BuyingHomeContainer extends Component {
 
   mountState = body => {
     this.setState({
-      data: body,
       headerText1: body[body.length - 1].headerText1,
       headerText2: body[body.length - 1].headerText2,
       bannerImage: body[body.length - 1].bannerImage,
