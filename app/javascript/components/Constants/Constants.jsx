@@ -77,22 +77,30 @@ export const ParallaxBanner = props => (
 );
 
 export const ParallaxBannerRoutes = props => (
-  <div
-    className="parallaxStyleRoutes"
-    style={{
-      backgroundImage:
-        "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
-        props.bannerImage +
-        ")"
-    }}
-  >
-    <div className="container">
-      <div className="header-alignment">
-        <h1 id="header1">{props.headerText1}</h1>
-        <h4 id="header2">{props.headerText2}</h4>
+  <React.Fragment>
+    <div
+      className="parallaxStyleRoutes"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
+          props.bannerImage +
+          ")"
+      }}
+    >
+      <div className="container">
+        <div className="header-alignment">
+          <h1 id="header1">{props.headerText1}</h1>
+          <h4 id="header2">{props.headerText2}</h4>
+        </div>
       </div>
+      {props.id == null && (
+        <div className="container text-center" style={{ paddingTop: "210px" }}>
+          <CommonLoading />
+          <div>Loading...</div>
+        </div>
+      )}
     </div>
-  </div>
+  </React.Fragment>
 );
 
 // as long as original component's state has the 3 keys below to send state down and up, this should work
@@ -205,9 +213,11 @@ export const FormMapsV2 = props => {
 
 export const LoadingScreen = props => {
   return (
-    <div className="container text-center pt-3">
-      <p>Loading...</p>
-      <CommonLoading />
-    </div>
+    props.id == null && (
+      <div className="container text-center pt-3">
+        <p>Loading...</p>
+        <CommonLoading />
+      </div>
+    )
   );
 };

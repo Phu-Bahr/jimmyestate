@@ -13,7 +13,7 @@ class AboutContainer extends Component {
     super(props);
     this.state = {
       aboutData: [],
-      id: "",
+      id: null,
       bannerText1: "",
       bannerText2: "",
       paragraph1: "",
@@ -338,6 +338,7 @@ class AboutContainer extends Component {
                 bannerImage={this.state.bannerImage}
                 headerText1={this.state.bannerText1}
                 headerText2={this.state.bannerText2}
+                id={this.state.id}
               />
             )}
             <div className="container">

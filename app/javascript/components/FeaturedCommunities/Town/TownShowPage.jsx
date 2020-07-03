@@ -11,7 +11,7 @@ class TownShowPage extends Component {
     super(props);
     this.state = {
       townData: {},
-      id: "",
+      id: null,
       editorState: EditorState.createEmpty(),
       content: null,
       refreshKey: false,
@@ -199,7 +199,7 @@ class TownShowPage extends Component {
       <React.Fragment>
         <div className="flex-container">
           <FadeIn>
-            <ParallaxBannerRoutes {...this.state.townData} />
+            <ParallaxBannerRoutes {...this.state.townData} id={this.state.id} />
 
             <div>{adminToggle}</div>
 
