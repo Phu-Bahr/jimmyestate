@@ -2,10 +2,9 @@ import React, { Component, Fragment } from "react";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { AddButton, UpdateButton } from "./Buttons";
-import { FadeIn } from "./Constants";
+import { FadeIn, LoadingScreen } from "./Constants";
 import AlertBox from "./AlertComponent";
 import { postFetchDraft, putFetch, getFetch } from "./FetchComponent";
-import { CommonLoading } from "react-loadingg";
 
 //parent component needs to supply url state
 //send {...this.state}, and user={this.props.user} <- for admin
@@ -167,14 +166,7 @@ class DraftJSContainer extends Component {
         {this.state.typeOfAlert !== null && (
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
-        {this.state.id === null && (
-          <Fragment>
-            <div className="container text-center pt-3">
-              <p>Loading...</p>
-              <CommonLoading />
-            </div>
-          </Fragment>
-        )}
+        {this.state.id === null && <LoadingScreen />}
         <FadeIn>{adminToggle}</FadeIn>
       </Fragment>
     );

@@ -9,6 +9,7 @@ import {
   fadeOut
 } from "react-animations";
 import { UpdateButton } from "./Buttons";
+import { CommonLoading } from "react-loadingg";
 
 export const FadeIn = styled.div`
   animation: 1s ${keyframes`${fadeIn}`};
@@ -200,4 +201,13 @@ export const FormMapsV2 = props => {
     );
   });
   return formValue;
+};
+
+export const LoadingScreen = props => {
+  return (
+    <div className="container text-center pt-3">
+      <p>Loading...</p>
+      <CommonLoading />
+    </div>
+  );
 };
