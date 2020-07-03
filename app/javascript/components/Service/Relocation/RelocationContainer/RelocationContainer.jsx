@@ -25,7 +25,7 @@ class RelocationContainer extends Component {
       refreshKey: false,
       hideDiv: false,
       bannerImage: "",
-      id: "",
+      id: null,
       typeOfAlert: null
     };
   }
@@ -92,6 +92,7 @@ class RelocationContainer extends Component {
               bannerImage={this.state.bannerImage}
               headerText1={this.state.bannerText1}
               headerText2={this.state.bannerText2}
+              id={this.state.id}
             />
           </FadeIn>
           {this.props.user.admin && (
