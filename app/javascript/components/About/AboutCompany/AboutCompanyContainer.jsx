@@ -68,22 +68,15 @@ class AboutCompanyContainer extends Component {
         )}
 
         <div className="flex-container">
-          {this.state.id == null ? (
-            <LoadingScreen id={this.state.id} />
-          ) : (
-            <Fragment>
-              <ParallaxBannerRoutes {...this.state} {...this.props} />
+          <LoadingScreen id={this.state.id} />
 
-              <FadeInUp>
-                <div className="pt-4 pb-3 text-center">
-                  <img
-                    className="img-fluid rounded"
-                    src={this.state.image}
-                  ></img>
-                </div>
-              </FadeInUp>
-            </Fragment>
-          )}
+          <ParallaxBannerRoutes {...this.state} {...this.props} />
+
+          <FadeInUp>
+            <div className="pt-4 pb-3 text-center">
+              <img className="img-fluid rounded" src={this.state.image}></img>
+            </div>
+          </FadeInUp>
 
           {this.props.user.admin && (
             <AboutCompanyContentForm

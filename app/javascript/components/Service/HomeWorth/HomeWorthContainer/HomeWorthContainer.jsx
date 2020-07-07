@@ -89,16 +89,12 @@ class HomeWorthContainer extends Component {
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
         <div className="flex-container">
-          {this.state.id == null ? (
-            <LoadingScreen id={this.state.id} />
-          ) : (
-            <ParallaxBannerRoutes
-              bannerImage={this.state.bannerImage}
-              headerText1={this.state.bannerText1}
-              headerText2={this.state.bannerText2}
-              id={this.state.id}
-            />
-          )}
+          <ParallaxBannerRoutes
+            bannerImage={this.state.bannerImage}
+            headerText1={this.state.bannerText1}
+            headerText2={this.state.bannerText2}
+            id={this.state.id}
+          />
 
           {this.props.user.admin && (
             <div className="container text-center py-3">
@@ -107,6 +103,7 @@ class HomeWorthContainer extends Component {
           )}
 
           <div className="container py-5">
+            <LoadingScreen {...this.state} />
             <div className="row">
               <WorthPhotoContainer
                 user={this.props.user}
