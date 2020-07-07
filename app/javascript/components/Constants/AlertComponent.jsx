@@ -100,18 +100,22 @@ const AlertBox = props => {
     </SweetAlert>
   );
 
-  if (props.typeOfAlert == "successDelete") {
-    return successfulDelete;
-  } else if (props.typeOfAlert == "delete") {
-    return deleteItem;
-  } else if (props.typeOfAlert == "successAdd") {
-    return successfulAdd;
-  } else if (props.typeOfAlert == "error") {
-    return errorMessage;
-  } else if (props.typeOfAlert == "successEmail") {
-    return successfulEmail;
-  } else if (props.typeOfAlert == "successEdit") {
-    return successfulEdit;
+  if (props.typeOfAlert !== null) {
+    if (props.typeOfAlert == "successDelete") {
+      return successfulDelete;
+    } else if (props.typeOfAlert == "delete") {
+      return deleteItem;
+    } else if (props.typeOfAlert == "successAdd") {
+      return successfulAdd;
+    } else if (props.typeOfAlert == "error") {
+      return errorMessage;
+    } else if (props.typeOfAlert == "successEmail") {
+      return successfulEmail;
+    } else if (props.typeOfAlert == "successEdit") {
+      return successfulEdit;
+    }
+  } else {
+    return null;
   }
 };
 

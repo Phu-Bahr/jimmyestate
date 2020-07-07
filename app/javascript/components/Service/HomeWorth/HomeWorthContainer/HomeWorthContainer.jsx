@@ -85,9 +85,8 @@ class HomeWorthContainer extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox {...this.state} alertType={this.alertType} />
-        )}
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <div className="flex-container">
           <ParallaxBannerRoutes
             bannerImage={this.state.bannerImage}

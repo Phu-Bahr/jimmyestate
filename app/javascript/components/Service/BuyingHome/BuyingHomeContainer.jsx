@@ -64,9 +64,8 @@ class BuyingHomeContainer extends Component {
 
     return (
       <Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox {...this.state} alertType={this.alertType} />
-        )}
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
           {this.props.user.admin && (

@@ -10,10 +10,16 @@ const relocationEditFormData = {
   paragraph2: "Paragraph 2"
 };
 
-const RelocationContentForm = ({ hideDiv, onSubmitEdit, onChange, value }) => {
+const RelocationContentForm = ({
+  hideDiv,
+  onSubmitEdit,
+  onChange,
+  value,
+  admin
+}) => {
   return (
     <Fragment>
-      {hideDiv && (
+      {hideDiv && admin && (
         <div className="container">
           <form onSubmit={onSubmitEdit}>
             <FormMaps
