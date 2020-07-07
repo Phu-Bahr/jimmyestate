@@ -78,28 +78,33 @@ export const ParallaxBanner = props => (
 
 export const ParallaxBannerRoutes = props => (
   <React.Fragment>
-    <div
-      className="parallaxStyleRoutes"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
-          props.bannerImage +
-          ")"
-      }}
-    >
-      <div className="container">
-        <div className="header-alignment">
-          <h1 id="header1">{props.headerText1}</h1>
-          <h4 id="header2">{props.headerText2}</h4>
+    <FadeIn>
+      <div
+        className="parallaxStyleRoutes"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
+            props.bannerImage +
+            ")"
+        }}
+      >
+        <div className="container">
+          <div className="header-alignment">
+            <h1 id="header1">{props.headerText1}</h1>
+            <h4 id="header2">{props.headerText2}</h4>
+          </div>
         </div>
+        {props.id == null && (
+          <div
+            className="container text-center"
+            style={{ paddingTop: "210px" }}
+          >
+            <CommonLoading />
+            <div>Loading...</div>
+          </div>
+        )}
       </div>
-      {props.id == null && (
-        <div className="container text-center" style={{ paddingTop: "210px" }}>
-          <CommonLoading />
-          <div>Loading...</div>
-        </div>
-      )}
-    </div>
+    </FadeIn>
   </React.Fragment>
 );
 

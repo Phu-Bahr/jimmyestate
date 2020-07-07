@@ -198,9 +198,8 @@ class PartnerShowPage extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
+          <ParallaxBannerRoutes {...this.state.partnerData} />
           <FadeIn>
-            <ParallaxBannerRoutes {...this.state.partnerData} />
-
             <div>{adminToggle}</div>
 
             <div className="container pb-5">

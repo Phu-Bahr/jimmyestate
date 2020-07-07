@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import EmailForm from "./EmailForm";
 import Map from "./Map";
 import {
-  FadeIn,
   FadeInLeft,
   FadeInRight,
   ParallaxBannerRoutes,
@@ -258,9 +257,7 @@ class ContactContainer extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes {...this.state} />
-          </FadeIn>
+          <ParallaxBannerRoutes {...this.state} />
 
           <div className="container py-5">
             <div className="row">

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  FadeIn,
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
@@ -132,25 +131,24 @@ class TestimonialsContainer extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes {...this.state} />
-            {this.props.user.admin ? (
-              <div className="container text-center pt-4">
-                <button className="btn custom-button" onClick={this.editBanner}>
-                  Edit Banner
-                </button>
-              </div>
-            ) : null}
-            {this.state.visibility === true ? (
-              <ParallaxEditForm
-                value={this.state}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
-              />
-            ) : (
-              ""
-            )}
-          </FadeIn>
+          <ParallaxBannerRoutes {...this.state} />
+          {this.props.user.admin ? (
+            <div className="container text-center pt-4">
+              <button className="btn custom-button" onClick={this.editBanner}>
+                Edit Banner
+              </button>
+            </div>
+          ) : null}
+          {this.state.visibility === true ? (
+            <ParallaxEditForm
+              value={this.state}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
+          ) : (
+            ""
+          )}
+
           <Testimonials user={this.props.user} />
         </div>
       </React.Fragment>

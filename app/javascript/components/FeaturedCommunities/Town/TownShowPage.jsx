@@ -198,9 +198,8 @@ class TownShowPage extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
+          <ParallaxBannerRoutes {...this.state.townData} id={this.state.id} />
           <FadeIn>
-            <ParallaxBannerRoutes {...this.state.townData} id={this.state.id} />
-
             <div>{adminToggle}</div>
 
             <div className="container pb-5">
