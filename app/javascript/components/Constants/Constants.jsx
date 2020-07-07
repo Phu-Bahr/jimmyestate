@@ -76,6 +76,7 @@ export const ParallaxBanner = props => (
   />
 );
 
+// needs ...state or banner state. Especially id for loading
 export const ParallaxBannerRoutes = props => (
   <React.Fragment>
     <FadeIn>
@@ -97,7 +98,7 @@ export const ParallaxBannerRoutes = props => (
         {props.id == null && (
           <div
             className="container text-center"
-            style={{ paddingTop: "210px" }}
+            style={{ paddingTop: "250px" }}
           >
             <CommonLoading />
             <div>Loading...</div>

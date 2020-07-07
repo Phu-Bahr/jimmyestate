@@ -166,7 +166,7 @@ class DraftJSContainer extends Component {
         {this.state.typeOfAlert !== null && (
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
-        {this.state.id === null && <LoadingScreen id={this.state.id} />}
+        <LoadingScreen {...this.state} />
         <FadeIn>{adminToggle}</FadeIn>
       </Fragment>
     );

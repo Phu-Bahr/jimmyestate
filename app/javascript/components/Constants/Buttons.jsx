@@ -44,6 +44,7 @@ export const EditButton = ({ type, className, onClick, value }) => {
   );
 };
 
+//for put fetches
 export const UpdateButton = ({ type, className, onClick, value }) => {
   return (
     <button
