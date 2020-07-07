@@ -81,13 +81,12 @@ class MarketPhotoContainer extends Component {
 
     return (
       <Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox
-            {...this.state}
-            alertType={this.alertType}
-            deleteEvent={this.deleteEvent}
-          />
-        )}
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          deleteEvent={this.deleteEvent}
+        />
+
         <div className="card border-0 col-md-6">
           {this.props.hide && (
             <MarketPhotoForm

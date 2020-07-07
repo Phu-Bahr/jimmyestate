@@ -132,9 +132,7 @@ class AboutContainer extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox {...this.state} alertType={this.alertType} />
-        )}
+        <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="flex-container">
           <ParallaxBannerRoutes
@@ -171,6 +169,7 @@ class AboutContainer extends Component {
             onSubmit={this.onSubmit}
             onChange={this.onChange}
             value={this.state}
+            admin={this.props.user.admin}
           />
         </div>
       </Fragment>

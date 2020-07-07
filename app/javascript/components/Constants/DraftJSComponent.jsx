@@ -163,9 +163,7 @@ class DraftJSContainer extends Component {
 
     return (
       <Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox {...this.state} alertType={this.alertType} />
-        )}
+        <AlertBox {...this.state} alertType={this.alertType} />
         <LoadingScreen {...this.state} />
         <FadeIn>{adminToggle}</FadeIn>
       </Fragment>

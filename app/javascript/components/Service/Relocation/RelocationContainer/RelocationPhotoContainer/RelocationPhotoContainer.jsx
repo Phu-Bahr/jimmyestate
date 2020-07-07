@@ -74,16 +74,14 @@ class RelocationPhotoContainer extends Component {
 
     return (
       <React.Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox
-            {...this.state}
-            alertType={this.alertType}
-            deleteEvent={this.deleteEvent}
-          />
-        )}
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          deleteEvent={this.deleteEvent}
+        />
 
         <div className="card border-0 col-md-6">
-          {this.props.hide && (
+          {this.props.hide && this.props.user.admin && (
             <RelocationPhotoForm
               hide={this.props.hide}
               onChange={this.onChange}

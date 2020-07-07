@@ -79,9 +79,8 @@ class RelocationContainer extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.typeOfAlert !== null && (
-          <AlertBox {...this.state} alertType={this.alertType} />
-        )}
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <div className="flex-container">
           <ParallaxBannerRoutes
             bannerImage={this.state.bannerImage}
@@ -109,6 +108,7 @@ class RelocationContainer extends Component {
                     onSubmitEdit={this.onSubmitEdit}
                     onChange={this.onChange}
                     value={this.state}
+                    admin={this.props.user.admin}
                   />
                   <RelocationEmailForm alertType={this.alertType} />
                 </FadeInLeft>

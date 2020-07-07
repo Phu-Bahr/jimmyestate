@@ -28,10 +28,10 @@ let bannerForms = {
   bannerText2: "Banner Text 2"
 };
 
-const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value }) => {
+const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
   return (
     <Fragment>
-      {hideDiv && (
+      {hideDiv && admin ? (
         <div className="container">
           <form onSubmit={onSubmit}>
             <div className="container py-3">
@@ -66,7 +66,7 @@ const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value }) => {
             </div>
           </form>
         </div>
-      )}
+      ) : null}
     </Fragment>
   );
 };
