@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  FadeIn,
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
@@ -121,18 +120,16 @@ class JimmyTipContainer extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes {...this.state} />
-            {this.props.user.admin === true ? (
-              <ParallaxEditForm
-                value={this.state}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
-              />
-            ) : (
-              ""
-            )}
-          </FadeIn>
+          <ParallaxBannerRoutes {...this.state} />
+          {this.props.user.admin === true ? (
+            <ParallaxEditForm
+              value={this.state}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
+          ) : (
+            ""
+          )}
 
           <div>
             <DraftJSContainer {...this.state} {...this.props} />

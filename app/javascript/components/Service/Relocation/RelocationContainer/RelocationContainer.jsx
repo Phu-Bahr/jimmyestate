@@ -1,10 +1,6 @@
 import React, { Component, Fragment } from "react";
 import RelocationPhotoContainer from "./RelocationPhotoContainer/RelocationPhotoContainer";
-import {
-  FadeIn,
-  FadeInLeft,
-  ParallaxBannerRoutes
-} from "../../../Constants/Constants";
+import { FadeInLeft, ParallaxBannerRoutes } from "../../../Constants/Constants";
 import { getFetch, putFetch } from "../../../Constants/FetchComponent";
 import RelocationContentForm from "./RelocationContentForm";
 import RelocationEmailForm from "./RelocationEmailForm";
@@ -87,14 +83,13 @@ class RelocationContainer extends Component {
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes
-              bannerImage={this.state.bannerImage}
-              headerText1={this.state.bannerText1}
-              headerText2={this.state.bannerText2}
-              id={this.state.id}
-            />
-          </FadeIn>
+          <ParallaxBannerRoutes
+            bannerImage={this.state.bannerImage}
+            headerText1={this.state.bannerText1}
+            headerText2={this.state.bannerText2}
+            id={this.state.id}
+          />
+
           {this.props.user.admin && (
             <div className="text-center pt-3">
               <EditButton onClick={this.clickEdit} />

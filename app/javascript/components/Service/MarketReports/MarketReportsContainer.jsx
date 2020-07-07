@@ -4,11 +4,7 @@ import AlertBox from "../../Constants/AlertComponent";
 import MarketReportsContentForm from "./MarketReportsContentForm";
 import MarketReportsEmailForm from "./MarketReportsEmailForm";
 import { putFetch, getFetch } from "../../Constants/FetchComponent";
-import {
-  FadeIn,
-  FadeInLeft,
-  ParallaxBannerRoutes
-} from "../../Constants/Constants";
+import { FadeInLeft, ParallaxBannerRoutes } from "../../Constants/Constants";
 import { EditButton } from "../../Constants/Buttons";
 
 const urlPath = "market_report_edits";
@@ -87,14 +83,13 @@ class MarketReportsContainer extends Component {
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes
-              bannerImage={this.state.bannerImage}
-              headerText1={this.state.bannerText1}
-              headerText2={this.state.bannerText2}
-              id={this.state.id}
-            />
-          </FadeIn>
+          <ParallaxBannerRoutes
+            bannerImage={this.state.bannerImage}
+            headerText1={this.state.bannerText1}
+            headerText2={this.state.bannerText2}
+            id={this.state.id}
+          />
+
           {this.props.user.admin && (
             <div className="container py-3">
               <div className="row">

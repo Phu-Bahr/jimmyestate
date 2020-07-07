@@ -4,7 +4,8 @@ import { animateScroll as scroll } from "react-scroll";
 import {
   FadeIn,
   ParallaxBannerRoutes,
-  FormMaps
+  FormMaps,
+  LoadingScreen
 } from "../../Constants/Constants";
 import { RollBoxLoading } from "react-loadingg";
 
@@ -330,17 +331,17 @@ class AboutContainer extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
+          {this.state.id == null ? (
+            <LoadingScreen />
+          ) : (
+            <ParallaxBannerRoutes
+              bannerImage={this.state.bannerImage}
+              headerText1={this.state.bannerText1}
+              headerText2={this.state.bannerText2}
+              id={this.state.id}
+            />
+          )}
           <FadeIn>
-            {this.state.loading ? (
-              <RollBoxLoading />
-            ) : (
-              <ParallaxBannerRoutes
-                bannerImage={this.state.bannerImage}
-                headerText1={this.state.bannerText1}
-                headerText2={this.state.bannerText2}
-                id={this.state.id}
-              />
-            )}
             <div className="container">
               <div className="row py-5">
                 <div className="col-md-12">

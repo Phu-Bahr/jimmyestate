@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PortfolioProperties from "./PortfolioProperties";
 import {
-  FadeIn,
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
@@ -113,16 +112,15 @@ class PortfolioContainer extends Component {
     return (
       <React.Fragment>
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes {...this.state} />
-            {this.props.user.admin ? (
-              <ParallaxEditForm
-                onSubmit={this.onSubmit}
-                onChange={this.onChange}
-                value={this.state}
-              />
-            ) : null}
-          </FadeIn>
+          <ParallaxBannerRoutes {...this.state} />
+          {this.props.user.admin ? (
+            <ParallaxEditForm
+              onSubmit={this.onSubmit}
+              onChange={this.onChange}
+              value={this.state}
+            />
+          ) : null}
+
           <PortfolioProperties {...this.props} />
         </div>
       </React.Fragment>

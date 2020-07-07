@@ -5,11 +5,10 @@ import { getFetch, putFetch } from "../../../Constants/FetchComponent";
 import { EditButton } from "../../../Constants/Buttons";
 import AlertBox from "../../../Constants/AlertComponent";
 import HomeWorthEmailForm from "./HomeWorthEmailForm";
-import { RollBoxLoading } from "react-loadingg";
 import {
-  FadeIn,
   FadeInRight,
-  ParallaxBannerRoutes
+  ParallaxBannerRoutes,
+  LoadingScreen
 } from "../../../Constants/Constants";
 
 const urlPath = "worth_edits";
@@ -28,8 +27,7 @@ class HomeWorthContainer extends Component {
       bannerImage: "",
       id: null,
       typeOfAlert: null,
-      idForAlert: null,
-      loading: false
+      idForAlert: null
     };
   }
 
@@ -74,7 +72,6 @@ class HomeWorthContainer extends Component {
   };
 
   componentDidMount() {
-    this.setState({ loading: true });
     getFetch(urlPath, this.mountState);
   }
 
@@ -92,17 +89,15 @@ class HomeWorthContainer extends Component {
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
         <div className="flex-container">
-          {this.state.loading ? (
-            <RollBoxLoading />
+          {this.state.id == null ? (
+            <LoadingScreen id={this.state.id} />
           ) : (
-            <FadeIn>
-              <ParallaxBannerRoutes
-                bannerImage={this.state.bannerImage}
-                headerText1={this.state.bannerText1}
-                headerText2={this.state.bannerText2}
-                id={this.state.id}
-              />
-            </FadeIn>
+            <ParallaxBannerRoutes
+              bannerImage={this.state.bannerImage}
+              headerText1={this.state.bannerText1}
+              headerText2={this.state.bannerText2}
+              id={this.state.id}
+            />
           )}
 
           {this.props.user.admin && (

@@ -3,7 +3,6 @@ import DraftJSContainer from "../../Constants/DraftJSComponent";
 import { getFetch, putFetch } from "../../Constants/FetchComponent";
 import AlertBox from "../../Constants/AlertComponent";
 import {
-  FadeIn,
   ParallaxBannerRoutes,
   ParallaxEditForm
 } from "../../Constants/Constants";
@@ -66,17 +65,15 @@ class SellingHomeContainer extends Component {
           <AlertBox {...this.state} alertType={this.alertType} />
         )}
         <div className="flex-container">
-          <FadeIn>
-            <ParallaxBannerRoutes {...this.state} />
-            {this.props.user.admin && (
-              <ParallaxEditForm
-                {...this.state}
-                onChange={this.onChange}
-                value={this.state}
-                onSubmit={this.onSubmit}
-              />
-            )}
-          </FadeIn>
+          <ParallaxBannerRoutes {...this.state} />
+          {this.props.user.admin && (
+            <ParallaxEditForm
+              {...this.state}
+              onChange={this.onChange}
+              value={this.state}
+              onSubmit={this.onSubmit}
+            />
+          )}
 
           <div>
             <DraftJSContainer
