@@ -269,22 +269,10 @@ class EventContainer extends Component {
         }
       };
 
-      let submitUpdate = () => {
-        this.updateEvent(element.id);
-      };
-
-      let onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-      };
-
-      let clickHideUpdate = () => {
-        this.setSelectedStep(element.id);
-      };
-
-      let handleUpdateGeocode = () => {
-        this.onUpdateGeocode();
-      };
-
+      let submitUpdate = () => this.updateEvent(element.id);
+      let onChange = e => this.setState({ [e.target.name]: e.target.value });
+      let clickHideUpdate = () => this.setSelectedStep(element.id);
+      let handleUpdateGeocode = () => this.onUpdateGeocode();
       let getCurrentEventState = () => {
         this.editCurrentEventState(
           element.title,
@@ -384,12 +372,12 @@ class EventContainer extends Component {
               <div className="col-sm-6 py-2">
                 <div>{photo}</div>
               </div>
-              {/* <div className="col-sm-6 py-2">
+              <div className="col-sm-6 py-2">
                 <Map
                   lat={parseFloat(this.state.lat)}
                   lng={parseFloat(this.state.lng)}
                 />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
