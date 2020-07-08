@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { FadeIn } from "../../Constants/Constants";
 import { PortfolioPropertyForm } from "./PortfolioPropertyForm";
-import { animateScroll as scroll } from "react-scroll";
 import AlertBox from "../../Constants/AlertComponent";
 import PortfolioPropertiesTile from "./PortfolioPropertiesTile";
 import { EditButton } from "../../Constants/Buttons";
@@ -36,7 +35,6 @@ class PortfolioProperties extends Component {
     };
   }
 
-  scrollToTop = () => scroll.scrollTo(550);
   alertType = payload => this.setState({ typeOfAlert: payload });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
@@ -74,7 +72,6 @@ class PortfolioProperties extends Component {
       zip: editPayload.zip,
       status: editPayload.status
     });
-    this.scrollToTop();
   };
 
   deleteEvent = id => {
@@ -198,13 +195,13 @@ class PortfolioProperties extends Component {
           deleteEvent={this.deleteEvent}
         />
         {this.props.user.admin && (
-          <div className=" text-center pt-5">
+          <div className=" text-center pt-5" id="formTag">
             <EditButton onClick={this.clickEdit} />
           </div>
         )}
 
         {this.state.hideDiv && (
-          <div className="container">
+          <div className="container" id="formTag">
             <PortfolioPropertyForm
               onChange={this.onChange}
               value={this.state}
