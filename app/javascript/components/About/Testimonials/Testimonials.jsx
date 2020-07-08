@@ -5,7 +5,7 @@ import { animateScroll as scroll } from "react-scroll";
 
 class Testimonials extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       url: "testimonials",
       image: "",

@@ -3,7 +3,8 @@ import PortfolioProperties from "./PortfolioProperties";
 import AlertBox from "../../Constants/AlertComponent";
 import {
   ParallaxBannerRoutes,
-  ParallaxEditForm
+  ParallaxEditForm,
+  LoadingScreen
 } from "../../Constants/Constants";
 import { getFetch, putFetch } from "../../Constants/FetchComponent";
 
@@ -69,6 +70,7 @@ class PortfolioContainer extends Component {
               value={this.state}
             />
           )}
+          <LoadingScreen {...this.state} />
           <PortfolioProperties {...this.props} />
         </div>
       </React.Fragment>

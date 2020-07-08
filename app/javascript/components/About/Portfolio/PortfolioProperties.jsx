@@ -36,7 +36,7 @@ class PortfolioProperties extends Component {
     };
   }
 
-  scrollToTop = () => scroll.scrollToTop();
+  scrollToTop = () => scroll.scrollTo(550);
   alertType = payload => this.setState({ typeOfAlert: payload });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
