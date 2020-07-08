@@ -17,7 +17,6 @@ class NewEvent extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
     this.submit = this.submit.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -26,36 +25,62 @@ class NewEvent extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  onSubmit(event) {
+  clearState = () => {
+    console.log("triggered clearstate");
+
+    this.setState({
+      title: "",
+      location: "",
+      date: "",
+      time: "",
+      flier: "",
+      lat: "",
+      lng: ""
+    });
+  };
+
+  ShowCurrentDate = () => {
+    let date = ("0" + new Date().getDate()).slice(-2);
+    let month = ("0" + (new Date().getMonth() + 1)).slice(-2);
+    let year = new Date().getFullYear();
+
+    return year + "-" + month + "-" + date;
+  };
+
+  onSubmit() {
     let location = `${this.state.location}`;
 
-    fetch(`/api/v1/events/search?location=${location}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        if (body.data[0].result === "No Results") {
-          alert("No such place for geocode, try again");
-        } else {
-          alert("Geocode updated");
-          this.setState({
-            lat: body.data[0].lat,
-            lng: body.data[0].lng
-          });
-        }
-      })
-      .then(setTimeout(this.submit, 1000))
-      .catch(error => console.log("error message =>", error.message));
+    if (Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)) {
+      alert("Please choose a current or future date!");
+    } else {
+      fetch(`/api/v1/events/search?location=${location}`)
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          if (body.data[0].result === "No Results") {
+            alert("No such place for geocode, try again");
+          } else {
+            alert("Geocode updated");
+            this.setState({
+              lat: body.data[0].lat,
+              lng: body.data[0].lng
+            });
+          }
+        })
+        .then(setTimeout(this.submit, 600))
+        .catch(error => console.log("error message =>", error.message));
+    }
   }
 
-  submit(event) {
+  submit() {
     const url = "/api/v1/events";
     const { title, location, date, time, flier, lat, lng } = this.state;
 
@@ -86,33 +111,20 @@ class NewEvent extends Component {
         }
         throw new Error("Network response was not ok.");
       })
+      .then(this.clearState)
       .then(this.props.toggleRefreshKey)
-      .then(
-        this.setState({
-          title: "",
-          location: "",
-          date: "",
-          time: "",
-          flier: "",
-          lat: "",
-          lng: ""
-        })
-      )
       .catch(error => console.log(error.message));
   }
   render() {
+    console.log(this.state);
+
     return (
       <React.Fragment>
         <div className="px-3">
           <h4>Add new event here:</h4>
         </div>
         <div className="col-sm-12 col-lg-6 pb-4 container mx-auto">
-          <form
-            onSubmit={event => {
-              this.onSubmit(event);
-              event.target.reset();
-            }}
-          >
+          <form onSubmit={this.onSubmit}>
             <input
               type="text"
               name="title"
@@ -120,6 +132,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
+              value={this.state.title}
               placeholder="Name of Event"
             />
             <input
@@ -129,7 +142,8 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="Address"
+              value={this.state.location}
+              placeholder="Location Address"
             />
             <input
               type="date"
@@ -138,7 +152,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="Date"
+              value={this.state.date}
             />
             <input
               type="time"
@@ -147,7 +161,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
-              placeholder="Time"
+              value={this.state.time}
             />
             <input
               type="text"
@@ -156,6 +170,7 @@ class NewEvent extends Component {
               className="form-control"
               required
               onChange={this.onChange}
+              value={this.state.flier}
               placeholder="Image URL"
             />
           </form>

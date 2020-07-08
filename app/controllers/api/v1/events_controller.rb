@@ -11,7 +11,7 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def index
-        event = Event.all
+        event = Event.all.order(date: :asc).where("date >= ?", Date.today)
         render json: event
     end
 
