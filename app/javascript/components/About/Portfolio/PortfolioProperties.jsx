@@ -1,15 +1,25 @@
-import React, { Component } from "react";
-import { animateScroll as scroll } from "react-scroll";
-import { FadeInUp } from "../../Constants/Constants";
-import ScrollAnimation from "react-animate-on-scroll";
+import React, { Component, Fragment } from "react";
+import { FadeIn } from "../../Constants/Constants";
 import { PortfolioPropertyForm } from "./PortfolioPropertyForm";
+import { animateScroll as scroll } from "react-scroll";
+import AlertBox from "../../Constants/AlertComponent";
+import PortfolioPropertiesTile from "./PortfolioPropertiesTile";
+import { EditButton } from "../../Constants/Buttons";
+import {
+  getFetch,
+  postFetch,
+  deleteFetch,
+  putFetch1
+} from "../../Constants/FetchComponent";
+
+const urlPath = "portfolios";
 
 class PortfolioProperties extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       portfolioData: [],
-      propertyID: "",
+      id: null,
       refreshKey: false,
       photo: "",
       price: "",
@@ -20,18 +30,17 @@ class PortfolioProperties extends Component {
       state: "",
       zip: "",
       status: "",
-      hideDiv: true
+      hideDiv: false,
+      typeOfAlert: null,
+      idForAlert: null
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.toggleRefreshKeyFalse = this.toggleRefreshKeyFalse.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
-    this.onSubmitEdit = this.onSubmitEdit.bind(this);
-    this.clearState = this.clearState.bind(this);
-    this.clickEdit = this.clickEdit.bind(this);
   }
+
+  scrollToTop = () => scroll.scrollToTop();
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   clearState = () => {
     this.setState({
@@ -47,32 +56,33 @@ class PortfolioProperties extends Component {
     });
   };
 
-  clickEdit() {
-    if (this.state.hideDiv === false) {
-      this.setState({ hideDiv: true });
-    } else {
-      this.setState({ hideDiv: false });
-    }
-  }
-
-  scrollToTop = () => {
-    scroll.scrollToTop();
+  handleDelete = id => {
+    this.setState({ idForAlert: id });
+    this.alertType("delete");
   };
 
-  toggleRefreshKey(event) {
-    this.setState({ refreshKey: true });
-  }
+  handleEdit = editPayload => {
+    this.setState({
+      id: editPayload.id,
+      photo: editPayload.photo,
+      price: editPayload.price,
+      streetnumber: editPayload.streetnumber,
+      street: editPayload.street,
+      aptnumber: editPayload.aptnumber,
+      city: editPayload.city,
+      state: editPayload.state,
+      zip: editPayload.zip,
+      status: editPayload.status
+    });
+    this.scrollToTop();
+  };
 
-  toggleRefreshKeyFalse(event) {
-    this.setState({ refreshKey: false });
-  }
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  deleteEvent = id => {
+    const url = `/api/v1/${urlPath}/${id}`;
+    deleteFetch(url, this.alertType).then(this.toggleRefreshKey);
+  };
 
-  onSubmit(event) {
-    event.preventDefault();
-    const url = "/api/v1/portfolios";
+  onSubmit = event => {
     const {
       photo,
       price,
@@ -96,62 +106,18 @@ class PortfolioProperties extends Component {
       zip,
       status
     };
+    event.preventDefault();
+    const url = `/api/v1/${urlPath}`;
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    postFetch(url, body, this.alertType).then(this.toggleRefreshKey);
+  };
 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Property has been added.");
-          return response.json();
-        }
-        alert("something went wrong");
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.toggleRefreshKey)
-      .then(this.clearState)
-      .catch(error => console.log(error.message));
-  }
-
-  deleteEvent(id) {
-    const url = `/api/v1/portfolios/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("delete successful");
-          return response;
-        } else {
-          alert("something went wrong");
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
-
-  onSubmitEdit() {
-    if (this.state.propertyID === "") {
+  onSubmitEdit = () => {
+    if (this.state.id == null) {
       alert("Nothing to edit");
     } else {
       event.preventDefault();
-      const url = `/api/v1/portfolios/${this.state.propertyID}`;
+      const url = `/api/v1/${urlPath}/${this.state.id}`;
       const {
         photo,
         price,
@@ -176,372 +142,89 @@ class PortfolioProperties extends Component {
         status
       };
 
-      const token = document.querySelector('meta[name="csrf-token"]').content;
-
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "X-CSRF-Token": token,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      })
-        .then(response => {
-          if (response.ok) {
-            alert("Property has been updated.");
-            return response;
-          } else {
-            let errorMessage = `${resopnse.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
+      putFetch1(url, body, this.alertType)
         .then(this.clearState)
-        .then(this.toggleRefreshKey)
-        .catch(error => console.log(error.message));
+        .then(this.toggleRefreshKey);
     }
-  }
+  };
+
+  mountState = body => this.setState({ portfolioData: body });
 
   componentDidMount() {
-    fetch("/api/v1/portfolios")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          portfolioData: body
-        });
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getFetch(urlPath, this.mountState);
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey === true) {
-      fetch("/api/v1/portfolios")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({
-            portfolioData: body
-          });
-        })
-        .then(this.toggleRefreshKeyFalse)
-        .catch(error => console.log("error message =>", error.message));
-    }
+    this.state.refreshKey &&
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   }
 
   render() {
-    let hide;
-    if (this.state.hideDiv === true) {
-      hide = "invisible";
-    } else {
-      hide = "";
-    }
-
     let data = this.state.portfolioData;
 
-    let displayActivePortfolio = data.map(element => {
-      let handleDelete = () => {
-        let result = confirm(
-          `Are you sure you want to delete ${element.streetnumber} ${element.street}`
-        );
-        if (result) {
-          this.deleteEvent(element.id);
+    const propertyTile = status => {
+      let displayActivePortfolio = data.map(element => {
+        if (element.status == status) {
+          return (
+            <PortfolioPropertiesTile
+              key={element.id}
+              id={element.id}
+              photo={element.photo}
+              price={element.price}
+              streetnumber={element.streetnumber}
+              street={element.street}
+              aptnumber={element.aptnumber}
+              city={element.city}
+              state={element.state}
+              zip={element.zip}
+              hide={this.state.hideDiv}
+              handleDelete={this.handleDelete}
+              handleEdit={this.handleEdit}
+              status={element.status}
+            />
+          );
         }
-      };
-
-      let handleEdit = () => {
-        this.setState({
-          propertyID: element.id,
-          photo: element.photo,
-          price: element.price,
-          streetnumber: element.streetnumber,
-          street: element.street,
-          aptnumber: element.aptnumber,
-          city: element.city,
-          state: element.state,
-          zip: element.zip,
-          status: element.status
-        });
-        this.scrollToTop();
-      };
-
-      if (element.status === "Active") {
-        return (
-          <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <ScrollAnimation animateIn="fadeIn">
-              <div className="card border-0">
-                <div className="parent1 m-0">
-                  <div className="child1 particles">
-                    <img
-                      className="portfolioImage card-img-top"
-                      src={element.photo}
-                    />
-                    <div className="portfolioTitle">On Market</div>
-                  </div>
-                </div>
-
-                <div className="card-body">
-                  <div style={{ fontWeight: "900" }}>
-                    $
-                    {element.price.toLocaleString(navigator.language, {
-                      minimumFractionDigits: 0
-                    })}
-                  </div>
-                  <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
-                  <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
-                </div>
-              </div>
-            </ScrollAnimation>
-
-            <div className={"container" + " " + hide}>
-              <div className="row">
-                <div className="col-sm-6">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={handleDelete}
-                  >
-                    Delete Property
-                  </button>
-                </div>
-                <div className="col-sm-6">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={handleEdit}
-                  >
-                    Edit Property
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-    });
-
-    let displaySoldPortfolio = data.map(element => {
-      let handleDelete = () => {
-        let result = confirm(
-          `Are you sure you want to delete ${element.streetnumber} ${element.street}`
-        );
-        if (result) {
-          this.deleteEvent(element.id);
-        }
-      };
-
-      let handleEdit = () => {
-        this.setState({
-          propertyID: element.id,
-          photo: element.photo,
-          price: element.price,
-          streetnumber: element.streetnumber,
-          street: element.street,
-          aptnumber: element.aptnumber,
-          city: element.city,
-          state: element.state,
-          zip: element.zip,
-          status: element.status
-        });
-        this.scrollToTop();
-      };
-
-      if (element.status === "Sold") {
-        return (
-          <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <ScrollAnimation animateIn="fadeIn">
-              <div className="card border-0">
-                <div className="parent1 m-0">
-                  <div className="child1 particles">
-                    <img
-                      className="portfolioImage card-img-top"
-                      src={element.photo}
-                    />
-                    <div className="portfolioTitle">SOLD</div>
-                  </div>
-                </div>
-
-                <div className="card-body">
-                  <div style={{ fontWeight: "900" }}>
-                    $
-                    {element.price.toLocaleString(navigator.language, {
-                      minimumFractionDigits: 0
-                    })}
-                  </div>
-                  <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
-                  <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
-                </div>
-              </div>
-            </ScrollAnimation>
-
-            <div className={"container" + " " + hide}>
-              <div className="row">
-                <div className="col-sm-6">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={handleDelete}
-                  >
-                    Delete Property
-                  </button>
-                </div>
-                <div className="col-sm-6">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={handleEdit}
-                  >
-                    Edit Property
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-    });
-
-    let displayRentalPortfolio = data.map(element => {
-      let handleDelete = () => {
-        let result = confirm(
-          `Are you sure you want to delete ${element.streetnumber} ${element.street}`
-        );
-        if (result) {
-          this.deleteEvent(element.id);
-        }
-      };
-
-      let handleEdit = () => {
-        this.setState({
-          propertyID: element.id,
-          photo: element.photo,
-          price: element.price,
-          streetnumber: element.streetnumber,
-          street: element.street,
-          aptnumber: element.aptnumber,
-          city: element.city,
-          state: element.state,
-          zip: element.zip,
-          status: element.status
-        });
-        this.scrollToTop();
-      };
-
-      if (element.status === "Rental") {
-        return (
-          <div key={element.id} className="col-md-4 col-middle px-3 py-2">
-            <ScrollAnimation animateIn="fadeIn">
-              <div className="card border-0">
-                <div className="parent1 m-0">
-                  <div className="child1 particles">
-                    <img
-                      className="portfolioImage card-img-top"
-                      src={element.photo}
-                    />
-                    <div className="portfolioTitle">Rental</div>
-                  </div>
-                </div>
-
-                <div className="card-body">
-                  <div style={{ fontWeight: "900" }}>
-                    $
-                    {element.price.toLocaleString(navigator.language, {
-                      minimumFractionDigits: 0
-                    })}
-                  </div>
-                  <div>{`${element.streetnumber} ${element.street} ${element.aptnumber}`}</div>
-                  <div>{`${element.city}, ${element.state} ${element.zip}`}</div>
-                </div>
-              </div>
-            </ScrollAnimation>
-
-            <div className={"container" + " " + hide}>
-              <div className="row">
-                <div className="col-sm-6">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={handleDelete}
-                  >
-                    Delete Property
-                  </button>
-                </div>
-                <div className="col-sm-6">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={handleEdit}
-                  >
-                    Edit Property
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-    });
+      });
+      return displayActivePortfolio;
+    };
 
     return (
-      <React.Fragment>
-        {this.props.user.admin ? (
-          <div className="container py-3">
-            <div className="row">
-              <div className="col text-center">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.clickEdit}
-                >
-                  Edit
-                </button>
-              </div>
-            </div>
+      <Fragment>
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          deleteEvent={this.deleteEvent}
+        />
+        {this.props.user.admin && (
+          <div className=" text-center pt-5">
+            <EditButton onClick={this.clickEdit} />
           </div>
-        ) : null}
+        )}
 
-        <div className={"container" + " " + hide}>
-          <PortfolioPropertyForm
-            onChange={this.onChange}
-            value={this.state}
-            onSubmitEdit={this.onSubmitEdit}
-            onSubmit={this.onSubmit}
-          />
-        </div>
+        {this.state.hideDiv && (
+          <div className="container">
+            <PortfolioPropertyForm
+              onChange={this.onChange}
+              value={this.state}
+              onSubmitEdit={this.onSubmitEdit}
+              onSubmit={this.onSubmit}
+            />
+          </div>
+        )}
 
-        <div className="container py-5 text-center">
-          <FadeInUp>
+        <FadeIn>
+          <div className="container py-5 text-center">
             <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
-          </FadeInUp>
-          <div className="row pt-3 pb-5">{displayActivePortfolio}</div>
-
-          <FadeInUp>
-            <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES </h2>
-          </FadeInUp>
-          <div className="row pt-3 pb-5">{displaySoldPortfolio}</div>
-
-          <FadeInUp>
+            <div className="row pt-3 pb-5">{propertyTile("Active")}</div>
+            <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES</h2>
+            <div className="row pt-3 pb-5">{propertyTile("Sold")}</div>
             <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
-          </FadeInUp>
-          <div className="row pt-3 pb-5">{displayRentalPortfolio}</div>
-        </div>
-      </React.Fragment>
+            <div className="row pt-3 pb-5">{propertyTile("Rental")}</div>
+          </div>
+        </FadeIn>
+      </Fragment>
     );
   }
 }

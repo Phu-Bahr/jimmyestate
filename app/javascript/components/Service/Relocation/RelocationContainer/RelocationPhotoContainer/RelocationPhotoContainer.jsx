@@ -56,9 +56,7 @@ class RelocationPhotoContainer extends Component {
   render() {
     let photos = this.state.photoData.map(element => {
       let handleDelete = () => {
-        this.setState({
-          idForAlert: element.id
-        });
+        this.setState({ idForAlert: element.id });
         this.alertType("delete");
       };
 
