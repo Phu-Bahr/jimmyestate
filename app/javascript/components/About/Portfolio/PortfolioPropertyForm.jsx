@@ -1,15 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { AddButton, UpdateButton } from "../../Constants/Buttons";
 
 export const PortfolioPropertyForm = props => {
   return (
-    <React.Fragment>
-      <form
-        onSubmit={event => {
-          props.onSubmit(event);
-          event.target.reset();
-        }}
-        className="my-4"
-      >
+    <Fragment>
+      <form onSubmit={props.onSubmit} className="my-4">
         <div className="form-row">
           <div className="form-group col-sm-9">
             <label htmlFor="photo">Photo URL</label>
@@ -160,17 +155,17 @@ export const PortfolioPropertyForm = props => {
         </div>
         <div className="row">
           <div className="col-sm-2">
-            <button type="submit" className="btn custom-button mt-3">
-              Add Property
-            </button>
+            <AddButton className="mt-3" value="Add Property" type="submit" />
           </div>
-          <div className="col-sm-2">
-            <button className="btn btn-info mt-3" onClick={props.onSubmitEdit}>
-              Submit Change
-            </button>
+          <div className="col-sm-4">
+            <UpdateButton
+              onClick={props.onSubmitEdit}
+              value="Update Current Property"
+              className="mt-3"
+            />
           </div>
         </div>
       </form>
-    </React.Fragment>
+    </Fragment>
   );
 };

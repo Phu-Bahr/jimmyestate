@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   ParallaxBannerRoutes,
   ParallaxEditForm
@@ -56,7 +56,7 @@ class JimmyTipContainer extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
@@ -77,7 +77,7 @@ class JimmyTipContainer extends Component {
             />
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
