@@ -1,154 +1,87 @@
 import React, { Component } from "react";
 import {
   ParallaxBannerRoutes,
-  ParallaxEditForm
+  ParallaxEditForm,
+  LoadingScreen
 } from "../../Constants/Constants";
 import Testimonials from "./Testimonials";
+import { getFetch, putFetch } from "../../Constants/FetchComponent";
+import AlertBox from "../../Constants/AlertComponent";
+import { EditButton } from "../../Constants/Buttons";
 
+const urlPath = "testimonial_edits";
 class TestimonialsContainer extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      url: "testimonial_edits",
       headerText1: "",
       headerText2: "",
       bannerImage: "",
       id: null,
-      visibility: false
+      hideDiv: false,
+      typeOfAlert: null
     };
   }
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
-
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
-  editBanner = () => {
-    this.state.visibility
-      ? this.setState({ visibility: false })
-      : this.setState({ visibility: true });
-  };
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  editBanner = () => this.setState({ hideDiv: !this.state.hideDiv });
 
   onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/${this.state.url}/${this.state.id}`;
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage } = this.state;
-
     const body = {
       headerText1,
       headerText2,
       bannerImage
     };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Content has been updated");
-          return response.json();
-        }
-        alert("something went wrong");
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
+    putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
+  mountState = body => {
+    this.setState({
+      headerText1: body[body.length - 1].headerText1,
+      headerText2: body[body.length - 1].headerText2,
+      bannerImage: body[body.length - 1].bannerImage,
+      id: body[body.length - 1].id
+    });
+  };
   componentDidMount() {
-    this.mountTestTemplate();
+    getFetch(urlPath, this.mountState);
   }
 
   componentDidUpdate() {
-    this.updateTestTemplate();
-  }
-
-  mountTestTemplate() {
-    fetch(`/api/v1/${this.state.url}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          headerText1: body[body.length - 1].headerText1,
-          headerText2: body[body.length - 1].headerText2,
-          bannerImage: body[body.length - 1].bannerImage,
-          id: body[body.length - 1].id
-        });
-      })
-
-      .catch(error => console.log("error message =>", error.message));
-  }
-
-  updateTestTemplate() {
-    if (this.state.refreshKey) {
-      fetch(`/api/v1/${this.state.url}`)
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({
-            headerText1: body[body.length - 1].headerText1,
-            headerText2: body[body.length - 1].headerText2,
-            bannerImage: body[body.length - 1].bannerImage,
-            id: body[body.length - 1].id
-          });
-        })
-        .then(this.setState({ refreshKey: false }))
-        .then(this.scrollToTop);
-    }
+    this.state.refreshKey &&
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   }
 
   render() {
     return (
       <React.Fragment>
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
-          {this.props.user.admin ? (
+
+          {this.props.user.admin && (
             <div className="container text-center pt-4">
-              <button className="btn custom-button" onClick={this.editBanner}>
-                Edit Banner
-              </button>
+              <EditButton onClick={this.editBanner} />
             </div>
-          ) : null}
-          {this.state.visibility === true ? (
+          )}
+
+          {this.state.hideDiv && (
             <ParallaxEditForm
               value={this.state}
               onChange={this.onChange}
               onSubmit={this.onSubmit}
             />
-          ) : (
-            ""
           )}
 
+          <LoadingScreen {...this.state} />
           <Testimonials user={this.props.user} />
         </div>
       </React.Fragment>

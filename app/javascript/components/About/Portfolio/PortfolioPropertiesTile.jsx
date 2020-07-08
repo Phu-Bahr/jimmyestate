@@ -36,7 +36,7 @@ const PortfolioPropertiesTile = props => {
               <div style={{ fontWeight: "900" }}>
                 $
                 {props.price.toLocaleString(navigator.language, {
-                  minimumFractionDigits: 0
+                  minimumFractionDigits: 2
                 })}
               </div>
               <div>{`${props.streetnumber} ${props.street} ${props.aptnumber}`}</div>
