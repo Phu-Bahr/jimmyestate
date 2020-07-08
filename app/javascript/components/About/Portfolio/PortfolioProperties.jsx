@@ -8,7 +8,7 @@ import {
   getFetch,
   postFetch,
   deleteFetch,
-  putFetch1
+  putFetch
 } from "../../Constants/FetchComponent";
 
 const urlPath = "portfolios";
@@ -139,7 +139,7 @@ class PortfolioProperties extends Component {
         status
       };
 
-      putFetch1(url, body, this.alertType)
+      putFetch(url, body, this.alertType)
         .then(this.clearState)
         .then(this.toggleRefreshKey);
     }
