@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
 import { DeleteButton, EditButton } from "../../Constants/Buttons";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const PortfolioPropertiesTile = props => {
   let editPayload = {
@@ -54,10 +55,12 @@ const PortfolioPropertiesTile = props => {
                 />
               </div>
               <div className="col-sm-6">
-                <EditButton
-                  onClick={() => props.handleEdit(editPayload)}
-                  value="Edit Property"
-                />
+                <Link to="formTag" smooth={true} offset={-90} duration={1100}>
+                  <EditButton
+                    onClick={() => props.handleEdit(editPayload)}
+                    value="Edit Property"
+                  />
+                </Link>
               </div>
             </div>
           </div>
