@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
+
     include CurrentUserConcern
 
     def create
@@ -14,7 +15,8 @@ class Api::V1::SessionsController < ApplicationController
                 user: user
             }
         else
-            render json: { status: 401 }
+            render json: { status: 401,
+            errors: ['no such user', 'verify credentials and try again or signup'] }
         end
     end
 
@@ -26,7 +28,8 @@ class Api::V1::SessionsController < ApplicationController
             }
         else
             render json: {
-                logged_in: false
+                logged_in: false,
+                message: 'no such user'
             }
         end
     end

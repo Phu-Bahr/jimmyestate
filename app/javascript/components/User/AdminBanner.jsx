@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class AdminBanner extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {};
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }

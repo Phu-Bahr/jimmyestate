@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 
 class Login extends Component {
@@ -8,48 +8,19 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      loginErrors: ""
+      loginErrors: "",
+      redirect: null
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
 
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
+  scrollToTop = () => scroll.scrollToTop();
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  handleLogoutClick() {
-    const url = "/logout";
-
-    fetch(url, {
-      method: "DELETE",
-      credentials: "include"
-    })
-      .then(response => {
-        this.props.handleLogout();
-      })
-      .catch(error => {
-        console.log("logout error", error);
-      });
-  }
-
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  handleLoginSubmit(event) {
+  handleLoginSubmit = event => {
     event.preventDefault();
     const url = "/api/v1/sessions";
     const { email, password } = this.state;
-
-    const body = {
-      user: {
-        email: email,
-        password: password
-      }
-    };
+    const body = { user: { email: email, password: password } };
 
     fetch(url, {
       method: "POST",
@@ -74,15 +45,17 @@ class Login extends Component {
           this.props.handleLogin(data);
         }
       })
-      .then(this.props.history.push("/"))
+      // .then(this.props.history.push("/"))
+      // .then(this.setState({ redirect: "/contact" }))
       .catch(error => {
         console.log("login error", error);
       });
-  }
+  };
 
   render() {
     return (
       <React.Fragment>
+        {this.state.redirect != null && <Redirect to={this.state.redirect} />}
         <div
           className="parallaxStyleRoutes"
           style={{
@@ -92,18 +65,12 @@ class Login extends Component {
               ")"
           }}
         />
+
         <div className="flex-container">
           <div className="container text-center my-5">
             <div>
               <div className="col-sm-12 col-lg-6 offset-lg-3">
                 <h1>Status: {this.props.loggedInStatus}</h1>
-
-                <h2>
-                  User:{" "}
-                  {this.props.loggedInStatus === "Not Logged In"
-                    ? "No User"
-                    : this.props.user.email}
-                </h2>
 
                 <h3 className="p-4">Enter Credentials Here</h3>
 
@@ -144,13 +111,6 @@ class Login extends Component {
                     </div>
                   </div>
                 </form>
-
-                <button
-                  className="btn btn-info mt-3"
-                  onClick={this.handleLogoutClick}
-                >
-                  Logout
-                </button>
 
                 <div className="mt-3">
                   <Link to="/">Back to Home page</Link>
