@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import Map from "./MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
-import Map from "./MapEvent";
 import { FadeIn } from "../../Constants/Constants";
+import { getGeocode } from "../../Constants/FetchComponent";
+import AlertBox from "../../Constants/AlertComponent";
 
 class EventContainer extends Component {
   constructor(props) {
@@ -18,7 +20,8 @@ class EventContainer extends Component {
       lng: "",
       selectedStepId: null,
       eventData: [],
-      refreshKey: false
+      refreshKey: false,
+      typeOfAlert: null
     };
 
     this.clickEventEdit = this.clickEventEdit.bind(this);
@@ -28,9 +31,8 @@ class EventContainer extends Component {
     this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
 
-  toggleRefreshKey() {
-    this.setState({ refreshKey: true });
-  }
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
 
   setSelectedStep(stepId) {
     if (this.state.selectedStepId === stepId) {
@@ -200,32 +202,16 @@ class EventContainer extends Component {
     }
   }
 
+  mountLatLng = body => {
+    this.setState({
+      lat: body.data[0].lat,
+      lng: body.data[0].lng
+    });
+  };
+
   onUpdateGeocode() {
     let location = `${this.state.location}`;
-
-    fetch(`/api/v1/events/search?location=${location}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        if (body.data[0].result === "No Results") {
-          alert("No such place for geocode, try again");
-        } else {
-          alert("Geocode updated");
-          this.setState({
-            lat: body.data[0].lat,
-            lng: body.data[0].lng
-          });
-        }
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getGeocode(location, this.mountLatLng, this.alertType);
   }
 
   render() {
@@ -345,6 +331,7 @@ class EventContainer extends Component {
 
     return (
       <React.Fragment>
+        <AlertBox {...this.state} alertType={this.alertType} />
         <div className="text-center">
           <h1>Events coming up</h1>
 

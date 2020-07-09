@@ -7,6 +7,11 @@ const fitGif = {
   width: "100%"
 };
 
+const fitGifSmall = {
+  height: "75%",
+  width: "100%"
+};
+
 const AlertBox = props => {
   const successfulDelete = (
     <SweetAlert
@@ -100,6 +105,46 @@ const AlertBox = props => {
     </SweetAlert>
   );
 
+  const errorGeocode = (
+    <SweetAlert
+      title={
+        <Fragment>
+          <div style={({ overflow: "hidden" }, fitGifSmall)}>
+            <img
+              style={fitGifSmall}
+              src="https://media0.giphy.com/media/aN9GqoR7OD3nq/200.gif"
+            />
+            <br />
+            <div>Location does not exist on Earth!</div>
+          </div>
+        </Fragment>
+      }
+      onConfirm={() => props.alertType(payload)}
+    >
+      Try a valid address.
+    </SweetAlert>
+  );
+
+  const successfulGeocode = (
+    <SweetAlert
+      title={
+        <Fragment>
+          <div style={({ overflow: "hidden" }, fitGifSmall)}>
+            <img
+              style={fitGifSmall}
+              src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
+            />
+            <br />
+            <div>Geocode Found!!</div>
+          </div>
+        </Fragment>
+      }
+      onConfirm={() => props.alertType(payload)}
+    >
+      Geocode has been updated to the database.
+    </SweetAlert>
+  );
+
   if (props.typeOfAlert !== null) {
     if (props.typeOfAlert == "successDelete") {
       return successfulDelete;
@@ -113,6 +158,10 @@ const AlertBox = props => {
       return successfulEmail;
     } else if (props.typeOfAlert == "successEdit") {
       return successfulEdit;
+    } else if (props.typeOfAlert == "noGeocode") {
+      return errorGeocode;
+    } else if (props.typeOfAlert == "successGeocode") {
+      return successfulGeocode;
     }
   } else {
     return null;

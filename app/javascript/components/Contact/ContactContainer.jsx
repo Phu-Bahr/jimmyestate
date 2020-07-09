@@ -7,7 +7,10 @@ import {
   ParallaxBannerRoutes,
   FormMaps
 } from "../Constants/Constants";
-import { animateScroll as scroll } from "react-scroll";
+import AlertBox from "../Constants/AlertComponent";
+import { getFetch, putFetch, getGeocode } from "../Constants/FetchComponent";
+
+const urlPath = "contact_edits";
 
 class ContactContainer extends Component {
   constructor(props) {
@@ -24,27 +27,19 @@ class ContactContainer extends Component {
       email: "",
       lat: "",
       lng: "",
-      url: "contact_edits",
       refreshKey: false,
-      id: null
+      id: null,
+      typeOfAlert: null
     };
   }
 
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/${this.state.url}/${this.state.id}`;
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const {
       headerText1,
       headerText2,
@@ -71,131 +66,49 @@ class ContactContainer extends Component {
       lng
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
+  };
 
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Content has been saved");
-          return response.json();
-        }
-        alert("Error, not updated.");
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.toggleRefreshKey)
-      .then(this.scrollToTop)
-      .catch(error => console.log(error.message));
+  mountState = body => {
+    this.setState({
+      contactData: body,
+      bannerImage: body[body.length - 1].bannerImage,
+      headerText1: body[body.length - 1].headerText1,
+      headerText2: body[body.length - 1].headerText2,
+      name: body[body.length - 1].name,
+      address: body[body.length - 1].address,
+      phonenumber: body[body.length - 1].phonenumber,
+      email: body[body.length - 1].email,
+      lat: body[body.length - 1].lat,
+      lng: body[body.length - 1].lng,
+      id: body[body.length - 1].id
+    });
   };
 
   componentDidMount() {
-    fetch(`/api/v1/${this.state.url}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          contactData: body,
-          bannerImage: body[body.length - 1].bannerImage,
-          headerText1: body[body.length - 1].headerText1,
-          headerText2: body[body.length - 1].headerText2,
-          name: body[body.length - 1].name,
-          address: body[body.length - 1].address,
-          phonenumber: body[body.length - 1].phonenumber,
-          email: body[body.length - 1].email,
-          lat: body[body.length - 1].lat,
-          lng: body[body.length - 1].lng,
-          id: body[body.length - 1].id
-        });
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getFetch(urlPath, this.mountState);
   }
 
   componentDidUpdate() {
-    if (this.state.refreshKey) {
-      fetch(`api/v1/${this.state.url}`)
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({
-            contactData: body,
-            bannerImage: body[body.length - 1].bannerImage,
-            headerText1: body[body.length - 1].headerText1,
-            headerText2: body[body.length - 1].headerText2,
-            name: body[body.length - 1].name,
-            address: body[body.length - 1].address,
-            phonenumber: body[body.length - 1].phonenumber,
-            email: body[body.length - 1].email,
-            lat: body[body.length - 1].lat,
-            lng: body[body.length - 1].lng,
-            id: body[body.length - 1].id
-          });
-        })
-        .then(this.setState({ refreshKey: false }));
-    }
+    this.state.refreshKey &&
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   }
+
+  mountLatLng = body => {
+    this.setState({
+      lat: body.data[0].lat,
+      lng: body.data[0].lng
+    });
+  };
 
   onUpdateGeocode = () => {
     let location = `${this.state.address}`;
-
-    fetch(`/api/v1/events/search?location=${location}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        if (body.data[0].result === "No Results") {
-          alert("No such place for geocode, try again");
-        } else {
-          alert("Geocode updated");
-          this.setState({
-            lat: body.data[0].lat,
-            lng: body.data[0].lng
-          });
-        }
-      })
-      .catch(error => console.log("error message =>", error.message));
+    getGeocode(location, this.mountLatLng, this.alertType);
   };
 
   render() {
-    let contactData = (
-      <React.Fragment>
-        <div>
-          <div>{this.state.name}</div>
-          <div>{this.state.address}</div>
-          <div>{this.state.phonenumber}</div>
-          <div>{this.state.email}</div>
-        </div>
-      </React.Fragment>
-    );
-
     const bannerFormContent = {
       bannerImage: "Banner Image",
       headerText1: "Header text 1",
@@ -216,6 +129,11 @@ class ContactContainer extends Component {
         <div className="flex-container">
           <div className="container pb-5">
             <form onSubmit={this.onSubmit}>
+              <div className="text-center pb-3">
+                <button type="submit" className="btn custom-button">
+                  Submit changes
+                </button>
+              </div>
               <div className="form-row">
                 <div className="col-md-6">
                   <FormMaps
@@ -230,23 +148,15 @@ class ContactContainer extends Component {
                     onChange={this.onChange}
                     value={this.state}
                   />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <div>
-                  <button type="submit" className="btn custom-button">
-                    Submit changes
-                  </button>
-                </div>
-                <div className="py-3">
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={this.onUpdateGeocode}
-                  >
-                    Update Geocode
-                  </button>
+                  <div className="py-3">
+                    <button
+                      type="button"
+                      className="btn btn-info"
+                      onClick={this.onUpdateGeocode}
+                    >
+                      Update Geocode
+                    </button>
+                  </div>
                 </div>
               </div>
             </form>
@@ -256,9 +166,11 @@ class ContactContainer extends Component {
     );
     return (
       <React.Fragment>
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
-
+          <div className="pt-5">{this.props.user.admin ? editMenu : null}</div>
           <div className="container py-5">
             <div className="row">
               <div className="col-md-6 pb-3">
@@ -268,7 +180,12 @@ class ContactContainer extends Component {
               </div>
               <div className="col-md-6">
                 <FadeInRight>
-                  <div className="text-center pb-3">{contactData}</div>
+                  <div className="text-center pb-3">
+                    <div>{this.state.name}</div>
+                    <div>{this.state.address}</div>
+                    <div>{this.state.phonenumber}</div>
+                    <div>{this.state.email}</div>
+                  </div>
                 </FadeInRight>
                 <div>
                   <FadeInRight>
@@ -281,8 +198,6 @@ class ContactContainer extends Component {
               </div>
             </div>
           </div>
-
-          {this.props.user.admin ? editMenu : null}
         </div>
       </React.Fragment>
     );
