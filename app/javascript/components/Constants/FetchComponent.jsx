@@ -93,23 +93,6 @@ export const postFetch = (url, body, alertType) => {
     .catch(error => console.log("error message =>", error.message));
 };
 
-export const getFetch = (url, mountState) => {
-  return fetch(`/api/v1/${url}`)
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-        throw error;
-      }
-    })
-    .then(response => response.json())
-    .then(body => mountState(body))
-    .then(scrollToTop)
-    .catch(error => console.log("error message =>", error.message));
-};
-
 export const deleteFetch = (url, alertType) => {
   return fetch(url, {
     method: "DELETE",
@@ -167,5 +150,44 @@ export const postFetchDraft = (url, body, alertType) => {
       throw new Error("Network response was not ok.");
     })
     .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const getFetch = (url, mountState) => {
+  return fetch(`/api/v1/${url}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then(response => response.json())
+    .then(body => mountState(body))
+    .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const getGeocode = (location, mountLatLng, alertType) => {
+  return fetch(`/api/v1/events/search?location=${location}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        alertType("noGeocode");
+        throw new Error("Network response was not ok.");
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.data[0].result === "No Results") {
+        alertType("noGeocode");
+      } else {
+        alertType("successGeocode");
+        mountLatLng(body);
+      }
+    })
     .catch(error => console.log("error message =>", error.message));
 };

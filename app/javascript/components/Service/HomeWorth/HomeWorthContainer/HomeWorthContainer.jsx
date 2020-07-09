@@ -7,8 +7,7 @@ import AlertBox from "../../../Constants/AlertComponent";
 import HomeWorthEmailForm from "./HomeWorthEmailForm";
 import {
   FadeInRight,
-  ParallaxBannerRoutes,
-  LoadingScreen
+  ParallaxBannerRoutes
 } from "../../../Constants/Constants";
 
 const urlPath = "worth_edits";
@@ -102,7 +101,6 @@ class HomeWorthContainer extends Component {
           )}
 
           <div className="container py-5">
-            <LoadingScreen {...this.state} />
             <div className="row">
               <WorthPhotoContainer
                 user={this.props.user}
