@@ -10,22 +10,14 @@ import {
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      lat: 42.33016,
-      lng: -71.12668,
-      window: false
-    };
-
-    this.onClick = this.onClick.bind(this);
+    this.state = { window: false };
   }
 
-  onClick() {
-    this.setState({ window: true });
-  }
+  onClick = () => this.setState({ window: true });
 
   render() {
     const WrappedMap = withScriptjs(
-      withGoogleMap(props => {
+      withGoogleMap(() => {
         return (
           <GoogleMap
             defaultZoom={15}

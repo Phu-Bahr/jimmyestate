@@ -331,7 +331,8 @@ class EventContainer extends Component {
 
     return (
       <React.Fragment>
-        <AlertBox {...this.state} alertType={this.alertType} />
+        {/* <AlertBox {...this.state} alertType={this.alertType} /> */}
+
         <div className="text-center">
           <h1>Events coming up</h1>
 
@@ -359,12 +360,12 @@ class EventContainer extends Component {
               <div className="col-sm-6 py-2">
                 <div>{photo}</div>
               </div>
-              <div className="col-sm-6 py-2">
+              {/* <div className="col-sm-6 py-2">
                 <Map
                   lat={parseFloat(this.state.lat)}
                   lng={parseFloat(this.state.lng)}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
