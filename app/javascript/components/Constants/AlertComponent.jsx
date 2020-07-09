@@ -7,11 +7,6 @@ const fitGif = {
   width: "100%"
 };
 
-const fitGifSmall = {
-  height: "75%",
-  width: "100%"
-};
-
 const AlertBox = props => {
   const successfulDelete = (
     <SweetAlert
@@ -85,7 +80,7 @@ const AlertBox = props => {
         <Fragment>
           <div style={({ overflow: "hidden" }, fitGif)}>
             <img
-              style={fitGif}
+              style={{ width: "100%", height: "100%" }}
               src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
             />
             <br />
@@ -109,9 +104,9 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGifSmall)}>
+          <div style={({ overflow: "hidden" }, fitGif)}>
             <img
-              style={fitGifSmall}
+              style={fitGif}
               src="https://media0.giphy.com/media/aN9GqoR7OD3nq/200.gif"
             />
             <br />
@@ -129,9 +124,9 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGifSmall)}>
+          <div style={({ overflow: "hidden" }, fitGif)}>
             <img
-              style={fitGifSmall}
+              style={fitGif}
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
             />
             <br />

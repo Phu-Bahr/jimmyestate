@@ -1,77 +1,33 @@
 import React, { Component } from "react";
-import { animateScroll as scroll } from "react-scroll";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { SubmitEmailButton } from "../Constants/Buttons";
+import { postFetchEmail } from "../Constants/FetchComponent";
+
+const urlPath = "contacts";
 
 class EmailForm extends Component {
   constructor(props) {
     super(props);
     this.state = { name: "", email: "", message: "" };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-
-    this.onResolved = this.onResolved.bind(this);
   }
 
-  onResolved() {
-    console.log("Captcha resolved");
-  }
+  onResolved = () => console.log("Captcha resolved");
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-
     this.recaptcha.execute();
-
-    const url = "/api/v1/contacts";
+    const url = `/api/v1/${urlPath}`;
     const { name, email, message } = this.state;
+    const body = { name, email, message };
 
-    const body = {
-      name,
-      email,
-      message
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Your inquiry has been received!");
-          return response.json();
-        }
-        alert(
-          "There was a network issue, please try again or Email Jimmy directly."
-        );
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.scrollToTop)
-      .catch(error => console.log(error.message));
-  }
+    postFetchEmail(url, body, this.props.alertType);
+  };
 
   render() {
     return (
       <React.Fragment>
-        <form
-          onSubmit={event => {
-            this.onSubmit(event);
-            event.target.reset();
-          }}
-        >
+        <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="name">Your Name:</label>
             <input

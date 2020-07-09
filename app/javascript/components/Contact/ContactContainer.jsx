@@ -4,11 +4,11 @@ import Map from "./Map";
 import {
   FadeInLeft,
   FadeInRight,
-  ParallaxBannerRoutes,
-  FormMaps
+  ParallaxBannerRoutes
 } from "../Constants/Constants";
 import AlertBox from "../Constants/AlertComponent";
 import { getFetch, putFetch, getGeocode } from "../Constants/FetchComponent";
+import ContactContentForm from "./ContactContentForm";
 
 const urlPath = "contact_edits";
 
@@ -109,75 +109,31 @@ class ContactContainer extends Component {
   };
 
   render() {
-    const bannerFormContent = {
-      bannerImage: "Banner Image",
-      headerText1: "Header text 1",
-      headerText2: "Header text 2"
-    };
-
-    const dataFormContent = {
-      name: "Name",
-      address: "Address",
-      phonenumber: "Phone Number",
-      email: "Email",
-      lat: "Latitude",
-      lng: "Longitude"
-    };
-
-    let editMenu = (
-      <React.Fragment>
-        <div className="flex-container">
-          <div className="container pb-5">
-            <form onSubmit={this.onSubmit}>
-              <div className="text-center pb-3">
-                <button type="submit" className="btn custom-button">
-                  Submit changes
-                </button>
-              </div>
-              <div className="form-row">
-                <div className="col-md-6">
-                  <FormMaps
-                    formConst={bannerFormContent}
-                    onChange={this.onChange}
-                    value={this.state}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <FormMaps
-                    formConst={dataFormContent}
-                    onChange={this.onChange}
-                    value={this.state}
-                  />
-                  <div className="py-3">
-                    <button
-                      type="button"
-                      className="btn btn-info"
-                      onClick={this.onUpdateGeocode}
-                    >
-                      Update Geocode
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </React.Fragment>
-    );
     return (
       <React.Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
-          <div className="pt-5">{this.props.user.admin ? editMenu : null}</div>
+          <div className="pt-5">
+            {this.props.user.admin && (
+              <ContactContentForm
+                onChange={this.onChange}
+                onSubmit={this.onSubmit}
+                value={this.state}
+                onUpdateGeocode={this.onUpdateGeocode}
+              />
+            )}
+          </div>
+
           <div className="container py-5">
             <div className="row">
               <div className="col-md-6 pb-3">
                 <FadeInLeft>
-                  <EmailForm />
+                  <EmailForm alertType={this.alertType} />
                 </FadeInLeft>
               </div>
+
               <div className="col-md-6">
                 <FadeInRight>
                   <div className="text-center pb-3">
