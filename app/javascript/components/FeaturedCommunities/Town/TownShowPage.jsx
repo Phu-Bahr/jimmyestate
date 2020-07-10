@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { animateScroll as scroll } from "react-scroll";
 import TownLinks from "./TownLinks";
 import { FadeIn, ParallaxBannerRoutes } from "../../Constants/Constants";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Link } from "react-router-dom";
+import AlertBox from "../../Constants/AlertComponent";
+import { getFetch } from "../../Constants/FetchComponent";
+import { EditButton, UpdateButton } from "../../Constants/Buttons";
+
+const urlPath = "towns";
 
 class TownShowPage extends Component {
   constructor(props) {
@@ -15,36 +19,32 @@ class TownShowPage extends Component {
       editorState: EditorState.createEmpty(),
       content: null,
       refreshKey: false,
-      readOnly: false
+      readOnly: false,
+      typeOfAlert: null
     };
-    this.fetchTownData = this.fetchTownData.bind(this);
-    this.fetchDraftData = this.fetchDraftData.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  updateEditorState(editorState) {
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+
+  updateEditorState = editorState => {
     const contentState = editorState.getCurrentContent();
     this.saveContent(contentState);
     this.setState({ editorState });
-  }
-
-  saveContent = contentData => {
-    this.setState({
-      content: JSON.stringify(convertToRaw(contentData))
-    });
   };
 
-  onSubmit(event) {
+  saveContent = contentData => {
+    this.setState({ content: JSON.stringify(convertToRaw(contentData)) });
+  };
+
+  onSubmit = event => {
     if (this.state.readOnly) {
       alert("Can't save on Read Only");
     } else {
       event.preventDefault();
-      const url = `/api/v1/towns/${this.props.match.params.id}`;
+      const url = `/api/v1/${urlPath}/${this.props.match.params.id}`;
       const { content } = this.state;
-
-      const body = {
-        content
-      };
+      const body = { content };
 
       const token = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -65,105 +65,54 @@ class TownShowPage extends Component {
         })
         .catch(error => console.log(error.message));
     }
-  }
-
-  scrollToTop = () => {
-    scroll.scrollToTop();
   };
 
   componentDidMount() {
-    let id = this.props.match.params.id;
-    this.fetchTownData(id);
-    this.fetchDraftData(id);
-    this.scrollToTop();
+    const urlPath = `towns/${this.props.match.params.id}`;
+    this.fetchTownData(urlPath);
+    this.fetchDraftData(urlPath);
   }
 
-  fetchDraftData(id) {
-    fetch(`/api/v1/towns/${id}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(rawContent => {
-        console.log(rawContent.content);
+  fetchTownData = urlPath => getFetch(urlPath, this.mountState);
+  mountState = body => this.setState({ townData: body, id: body.id });
 
-        if (rawContent) {
-          this.setState({
-            editorState: EditorState.createWithContent(
-              convertFromRaw(JSON.parse(rawContent.content))
-            )
-          });
-        } else {
-          this.setState({ editorState: EditorState.createEmpty() });
-        }
-      })
-      .catch(error => console.log("error message =>", error.message));
-  }
-
-  fetchTownData(id) {
-    fetch(`/api/v1/towns/${id}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ townData: body, id: body.id });
-      })
-      .then(this.scrollToTop());
-  }
+  fetchDraftData = urlPath => getFetch(urlPath, this.mountDraftJS);
+  mountDraftJS = rawContent => {
+    rawContent
+      ? this.setState({
+          editorState: EditorState.createWithContent(
+            convertFromRaw(JSON.parse(rawContent.content))
+          )
+        })
+      : this.setState({ editorState: EditorState.createEmpty() });
+  };
 
   componentDidUpdate() {
-    if (this.state.id != this.props.match.params.id) {
-      fetch(`/api/v1/towns/${this.props.match.params.id}`)
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          if (body) {
-            this.setState({
-              editorState: EditorState.createWithContent(
-                convertFromRaw(JSON.parse(body.content))
-              ),
-              townData: body,
-              id: body.id
-            });
-          } else {
-            this.setState({ editorState: EditorState.createEmpty() });
-          }
-        })
-        .then(this.scrollToTop());
-    }
+    let paramID = this.props.match.params.id;
+    this.state.id != paramID &&
+      getFetch(`${urlPath}/${paramID}`, this.mountUpdatedState).then(
+        this.setState({ refreshKey: false, id: this.props.match.params.id })
+      );
   }
+  mountUpdatedState = body => {
+    body
+      ? this.setState({
+          editorState: EditorState.createWithContent(
+            convertFromRaw(JSON.parse(body.content))
+          ),
+          townData: body
+        })
+      : this.setState({ editorState: EditorState.createEmpty() });
+  };
 
   render() {
     let adminToggle;
     if (this.props.user.admin) {
       adminToggle = (
         <div className="container pb-5 pt-3">
-          <div className="container text-center">
+          <div className="container text-center py-4">
             <Link to={`/editcommunity/${this.props.match.params.id}`}>
-              <button type="button" className="btn btn-info">
-                Edit Town/Header
-              </button>
+              <EditButton value="Edit Banner" />
             </Link>
           </div>
           <div className="p-3" style={{ borderStyle: "dotted" }}>
@@ -175,7 +124,7 @@ class TownShowPage extends Component {
               readOnly={false}
             />
             <div className="pt-3">
-              <button onClick={this.onSubmit}>Save your content</button>
+              <UpdateButton onClick={this.onSubmit} value="Save your content" />
             </div>
           </div>
         </div>
@@ -197,6 +146,8 @@ class TownShowPage extends Component {
     }
     return (
       <React.Fragment>
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state.townData} id={this.state.id} />
           <FadeIn>
