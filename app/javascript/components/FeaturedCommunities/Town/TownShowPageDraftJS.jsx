@@ -42,15 +42,14 @@ class TownShowPageDraftJS extends Component {
 
   componentDidMount() {
     const urlPath = `${this.props.urlPath}/${this.props.paramsID}`;
-    this.fetchDraftData(urlPath);
+    getFetch(urlPath, this.mountState);
   }
 
-  fetchDraftData = urlPath => getFetch(urlPath, this.mountDraftJS);
-  mountDraftJS = rawContent => {
-    rawContent
+  mountState = body => {
+    body
       ? this.setState({
           editorState: EditorState.createWithContent(
-            convertFromRaw(JSON.parse(rawContent.content))
+            convertFromRaw(JSON.parse(body.content))
           )
         })
       : this.setState({ editorState: EditorState.createEmpty() });
@@ -60,19 +59,10 @@ class TownShowPageDraftJS extends Component {
     let paramID = this.props.paramsID;
     let url = `${this.props.urlPath}/${paramID}`;
     this.state.id != paramID &&
-      getFetch(url, this.mountUpdatedState).then(
+      getFetch(url, this.mountState).then(
         this.setState({ refreshKey: false, id: paramID })
       );
   }
-  mountUpdatedState = body => {
-    body
-      ? this.setState({
-          editorState: EditorState.createWithContent(
-            convertFromRaw(JSON.parse(body.content))
-          )
-        })
-      : this.setState({ editorState: EditorState.createEmpty() });
-  };
 
   render() {
     return (

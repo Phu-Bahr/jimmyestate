@@ -98,6 +98,8 @@ class App extends Component {
   }
 
   refreshTownList() {
+    console.log("refreshTownList triggered");
+
     this.refreshingTownList.current.toggleRefreshKey();
   }
 

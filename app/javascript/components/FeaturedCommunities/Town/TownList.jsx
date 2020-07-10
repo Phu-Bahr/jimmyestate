@@ -73,7 +73,6 @@ class TownList extends Component {
       })
       .then(this.props.toggleRefreshKey)
       .then(this.props.history.push("/"))
-      // .then(window.location.reload(false))
       .catch(error => console.log(error.message));
   }
 
