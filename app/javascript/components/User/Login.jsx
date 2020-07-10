@@ -15,6 +15,7 @@ class Login extends Component {
 
   scrollToTop = () => scroll.scrollToTop();
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  directToPath = () => this.props.history.push("/");
 
   handleLoginSubmit = event => {
     event.preventDefault();
@@ -47,6 +48,7 @@ class Login extends Component {
       })
       // .then(this.props.history.push("/"))
       // .then(this.setState({ redirect: "/contact" }))
+      .then(this.directToPath)
       .catch(error => {
         console.log("login error", error);
       });
