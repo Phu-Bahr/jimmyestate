@@ -151,11 +151,11 @@ class TownLinks extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newTownLinkData = body;
-        this.setState({
-          townLinkData: newTownLinkData,
-          id: newTownLinkData[0].town_id
-        });
+        if (body.length == 0) {
+          this.setState({ townLinkData: body, id: this.props.paramID });
+        } else {
+          this.setState({ townLinkData: body, id: body[0].town_id });
+        }
       })
       .catch(error => console.log("error message =>", error.message));
   }
@@ -174,13 +174,21 @@ class TownLinks extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newTownLinkData = body;
+          console.log("body", body);
 
-          this.setState({
-            townLinkData: newTownLinkData,
-            id: newTownLinkData[0].town_id,
-            refreshKey: false
-          });
+          if (body.length == 0) {
+            this.setState({
+              townLinkData: body,
+              id: this.props.paramID,
+              refreshKey: false
+            });
+          } else {
+            this.setState({
+              townLinkData: body,
+              id: body[0].town_id,
+              refreshKey: false
+            });
+          }
         });
     } else if (this.state.refreshKey === true) {
       fetch(`/api/v1/towns/${this.props.paramID}/town_links`)
@@ -195,17 +203,28 @@ class TownLinks extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let newTownLinkData = body;
-          this.setState({
-            townLinkData: newTownLinkData,
-            id: newTownLinkData[0].town_id,
-            refreshKey: false
-          });
+          console.log("body refresher", body);
+
+          if (body.length == 0) {
+            this.setState({
+              townLinkData: body,
+              id: this.props.paramID,
+              refreshKey: false
+            });
+          } else {
+            this.setState({
+              townLinkData: body,
+              id: body[0].town_id,
+              refreshKey: false
+            });
+          }
         });
     }
   }
 
   render() {
+    console.log("render state", this.state);
+
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";
@@ -214,49 +233,55 @@ class TownLinks extends Component {
     }
 
     let townData = this.state.townLinkData;
-    let displayLinks = townData.map(element => {
-      let handleDelete = () => {
-        let result = confirm(
-          `Are you sure you want to delete ${element.townlink}?`
-        );
-        if (result) {
-          this.deleteEvent(element.id);
-        }
-      };
 
-      let handleEdit = () => {
-        this.setState({
-          townlinkID: element.id,
-          townlink: element.townlink,
-          townlinkdescription: element.townlinkdescription
-        });
-      };
-      return (
-        <React.Fragment key={element.id}>
-          <div className="row">
-            <div className="col-sm-6">
-              <Link
-                to={`//` + element.townlink}
-                target="blank"
-                className="link"
-              >
-                <li>{element.townlinkdescription}</li>
-              </Link>
+    let displayLinks;
+    if (this.state.townLinkData.length === 0) {
+      displayLinks = "";
+    } else {
+      displayLinks = townData.map(element => {
+        let handleDelete = () => {
+          let result = confirm(
+            `Are you sure you want to delete ${element.townlink}?`
+          );
+          if (result) {
+            this.deleteEvent(element.id);
+          }
+        };
+
+        let handleEdit = () => {
+          this.setState({
+            townlinkID: element.id,
+            townlink: element.townlink,
+            townlinkdescription: element.townlinkdescription
+          });
+        };
+        return (
+          <React.Fragment key={element.id}>
+            <div className="row">
+              <div className="col-sm-6">
+                <Link
+                  to={`//` + element.townlink}
+                  target="blank"
+                  className="link"
+                >
+                  <li>{element.townlinkdescription}</li>
+                </Link>
+              </div>
+              <div className={"col-xs-4 px-5" + " " + hideEditButton}>
+                <FontAwesomeIcon
+                  icon="trash-alt"
+                  size="1x"
+                  onClick={handleDelete}
+                />
+              </div>
+              <div className={"col-xs-4" + " " + hideEditButton}>
+                <FontAwesomeIcon icon="edit" size="1x" onClick={handleEdit} />
+              </div>
             </div>
-            <div className={"col-xs-4 px-5" + " " + hideEditButton}>
-              <FontAwesomeIcon
-                icon="trash-alt"
-                size="1x"
-                onClick={handleDelete}
-              />
-            </div>
-            <div className={"col-xs-4" + " " + hideEditButton}>
-              <FontAwesomeIcon icon="edit" size="1x" onClick={handleEdit} />
-            </div>
-          </div>
-        </React.Fragment>
-      );
-    });
+          </React.Fragment>
+        );
+      });
+    }
 
     return (
       <div>
