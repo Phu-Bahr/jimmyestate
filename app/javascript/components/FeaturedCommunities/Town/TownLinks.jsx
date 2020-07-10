@@ -174,8 +174,6 @@ class TownLinks extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          console.log("body", body);
-
           if (body.length == 0) {
             this.setState({
               townLinkData: body,
@@ -203,8 +201,6 @@ class TownLinks extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          console.log("body refresher", body);
-
           if (body.length == 0) {
             this.setState({
               townLinkData: body,
@@ -223,8 +219,6 @@ class TownLinks extends Component {
   }
 
   render() {
-    console.log("render state", this.state);
-
     let hideEditButton;
     if (this.props.user.admin === true) {
       hideEditButton = "";

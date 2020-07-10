@@ -191,3 +191,32 @@ export const getGeocode = (location, mountLatLng, alertType) => {
     })
     .catch(error => console.log("error message =>", error.message));
 };
+
+export const putFetchTownList = (url, body, alertType) => {
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      if (response.ok) {
+        if (alertType === undefined) {
+          alert("Content has been updated");
+        } else {
+          alertType("successEditTownList");
+        }
+        return response.json();
+      }
+      if (alertType === undefined) {
+        alert("Something went wrong");
+      } else {
+        return alertType("error");
+      }
+      throw new Error("Network response was not ok.");
+    })
+    .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
+};

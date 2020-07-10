@@ -94,6 +94,14 @@ const AlertBox = props => {
     ></SweetAlert>
   );
 
+  const editTownList = (
+    <SweetAlert
+      success
+      title="Edit Successful!"
+      onConfirm={() => props.directToPath()}
+    ></SweetAlert>
+  );
+
   const errorMessage = (
     <SweetAlert error title="ERROR" onConfirm={() => props.alertType(payload)}>
       Error occurred. Contact Administrator or Jimmy.
@@ -157,6 +165,8 @@ const AlertBox = props => {
       return errorGeocode;
     } else if (props.typeOfAlert == "successGeocode") {
       return successfulGeocode;
+    } else if (props.typeOfAlert == "successEditTownList") {
+      return editTownList;
     }
   } else {
     return null;
