@@ -15,7 +15,7 @@ class Login extends Component {
 
   scrollToTop = () => scroll.scrollToTop();
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
-  directToPath = () => this.props.history.push("/");
+  directToPath = () => this.props.history.goBack();
 
   handleLoginSubmit = event => {
     event.preventDefault();
