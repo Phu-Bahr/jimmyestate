@@ -220,3 +220,31 @@ export const putFetchTownList = (url, body, alertType) => {
     .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
 };
+
+export const loginFetch = (url, body, alertType, handleLogin) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      if (response.ok) {
+        alertType("successLogin");
+        return response;
+      } else {
+        alertType("error");
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      body.logged_in && handleLogin(body);
+    })
+    .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
+};
