@@ -155,26 +155,29 @@ const AlertBox = props => {
   );
 
   if (props.typeOfAlert !== null) {
-    if (props.typeOfAlert == "successDelete") {
-      return successfulDelete;
-    } else if (props.typeOfAlert == "delete") {
-      return deleteItem;
-    } else if (props.typeOfAlert == "successAdd") {
-      return successfulAdd;
-    } else if (props.typeOfAlert == "error") {
-      return errorMessage;
-    } else if (props.typeOfAlert == "successEmail") {
-      return successfulEmail;
-    } else if (props.typeOfAlert == "successEdit") {
-      return successfulEdit;
-    } else if (props.typeOfAlert == "noGeocode") {
-      return errorGeocode;
-    } else if (props.typeOfAlert == "successGeocode") {
-      return successfulGeocode;
-    } else if (props.typeOfAlert == "successEditTownList") {
-      return editTownList;
-    } else if (props.typeOfAlert == "successLogin") {
-      return successfulLogin;
+    switch (props.typeOfAlert) {
+      case "successDelete":
+        return successfulDelete;
+      case "delete":
+        return deleteItem;
+      case "successAdd":
+        return successfulAdd;
+      case "error":
+        return errorMessage;
+      case "successEmail":
+        return successfulEmail;
+      case "successEdit":
+        return successfulEdit;
+      case "noGeocode":
+        return errorGeocode;
+      case "successGeocode":
+        return successfulGeocode;
+      case "successEditTownList":
+        return editTownList;
+      case "successLogin":
+        return successfulLogin;
+      default:
+        break;
     }
   } else {
     return null;
@@ -182,3 +185,29 @@ const AlertBox = props => {
 };
 
 export default AlertBox;
+
+// if (props.typeOfAlert !== null) {
+//   if (props.typeOfAlert == "successDelete") {
+//     return successfulDelete;
+//   } else if (props.typeOfAlert == "delete") {
+//     return deleteItem;
+//   } else if (props.typeOfAlert == "successAdd") {
+//     return successfulAdd;
+//   } else if (props.typeOfAlert == "error") {
+//     return errorMessage;
+//   } else if (props.typeOfAlert == "successEmail") {
+//     return successfulEmail;
+//   } else if (props.typeOfAlert == "successEdit") {
+//     return successfulEdit;
+//   } else if (props.typeOfAlert == "noGeocode") {
+//     return errorGeocode;
+//   } else if (props.typeOfAlert == "successGeocode") {
+//     return successfulGeocode;
+//   } else if (props.typeOfAlert == "successEditTownList") {
+//     return editTownList;
+//   } else if (props.typeOfAlert == "successLogin") {
+//     return successfulLogin;
+//   }
+// } else {
+//   return null;
+// }

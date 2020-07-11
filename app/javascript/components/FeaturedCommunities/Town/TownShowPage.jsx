@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import TownLinks from "./TownLinks";
+import TownLinks from "./TownLinks/TownLinks";
 import { FadeIn, ParallaxBannerRoutes } from "../../Constants/Constants";
 import AlertBox from "../../Constants/AlertComponent";
 import { getFetch } from "../../Constants/FetchComponent";
