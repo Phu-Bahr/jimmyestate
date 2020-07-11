@@ -115,16 +115,16 @@ class ContactContainer extends Component {
 
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
-          <div className="pt-5">
-            {this.props.user.admin && (
+          {this.props.user.admin && (
+            <div className="pt-5">
               <ContactContentForm
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}
                 value={this.state}
                 onUpdateGeocode={this.onUpdateGeocode}
               />
-            )}
-          </div>
+            </div>
+          )}
 
           <div className="container py-5">
             <div className="row">

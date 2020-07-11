@@ -148,6 +148,12 @@ const AlertBox = props => {
     </SweetAlert>
   );
 
+  const successfulLogin = (
+    <SweetAlert success title="Success!" onConfirm={() => props.directToPath()}>
+      You are now logged in!
+    </SweetAlert>
+  );
+
   if (props.typeOfAlert !== null) {
     if (props.typeOfAlert == "successDelete") {
       return successfulDelete;
@@ -167,6 +173,8 @@ const AlertBox = props => {
       return successfulGeocode;
     } else if (props.typeOfAlert == "successEditTownList") {
       return editTownList;
+    } else if (props.typeOfAlert == "successLogin") {
+      return successfulLogin;
     }
   } else {
     return null;

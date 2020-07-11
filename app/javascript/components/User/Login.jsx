@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
+import { Link } from "react-router-dom";
+import AlertBox from "../Constants/AlertComponent";
+import { loginFetch } from "../Constants/FetchComponent";
+import { SubmitEmailButton } from "../Constants/Buttons";
 
 class Login extends Component {
   constructor(props) {
@@ -9,13 +11,16 @@ class Login extends Component {
       email: "",
       password: "",
       loginErrors: "",
-      redirect: null
+      typeOfAlert: null
     };
   }
 
-  scrollToTop = () => scroll.scrollToTop();
+  alertType = payload => this.setState({ typeOfAlert: payload });
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
-  directToPath = () => this.props.history.goBack();
+  directToPath = () => {
+    this.setState({ typeOfAlert: null });
+    this.props.history.goBack();
+  };
 
   handleLoginSubmit = event => {
     event.preventDefault();
@@ -23,41 +28,23 @@ class Login extends Component {
     const { email, password } = this.state;
     const body = { user: { email: email, password: password } };
 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.logged_in) {
-          this.props.handleLogin(data);
-        }
-      })
-      // .then(this.props.history.push("/"))
-      // .then(this.setState({ redirect: "/contact" }))
-      .then(this.directToPath)
-      .catch(error => {
-        console.log("login error", error);
-      });
+    loginFetch(
+      url,
+      body,
+      this.alertType,
+      this.props.handleLogin,
+      this.directToPath
+    );
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.state.redirect != null && <Redirect to={this.state.redirect} />}
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          directToPath={this.directToPath}
+        />
         <div
           className="parallaxStyleRoutes"
           style={{
@@ -73,7 +60,7 @@ class Login extends Component {
             <div>
               <div className="col-sm-12 col-lg-6 offset-lg-3">
                 <h1>Status: {this.props.loggedInStatus}</h1>
-
+                <h2>Logged in as: {this.props.user.email}</h2>
                 <h3 className="p-4">Enter Credentials Here</h3>
 
                 <form onSubmit={this.handleLoginSubmit}>
@@ -101,17 +88,10 @@ class Login extends Component {
                     />
                   </div>
 
-                  <div className="row d-flex justify-content-center">
-                    <div className="px-1">
-                      <button
-                        className="btn btn-info"
-                        type="submit"
-                        onClick={this.scrollToTop}
-                      >
-                        Login
-                      </button>
-                    </div>
-                  </div>
+                  <SubmitEmailButton
+                    value2="LOG IN"
+                    value1="Let's fix shit.."
+                  />
                 </form>
 
                 <div className="mt-3">
