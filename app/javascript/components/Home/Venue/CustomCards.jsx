@@ -121,11 +121,7 @@ class CustomCards extends Component {
     let townlist = this.state.townListData.map(element => {
       return (
         <div className="col-md-6" key={element.id}>
-          <Link
-            to={`/towns/${element.id}`}
-            className="helperL py-1"
-            onClick={this.scrollToTop}
-          >
+          <Link to={`/towns/${element.id}`} className="helperL py-1">
             {element.name}
           </Link>
         </div>
@@ -135,11 +131,7 @@ class CustomCards extends Component {
     let partnerlist = this.state.partnerListData.map(element => {
       return (
         <div className="col-md-6" key={element.id}>
-          <Link
-            to={`/partner/${element.id}`}
-            className="helperL py-1"
-            onClick={this.scrollToTop}
-          >
+          <Link to={`/partner/${element.id}`} className="helperL py-1">
             {element.name}
           </Link>
         </div>

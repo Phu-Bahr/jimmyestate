@@ -75,7 +75,7 @@ class NewEvent extends Component {
             });
           }
         })
-        .then(setTimeout(this.submit, 600))
+        .then(setTimeout(this.submit, 700))
         .catch(error => console.log("error message =>", error.message));
     }
   }
@@ -184,7 +184,3 @@ class NewEvent extends Component {
 }
 
 export default NewEvent;
-
-// fetch(
-//   `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDQWRPFAqjRNQ1wXl8r3kL6nfZdmcYhk1U`
-// )

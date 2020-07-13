@@ -217,6 +217,7 @@ export const FormMapsV2 = props => {
   return formValue;
 };
 
+//needs this.state sent  or id in state
 export const LoadingScreen = props => {
   return (
     props.id == null && (

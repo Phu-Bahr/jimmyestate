@@ -1,9 +1,14 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
 import { FadeIn } from "../../Constants/Constants";
+import { postFetch } from "../../Constants/FetchComponent";
+import AlertBox from "../../Constants/AlertComponent";
+import { FormMaps } from "../../Constants/Constants";
+import { AddButton } from "../../Constants/Buttons";
 
-class NewTown extends React.Component {
+const urlPath = "towns";
+
+class NewTown extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,29 +17,25 @@ class NewTown extends React.Component {
       headerText2: "",
       townheader: "",
       content: null,
-      bannerImage: null
+      bannerImage: "",
+      typeOfAlert: null,
+      idToAdd: null
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.refreshTownList = this.refreshTownList.bind(this);
   }
 
-  scrollToTop = () => {
-    scroll.scrollToTop();
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  refreshTownList = () => this.props.refreshTownList();
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  directToPath = () => {
+    this.props.history.push(`/${urlPath}/${this.state.idToAdd}`);
+    window.location.reload(false);
   };
 
-  refreshTownList(event) {
-    this.props.refreshTownList();
-  }
+  mountState = body => this.setState({ idToAdd: body.id });
 
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = "/api/v1/towns";
+    const url = `/api/v1/${urlPath}`;
     const {
       name,
       headerText1,
@@ -53,33 +54,25 @@ class NewTown extends React.Component {
       bannerImage
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(body => {
-        this.props.history.push(`/towns/${body.id}`);
-        // window.location.reload(false); <-- refreshes page but logs off admin.
-      })
-      .then(this.refreshTownList())
-      .catch(error => console.log(error.message));
-  }
+    postFetch(url, body, this.alertType, this.mountState);
+  };
 
   render() {
+    const dataForm = {
+      name: "Edit your Town here.",
+      bannerImage: "Banner Image URL",
+      headerText1: "Header text 1",
+      headerText2: "Header text 2",
+      townheader: "Header for Links"
+    };
+
     return (
-      <React.Fragment>
+      <Fragment>
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          directToPath={this.directToPath}
+        />
         <FadeIn>
           <div
             className="parallaxStyleRoutes"
@@ -98,77 +91,17 @@ class NewTown extends React.Component {
                 </h1>
 
                 <form onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="name">Town</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      placeholder="This will be on the nav bar"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="bannerImage">Banner Image</label>
-                    <input
-                      type="text"
-                      name="bannerImage"
-                      id="bannerImage"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="headerText1">headerText1</label>
-                    <input
-                      type="text"
-                      name="headerText1"
-                      id="headerText1"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="headerText2">headerText2</label>
-                    <input
-                      type="text"
-                      name="headerText2"
-                      id="headerText2"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="townheader">Townheader</label>
-                    <input
-                      type="text"
-                      name="townheader"
-                      id="townheader"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      placeholder="ex: Town Links"
-                    />
-                  </div>
-
-                  <button type="submit" className="btn custom-button mt-3">
-                    Create Community
-                  </button>
-
-                  <Link
-                    to="/"
-                    className="btn btn-link mt-3 
-                onClick={this.scrollToTop}"
-                  >
+                  <FormMaps
+                    formConst={dataForm}
+                    onChange={this.onChange}
+                    value={this.state}
+                  />
+                  <AddButton
+                    type="submit"
+                    className="mt-3"
+                    value="Create Community"
+                  />
+                  <Link to="/" className="btn btn-link mt-3">
                     Back to Home Page
                   </Link>
                 </form>
@@ -176,7 +109,7 @@ class NewTown extends React.Component {
             </div>
           </div>
         </FadeIn>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

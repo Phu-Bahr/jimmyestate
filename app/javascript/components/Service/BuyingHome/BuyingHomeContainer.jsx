@@ -60,8 +60,6 @@ class BuyingHomeContainer extends Component {
   }
 
   render() {
-    console.log("buying home state", this.state);
-
     return (
       <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
