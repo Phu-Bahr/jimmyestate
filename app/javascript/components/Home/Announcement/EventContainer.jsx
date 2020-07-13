@@ -151,7 +151,7 @@ class EventContainer extends Component {
       .catch(error => console.log(error.message));
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     fetch("/api/v1/events")
       .then(response => {
         if (response.ok) {
@@ -173,9 +173,9 @@ class EventContainer extends Component {
         });
       })
       .catch(() => this.props.history.push("/"));
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if (this.state.refreshKey === true) {
       fetch("/api/v1/events")
         .then(response => {
@@ -200,7 +200,7 @@ class EventContainer extends Component {
         .then(this.setState({ refreshKey: false }))
         .catch(() => this.props.history.push("/"));
     }
-  }
+  };
 
   mountLatLng = body => {
     this.setState({
@@ -360,12 +360,12 @@ class EventContainer extends Component {
               <div className="col-sm-6 py-2">
                 <div>{photo}</div>
               </div>
-              <div className="col-sm-6 py-2">
+              {/* <div className="col-sm-6 py-2">
                 <Map
                   lat={parseFloat(this.state.lat)}
                   lng={parseFloat(this.state.lng)}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

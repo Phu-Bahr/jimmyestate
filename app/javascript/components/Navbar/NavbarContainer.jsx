@@ -25,13 +25,11 @@ class NavbarContainer extends Component {
     scroll.scrollToTop();
   };
 
-  componentDidMount() {
+  componentDidMount = () =>
     window.addEventListener("scroll", this.handleScroll);
-  }
 
-  componentWillUnmount() {
+  componentWillUnmount = () =>
     window.removeEventListener("scroll", this.handleScroll);
-  }
 
   handleScroll() {
     const { scrollPos } = this.state;

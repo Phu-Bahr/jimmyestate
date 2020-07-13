@@ -88,16 +88,16 @@ class DraftJSContainer extends Component {
     }
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     let url;
     this.props.url === undefined
       ? (url = this.props.urlPath)
       : (url = this.props.url);
 
     getFetch(url, this.mountState);
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     let url;
     this.props.url === undefined
       ? (url = this.props.urlPath)
@@ -107,7 +107,7 @@ class DraftJSContainer extends Component {
       getFetch(url, this.mountState)
         .then(this.setState({ refreshKey: false }))
         .then(this.props.uppertoggleRefreshKey);
-  }
+  };
 
   render() {
     let adminToggle = this.props.user.admin ? (

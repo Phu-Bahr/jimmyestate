@@ -46,21 +46,15 @@ class AboutCompanyContainer extends Component {
     });
   };
 
-  componentDidMount() {
-    this.setState({ loading: true });
-    getFetch(urlPath, this.mountState);
-  }
+  componentDidMount = () => getFetch(urlPath, this.mountState);
 
-  componentDidUpdate() {
+  componentDidUpdate = () =>
     this.state.refreshKey &&
-      getFetch(urlPath, this.mountState).then(
-        this.setState({ refreshKey: false })
-      );
-  }
+    getFetch(urlPath, this.mountState).then(
+      this.setState({ refreshKey: false })
+    );
 
   render() {
-    console.log(this.state.loading);
-
     return (
       <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />

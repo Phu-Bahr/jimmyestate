@@ -11,7 +11,7 @@ class PartnerList extends Component {
     this.deleteEvent = this.deleteEvent.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     fetch("/api/v1/partner_categories")
       .then(response => {
         if (response.ok) {
@@ -27,9 +27,9 @@ class PartnerList extends Component {
         this.setState({ partnerData: body });
       })
       .catch(error => console.log("error message =>", error.message));
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if (this.props.refreshKey === true) {
       fetch("api/v1/partner_categories")
         .then(response => {
@@ -48,7 +48,7 @@ class PartnerList extends Component {
         .then(this.props.toggleRefreshFalse())
         .catch(error => console.log("error message =>", error.message));
     }
-  }
+  };
 
   deleteEvent(id) {
     const url = `/api/v1/partner_categories/${id}`;

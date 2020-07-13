@@ -23,19 +23,19 @@ class TownShowPage extends Component {
 
   mountState = body => this.setState({ townData: body, id: body.id });
 
-  componentDidMount() {
+  componentDidMount = () => {
     const url = `${urlPath}/${this.props.match.params.id}`;
     getFetch(url, this.mountState);
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     const url = `${urlPath}/${this.props.match.params.id}`;
 
     this.state.id != this.props.match.params.id &&
       getFetch(url, this.mountState).then(
         this.setState({ refreshKey: false, id: this.props.match.params.id })
       );
-  }
+  };
 
   render() {
     return (

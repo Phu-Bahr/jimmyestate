@@ -40,10 +40,10 @@ class DraftJSShowPage extends Component {
     putFetch(url, body, this.alertType);
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     const urlPath = `${this.props.urlPath}/${this.props.paramsID}`;
     getFetch(urlPath, this.mountState);
-  }
+  };
 
   mountState = body => {
     body

@@ -74,10 +74,10 @@ class TownLinks extends Component {
       : this.setState({ townLinkData: body, id: body[0].town_id });
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     let url = `${urlPath}/${this.props.paramID}/town_links`;
     getFetch(url, this.mountState);
-  }
+  };
 
   updateState = body => {
     body.length == 0
