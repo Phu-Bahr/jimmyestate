@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import AlertBox from "../../Constants/AlertComponent";
-import { getFetch, putFetchTownList } from "../../Constants/FetchComponent";
+import { getFetch, putFetch } from "../../Constants/FetchComponent";
 import { FormMaps } from "../../Constants/Constants";
 import { UpdateButton } from "../../Constants/Buttons";
 
@@ -27,7 +27,10 @@ class EditTown extends Component {
   refreshTownList = () => this.props.refreshTownList();
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
-  directToPath = () => this.props.history.push(`/${urlPath}/${this.state.id}`);
+  directToPath = () => {
+    this.props.history.push(`/${urlPath}/${this.state.id}`);
+    window.location.reload(false);
+  };
 
   onSubmit = event => {
     event.preventDefault();
@@ -48,7 +51,7 @@ class EditTown extends Component {
       bannerImage
     };
 
-    putFetchTownList(url, body, this.alertType)
+    putFetch(url, body, this.alertType)
       .then(this.refreshTownList())
       .then(this.toggleRefreshKey);
   };
@@ -88,6 +91,7 @@ class EditTown extends Component {
       headerText2: "Header text 2",
       townheader: "Header for Links"
     };
+
     return (
       <Fragment>
         <AlertBox

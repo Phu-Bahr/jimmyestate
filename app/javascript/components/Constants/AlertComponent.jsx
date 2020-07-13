@@ -32,7 +32,11 @@ const AlertBox = props => {
     <SweetAlert
       success
       title="Success!"
-      onConfirm={() => props.alertType(payload)}
+      onConfirm={
+        props.directToPath
+          ? () => props.directToPath()
+          : () => props.alertType(payload)
+      }
     >
       Your content has been added.
     </SweetAlert>
@@ -65,7 +69,11 @@ const AlertBox = props => {
     <SweetAlert
       success
       title="Success!"
-      onConfirm={() => props.alertType(payload)}
+      onConfirm={
+        props.directToPath
+          ? () => props.directToPath()
+          : () => props.alertType(payload)
+      }
     >
       Your content has been updated.
     </SweetAlert>
@@ -91,14 +99,6 @@ const AlertBox = props => {
       onConfirm={() => props.deleteEvent(props.idForAlert)}
       onCancel={() => props.alertType(payload)}
       focusCancelBtn
-    ></SweetAlert>
-  );
-
-  const editTownList = (
-    <SweetAlert
-      success
-      title="Edit Successful!"
-      onConfirm={() => props.directToPath()}
     ></SweetAlert>
   );
 
@@ -156,6 +156,8 @@ const AlertBox = props => {
 
   if (props.typeOfAlert !== null) {
     switch (props.typeOfAlert) {
+      case "successLogin":
+        return successfulLogin;
       case "successDelete":
         return successfulDelete;
       case "delete":
@@ -172,10 +174,7 @@ const AlertBox = props => {
         return errorGeocode;
       case "successGeocode":
         return successfulGeocode;
-      case "successEditTownList":
-        return editTownList;
-      case "successLogin":
-        return successfulLogin;
+
       default:
         break;
     }

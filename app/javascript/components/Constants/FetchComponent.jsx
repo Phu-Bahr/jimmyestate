@@ -13,18 +13,14 @@ export const putFetch = (url, body, alertType) => {
   })
     .then(response => {
       if (response.ok) {
-        if (alertType === undefined) {
-          alert("Content has been updated");
-        } else {
-          alertType("successEdit");
-        }
+        alertType === undefined
+          ? alert("Content has been updated")
+          : alertType("successEdit");
         return response.json();
       }
-      if (alertType === undefined) {
-        alert("Something went wrong");
-      } else {
-        return alertType("error");
-      }
+      alertType === undefined
+        ? alert("Something went wrong")
+        : alertType("error");
       throw new Error("Network response was not ok.");
     })
     .then(scrollToTop)
@@ -42,28 +38,25 @@ export const postFetchEmail = (url, body, alertType) => {
   })
     .then(response => {
       if (response.ok) {
-        if (alertType === undefined) {
-          alert("Your inquiry has been received!");
-        } else {
-          alertType("successEmail");
-        }
+        alertType === undefined
+          ? alert("Your inquiry has been received!")
+          : alertType("successEmail");
         return response.json();
       }
-      if (alertType === undefined) {
-        alert(
-          "There was a network issue, please try again or Email Jimmy directly."
-        );
-      } else {
-        alertType("error");
-      }
+      alertType === undefined
+        ? alert(
+            "There was a network issue, please try again or Email Jimmy directly."
+          )
+        : alertType("error");
       throw new Error("Network response was not ok.");
     })
+
     .then(scrollToTop)
     .then(event.target.reset())
     .catch(error => console.log("error message =>", error.message));
 };
 
-export const postFetch = (url, body, alertType) => {
+export const postFetch = (url, body, alertType, mountState) => {
   return fetch(url, {
     method: "POST",
     headers: {
@@ -74,19 +67,18 @@ export const postFetch = (url, body, alertType) => {
   })
     .then(response => {
       if (response.ok) {
-        if (alertType === undefined) {
-          alert("Submission Successful");
-        } else {
-          alertType("successAdd");
-        }
+        alertType === undefined
+          ? alert("Submission Successful")
+          : alertType("successAdd");
         return response.json();
       }
-      if (alertType === undefined) {
-        alert("There was a network issue, please try again or contact admin.");
-      } else {
-        alertType("error");
-      }
+      alertType === undefined
+        ? alert("There was a network issue, please try again or contact admin.")
+        : alertType("error");
       throw new Error("Network response was not ok.");
+    })
+    .then(body => {
+      mountState !== undefined && mountState(body);
     })
     .then(scrollToTop)
     .then(event.target.reset())
@@ -103,18 +95,15 @@ export const deleteFetch = (url, alertType) => {
   })
     .then(response => {
       if (response.ok) {
-        if (alertType === undefined) {
-          alert("Item Deleted Successfully");
-        } else {
-          alertType("successDelete");
-        }
+        alertType === undefined
+          ? alert("Item Deleted Successfully")
+          : alertType("successDelete");
         return response;
       } else {
-        if (alertType === undefined) {
-          alert("Something went wrong");
-        } else {
-          alertType("error");
-        }
+        alertType === undefined
+          ? alert("Something went wrong")
+          : alertType("error");
+
         let errorMessage = `${response.status} (${response.statusText})`,
           error = new Error(errorMessage);
         throw error;
@@ -135,18 +124,14 @@ export const postFetchDraft = (url, body, alertType) => {
   })
     .then(response => {
       if (response.ok) {
-        if (alertType === undefined) {
-          alert("Submission Successful");
-        } else {
-          alertType("successAdd");
-        }
+        alertType === undefined
+          ? alert("Submission Successful")
+          : alertType("successAdd");
         return response.json();
       }
-      if (alertType === undefined) {
-        alert("There was a network issue, please try again or contact admin.");
-      } else {
-        alertType("error");
-      }
+      alertType === undefined
+        ? alert("There was a network issue, please try again or contact admin.")
+        : alertType("error");
       throw new Error("Network response was not ok.");
     })
     .then(scrollToTop)
@@ -189,35 +174,6 @@ export const getGeocode = (location, mountLatLng, alertType) => {
         mountLatLng(body);
       }
     })
-    .catch(error => console.log("error message =>", error.message));
-};
-
-export const putFetchTownList = (url, body, alertType) => {
-  return fetch(url, {
-    method: "PUT",
-    headers: {
-      "X-CSRF-Token": token,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
-  })
-    .then(response => {
-      if (response.ok) {
-        if (alertType === undefined) {
-          alert("Content has been updated");
-        } else {
-          alertType("successEditTownList");
-        }
-        return response.json();
-      }
-      if (alertType === undefined) {
-        alert("Something went wrong");
-      } else {
-        return alertType("error");
-      }
-      throw new Error("Network response was not ok.");
-    })
-    .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
 };
 
