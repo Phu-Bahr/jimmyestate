@@ -157,52 +157,11 @@ class PartnerShowPage extends Component {
   }
 
   render() {
-    let adminToggle;
-    if (this.props.user.admin) {
-      adminToggle = (
-        <div className="container pb-5 pt-3">
-          <div className="container text-center">
-            <Link to={`/edit-partner-category/${this.props.match.params.id}`}>
-              <button type="button" className="btn btn-info">
-                Edit Banner
-              </button>
-            </Link>
-          </div>
-          <div className="p-3" style={{ borderStyle: "dotted" }}>
-            <Editor
-              editorState={this.state.editorState}
-              wrapperClassName="wrapperClassName"
-              editorClassName="editorClassName"
-              onEditorStateChange={this.updateEditorState.bind(this)}
-              readOnly={false}
-            />
-            <div className="pt-3">
-              <button onClick={this.onSubmit}>Save your content</button>
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      adminToggle = (
-        <div className="container pb-5 pt-3">
-          <Editor
-            toolbarHidden
-            editorState={this.state.editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={true}
-            placeholder="Sign In to Admin to edit"
-          />
-        </div>
-      );
-    }
     return (
       <React.Fragment>
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state.partnerData} />
           <FadeIn>
-            <div>{adminToggle}</div>
             <DraftJSShowPage
               paramsID={this.props.match.params.id}
               admin={this.props.user.admin}
