@@ -4,7 +4,9 @@ import { FadeIn, ParallaxBannerRoutes } from "../Constants/Constants";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Link } from "react-router-dom";
+import DraftJSShowPage from "../Constants/DraftJSShowPage";
 
+const urlPath = "partner_categories";
 class PartnerShowPage extends Component {
   constructor(props) {
     super(props);
@@ -201,6 +203,11 @@ class PartnerShowPage extends Component {
           <ParallaxBannerRoutes {...this.state.partnerData} />
           <FadeIn>
             <div>{adminToggle}</div>
+            <DraftJSShowPage
+              paramsID={this.props.match.params.id}
+              admin={this.props.user.admin}
+              urlPath={urlPath}
+            />
 
             <div className="container pb-5">
               <div className="townheader-font">
