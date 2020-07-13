@@ -3,7 +3,7 @@ import TownLinks from "./TownLinks/TownLinks";
 import { FadeIn, ParallaxBannerRoutes } from "../../Constants/Constants";
 import AlertBox from "../../Constants/AlertComponent";
 import { getFetch } from "../../Constants/FetchComponent";
-import TownShowPageDraftJS from "./TownShowPageDraftJS";
+import DraftJSShowPage from "../../Constants/DraftJSShowPage";
 
 const urlPath = "towns";
 
@@ -49,9 +49,9 @@ class TownShowPage extends Component {
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state.townData} id={this.state.id} />
           <FadeIn>
-            <TownShowPageDraftJS
-              admin={this.props.user.admin}
+            <DraftJSShowPage
               paramsID={this.props.match.params.id}
+              admin={this.props.user.admin}
               urlPath={urlPath}
             />
 
