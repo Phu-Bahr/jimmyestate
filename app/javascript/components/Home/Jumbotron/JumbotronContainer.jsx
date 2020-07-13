@@ -171,7 +171,7 @@ class JumbotronContainer extends Component {
       .catch(error => console.log(error.message));
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     fetch("/api/v1/jumbotrons")
       .then(response => {
         if (response.ok) {
@@ -193,9 +193,9 @@ class JumbotronContainer extends Component {
         });
       })
       .catch(error => console.log(error.message));
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if (this.state.refreshKey === true) {
       fetch("/api/v1/jumbotrons")
         .then(response => {
@@ -215,7 +215,7 @@ class JumbotronContainer extends Component {
         .then(this.setState({ refreshKey: false }))
         .catch(error => console.log(error.message));
     }
-  }
+  };
 
   render() {
     if (this.state.refreshKey === true) {

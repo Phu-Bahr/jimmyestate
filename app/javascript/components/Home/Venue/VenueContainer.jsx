@@ -31,11 +31,11 @@ class VenueContainer extends Component {
     scroll.scrollToTop();
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.fetchHelperList();
-  }
+  };
 
-  fetchHelperList() {
+  fetchHelperList = () => {
     fetch("/api/v1/helper_links")
       .then(response => {
         if (response.ok) {
@@ -53,7 +53,7 @@ class VenueContainer extends Component {
         });
       })
       .catch(error => console.log("error message =>", error.message));
-  }
+  };
 
   componentDidUpdate() {
     if (this.state.refreshKey === true) {

@@ -71,7 +71,7 @@ class AnnouncementContainer extends Component {
       .catch(error => console.log(error.message));
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     Promise.all([fetch("/api/v1/announcements")])
       .then(([response1]) => {
         return Promise.all([response1.json()]);
@@ -86,9 +86,9 @@ class AnnouncementContainer extends Component {
       })
       // need to add error messages
       .catch(error => console.log(error.message));
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if (this.state.refreshKey === true) {
       Promise.all([fetch("/api/v1/announcements")])
         .then(([response1]) => {
@@ -106,7 +106,7 @@ class AnnouncementContainer extends Component {
         .then(this.setState({ refreshKey: false }))
         .catch(error => console.log(error.message));
     }
-  }
+  };
 
   render() {
     let hide;

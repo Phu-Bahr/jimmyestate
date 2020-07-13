@@ -32,15 +32,15 @@ class CustomCards extends Component {
       : this.setState({ visible1: true, visible: false });
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.fetchTownList();
     this.fetchPartnerList();
     this.fetchCustomCardList();
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     this.fetchUpdateCustomCard();
-  }
+  };
 
   fetchUpdateCustomCard() {
     if (this.state.refreshKey === true) {

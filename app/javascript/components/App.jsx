@@ -93,15 +93,9 @@ class App extends Component {
       });
   }
 
-  componentDidMount() {
-    this.checkLoginStatus();
-  }
+  componentDidMount = () => this.checkLoginStatus();
 
-  refreshTownList() {
-    console.log("refreshTownList triggered");
-
-    this.refreshingTownList.current.toggleRefreshKey();
-  }
+  refreshTownList = () => this.refreshingTownList.current.toggleRefreshKey();
 
   render() {
     const ProtectedRoute = ({ component: Comp, path }) => {

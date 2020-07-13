@@ -94,16 +94,13 @@ class Testimonials extends Component {
 
   mountState = body => this.setState({ testimonialData: body });
 
-  componentDidMount() {
-    getFetch(urlPath, this.mountState);
-  }
+  componentDidMount = () => getFetch(urlPath, this.mountState);
 
-  componentDidUpdate() {
+  componentDidUpdate = () =>
     this.state.refreshKey &&
-      getFetch(urlPath, this.mountState).then(
-        this.setState({ refreshKey: false })
-      );
-  }
+    getFetch(urlPath, this.mountState).then(
+      this.setState({ refreshKey: false })
+    );
 
   render() {
     const admin = this.props.user.admin;

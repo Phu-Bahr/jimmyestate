@@ -59,7 +59,7 @@ class VenueTemplate extends Component {
       .catch(error => console.log(error.message));
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
@@ -82,9 +82,9 @@ class VenueTemplate extends Component {
       })
 
       .catch(error => console.log("error message =>", error.message));
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if (this.state.refreshKey === true) {
       fetch(`/api/v1/${this.state.url}`)
         .then(response => {
@@ -109,7 +109,7 @@ class VenueTemplate extends Component {
         .then(this.setState({ refreshKey: false }))
         .then(this.scrollToTop);
     }
-  }
+  };
 
   render() {
     let contentInfo = {

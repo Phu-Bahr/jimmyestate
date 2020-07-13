@@ -74,17 +74,17 @@ class EditPartner extends Component {
       .catch(error => console.log(error.message));
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     let id = this.props.match.params.id;
     this.fetchPartnerData(id);
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     let id = this.props.match.params.id;
     if (this.state.id != id) {
       this.fetchPartnerData(id);
     }
-  }
+  };
 
   fetchPartnerData(id) {
     fetch(`/api/v1/${this.state.getURL}/${id}`)

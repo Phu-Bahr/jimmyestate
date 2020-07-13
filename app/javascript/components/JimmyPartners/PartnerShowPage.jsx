@@ -73,12 +73,12 @@ class PartnerShowPage extends Component {
     scroll.scrollToTop();
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     let id = this.props.match.params.id;
     this.fetchPartnerData(id);
     this.fetchDraftData(id);
     this.scrollToTop();
-  }
+  };
 
   fetchDraftData(id) {
     fetch(`/api/v1/${this.state.getURL}/${id}`)

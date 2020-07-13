@@ -118,16 +118,13 @@ class AboutContainer extends Component {
     });
   };
 
-  componentDidMount() {
-    getFetch(urlPath, this.mountState);
-  }
+  componentDidMount = () => getFetch(urlPath, this.mountState);
 
-  componentDidUpdate() {
+  componentDidUpdate = () =>
     this.state.refreshKey &&
-      getFetch(urlPath, this.mountState).then(
-        this.setState({ refreshKey: false })
-      );
-  }
+    getFetch(urlPath, this.mountState).then(
+      this.setState({ refreshKey: false })
+    );
 
   render() {
     return (

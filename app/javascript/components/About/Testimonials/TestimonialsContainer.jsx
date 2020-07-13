@@ -48,16 +48,14 @@ class TestimonialsContainer extends Component {
       id: body[body.length - 1].id
     });
   };
-  componentDidMount() {
-    getFetch(urlPath, this.mountState);
-  }
 
-  componentDidUpdate() {
+  componentDidMount = () => getFetch(urlPath, this.mountState);
+
+  componentDidUpdate = () =>
     this.state.refreshKey &&
-      getFetch(urlPath, this.mountState).then(
-        this.setState({ refreshKey: false })
-      );
-  }
+    getFetch(urlPath, this.mountState).then(
+      this.setState({ refreshKey: false })
+    );
 
   render() {
     return (

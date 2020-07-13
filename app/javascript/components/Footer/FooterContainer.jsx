@@ -110,7 +110,7 @@ class FooterContainer extends Component {
       .catch(error => console.log(error.message));
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     fetch(`/api/v1/${this.state.url}`)
       .then(response => {
         if (response.ok) {
@@ -142,9 +142,9 @@ class FooterContainer extends Component {
         });
       })
       .catch(error => console.log(error.message));
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if (this.state.refreshKey === true) {
       fetch(`api/v1/${this.state.url}`)
         .then(response => {
@@ -166,7 +166,7 @@ class FooterContainer extends Component {
         .then(this.setState({ refreshKey: false }))
         .catch(error => console.log(error.message));
     }
-  }
+  };
 
   render() {
     let hide;

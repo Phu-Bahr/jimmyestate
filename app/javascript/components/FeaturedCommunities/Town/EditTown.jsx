@@ -68,22 +68,24 @@ class EditTown extends Component {
     });
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     let id = this.props.match.params.id;
     let url = `${urlPath}/${id}`;
 
     getFetch(url, this.mountState);
-  }
+  };
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     let id = this.props.match.params.id;
     let url = `${urlPath}/${id}`;
 
     this.state.id != id &&
       getFetch(url, this.mountState).then(this.setState({ refreshKey: false }));
-  }
+  };
 
   render() {
+    console.log("edittown+ >", this.state);
+
     const dataForm = {
       name: "Edit your Town here.",
       bannerImage: "Banner Image URL",
