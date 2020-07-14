@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getFetch, deleteFetch } from "../../Constants/FetchComponent";
 
@@ -32,8 +32,6 @@ class TownList extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     let admin = this.props.user.admin;
     let listOfTowns = this.state.townData.map(element => {
       return (

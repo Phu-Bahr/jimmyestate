@@ -12,21 +12,19 @@ class EditTown extends Component {
     super(props);
     this.state = {
       townData: {},
-      id: "",
+      id: null,
       name: "",
       headerText1: "",
       headerText2: "",
       townheader: "",
       bannerImage: "",
-      typeOfAlert: null,
-      refreshKey: false
+      typeOfAlert: null
     };
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
   refreshTownList = () => this.props.refreshTownList();
   onChange = e => this.setState({ [e.target.name]: e.target.value });
-  toggleRefreshKey = () => this.setState({ refreshKey: true });
   directToPath = () => {
     this.props.history.push(`/${urlPath}/${this.state.id}`);
     window.location.reload(false);
@@ -51,9 +49,7 @@ class EditTown extends Component {
       bannerImage
     };
 
-    putFetch(url, body, this.alertType)
-      .then(this.refreshTownList())
-      .then(this.toggleRefreshKey);
+    putFetch(url, body, this.alertType).then(this.refreshTownList());
   };
 
   mountState = body => {
@@ -79,13 +75,10 @@ class EditTown extends Component {
     let id = this.props.match.params.id;
     let url = `${urlPath}/${id}`;
 
-    this.state.id != id &&
-      getFetch(url, this.mountState).then(this.setState({ refreshKey: false }));
+    this.state.id != id && getFetch(url, this.mountState);
   };
 
   render() {
-    console.log("edittown+ >", this.state);
-
     const dataForm = {
       name: "Edit your Town here.",
       bannerImage: "Banner Image URL",
