@@ -286,7 +286,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/partner/:id?"
+            path="/partner_categories/:id?"
             render={props => (
               <PartnerShowPage
                 {...props}

@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getFetch, deleteFetch } from "../../Constants/FetchComponent";
 
 const urlPath = "towns";
+const editUrlPath = "editcommunity";
 
 class TownList extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class TownList extends Component {
   mountState = body => this.setState({ townData: body });
   componentDidMount = () => getFetch(urlPath, this.mountState);
   componentDidUpdate = () =>
-    this.props.refreshKey &&
+    this.state.refreshKey &&
     getFetch(urlPath, this.mountState).then(
       this.setState({ refreshKey: false })
     );
@@ -27,7 +28,7 @@ class TownList extends Component {
     const url = `/api/v1/${urlPath}/${id}`;
 
     deleteFetch(url)
-      .then(this.props.toggleRefreshKey)
+      .then(this.toggleRefreshKey)
       .then(this.props.history.push("/"));
   };
 
@@ -39,7 +40,7 @@ class TownList extends Component {
           <div className={admin ? "dropdown-item" : null}>
             <div className={admin ? "row navbar-underline" : "container py-1"}>
               <Link
-                to={`/towns/${element.id}`}
+                to={`/${urlPath}/${element.id}`}
                 className={
                   admin
                     ? "col-sm-4 ml-n1 mr-4"
@@ -60,7 +61,7 @@ class TownList extends Component {
                     />
                   </div>
                   <div className="col-sm-4 m-auto">
-                    <Link to={`/editcommunity/${element.id}`}>
+                    <Link to={`/${editUrlPath}/${element.id}`}>
                       <FontAwesomeIcon icon="edit" size="2x" />
                     </Link>
                   </div>
@@ -76,4 +77,4 @@ class TownList extends Component {
   }
 }
 
-export default TownList;
+export default withRouter(TownList);

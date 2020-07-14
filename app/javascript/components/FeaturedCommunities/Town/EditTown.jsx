@@ -23,7 +23,6 @@ class EditTown extends Component {
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
-  refreshTownList = () => this.props.refreshTownList();
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   directToPath = () => {
     this.props.history.push(`/${urlPath}/${this.state.id}`);
@@ -49,7 +48,7 @@ class EditTown extends Component {
       bannerImage
     };
 
-    putFetch(url, body, this.alertType).then(this.refreshTownList());
+    putFetch(url, body, this.alertType);
   };
 
   mountState = body => {

@@ -6,6 +6,7 @@ import { getFetch } from "../../Constants/FetchComponent";
 import DraftJSShowPage from "../../Constants/DraftJSShowPage";
 
 const urlPath = "towns";
+const editUrlPath = "editcommunity";
 
 class TownShowPage extends Component {
   constructor(props) {
@@ -13,14 +14,11 @@ class TownShowPage extends Component {
     this.state = {
       townData: {},
       id: null,
-      refreshKey: false,
       typeOfAlert: null
     };
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
-  toggleRefreshKey = () => this.setState({ refreshKey: true });
-
   mountState = body => this.setState({ townData: body, id: body.id });
 
   componentDidMount = () => {
@@ -33,7 +31,7 @@ class TownShowPage extends Component {
 
     this.state.id != this.props.match.params.id &&
       getFetch(url, this.mountState).then(
-        this.setState({ refreshKey: false, id: this.props.match.params.id })
+        this.setState({ id: this.props.match.params.id })
       );
   };
 
@@ -53,6 +51,7 @@ class TownShowPage extends Component {
               paramsID={this.props.match.params.id}
               admin={this.props.user.admin}
               urlPath={urlPath}
+              editUrlPath={editUrlPath}
             />
 
             <div className="container pb-5">

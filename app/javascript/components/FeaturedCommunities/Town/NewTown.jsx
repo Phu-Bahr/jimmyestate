@@ -24,14 +24,12 @@ class NewTown extends Component {
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
-  refreshTownList = () => this.props.refreshTownList();
   onChange = e => this.setState({ [e.target.name]: e.target.value });
+  mountState = body => this.setState({ idToAdd: body.id });
   directToPath = () => {
     this.props.history.push(`/${urlPath}/${this.state.idToAdd}`);
     window.location.reload(false);
   };
-
-  mountState = body => this.setState({ idToAdd: body.id });
 
   onSubmit = event => {
     event.preventDefault();
@@ -59,7 +57,7 @@ class NewTown extends Component {
 
   render() {
     const dataForm = {
-      name: "Edit your Town here.",
+      name: "Town name (nav bar)",
       bannerImage: "Banner Image URL",
       headerText1: "Header text 1",
       headerText2: "Header text 2",
