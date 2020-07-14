@@ -28,7 +28,7 @@ class PartnerList extends Component {
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
 
-    deleteFetch(url)
+    deleteFetch(url, this.props.alertType)
       .then(this.toggleRefreshKey)
       .then(this.props.history.push("/"));
   };

@@ -17,6 +17,7 @@ class TownList extends Component {
 
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   mountState = body => this.setState({ townData: body });
+
   componentDidMount = () => getFetch(urlPath, this.mountState);
   componentDidUpdate = () =>
     this.state.refreshKey &&
@@ -27,7 +28,7 @@ class TownList extends Component {
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
 
-    deleteFetch(url)
+    deleteFetch(url, this.props.alertType)
       .then(this.toggleRefreshKey)
       .then(this.props.history.push("/"));
   };
