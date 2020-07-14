@@ -76,7 +76,7 @@ class DraftJSShowPage extends Component {
         <div className="container pb-5 pt-3">
           {this.props.admin && (
             <div className="container text-center py-4">
-              <Link to={`/editcommunity/${this.props.paramsID}`}>
+              <Link to={`/${this.props.editUrlPath}/${this.props.paramsID}`}>
                 <EditButton value="Edit Banner" />
               </Link>
             </div>

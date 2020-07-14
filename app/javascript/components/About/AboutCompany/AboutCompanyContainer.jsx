@@ -10,6 +10,7 @@ import {
 } from "../../Constants/Constants";
 
 const urlPath = "about_companies";
+
 class AboutCompanyContainer extends Component {
   constructor(props) {
     super(props);

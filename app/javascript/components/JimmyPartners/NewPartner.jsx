@@ -1,9 +1,12 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
-import { FadeIn } from "../Constants/Constants";
+import { FadeIn, FormMaps } from "../Constants/Constants";
+import AlertBox from "../Constants/AlertComponent";
+import { postFetch } from "../Constants/FetchComponent";
+import { AddButton } from "../Constants/Buttons";
 
-class NewPartner extends React.Component {
+const urlPath = "partner_categories";
+class NewPartner extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,66 +14,44 @@ class NewPartner extends React.Component {
       headerText1: "",
       headerText2: "",
       content: null,
-      bannerImage: null
+      bannerImage: null,
+      typeOfAlert: null,
+      idToAdd: null
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.refreshTownList = this.refreshTownList.bind(this);
   }
 
-  scrollToTop = () => {
-    scroll.scrollToTop();
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  mountState = body => this.setState({ idToAdd: body.id });
+  directToPath = () => {
+    this.props.history.push(`/${urlPath}/${this.state.idToAdd}`);
+    window.location.reload(false);
   };
 
-  refreshTownList() {
-    this.props.refreshTownList();
-  }
-
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = "/api/v1/partner_categories";
+    const url = `/api/v1/${urlPath}`;
     const { name, headerText1, headerText2, content, bannerImage } = this.state;
+    const body = { name, headerText1, headerText2, content, bannerImage };
 
-    const body = {
-      name,
-      headerText1,
-      headerText2,
-      content,
-      bannerImage
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(body => {
-        this.props.history.push(`/partner/${body.id}`);
-        // window.location.reload(false); <-- refreshes page but logs off admin.
-      })
-      .then(this.refreshTownList())
-      .catch(error => console.log(error.message));
-  }
+    postFetch(url, body, this.alertType, this.mountState);
+  };
 
   render() {
+    const dataForm = {
+      name: "Partner name (nav bar)",
+      bannerImage: "Banner Image URL",
+      headerText1: "Header text 1",
+      headerText2: "Header text 2"
+    };
+
     return (
-      <React.Fragment>
+      <Fragment>
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          directToPath={this.directToPath}
+        />
         <FadeIn>
           <div
             className="parallaxStyleRoutes"
@@ -89,64 +70,19 @@ class NewPartner extends React.Component {
                 </h1>
 
                 <form onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="name">Type of Partner</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                      placeholder="This will be on the nav bar"
-                    />
-                  </div>
+                  <FormMaps
+                    formConst={dataForm}
+                    onChange={this.onChange}
+                    value={this.state}
+                  />
 
-                  <div className="form-group">
-                    <label htmlFor="bannerImage">Banner Image</label>
-                    <input
-                      type="text"
-                      name="bannerImage"
-                      id="bannerImage"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
-                  </div>
+                  <AddButton
+                    type="submit"
+                    className="mt-3"
+                    value="Create Partner Category"
+                  />
 
-                  <div className="form-group">
-                    <label htmlFor="headerText1">headerText1</label>
-                    <input
-                      type="text"
-                      name="headerText1"
-                      id="headerText1"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="headerText2">headerText2</label>
-                    <input
-                      type="text"
-                      name="headerText2"
-                      id="headerText2"
-                      className="form-control"
-                      required
-                      onChange={this.onChange}
-                    />
-                  </div>
-
-                  <button type="submit" className="btn custom-button mt-3">
-                    Create Partner Category
-                  </button>
-
-                  <Link
-                    to="/"
-                    className="btn btn-link mt-3 
-                onClick={this.scrollToTop}"
-                  >
+                  <Link to="/" className="btn btn-link mt-3 ">
                     Back to Home Page
                   </Link>
                 </form>
@@ -154,7 +90,7 @@ class NewPartner extends React.Component {
             </div>
           </div>
         </FadeIn>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

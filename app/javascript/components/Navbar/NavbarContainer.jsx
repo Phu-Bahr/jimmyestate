@@ -209,9 +209,6 @@ class NavbarContainer extends Component {
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
               hideEditButton={hideEditButton}
-              refreshKey={this.state.refreshKey}
-              toggleRefreshKey={this.toggleRefreshKey}
-              toggleRefreshFalse={this.toggleRefreshFalse}
             />
             <div className={hideEditButton}>
               <div className="dropdown-divider"></div>
@@ -246,9 +243,6 @@ class NavbarContainer extends Component {
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
               hideEditButton={hideEditButton}
-              refreshKey={this.state.refreshKey}
-              toggleRefreshKey={this.toggleRefreshKey}
-              toggleRefreshFalse={this.toggleRefreshFalse}
             />
             <div className={hideEditButton}>
               <div className="dropdown-divider"></div>
