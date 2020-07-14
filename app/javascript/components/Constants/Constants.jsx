@@ -10,6 +10,7 @@ import {
 } from "react-animations";
 import { UpdateButton } from "./Buttons";
 import { CommonLoading } from "react-loadingg";
+import { Link } from "react-router-dom";
 
 export const FadeIn = styled.div`
   animation: 1s ${keyframes`${fadeIn}`};
@@ -227,4 +228,17 @@ export const LoadingScreen = props => {
       </div>
     )
   );
+};
+
+export const DropdownHelper = props => {
+  const formValue = props.formConst.map(element => {
+    return (
+      <div key={element.title} className="container py-1">
+        <Link to={element.path} className="dropdown-item navbar-underline">
+          {element.title}
+        </Link>
+      </div>
+    );
+  });
+  return formValue;
 };

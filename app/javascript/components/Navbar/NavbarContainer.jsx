@@ -1,29 +1,32 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import TownList from "../FeaturedCommunities/Town/TownList";
 import PartnerList from "../JimmyPartners/PartnerList";
 import { animateScroll as scroll } from "react-scroll";
-import { FadeInDown, Transition, StyledNavbar } from "../Constants/Constants";
 import AdminBanner from "../User/AdminBanner";
+import AlertBox from "../Constants/AlertComponent";
+import {
+  FadeInDown,
+  Transition,
+  StyledNavbar,
+  DropdownHelper
+} from "../Constants/Constants";
 
 class NavbarContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { refreshKey: false, show: true, scrollPos: 0 };
-    this.handleScroll = this.handleScroll.bind(this);
+    this.state = {
+      refreshKey: false,
+      show: true,
+      scrollPos: 0,
+      typeOfAlert: null
+    };
   }
 
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
-
-  toggleRefreshFalse = () => {
-    this.setState({ refreshKey: false });
-  };
-
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  toggleRefreshFalse = () => this.setState({ refreshKey: false });
+  scrollToTop = () => scroll.scrollToTop();
 
   componentDidMount = () =>
     window.addEventListener("scroll", this.handleScroll);
@@ -31,24 +34,49 @@ class NavbarContainer extends Component {
   componentWillUnmount = () =>
     window.removeEventListener("scroll", this.handleScroll);
 
-  handleScroll() {
+  handleScroll = () => {
     const { scrollPos } = this.state;
     this.setState({
       scrollPos: document.body.getBoundingClientRect().top,
       show: document.body.getBoundingClientRect().top > scrollPos
     });
-  }
+  };
 
   render() {
-    let hideEditButton;
-    if (this.props.user.admin === true) {
-      hideEditButton = "";
-    } else {
-      hideEditButton = "invisible";
-    }
+    let admin = this.props.user.admin;
+
+    let headerLink = title => (
+      <Link
+        to="/"
+        className="nav-link dropdown-toggle navbar-underline"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {title}
+      </Link>
+    );
+
+    let serviceList = [
+      { path: "/buying-a-home", title: "Buying Property" },
+      { path: "/selling-a-home", title: "Selling Property" },
+      { path: "/homeworth", title: "What's my home worth?" },
+      { path: "/relocation", title: "Relocation Assistance" },
+      { path: "/market-reports", title: "Market Reports" }
+    ];
+
+    let aboutList = [
+      { path: "/about", title: "About Jimmy Chao" },
+      { path: "/portfolio", title: "Sold Portfolio" },
+      { path: "/aboutcompany", title: "About RTN Realty Advisors" },
+      { path: "/jimmys-tips", title: "Jimmy's Tips" },
+      { path: "/testimonials", title: "Testimonials" }
+    ];
 
     let navLists = (
-      <React.Fragment>
+      <Fragment>
         <li className="nav-item">
           <Link
             to="/"
@@ -60,147 +88,29 @@ class NavbarContainer extends Component {
         </li>
 
         <li className="nav-item dropdown">
-          <Link
-            to="/"
-            className="nav-link dropdown-toggle navbar-underline"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Services
-          </Link>
+          {headerLink("Services")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
             id="about"
             aria-labelledby="navbarDropdown"
           >
-            <div className="container py-1">
-              <Link
-                to="/buying-a-home"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Buying Property
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/selling-a-home"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Selling Property
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/homeworth"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                What's my home worth?
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/relocation"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Relocation Assistance
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/market-reports"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Market Reports
-              </Link>
-            </div>
+            <DropdownHelper formConst={serviceList} />
           </div>
         </li>
 
         <li className="nav-item dropdown">
-          <Link
-            to="/"
-            className="nav-link dropdown-toggle navbar-underline"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            About
-          </Link>
+          {headerLink("About")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
             id="about"
             aria-labelledby="navbarDropdown"
           >
-            <div className="container py-1">
-              <Link
-                to="/about"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                About Jimmy Chao
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/portfolio"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Sold Portfolio
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/aboutcompany"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                About RTN Realty Advisors
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/jimmys-tips"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Jimmy's Tips
-              </Link>
-            </div>
-            <div className="container py-1">
-              <Link
-                to="/testimonials"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Testimonials
-              </Link>
-            </div>
+            <DropdownHelper formConst={aboutList} />
           </div>
         </li>
 
         <li className="nav-item dropdown">
-          <Link
-            to="/"
-            className="nav-link dropdown-toggle navbar-underline"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Featured Communities
-          </Link>
+          {headerLink("Featured Communities")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
             aria-labelledby="navbarDropdown"
@@ -208,33 +118,25 @@ class NavbarContainer extends Component {
             <TownList
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
-              hideEditButton={hideEditButton}
+              alertType={this.alertType}
             />
-            <div className={hideEditButton}>
-              <div className="dropdown-divider"></div>
-              <Link
-                to="/addcommunity"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Add Community
-              </Link>
-            </div>
+
+            {admin && (
+              <Fragment>
+                <div className="dropdown-divider"></div>
+                <Link
+                  to="/addcommunity"
+                  className="dropdown-item navbar-underline"
+                >
+                  Add Community
+                </Link>
+              </Fragment>
+            )}
           </div>
         </li>
 
         <li className="nav-item dropdown">
-          <Link
-            to="/"
-            className="nav-link dropdown-toggle navbar-underline"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Business Partners
-          </Link>
+          {headerLink("Business Partners")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
             aria-labelledby="navbarDropdown"
@@ -242,31 +144,29 @@ class NavbarContainer extends Component {
             <PartnerList
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
-              hideEditButton={hideEditButton}
+              alertType={this.alertType}
             />
-            <div className={hideEditButton}>
-              <div className="dropdown-divider"></div>
-              <Link
-                to="/add-partner-category"
-                className="dropdown-item navbar-underline"
-                onClick={this.scrollToTop}
-              >
-                Add Partner Category
-              </Link>
-            </div>
+
+            {admin && (
+              <Fragment>
+                <div className="dropdown-divider"></div>
+                <Link
+                  to="/add-partner-category"
+                  className="dropdown-item navbar-underline"
+                >
+                  Add Partner Category
+                </Link>
+              </Fragment>
+            )}
           </div>
         </li>
 
         <li>
-          <Link
-            to="/contact"
-            className="nav-link navbar-underline"
-            onClick={this.scrollToTop}
-          >
+          <Link to="/contact" className="nav-link navbar-underline">
             Contact
           </Link>
         </li>
-      </React.Fragment>
+      </Fragment>
     );
 
     let collapseMenuLogic;
@@ -287,6 +187,7 @@ class NavbarContainer extends Component {
 
     return (
       <Transition>
+        <AlertBox {...this.state} alertType={this.alertType} />
         <StyledNavbar
           className={
             document.body.getBoundingClientRect().top === 0
@@ -308,9 +209,7 @@ class NavbarContainer extends Component {
                   />
                 ) : (
                   <Link to="/login">
-                    <div className="navbar-font" onClick={this.scrollToTop}>
-                      Jimmy Chao
-                    </div>
+                    <div className="navbar-font">Jimmy Chao</div>
                   </Link>
                 )}
                 <button
