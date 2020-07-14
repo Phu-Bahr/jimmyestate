@@ -131,7 +131,10 @@ class CustomCards extends Component {
     let partnerlist = this.state.partnerListData.map(element => {
       return (
         <div className="col-md-6" key={element.id}>
-          <Link to={`/partner/${element.id}`} className="helperL py-1">
+          <Link
+            to={`/partner_categories/${element.id}`}
+            className="helperL py-1"
+          >
             {element.name}
           </Link>
         </div>
