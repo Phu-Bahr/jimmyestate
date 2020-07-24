@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
 import { DeleteButton, EditButton } from "../../Constants/Buttons";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 const PortfolioPropertiesTile = props => {
   let editPayload = {
@@ -17,6 +17,8 @@ const PortfolioPropertiesTile = props => {
     status: props.status
   };
 
+  console.log(props.status);
+
   return (
     <Fragment>
       <div className="col-md-4 col-middle px-3 py-2">
@@ -28,7 +30,9 @@ const PortfolioPropertiesTile = props => {
                   className="portfolioImage card-img-top"
                   src={props.photo}
                 />
-                <div className="portfolioTitle">On Market</div>
+                <div className="portfolioTitle">
+                  {props.status == "Active" ? "On Market" : props.status}
+                </div>
               </div>
             </div>
 
