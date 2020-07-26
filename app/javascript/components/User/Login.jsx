@@ -88,10 +88,7 @@ class Login extends Component {
                     />
                   </div>
 
-                  <SubmitEmailButton
-                    value2="LOG IN"
-                    value1="Let's fix shit.."
-                  />
+                  <SubmitEmailButton value2="LOG IN" value1="Let's fix stuff" />
                 </form>
 
                 <div className="mt-3">
