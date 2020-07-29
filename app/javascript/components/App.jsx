@@ -30,6 +30,7 @@ import TestimonialsContainer from "./About/Testimonials/TestimonialsContainer";
 import NewPartner from "./JimmyPartners/NewPartner";
 import PartnerShowPage from "./JimmyPartners/PartnerShowPage";
 import EditPartner from "./JimmyPartners/EditPartner";
+import ReactGA from "react-ga";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -44,6 +45,8 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.refreshTownList = this.refreshTownList.bind(this);
     this.refreshingTownList = React.createRef();
+    ReactGA.initialize("UA-173933096-2");
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   handleLogin(data) {

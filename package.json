@@ -24,6 +24,7 @@
     "react-bootstrap-sweetalert": "^5.1.15",
     "react-dom": "^16.12.0",
     "react-draft-wysiwyg": "^1.14.5",
+    "react-ga": "^3.1.2",
     "react-google-invisible-recaptcha": "^0.2.11",
     "react-google-maps": "^9.4.5",
     "react-loadingg": "^1.7.2",
