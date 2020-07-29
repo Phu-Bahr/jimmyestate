@@ -8,7 +8,7 @@ const FooterEditSocial = props => {
       <div className="d-flex justify-content-center mt-3">
         <Link
           to={`//` + props.facebook}
-          target="blank"
+          target="_blank"
           className="c-magic-icon"
         >
           <div className="c-magic-icon__fill facebook"></div>
@@ -21,7 +21,11 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={`//` + props.twitter} target="blank" className="c-magic-icon">
+        <Link
+          to={`//` + props.twitter}
+          target="_blank"
+          className="c-magic-icon"
+        >
           <div className="c-magic-icon__fill twitter"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -34,7 +38,7 @@ const FooterEditSocial = props => {
 
         <Link
           to={`//` + props.instagram}
-          target="blank"
+          target="_blank"
           className="c-magic-icon"
         >
           <div className="c-magic-icon__fill instagram"></div>
@@ -47,7 +51,7 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={`//` + props.other} target="blank" className="c-magic-icon">
+        <Link to={`//` + props.other} target="_blank" className="c-magic-icon">
           <div className="c-magic-icon__fill googleplus"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -59,7 +63,7 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={`//` + props.zillow} target="blank" className="c-magic-icon">
+        <Link to={`//` + props.zillow} target="_blank" className="c-magic-icon">
           <div className="c-magic-icon__fill zillow"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -70,7 +74,11 @@ const FooterEditSocial = props => {
           </div>
         </Link>
 
-        <Link to={`//` + props.realtor} target="blank" className="c-magic-icon">
+        <Link
+          to={`//` + props.realtor}
+          target="_blank"
+          className="c-magic-icon"
+        >
           <div className="c-magic-icon__fill realtor"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">

@@ -36,7 +36,7 @@ class Home extends Component {
     }
 
     return (
-      <div className="master">
+      <div>
         <JumbotronContainer hideEditButton={hideEditButton} />
 
         <ScrollAnimation animateIn="fadeIn">

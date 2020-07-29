@@ -47,6 +47,7 @@ class App extends Component {
     this.refreshingTownList = React.createRef();
     ReactGA.initialize("UA-173933096-2");
     ReactGA.pageview(window.location.pathname + window.location.search);
+    //window.location.pathname not updating because of single page.
   }
 
   handleLogin(data) {
@@ -101,6 +102,8 @@ class App extends Component {
   refreshTownList = () => this.refreshingTownList.current.toggleRefreshKey();
 
   render() {
+    console.log(window.location.pathname);
+
     const ProtectedRoute = ({ component: Comp, path }) => {
       return (
         <Route

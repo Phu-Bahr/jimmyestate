@@ -136,7 +136,11 @@ class ContactContainer extends Component {
                   <div className="text-center pb-3">
                     <div>{this.state.name}</div>
                     <div>{this.state.address}</div>
-                    <div>{this.state.phonenumber}</div>
+                    <div>
+                      <a href={`tel: ` + this.state.phonenumber}>
+                        {this.state.phonenumber}
+                      </a>
+                    </div>
                     <div>{this.state.email}</div>
                   </div>
                 </FadeInRight>

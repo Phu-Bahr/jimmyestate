@@ -208,7 +208,7 @@ class NavbarContainer extends Component {
                     handleLogout={this.props.handleLogout}
                   />
                 ) : (
-                  <Link to="/login">
+                  <Link to="/" onClick={this.scrollToTop}>
                     <div className="navbar-font">Jimmy Chao</div>
                   </Link>
                 )}
