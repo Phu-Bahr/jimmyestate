@@ -3,28 +3,30 @@ const scrollToTop = () => scroll.scrollToTop();
 const token = document.querySelector('meta[name="csrf-token"]').content;
 
 export const putFetch = (url, body, alertType) => {
-  return fetch(url, {
-    method: "PUT",
-    headers: {
-      "X-CSRF-Token": token,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
-  })
-    .then(response => {
-      if (response.ok) {
-        alertType === undefined
-          ? alert("Content has been updated")
-          : alertType("successEdit");
-        return response.json();
-      }
-      alertType === undefined
-        ? alert("Something went wrong")
-        : alertType("error");
-      throw new Error("Network response was not ok.");
+  return (
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
     })
-    .then(scrollToTop)
-    .catch(error => console.log("error message =>", error.message));
+      .then(response => {
+        if (response.ok) {
+          alertType === undefined
+            ? alert("Content has been updated")
+            : alertType("successEdit");
+          return response.json();
+        }
+        alertType === undefined
+          ? alert("Something went wrong")
+          : alertType("error");
+        throw new Error("Network response was not ok.");
+      })
+      // .then(scrollToTop)
+      .catch(error => console.log("error message =>", error.message))
+  );
 };
 
 export const postFetchEmail = (url, body, alertType) => {
