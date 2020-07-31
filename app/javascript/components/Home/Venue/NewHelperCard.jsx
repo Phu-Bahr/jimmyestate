@@ -1,23 +1,21 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
+import { EditButton } from "../../Constants/Buttons";
 
-class NewHelperCard extends React.Component {
+class NewHelperCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       image: "",
       titel: "",
-      route: ""
+      route: "",
+      hideDiv: false
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  onEditClick = () => this.setState({ hideDiv: !this.state.hideDiv });
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
     const url = "/api/v1/helper_links";
     const { image, title, route } = this.state;
@@ -48,56 +46,61 @@ class NewHelperCard extends React.Component {
       })
       .then(this.props.toggleRefreshKey())
       .catch(error => console.log(error.message));
-  }
+  };
 
   render() {
     return (
-      <div className="container mb-5">
-        <div className="row">
-          <div className="col-sm-12 col-lg-6 offset-lg-3">
-            <h4 className="col text-center">Add New Card</h4>
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="image">Image URL</label>
-                <input
-                  type="text"
-                  name="image"
-                  id="image"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="route">Route</label>
-                <input
-                  type="text"
-                  name="route"
-                  id="route"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
+      <Fragment>
+        <EditButton value="Add New Card" onClick={this.onEditClick} />
+        {this.state.hideDiv && (
+          <div className="container mb-5">
+            <div className="row">
+              <div className="col-sm-12 col-lg-6 offset-lg-3">
+                <h4 className="col text-center">Add New Card</h4>
+                <form onSubmit={this.onSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="image">Image URL</label>
+                    <input
+                      type="text"
+                      name="image"
+                      id="image"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="title">Title</label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="route">Route</label>
+                    <input
+                      type="text"
+                      name="route"
+                      id="route"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                    />
+                  </div>
 
-              <button type="submit" className="btn custom-button mt-3">
-                Create Card
-              </button>
-            </form>
+                  <button type="submit" className="btn custom-button mt-3">
+                    Create Card
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </Fragment>
     );
   }
 }

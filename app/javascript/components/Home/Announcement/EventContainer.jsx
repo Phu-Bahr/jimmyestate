@@ -1,10 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Map from "./MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
 import { FadeIn } from "../../Constants/Constants";
-import { getGeocode } from "../../Constants/FetchComponent";
+import {
+  getGeocode,
+  deleteNoScrollFetch,
+  putNoScrollFetch,
+  getNoScrollFetch
+} from "../../Constants/FetchComponent";
 import AlertBox from "../../Constants/AlertComponent";
+import { EditButton } from "../../Constants/Buttons";
+
+const urlPath = "events";
 
 class EventContainer extends Component {
   constructor(props) {
@@ -21,28 +29,23 @@ class EventContainer extends Component {
       selectedStepId: null,
       eventData: [],
       refreshKey: false,
-      typeOfAlert: null
+      typeOfAlert: null,
+      idForAlert: null,
+      id: null
     };
-
-    this.clickEventEdit = this.clickEventEdit.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
-    this.updateEvent = this.updateEvent.bind(this);
-    this.setSelectedStep = this.setSelectedStep.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
+  clickEventEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
 
-  setSelectedStep(stepId) {
-    if (this.state.selectedStepId === stepId) {
-      this.setState({ selectedStepId: null });
-    } else {
-      this.setState({ selectedStepId: stepId });
-    }
-  }
+  setSelectedStep = stepId => {
+    this.state.selectedStepId === stepId
+      ? this.setState({ selectedStepId: null })
+      : this.setState({ selectedStepId: stepId });
+  };
 
-  editCurrentEventState(a, b, c, d, e, f, g, h) {
+  editCurrentEventState = (a, b, c, d, e, f, g, h) => {
     if (this.state.selectedStepId === f) {
       this.setState({
         title: a,
@@ -65,41 +68,14 @@ class EventContainer extends Component {
         lng: h
       });
     }
-  }
+  };
 
-  clickEventEdit() {
-    if (this.state.hideDiv === false) {
-      this.setState({ hideDiv: true });
-    } else {
-      this.setState({ hideDiv: false });
-    }
-  }
+  deleteEvent = id => {
+    const url = `/api/v1/${urlPath}/${id}`;
+    deleteNoScrollFetch(url, this.alertType).then(this.toggleRefreshKey);
+  };
 
-  deleteEvent(id) {
-    const url = `/api/v1/events/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
-
-  updateEvent(id) {
+  updateEvent = id => {
     event.preventDefault();
     const url = `/api/v1/events/${id}`;
     const { title, location, date, time, flier, lat, lng } = this.state;
@@ -114,28 +90,8 @@ class EventContainer extends Component {
       lng
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Event has been updated.");
-          return response;
-        } else {
-          let errorMessage = `${resopnse.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
+    putNoScrollFetch(url, body, this.alertType)
       .then(this.props.toggleRefreshKey)
-
       .then(
         this.setState({
           title: "",
@@ -147,117 +103,65 @@ class EventContainer extends Component {
           lng: ""
         })
       )
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
-
-  componentDidMount = () => {
-    fetch("/api/v1/events")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        let newEventData = body;
-        this.setState({
-          eventData: newEventData,
-          flier: newEventData[0].flier,
-          lat: newEventData[0].lat,
-          lng: newEventData[0].lng
-        });
-      })
-      .catch(() => this.props.history.push("/"));
+      .then(this.toggleRefreshKey);
   };
+
+  mountState = body => {
+    this.setState({
+      eventData: body,
+      flier: body[body.length - 1].flier,
+      lat: body[body.length - 1].lat,
+      lng: body[body.length - 1].lng,
+      id: body[body.length - 1].id
+    });
+  };
+
+  componentDidMount = () => getNoScrollFetch(urlPath, this.mountState);
 
   componentDidUpdate = () => {
-    if (this.state.refreshKey === true) {
-      fetch("/api/v1/events")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          let newEventData = body;
-          this.setState({
-            eventData: newEventData,
-            flier: newEventData[0].flier,
-            lat: newEventData[0].lat,
-            lng: newEventData[0].lng
-          });
-        })
-        .then(this.setState({ refreshKey: false }))
-        .catch(() => this.props.history.push("/"));
-    }
+    this.state.refreshKey === true &&
+      getNoScrollFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   };
 
-  mountLatLng = body => {
+  mountLatLng = body =>
     this.setState({
       lat: body.data[0].lat,
       lng: body.data[0].lng
     });
-  };
 
-  onUpdateGeocode() {
+  onUpdateGeocode = () => {
     let location = `${this.state.location}`;
     getGeocode(location, this.mountLatLng, this.alertType);
-  }
+  };
 
   render() {
     let hide;
     let editMode1;
     let editMode2;
-    if (this.state.hideDiv === true) {
-      hide = "invisible";
-      editMode1 = "col-md-4 py-2";
-      editMode2 = "col-md-8 pb-3";
-    } else {
-      hide = "";
-      editMode1 = "col-md-5 pb-1";
-      editMode2 = "col-md-7 pb-3";
-    }
 
-    let photo;
-    photo = (
-      <React.Fragment key={this.state.selectedStepId}>
-        <FadeIn>
-          <div>
-            <img className="img-fluid" src={this.state.flier} />
-          </div>
-        </FadeIn>
-      </React.Fragment>
-    );
-    // }
+    this.state.hideDiv === true
+      ? ((hide = "invisible"),
+        (editMode1 = "col-md-4 py-2"),
+        (editMode2 = "col-md-8 pb-3"))
+      : ((hide = ""),
+        (editMode1 = "col-md-5 pb-1"),
+        (editMode2 = "col-md-7 pb-3"));
 
     let events = this.state.eventData.map(element => {
       let hideUpdate;
-      if (element.id === this.state.selectedStepId) {
-        hideUpdate = "";
-      } else {
-        hideUpdate = "invisible";
-      }
+      element.id === this.state.selectedStepId
+        ? (hideUpdate = "")
+        : (hideUpdate = "invisible");
 
       let handleDelete = () => {
-        let result = confirm("Are you sure?");
-        if (result) {
-          this.deleteEvent(element.id);
-        }
+        this.setState({ idForAlert: element.id });
+        this.alertType("delete");
       };
 
       let submitUpdate = () => this.updateEvent(element.id);
       let onChange = e => this.setState({ [e.target.name]: e.target.value });
-      let clickHideUpdate = () => this.setSelectedStep(element.id);
       let handleUpdateGeocode = () => this.onUpdateGeocode();
       let getCurrentEventState = () => {
         this.editCurrentEventState(
@@ -281,38 +185,31 @@ class EventContainer extends Component {
       let latState;
       let lngState;
 
-      if (this.state.selectedStepId === element.id) {
-        (titleState = this.state.title),
+      this.state.selectedStepId === element.id
+        ? ((titleState = this.state.title),
           (locationState = this.state.location),
           (dateState = this.state.date),
           (timeState = this.state.time),
-          (flierState = this.state.flier);
-        latState = this.state.lat;
-        lngState = this.state.lng;
-      } else {
-        (titleState = ""),
+          (flierState = this.state.flier),
+          (latState = this.state.lat),
+          (lngState = this.state.lng))
+        : ((titleState = ""),
           (locationState = ""),
           (dateState = ""),
           (timeState = ""),
-          (flierState = "");
-        latState = "";
-        lngState = "";
-      }
+          (flierState = ""),
+          (latState = ""),
+          (lngState = ""));
 
       return (
         <EventTile
           key={element.id}
-          id={element.id}
           title={element.title}
           location={element.location}
           date={element.date}
           time={element.time}
-          flier={element.flier}
-          lat={element.lat}
-          lng={element.lng}
           hide={hide}
           hideUpdate={hideUpdate}
-          clickHideUpdate={clickHideUpdate}
           handleDelete={handleDelete}
           submitUpdate={submitUpdate}
           onChange={onChange}
@@ -325,32 +222,36 @@ class EventContainer extends Component {
           lngState={lngState}
           payload={getCurrentEventState}
           handleUpdateGeocode={handleUpdateGeocode}
+          user={this.props.user}
         />
       );
     });
 
     return (
-      <React.Fragment>
-        {/* <AlertBox {...this.state} alertType={this.alertType} /> */}
+      <Fragment>
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          deleteEvent={this.deleteEvent}
+        />
 
         <div className="text-center">
           <h1>Events coming up</h1>
+          {this.props.user.admin && (
+            <Fragment>
+              <div className="text-center">
+                <EditButton onClick={this.clickEventEdit} value="Edit Events" />
+              </div>
 
-          <div className={this.props.hideEditButton}>
-            <div className="text-center">
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={this.clickEventEdit}
-              >
-                Edit Events
-              </button>
-            </div>
-
-            <div className={"pt-4" + " " + hide}>
-              <NewEvent toggleRefreshKey={this.toggleRefreshKey} />
-            </div>
-          </div>
+              <div className={"pt-4" + " " + hide}>
+                <NewEvent
+                  toggleRefreshKey={this.toggleRefreshKey}
+                  alertType={this.alertType}
+                  urlPath={urlPath}
+                />
+              </div>
+            </Fragment>
+          )}
         </div>
 
         <div className="row p-4">
@@ -358,7 +259,9 @@ class EventContainer extends Component {
           <div className={editMode2}>
             <div className="row">
               <div className="col-sm-6 py-2">
-                <div>{photo}</div>
+                <FadeIn>
+                  <img className="img-fluid" src={this.state.flier} />
+                </FadeIn>
               </div>
               <div className="col-sm-6 py-2">
                 <Map
@@ -369,7 +272,7 @@ class EventContainer extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

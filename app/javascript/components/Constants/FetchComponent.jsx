@@ -1,32 +1,31 @@
 import { animateScroll as scroll } from "react-scroll";
 const scrollToTop = () => scroll.scrollToTop();
+// const scrollToBottom = () => scroll.scrollToBottom();
 const token = document.querySelector('meta[name="csrf-token"]').content;
 
 export const putFetch = (url, body, alertType) => {
-  return (
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alertType === undefined
-            ? alert("Content has been updated")
-            : alertType("successEdit");
-          return response.json();
-        }
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      if (response.ok) {
         alertType === undefined
-          ? alert("Something went wrong")
-          : alertType("error");
-        throw new Error("Network response was not ok.");
-      })
-      // .then(scrollToTop)
-      .catch(error => console.log("error message =>", error.message))
-  );
+          ? alert("Content has been updated")
+          : alertType("successEdit");
+        return response.json();
+      }
+      alertType === undefined
+        ? alert("Something went wrong")
+        : alertType("error");
+      throw new Error("Network response was not ok.");
+    })
+    .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
 };
 
 export const postFetchEmail = (url, body, alertType) => {
@@ -204,5 +203,99 @@ export const loginFetch = (url, body, alertType, handleLogin) => {
       body.logged_in && handleLogin(body);
     })
     .then(scrollToTop)
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const getNoScrollFetch = (url, mountState) => {
+  return fetch(`/api/v1/${url}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then(response => response.json())
+    .then(body => mountState(body))
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const deleteNoScrollFetch = (url, alertType) => {
+  return fetch(url, {
+    method: "DELETE",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    }
+  })
+    .then(response => {
+      if (response.ok) {
+        alertType === undefined
+          ? alert("Item Deleted Successfully")
+          : alertType("successDelete");
+        return response;
+      } else {
+        alertType === undefined
+          ? alert("Something went wrong")
+          : alertType("error");
+
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const putNoScrollFetch = (url, body, alertType) => {
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      if (response.ok) {
+        alertType === undefined
+          ? alert("Content has been updated")
+          : alertType("successEdit");
+        return response.json();
+      }
+      alertType === undefined
+        ? alert("Something went wrong")
+        : alertType("error");
+      throw new Error("Network response was not ok.");
+    })
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const postNoScrollFetch = (url, body, alertType, mountState) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => {
+      if (response.ok) {
+        alertType === undefined
+          ? alert("Submission Successful")
+          : alertType("successAdd");
+        return response.json();
+      }
+      alertType === undefined
+        ? alert("There was a network issue, please try again or contact admin.")
+        : alertType("error");
+      throw new Error("Network response was not ok.");
+    })
+    .then(body => {
+      mountState !== undefined && mountState(body);
+    })
     .catch(error => console.log("error message =>", error.message));
 };

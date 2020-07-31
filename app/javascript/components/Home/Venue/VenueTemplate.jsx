@@ -106,8 +106,7 @@ class VenueTemplate extends Component {
             image: body[body.length - 1].image
           });
         })
-        .then(this.setState({ refreshKey: false }))
-        .then(this.scrollToTop);
+        .then(this.setState({ refreshKey: false }));
     }
   };
 
@@ -145,7 +144,7 @@ class VenueTemplate extends Component {
           <div className="container text-center pt-5">
             <img className="img-fluid rounded" src={this.state.image}></img>
           </div>
-          <div>
+          <div style={this.props.user.admin && { paddingBottom: "100px" }}>
             <DraftJSContainer
               {...this.state}
               {...this.props}
