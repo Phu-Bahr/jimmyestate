@@ -48,13 +48,14 @@ class NewEvent extends Component {
   };
 
   onSubmit = () => {
+    event.preventDefault();
     let location = `${this.state.location}`;
 
     if (Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)) {
       alert("Please choose a current or future date!");
     } else {
       getGeocode(location, this.mountLatLng, this.props.alertType).then(
-        setTimeout(this.submit, 700)
+        setTimeout(this.submit, 1000)
       );
     }
   };
@@ -134,7 +135,7 @@ class NewEvent extends Component {
               value={this.state.flier}
               placeholder="Image URL"
             />
-            <AddButton onClick={this.onSubmit} value="Create Event" />
+            <AddButton type="submit" value="Create Event" />
           </form>
         </div>
       </React.Fragment>
