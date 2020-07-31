@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import EmailForm from "./EmailForm";
 import Map from "./Map";
 import {
@@ -107,7 +107,7 @@ class ContactContainer extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="flex-container">
@@ -156,7 +156,7 @@ class ContactContainer extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

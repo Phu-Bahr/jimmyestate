@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { FadeIn } from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import CustomEditLinks from "./CustomEditLinks";
@@ -144,14 +144,15 @@ class CustomCards extends Component {
     let communityCard = this.state.customCardListData.map(element => {
       if (element.id === 1) {
         return (
-          <div key={element.id} className="col-md-6 col-middle py-2">
+          <div
+            key={element.id}
+            className="col-md-6 col-middle py-2"
+            style={{ zIndex: 0 }}
+          >
             <div className="card border-0" onClick={this.onClick}>
               <div className="parent m-0">
                 <div className="child particles">
-                  <img
-                    className="venueImage card-img-top"
-                    src={element.image}
-                  />
+                  <img className="venueImage " src={element.image} />
                   <div className="venueTitle">{element.title}</div>
                 </div>
               </div>
@@ -179,14 +180,15 @@ class CustomCards extends Component {
     let partnerCard = this.state.customCardListData.map(element => {
       if (element.id === 2) {
         return (
-          <div key={element.id} className="col-md-6 col-middle py-2">
+          <div
+            key={element.id}
+            className="col-md-6 col-middle py-2"
+            style={{ zIndex: 0 }}
+          >
             <div className="card border-0" onClick={this.onClick1}>
               <div className="parent m-0">
                 <div className="child particles">
-                  <img
-                    className="venueImage card-img-top"
-                    src={element.image}
-                  />
+                  <img className="venueImage " src={element.image} />
                   <div className="venueTitle">{element.title}</div>
                 </div>
               </div>
@@ -212,10 +214,10 @@ class CustomCards extends Component {
     });
 
     return (
-      <React.Fragment>
+      <Fragment>
         {communityCard}
         {partnerCard}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
