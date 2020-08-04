@@ -45,7 +45,21 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.refreshTownList = this.refreshTownList.bind(this);
     this.refreshingTownList = React.createRef();
-    ReactGA.initialize("UA-173933096-2");
+    ReactGA.initialize(
+      [
+        {
+          trackingId: "UA-173933096-2",
+          gaOptions: {
+            name: "tony tracker"
+          }
+        },
+        {
+          trackingId: "UA-174405415-1",
+          gaOptions: { name: "Jimmy tracker" }
+        }
+      ],
+      { debug: true, alwaysSendToDefaultTracker: false }
+    );
     ReactGA.pageview(window.location.pathname + window.location.search);
     //window.location.pathname not updating because of single page.
   }
