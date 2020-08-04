@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import createHistory from "history/createBrowserHistory";
+import ReactGA from "react-ga";
 import Home from "../components/Home/Home";
 import Registration from "./User/Registration";
 import Login from "./User/Login";
@@ -30,9 +27,14 @@ import TestimonialsContainer from "./About/Testimonials/TestimonialsContainer";
 import NewPartner from "./JimmyPartners/NewPartner";
 import PartnerShowPage from "./JimmyPartners/PartnerShowPage";
 import EditPartner from "./JimmyPartners/EditPartner";
-import ReactGA from "react-ga";
 
 library.add(fab, faTrashAlt, faEdit);
+
+const history = createHistory();
+history.listen(location => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
 
 class App extends Component {
   constructor() {
@@ -45,25 +47,9 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.refreshTownList = this.refreshTownList.bind(this);
     this.refreshingTownList = React.createRef();
-    ReactGA.initialize(
-      [
-        {
-          trackingId: "UA-173933096-2",
-          gaOptions: {
-            name: "Tony tracker",
-            userId: 123
-          }
-        },
-        {
-          trackingId: "UA-174405415-1",
-          gaOptions: { name: "Jimmy tracker" }
-        }
-      ],
-      { debug: true, alwaysSendToDefaultTracker: false }
-    );
-    ReactGA.pageview(window.location.pathname + window.location.search);
-    //window.location.pathname not updating because of single page.
   }
+
+  // trackingId: "UA-174405415-1"
 
   handleLogin(data) {
     this.setState({
@@ -112,7 +98,10 @@ class App extends Component {
       });
   }
 
-  componentDidMount = () => this.checkLoginStatus();
+  componentDidMount = () => {
+    this.checkLoginStatus();
+    ReactGA.pageview(window.location.pathname);
+  };
 
   refreshTownList = () => this.refreshingTownList.current.toggleRefreshKey();
 
@@ -150,7 +139,7 @@ class App extends Component {
     };
 
     return (
-      <Router>
+      <Router history={history}>
         <NavbarContainer
           loggedInStatus={this.state.loggedInStatus}
           user={this.state.user}
