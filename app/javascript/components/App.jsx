@@ -50,7 +50,8 @@ class App extends Component {
         {
           trackingId: "UA-173933096-2",
           gaOptions: {
-            name: "tony tracker"
+            name: "Tony tracker",
+            userId: 123
           }
         },
         {
