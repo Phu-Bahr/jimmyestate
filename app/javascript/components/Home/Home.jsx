@@ -3,6 +3,7 @@ import VenueContainer from "../Home/Venue/VenueContainer";
 import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
 import ScrollAnimation from "react-animate-on-scroll";
+import EventContainer from "../Home/Events/EventContainer";
 
 class Home extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Home extends Component {
             {...this.props}
           />
         </ScrollAnimation>
+        <EventContainer user={this.props.user} />
 
         <VenueContainer hideEditButton={hideEditButton} {...this.props} />
       </div>

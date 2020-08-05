@@ -22,9 +22,13 @@ const EventTile = props => {
           </div>
         </div>
         {props.user.admin && (
-          <div className={"pb-3" + " " + props.hide}>
-            <EditButton onClick={props.payload} />
-            <DeleteButton onClick={props.handleDelete} />
+          <div className="pb-3">
+            {props.hide ? null : (
+              <Fragment>
+                <EditButton onClick={props.payload} />
+                <DeleteButton onClick={props.handleDelete} />
+              </Fragment>
+            )}
             <div className={"py-4" + " " + props.hideUpdate}>
               <form onSubmit={props.submitUpdate}>
                 <div className="row">
