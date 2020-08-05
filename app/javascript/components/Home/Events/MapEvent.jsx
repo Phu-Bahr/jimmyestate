@@ -9,7 +9,7 @@ import {
 
 const Map = props => {
   const WrappedMap = withScriptjs(
-    withGoogleMap(element => {
+    withGoogleMap(() => {
       return (
         <GoogleMap
           defaultZoom={14}

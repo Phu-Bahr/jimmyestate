@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import createHistory from "history/createBrowserHistory";
+import { createBrowserHistory } from "history";
 import ReactGA from "react-ga";
 import Home from "../components/Home/Home";
 import Registration from "./User/Registration";
@@ -30,7 +30,7 @@ import EditPartner from "./JimmyPartners/EditPartner";
 
 library.add(fab, faTrashAlt, faEdit);
 
-const history = createHistory();
+const history = createBrowserHistory();
 history.listen(location => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
