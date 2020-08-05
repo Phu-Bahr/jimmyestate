@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import EventContainer from "./EventContainer";
 import { ParallaxBanner } from "../../Constants/Constants";
 import { getNoScrollFetch, putFetch } from "../../Constants/FetchComponent";
 import { UpdateButton, EditButton } from "../../Constants/Buttons";
@@ -61,10 +60,7 @@ class AnnouncementContainer extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
         <ParallaxBanner {...this.state} />
 
-        <div
-          className="container-fluid pt-5"
-          style={this.props.user.admin && { paddingBottom: "600px" }}
-        >
+        <div className="container-fluid pt-5">
           <div className="text-center">
             <h1>{this.state.title}</h1>
 
@@ -127,8 +123,6 @@ class AnnouncementContainer extends Component {
               </Fragment>
             )}
           </div>
-
-          <EventContainer user={this.props.user} />
         </div>
       </Fragment>
     );

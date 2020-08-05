@@ -137,18 +137,6 @@ class EventContainer extends Component {
   };
 
   render() {
-    let hide;
-    let editMode1;
-    let editMode2;
-
-    this.state.hideDiv === true
-      ? ((hide = "invisible"),
-        (editMode1 = "col-md-4 py-2"),
-        (editMode2 = "col-md-8 pb-3"))
-      : ((hide = ""),
-        (editMode1 = "col-md-5 pb-1"),
-        (editMode2 = "col-md-7 pb-3"));
-
     let events = this.state.eventData.map(element => {
       let hideUpdate;
       element.id === this.state.selectedStepId
@@ -208,8 +196,8 @@ class EventContainer extends Component {
           location={element.location}
           date={element.date}
           time={element.time}
-          hide={hide}
           hideUpdate={hideUpdate}
+          hide={this.state.hideDiv}
           handleDelete={handleDelete}
           submitUpdate={submitUpdate}
           onChange={onChange}
@@ -243,31 +231,35 @@ class EventContainer extends Component {
                 <EditButton onClick={this.clickEventEdit} value="Edit Events" />
               </div>
 
-              <div className={"pt-4" + " " + hide}>
-                <NewEvent
-                  toggleRefreshKey={this.toggleRefreshKey}
-                  alertType={this.alertType}
-                  urlPath={urlPath}
-                />
-              </div>
+              {this.state.hideDiv ? null : (
+                <div className="pt-4">
+                  <NewEvent
+                    toggleRefreshKey={this.toggleRefreshKey}
+                    alertType={this.alertType}
+                    urlPath={urlPath}
+                  />
+                </div>
+              )}
             </Fragment>
           )}
         </div>
 
-        <div className="row p-4">
-          <div className={editMode1}>{events}</div>
-          <div className={editMode2}>
-            <div className="row">
-              <div className="col-sm-6 py-2">
-                <FadeIn>
-                  <img className="img-fluid" src={this.state.flier} />
-                </FadeIn>
-              </div>
-              <div className="col-sm-6 py-2">
-                <Map
-                  lat={parseFloat(this.state.lat)}
-                  lng={parseFloat(this.state.lng)}
-                />
+        <div className="p-5">
+          <div className="row">
+            <div className="col-sm-4">{events}</div>
+            <div className="col-sm-8">
+              <div className="row">
+                <div className="col-sm-6 py-2">
+                  <FadeIn>
+                    <img className="img-fluid" src={this.state.flier} />
+                  </FadeIn>
+                </div>
+                <div className="col-sm-6 py-2">
+                  <Map
+                    lat={parseFloat(this.state.lat)}
+                    lng={parseFloat(this.state.lng)}
+                  />
+                </div>
               </div>
             </div>
           </div>
