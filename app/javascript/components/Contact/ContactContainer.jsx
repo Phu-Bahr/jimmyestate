@@ -137,11 +137,23 @@ class ContactContainer extends Component {
                     <div>{this.state.name}</div>
                     <div>{this.state.address}</div>
                     <div>
-                      <a href={`tel: ` + this.state.phonenumber}>
+                      <a
+                        href={`tel: ` + this.state.phonenumber}
+                        style={{ color: "black" }}
+                      >
+                        <div className="fa fa-phone pr-2" />
                         {this.state.phonenumber}
                       </a>
                     </div>
-                    <div>{this.state.email}</div>
+                    <div>
+                      <a
+                        href={`mailto:` + this.state.email}
+                        style={{ color: "black" }}
+                      >
+                        <div className="fa fa-envelope pr-2" />
+                        {this.state.email}
+                      </a>
+                    </div>
                   </div>
                 </FadeInRight>
                 <div>
