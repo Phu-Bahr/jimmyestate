@@ -215,6 +215,8 @@ class EventContainer extends Component {
       );
     });
 
+    console.log("event container", this.state.lat, this.state.lng);
+
     return (
       <Fragment>
         <AlertBox
@@ -246,15 +248,15 @@ class EventContainer extends Component {
 
         <div className="p-5">
           <div className="row">
-            <div className="col-sm-4">{events}</div>
-            <div className="col-sm-8">
+            <div className="col-lg-4">{events}</div>
+            <div className="col-lg-8">
               <div className="row">
-                <div className="col-sm-6 py-2">
+                <div className="col-lg-6 py-2">
                   <FadeIn>
                     <img className="img-fluid" src={this.state.flier} />
                   </FadeIn>
                 </div>
-                <div className="col-sm-6 py-2">
+                <div className="col-lg-6 py-2">
                   <Map
                     lat={parseFloat(this.state.lat)}
                     lng={parseFloat(this.state.lng)}

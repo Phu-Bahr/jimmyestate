@@ -17,13 +17,15 @@ Google Maps JavaScript API\
 Google recaptcha\
 Httparty\
 Gmail\
-Rail’s ActionMailer
+Rail’s ActionMailer\
+@react-google-maps/api
 
 **Admin access (no devise):**\
 Bcrypt\
 Rack-cors\
 
 **The fun stuff:**\
+Google Analytics\
 Bootstrap 4\
 Fontawesome\
 React-Animations\
@@ -32,12 +34,10 @@ Animate.css\
 Draft-js (for a more dynamic form template to produce blogging content)\
 React-draft-wysiwyg (instead of creating my own tool bar, used this for draft-js)\
 React-particles-js (clickable floaty things on main home page)\
-Styled-Components (wanted to learn)\
+Styled-Components\
 React-bootstrap-sweetalert\
-Moment\
-Pry
+Moment
 
 **Future Features:**\
 Zillow / Real Estate API\
-Google Analytics\
 README for installation

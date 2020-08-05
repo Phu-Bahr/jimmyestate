@@ -1,41 +1,41 @@
-import React, { Component } from "react";
-import {
-  GoogleMap,
-  withScriptjs,
-  withGoogleMap,
-  Marker,
-  InfoWindow
-} from "react-google-maps";
+import React from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
+const containerStyle = {
+  height: "100%",
+  width: "100%",
+  display: "flex",
+  flexFlow: "row nowrap",
+  justifyContent: "center",
+  padding: "0"
+};
+
+const containerStyleMobile = {
+  height: "300px",
+  width: "100%",
+  display: "flex",
+  flexFlow: "row nowrap",
+  justifyContent: "center",
+  padding: "0"
+};
 
 const Map = props => {
-  const WrappedMap = withScriptjs(
-    withGoogleMap(() => {
-      return (
-        <GoogleMap
-          defaultZoom={14}
-          defaultCenter={{ lat: props.lat, lng: props.lng }}
-        >
-          <Marker position={{ lat: props.lat, lng: props.lng }} />
-        </GoogleMap>
-      );
-    })
-  );
-
+  const center = {
+    lat: props.lat,
+    lng: props.lng
+  };
   return (
-    <React.Fragment>
-      <div className="event-map">
-        <div style={{ width: "100%" }}>
-          <WrappedMap
-            googleMapURL={
-              "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c"
-            }
-            loadingElement={<div style={{ height: "100%" }} />}
-            mapElement={<div style={{ height: "100%" }} />}
-            containerElement={<div style={{ height: "100%" }} />}
-          ></WrappedMap>
-        </div>
-      </div>
-    </React.Fragment>
+    <LoadScript googleMapsApiKey="AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c">
+      <GoogleMap
+        mapContainerStyle={
+          window.innerWidth < 1100 ? containerStyleMobile : containerStyle
+        }
+        center={center}
+        zoom={16}
+      >
+        <Marker position={center} />
+      </GoogleMap>
+    </LoadScript>
   );
 };
 
