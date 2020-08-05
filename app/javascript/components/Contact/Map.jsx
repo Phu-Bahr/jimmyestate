@@ -1,72 +1,52 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   GoogleMap,
-  withScriptjs,
-  withGoogleMap,
+  LoadScript,
   Marker,
   InfoWindow
-} from "react-google-maps";
+} from "@react-google-maps/api";
+
+const containerStyle = {
+  height: "350px",
+  width: "100%",
+  display: "flex",
+  flexFlow: "row nowrap",
+  justifyContent: "center",
+  padding: "0"
+};
 
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = { window: false };
+    this.state = {
+      window: false
+    };
   }
-
-  onClick = () => this.setState({ window: true });
+  onClick = () => this.setState({ window: !this.state.window });
 
   render() {
-    const WrappedMap = withScriptjs(
-      withGoogleMap(() => {
-        return (
-          <GoogleMap
-            defaultZoom={15}
-            defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
-          >
-            <Marker
-              position={{ lat: this.props.lat, lng: this.props.lng }}
-              onClick={this.onClick}
-            />
-            {this.state.window && (
-              <InfoWindow
-                position={{ lat: this.props.lat, lng: this.props.lng }}
-              >
-                <React.Fragment>
-                  <div>RTN Headquarters</div>
-                  <div>365 Bolyston St.</div>
-                  <div>Brookline, MA 02445</div>
-                </React.Fragment>
-              </InfoWindow>
-            )}
-          </GoogleMap>
-        );
-      })
-    );
+    console.log(this.state.window);
+
+    const center = {
+      lat: this.props.lat,
+      lng: this.props.lng
+    };
 
     return (
-      <React.Fragment>
-        <div
-          style={{
-            height: 350,
-            width: "100%",
-            display: "flex",
-            flexFlow: "row nowrap",
-            justifyContent: "center",
-            padding: 0
-          }}
-        >
-          <div style={{ width: "100%" }}>
-            <WrappedMap
-              googleMapURL={
-                "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c"
-              }
-              loadingElement={<div style={{ height: "100%" }} />}
-              mapElement={<div style={{ height: "100%" }} />}
-              containerElement={<div style={{ height: "100%" }} />}
-            ></WrappedMap>
-          </div>
-        </div>
-      </React.Fragment>
+      <LoadScript googleMapsApiKey="AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c">
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
+          <Marker position={center} onClick={this.onClick} />
+          {this.state.window && (
+            <InfoWindow position={center} onCloseClick={this.onClick}>
+              <Fragment>
+                <div>RTN Headquarters</div>
+                <div>365 Bolyston St.</div>
+                <div>Brookline, MA 02445</div>
+              </Fragment>
+            </InfoWindow>
+          )}
+        </GoogleMap>
+      </LoadScript>
     );
   }
 }
