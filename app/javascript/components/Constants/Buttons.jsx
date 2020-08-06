@@ -15,7 +15,7 @@ import React from "react";
 export const AddButton = ({ type, className, onClick, value }) => {
   return (
     <button
-      type={type == "" ? button : type}
+      type={type == "" ? submit : type}
       className={
         className == null
           ? "btn btn-outline-success"
@@ -48,7 +48,7 @@ export const EditButton = ({ type, className, onClick, value }) => {
 export const UpdateButton = ({ type, className, onClick, value }) => {
   return (
     <button
-      type={type == "" ? button : type}
+      type={type == "" ? submit : type}
       className={
         className == null
           ? "btn btn-outline-warning"
@@ -64,7 +64,7 @@ export const UpdateButton = ({ type, className, onClick, value }) => {
 export const DeleteButton = ({ type, className, onClick, value }) => {
   return (
     <button
-      type={type == "" ? button : type}
+      type={type == "" ? submit : type}
       className={
         className == null
           ? "btn btn-outline-danger"

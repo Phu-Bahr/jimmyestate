@@ -116,7 +116,6 @@ class EditTown extends Component {
 
                 <UpdateButton
                   className="mt-3"
-                  type="submit"
                   value="Submit Town Header changes"
                 />
 

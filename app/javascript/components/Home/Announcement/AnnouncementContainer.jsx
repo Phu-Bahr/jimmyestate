@@ -114,7 +114,7 @@ class AnnouncementContainer extends Component {
                             />
                           </div>
 
-                          <UpdateButton type="submit" />
+                          <UpdateButton />
                         </form>
                       </div>
                     </div>

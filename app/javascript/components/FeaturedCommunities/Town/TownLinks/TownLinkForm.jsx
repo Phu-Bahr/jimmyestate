@@ -31,13 +31,13 @@ const TownLinkForm = props => {
             value={props.townlinkdescription}
           />
         </div>
-        <AddButton type="submit" value="Create Town Link" />
+        <AddButton value="Create Town Link" />
       </form>
       {props.townlinkdescription != "" &&
         props.townlink != "" &&
         props.townlinkID != "" && (
           <UpdateButton
-            type="submit"
+            type="button"
             onClick={props.onSubmitEdit}
             value="Submit Town Link Changes"
           />

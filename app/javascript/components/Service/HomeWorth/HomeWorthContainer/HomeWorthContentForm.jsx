@@ -22,7 +22,7 @@ const HomeWorthContentForm = ({ hideDiv, onSubmitEdit, onChange, value }) => {
               value={value}
             />
             <div className="pb-3">
-              <UpdateButton type="submit" />
+              <UpdateButton />
             </div>
           </form>
         </div>

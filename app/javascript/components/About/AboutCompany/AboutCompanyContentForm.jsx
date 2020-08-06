@@ -21,7 +21,7 @@ const AboutCompanyContentForm = ({ onChange, onSubmit, value }) => {
               value={value}
             />
 
-            <UpdateButton type="submit" className="mt-2" />
+            <UpdateButton className="mt-2" />
           </form>
         </div>
       </div>

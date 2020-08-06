@@ -20,7 +20,7 @@ const MarketReportsContentForm = ({ onChange, onSubmitEdit, value }) => {
           value={value}
         />
         <div className="pb-3">
-          <UpdateButton type="submit" />
+          <UpdateButton />
         </div>
       </form>
     </div>

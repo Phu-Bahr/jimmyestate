@@ -76,11 +76,7 @@ class NewPartner extends Component {
                     value={this.state}
                   />
 
-                  <AddButton
-                    type="submit"
-                    className="mt-3"
-                    value="Create Partner Category"
-                  />
+                  <AddButton className="mt-3" value="Create Partner Category" />
 
                   <Link to="/" className="btn btn-link mt-3 ">
                     Back to Home Page

@@ -41,11 +41,7 @@ const FooterEditForm = props => {
                   value={props.value}
                 />
 
-                <UpdateButton
-                  type="submit"
-                  className="mt-n3"
-                  value="Update Office"
-                />
+                <UpdateButton className="mt-n3" value="Update Office" />
               </form>
             </div>
 
@@ -57,11 +53,7 @@ const FooterEditForm = props => {
                   value={props.value}
                 />
 
-                <UpdateButton
-                  type="submit"
-                  className="mt-n3"
-                  value="Update Contact Info"
-                />
+                <UpdateButton className="mt-n3" value="Update Contact Info" />
               </form>
             </div>
 
@@ -73,11 +65,7 @@ const FooterEditForm = props => {
                   value={props.value}
                 />
 
-                <UpdateButton
-                  type="submit"
-                  className="mt-n3"
-                  value="Update Social"
-                />
+                <UpdateButton className="mt-n3" value="Update Social" />
               </form>
             </div>
           </div>

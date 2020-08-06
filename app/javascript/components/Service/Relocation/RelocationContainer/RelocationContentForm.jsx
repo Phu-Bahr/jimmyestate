@@ -29,7 +29,7 @@ const RelocationContentForm = ({
             />
 
             <div className="pb-3">
-              <UpdateButton type="submit" />
+              <UpdateButton />
             </div>
           </form>
         </div>

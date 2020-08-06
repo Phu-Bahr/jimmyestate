@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { ParallaxBanner, FormMaps } from "../../Constants/Constants";
-import DraftJSContainer from "../../Constants/DraftJSComponent";
 import ScrollAnimation from "react-animate-on-scroll";
+import {
+  getNoScrollFetch,
+  putNoScrollFetch
+} from "../../Constants/FetchComponent";
+import { UpdateButton } from "../../Constants/Buttons";
+
+const urlPath = "venue_templates";
 
 class CardsContainerEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "venue_templates",
       bannerImage: "",
       headerText1: "",
       headerText2: "",
@@ -17,98 +22,37 @@ class CardsContainerEdit extends Component {
     };
   }
 
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/${this.state.url}/${this.state.id}`;
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const { headerText1, headerText2, bannerImage, image } = this.state;
+    const body = { headerText1, headerText2, bannerImage, image };
 
-    const body = {
-      headerText1,
-      headerText2,
-      bannerImage,
-      image
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Content has been updated");
-          return response.json();
-        }
-        alert("Something went wrong");
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
+    putNoScrollFetch(url, body, this.props.alertType).then(
+      this.toggleRefreshKey
+    );
   };
 
-  componentDidMount = () => {
-    fetch(`/api/v1/${this.state.url}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          headerText1: body[body.length - 1].headerText1,
-          headerText2: body[body.length - 1].headerText2,
-          id: body[body.length - 1].id,
-          bannerImage: body[body.length - 1].bannerImage,
-          image: body[body.length - 1].image
-        });
-      })
-
-      .catch(error => console.log("error message =>", error.message));
+  mountState = body => {
+    this.setState({
+      headerText1: body[body.length - 1].headerText1,
+      headerText2: body[body.length - 1].headerText2,
+      id: body[body.length - 1].id,
+      bannerImage: body[body.length - 1].bannerImage,
+      image: body[body.length - 1].image
+    });
   };
 
-  componentDidUpdate = () => {
-    if (this.state.refreshKey === true) {
-      fetch(`/api/v1/${this.state.url}`)
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({
-            headerText1: body[body.length - 1].headerText1,
-            headerText2: body[body.length - 1].headerText2,
-            id: body[body.length - 1].id,
-            bannerImage: body[body.length - 1].bannerImage,
-            image: body[body.length - 1].image
-          });
-        })
-        .then(this.setState({ refreshKey: false }));
-    }
-  };
+  componentDidMount = () => getNoScrollFetch(urlPath, this.mountState);
+
+  componentDidUpdate = () =>
+    this.state.refreshKey &&
+    getNoScrollFetch(urlPath, this.mountState).then(
+      this.setState({ refreshKey: false })
+    );
 
   render() {
     let contentInfo = {
@@ -127,9 +71,7 @@ class CardsContainerEdit extends Component {
                 formConst={contentInfo}
               />
 
-              <button type="submit" className="btn custom-button">
-                Submit Update
-              </button>
+              <UpdateButton />
             </form>
           </div>
         </div>
@@ -141,18 +83,10 @@ class CardsContainerEdit extends Component {
         <ScrollAnimation animateIn="fadeIn">
           <ParallaxBanner {...this.state} />
 
-          {this.props.user.admin ? bannerForm : null}
+          {this.props.user.admin && bannerForm}
 
           <div className="container text-center pt-5">
             <img className="img-fluid rounded" src={this.state.image}></img>
-          </div>
-
-          <div style={this.props.user.admin && { paddingBottom: "100px" }}>
-            <DraftJSContainer
-              {...this.state}
-              {...this.props}
-              hocRefresh={this.toggleRefreshKey}
-            />
           </div>
         </ScrollAnimation>
       </React.Fragment>

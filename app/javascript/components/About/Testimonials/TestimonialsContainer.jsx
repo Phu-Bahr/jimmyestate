@@ -67,7 +67,7 @@ class TestimonialsContainer extends Component {
 
           {this.props.user.admin && (
             <div className="container text-center pt-4">
-              <EditButton onClick={this.editBanner} />
+              <EditButton onClick={this.editBanner} value="Edit Banner" />
             </div>
           )}
 
