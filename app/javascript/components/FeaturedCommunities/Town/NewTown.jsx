@@ -94,11 +94,7 @@ class NewTown extends Component {
                     onChange={this.onChange}
                     value={this.state}
                   />
-                  <AddButton
-                    type="submit"
-                    className="mt-3"
-                    value="Create Community"
-                  />
+                  <AddButton className="mt-3" value="Create Community" />
                   <Link to="/" className="btn btn-link mt-3">
                     Back to Home Page
                   </Link>

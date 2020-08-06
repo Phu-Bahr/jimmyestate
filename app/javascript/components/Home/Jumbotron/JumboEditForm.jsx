@@ -50,11 +50,7 @@ const JumboEditForm = props => {
                       />
                     </div>
 
-                    <UpdateButton
-                      type="submit"
-                      className="mt-3"
-                      value="Update title data"
-                    />
+                    <UpdateButton className="mt-3" value="Update title data" />
                   </form>
                 </div>
               </div>

@@ -135,7 +135,7 @@ class NewEvent extends Component {
               value={this.state.flier}
               placeholder="Image URL"
             />
-            <AddButton type="submit" value="Create Event" />
+            <AddButton value="Create Event" />
           </form>
         </div>
       </React.Fragment>

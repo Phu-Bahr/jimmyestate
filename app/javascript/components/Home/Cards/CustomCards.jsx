@@ -2,6 +2,11 @@ import React, { Component, Fragment } from "react";
 import { FadeIn } from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import CustomEditLinks from "./CustomEditLinks";
+import { getNoScrollFetch } from "../../Constants/FetchComponent";
+
+const urlPathCustom = "custom_cards";
+const urlPathPartner = "partner_categories";
+const urlPathTowns = "towns";
 
 class CustomCards extends Component {
   constructor(props) {
@@ -16,9 +21,7 @@ class CustomCards extends Component {
     };
   }
 
-  toggleRefreshKey = () => {
-    this.setState({ refreshKey: true });
-  };
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
 
   onClick = () => {
     this.state.visible
@@ -32,96 +35,36 @@ class CustomCards extends Component {
       : this.setState({ visible1: true, visible: false });
   };
 
+  mountStateTowns = body => {
+    this.setState({ townListData: body });
+  };
+
+  mountStatePartner = body => {
+    this.setState({ partnerListData: body });
+  };
+
+  mountStateCustom = body => {
+    this.setState({ customCardListData: body });
+  };
+
   componentDidMount = () => {
-    this.fetchTownList();
-    this.fetchPartnerList();
-    this.fetchCustomCardList();
+    getNoScrollFetch(urlPathTowns, this.mountStateTowns);
+    getNoScrollFetch(urlPathPartner, this.mountStatePartner);
+    getNoScrollFetch(urlPathCustom, this.mountStateCustom);
   };
 
   componentDidUpdate = () => {
-    this.fetchUpdateCustomCard();
+    this.state.refreshKey &&
+      getNoScrollFetch(urlPathCustom, this.mountStateCustom).then(
+        this.setState({ refreshKey: false })
+      );
   };
-
-  fetchUpdateCustomCard() {
-    if (this.state.refreshKey === true) {
-      fetch("/api/v1/custom_cards")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({ customCardListData: body });
-        })
-        .then(this.setState({ refreshKey: false }))
-        .catch(error => console.log(error.message));
-    }
-  }
-
-  fetchTownList() {
-    fetch("/api/v1/towns")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ townListData: body });
-      })
-      .catch(error => console.log("error message =>", error.message));
-  }
-
-  fetchPartnerList() {
-    fetch("/api/v1/partner_categories")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ partnerListData: body });
-      })
-      .catch(error => console.log("error message =>", error.message));
-  }
-
-  fetchCustomCardList() {
-    fetch("/api/v1/custom_cards")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ customCardListData: body });
-      })
-      .catch(error => console.log("error message =>", error.message));
-  }
 
   render() {
     let townlist = this.state.townListData.map(element => {
       return (
         <div className="col-md-6" key={element.id}>
-          <Link to={`/towns/${element.id}`} className="helperL py-1">
+          <Link to={`/${urlPathTowns}/${element.id}`} className="helperL py-1">
             {element.name}
           </Link>
         </div>
@@ -132,7 +75,7 @@ class CustomCards extends Component {
       return (
         <div className="col-md-6" key={element.id}>
           <Link
-            to={`/partner_categories/${element.id}`}
+            to={`/${urlPathPartner}/${element.id}`}
             className="helperL py-1"
           >
             {element.name}
@@ -158,20 +101,22 @@ class CustomCards extends Component {
               </div>
             </div>
 
-            {this.state.visible ? (
+            {this.state.visible && (
               <FadeIn>
                 <div className="card-body venueDetails container">
                   <div className="row">{townlist}</div>
                 </div>
               </FadeIn>
-            ) : null}
+            )}
 
-            {this.props.user.admin ? (
+            {this.props.user.admin && (
               <CustomEditLinks
+                urlPathCustom={urlPathCustom}
                 {...element}
                 toggleRefreshKey={this.toggleRefreshKey}
+                alertType={this.props.alertType}
               />
-            ) : null}
+            )}
           </div>
         );
       }
@@ -194,20 +139,22 @@ class CustomCards extends Component {
               </div>
             </div>
 
-            {this.state.visible1 ? (
+            {this.state.visible1 && (
               <FadeIn>
                 <div className="card-body venueDetails container">
                   <div className="row">{partnerlist}</div>
                 </div>
               </FadeIn>
-            ) : null}
+            )}
 
-            {this.props.user.admin ? (
+            {this.props.user.admin && (
               <CustomEditLinks
+                urlPathCustom={urlPathCustom}
                 {...element}
                 toggleRefreshKey={this.toggleRefreshKey}
+                alertType={this.props.alertType}
               />
-            ) : null}
+            )}
           </div>
         );
       }

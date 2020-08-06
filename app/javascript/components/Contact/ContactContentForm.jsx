@@ -41,6 +41,7 @@ const ContactContentForm = ({ value, onChange, onSubmit, onUpdateGeocode }) => {
               />
               <div className="py-3">
                 <UpdateButton
+                  type="button"
                   value="Update Geocode"
                   onClick={onUpdateGeocode}
                 />

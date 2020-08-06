@@ -117,7 +117,7 @@ const EventTile = props => {
                     />
                   </div>
                 </div>
-                <UpdateButton type="submit" />
+                <UpdateButton />
               </form>
             </div>
           </div>

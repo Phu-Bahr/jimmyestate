@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
-import { animateScroll as scroll } from "react-scroll";
 import CardsContainerEdit from "./CardsContainerEdit";
 import CustomCards from "./CustomCards";
+import DraftJSContainer from "../../Constants/DraftJSComponent";
+import AlertBox from "../../Constants/AlertComponent";
+import {
+  getNoScrollFetch,
+  deleteNoScrollFetch
+} from "../../Constants/FetchComponent";
+
+const urlPathDraft = "card_drafts";
+const urlPath = "helper_links";
 
 class CardsContainer extends Component {
   constructor(props) {
@@ -12,102 +20,39 @@ class CardsContainer extends Component {
       helperListData: [],
       selectedStepId: null,
       refreshKey: false,
-      bannerImage: ""
+      bannerImage: "",
+      typeOfAlert: null,
+      idForAlert: null
     };
-    this.deleteCard = this.deleteCard.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
 
-  toggleRefreshKey() {
-    this.setState({ refreshKey: true });
-  }
-
-  scrollToTop = () => {
-    scroll.scrollToTop();
+  deleteCard = id => {
+    const url = `/api/v1/${urlPath}/${id}`;
+    deleteNoScrollFetch(url, this.alertType).then(this.toggleRefreshKey);
   };
 
-  componentDidMount = () => {
-    this.fetchHelperList();
+  mountState = body => this.setState({ helperListData: body });
+
+  componentDidMount = () => getNoScrollFetch(urlPath, this.mountState);
+
+  componentDidUpdate = () => {
+    this.state.refreshKey &&
+      getNoScrollFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   };
 
-  fetchHelperList = () => {
-    fetch("/api/v1/helper_links")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          helperListData: body
-        });
-      })
-      .catch(error => console.log("error message =>", error.message));
+  handleClick = id => {
+    this.setState({ idForAlert: id });
+    this.alertType("delete");
   };
-
-  componentDidUpdate() {
-    if (this.state.refreshKey === true) {
-      fetch("/api/v1/helper_links")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({ helperListData: body });
-        })
-        .then(this.setState({ refreshKey: false }))
-        .catch(error => console.log(error.message));
-    }
-  }
-
-  deleteCard(id) {
-    const url = `/api/v1/helper_links/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
 
   render() {
     let cards = this.state.helperListData.map(element => {
-      let handleClick = () => {
-        let result = confirm("Are you sure?");
-        if (result) {
-          this.deleteCard(element.id);
-        }
-      };
-
       return (
         <HelperLinks
           key={element.id}
@@ -115,24 +60,42 @@ class CardsContainer extends Component {
           image={element.image}
           title={element.title}
           route={element.route}
-          handleClick={handleClick}
+          handleClick={this.handleClick}
           toggleRefreshKey={this.toggleRefreshKey}
           user={this.props.user}
+          urlPath={urlPath}
+          alertType={this.alertType}
         />
       );
     });
 
     return (
       <React.Fragment>
-        <CardsContainerEdit user={this.props.user} />
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          deleteEvent={this.deleteCard}
+        />
+
+        <CardsContainerEdit user={this.props.user} alertType={this.alertType} />
+
+        <DraftJSContainer
+          {...this.state}
+          {...this.props}
+          hocRefresh={this.toggleRefreshKey}
+          urlPath={urlPathDraft}
+        />
 
         <div className="container pb-5 pt-2 px-5">
-          {this.props.user.admin ? (
-            <NewHelperCard toggleRefreshKey={this.toggleRefreshKey} />
-          ) : null}
+          {this.props.user.admin && (
+            <NewHelperCard
+              toggleRefreshKey={this.toggleRefreshKey}
+              alertType={this.alertType}
+            />
+          )}
 
           <div className="row">
-            <CustomCards user={this.props.user} />
+            <CustomCards user={this.props.user} alertType={this.alertType} />
             {cards}
           </div>
         </div>

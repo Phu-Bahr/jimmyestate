@@ -1,0 +1,2 @@
+class CardDraft < ApplicationRecord
+end

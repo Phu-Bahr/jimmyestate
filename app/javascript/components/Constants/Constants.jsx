@@ -143,11 +143,7 @@ export const ParallaxEditForm = props => {
         <div className="col-sm-12 col-lg-6 offset-lg-3">
           <form onSubmit={props.onSubmit}>
             {keyValuePair}
-            <UpdateButton
-              type="submit"
-              value="Submit Header Changes"
-              className="mt-3"
-            />
+            <UpdateButton value="Submit Header Changes" className="mt-3" />
           </form>
         </div>
       </div>

@@ -99,6 +99,7 @@ class DraftJSShowPage extends Component {
             {this.props.admin && (
               <div className="pt-3">
                 <UpdateButton
+                  type="button"
                   onClick={this.onSubmit}
                   value="Save your content"
                 />

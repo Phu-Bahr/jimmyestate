@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { putNoScrollFetch } from "../../Constants/FetchComponent";
+import { UpdateButton } from "../../Constants/Buttons";
 
 class CustomEditLinks extends Component {
   constructor(props) {
@@ -7,45 +9,20 @@ class CustomEditLinks extends Component {
       image: this.props.image,
       title: this.props.title
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/custom_cards/${this.props.id}`;
+    const url = `/api/v1/${this.props.urlPathCustom}/${this.props.id}`;
     const { image, title } = this.state;
+    const body = { image, title };
 
-    const body = {
-      image,
-      title
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Card has been updated.");
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.props.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
+    putNoScrollFetch(url, body, this.props.alertType).then(
+      this.props.toggleRefreshKey
+    );
+  };
 
   render() {
     return (
@@ -78,9 +55,7 @@ class CustomEditLinks extends Component {
             </div>
           </div>
 
-          <button type="submit" className="btn custom-button mt-3">
-            Update Card
-          </button>
+          <UpdateButton className="mt-3" value="Update Card" />
         </form>
       </div>
     );

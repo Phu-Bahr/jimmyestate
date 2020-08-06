@@ -155,10 +155,11 @@ export const PortfolioPropertyForm = props => {
         </div>
         <div className="row">
           <div className="col-sm-2">
-            <AddButton className="mt-3" value="Add Property" type="submit" />
+            <AddButton className="mt-3" value="Add Property" />
           </div>
           <div className="col-sm-4">
             <UpdateButton
+              type="button"
               onClick={props.onSubmitEdit}
               value="Update Current Property"
               className="mt-3"

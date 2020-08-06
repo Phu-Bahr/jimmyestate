@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { putNoScrollFetch } from "../../Constants/FetchComponent";
+import { UpdateButton, DeleteButton } from "../../Constants/Buttons";
 
 class EditHelperLinks extends Component {
   constructor(props) {
@@ -8,47 +10,20 @@ class EditHelperLinks extends Component {
       title: this.props.title,
       route: this.props.route
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = `/api/v1/helper_links/${this.props.id}`;
+    const url = `/api/v1/${this.props.urlPath}/${this.props.id}`;
     const { image, title, route } = this.state;
+    const body = { image, title, route };
 
-    const body = {
-      image,
-      title,
-      route
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          alert("Card has been updated.");
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(this.props.toggleRefreshKey)
-
-      .catch(error => console.log(error.message));
-  }
+    putNoScrollFetch(url, body, this.props.alertType).then(
+      this.props.toggleRefreshKey
+    );
+  };
 
   render() {
     return (
@@ -93,17 +68,12 @@ class EditHelperLinks extends Component {
             </div>
           </div>
 
-          <button type="submit" className="btn custom-button mt-3">
-            Update Card
-          </button>
-
-          <button
+          <UpdateButton className="mt-3" value="Update Card" />
+          <DeleteButton
             type="button"
-            className="btn btn-secondary mt-3"
+            className="mt-3"
             onClick={this.props.handleClick}
-          >
-            Delete Card
-          </button>
+          />
         </form>
       </div>
     );

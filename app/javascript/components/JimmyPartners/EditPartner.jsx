@@ -96,11 +96,7 @@ class EditPartner extends Component {
                   value={this.state}
                 />
 
-                <UpdateButton
-                  className="mt-3"
-                  type="submit"
-                  value="Submit Partner changes"
-                />
+                <UpdateButton className="mt-3" value="Submit Partner changes" />
 
                 <Link
                   to={`/${urlPath}/${this.state.id}`}

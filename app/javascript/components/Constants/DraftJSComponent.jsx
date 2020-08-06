@@ -131,6 +131,7 @@ class DraftJSContainer extends Component {
               <Fragment>
                 <div className="pr-3 pt-3">
                   <AddButton
+                    type="button"
                     onClick={this.onSubmit}
                     value="Save your content"
                   />
@@ -139,6 +140,7 @@ class DraftJSContainer extends Component {
             )}
             <div className="p-3">
               <UpdateButton
+                type="button"
                 onClick={this.onSubmitUpdate}
                 value="Update your content"
               />
