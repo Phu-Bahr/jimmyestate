@@ -20,10 +20,17 @@ const containerStyleMobile = {
 };
 
 const Map = props => {
-  const center = {
-    lat: props.lat,
-    lng: props.lng
-  };
+  let center;
+  props.lat == NaN || props.lng == NaN
+    ? (center = {
+        lat: 35.6762,
+        lng: 139.6503
+      })
+    : (center = {
+        lat: parseFloat(props.lat),
+        lng: parseFloat(props.lng)
+      });
+
   return (
     <LoadScript googleMapsApiKey="AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c">
       <GoogleMap
