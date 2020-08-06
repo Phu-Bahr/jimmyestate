@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import VenueContainer from "../Home/Venue/VenueContainer";
+import CardsContainer from "../Home/Cards/CardsContainer";
 import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
 import ScrollAnimation from "react-animate-on-scroll";
@@ -38,7 +38,7 @@ class Home extends Component {
 
     return (
       <div>
-        <JumbotronContainer hideEditButton={hideEditButton} />
+        <JumbotronContainer {...this.props} />
 
         <ScrollAnimation animateIn="fadeIn">
           <AnnouncementContainer
@@ -48,7 +48,7 @@ class Home extends Component {
         </ScrollAnimation>
         <EventContainer user={this.props.user} />
 
-        <VenueContainer hideEditButton={hideEditButton} {...this.props} />
+        <CardsContainer hideEditButton={hideEditButton} {...this.props} />
       </div>
     );
   }

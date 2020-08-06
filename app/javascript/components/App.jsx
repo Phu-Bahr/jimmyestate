@@ -60,7 +60,6 @@ class App extends Component {
 
   handleLogout() {
     this.setState({ loggedInStatus: "Not Logged In", user: {} });
-    console.log("logoutclicked!");
   }
 
   checkLoginStatus() {
@@ -106,8 +105,6 @@ class App extends Component {
   refreshTownList = () => this.refreshingTownList.current.toggleRefreshKey();
 
   render() {
-    console.log(window.location.pathname);
-
     const ProtectedRoute = ({ component: Comp, path }) => {
       return (
         <Route

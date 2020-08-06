@@ -32,7 +32,6 @@ class DraftJSContainer extends Component {
   updateEditorState(editorState) {
     const contentState = editorState.getCurrentContent();
     this.saveContent(contentState);
-    console.log("content state raw", convertToRaw(contentState));
     this.setState({ editorState });
   }
 

@@ -3,7 +3,7 @@ import { ParallaxBanner, FormMaps } from "../../Constants/Constants";
 import DraftJSContainer from "../../Constants/DraftJSComponent";
 import ScrollAnimation from "react-animate-on-scroll";
 
-class VenueTemplate extends Component {
+class CardsContainerEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -140,10 +140,13 @@ class VenueTemplate extends Component {
       <React.Fragment>
         <ScrollAnimation animateIn="fadeIn">
           <ParallaxBanner {...this.state} />
+
           {this.props.user.admin ? bannerForm : null}
+
           <div className="container text-center pt-5">
             <img className="img-fluid rounded" src={this.state.image}></img>
           </div>
+
           <div style={this.props.user.admin && { paddingBottom: "100px" }}>
             <DraftJSContainer
               {...this.state}
@@ -157,4 +160,4 @@ class VenueTemplate extends Component {
   }
 }
 
-export default VenueTemplate;
+export default CardsContainerEdit;

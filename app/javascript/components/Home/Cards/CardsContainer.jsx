@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
 import { animateScroll as scroll } from "react-scroll";
-import VenueTemplate from "./VenueTemplate";
+import CardsContainerEdit from "./CardsContainerEdit";
 import CustomCards from "./CustomCards";
 
-class VenueContainer extends Component {
+class CardsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -124,7 +124,8 @@ class VenueContainer extends Component {
 
     return (
       <React.Fragment>
-        <VenueTemplate user={this.props.user} />
+        <CardsContainerEdit user={this.props.user} />
+
         <div className="container pb-5 pt-2 px-5">
           {this.props.user.admin ? (
             <NewHelperCard toggleRefreshKey={this.toggleRefreshKey} />
@@ -140,4 +141,4 @@ class VenueContainer extends Component {
   }
 }
 
-export default VenueContainer;
+export default CardsContainer;

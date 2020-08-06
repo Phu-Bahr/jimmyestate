@@ -17,8 +17,6 @@ const PortfolioPropertiesTile = props => {
     status: props.status
   };
 
-  console.log(props.status);
-
   return (
     <Fragment>
       <div className="col-md-4 col-middle px-3 py-2">

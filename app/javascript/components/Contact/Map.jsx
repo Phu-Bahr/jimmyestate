@@ -25,8 +25,6 @@ class Map extends Component {
   onClick = () => this.setState({ window: !this.state.window });
 
   render() {
-    console.log(this.state.window);
-
     const center = {
       lat: this.props.lat,
       lng: this.props.lng

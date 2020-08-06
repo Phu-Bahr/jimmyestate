@@ -1,107 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Particles from "react-particles-js";
 import JumboTile from "./JumboTile";
-import { FadeIn } from "../../Constants/Constants";
+import { particleOpt } from "../../Constants/Constants";
 import ScrollAnimation from "react-animate-on-scroll";
+import { putFetch, getFetch } from "../../Constants/FetchComponent";
+import AlertBox from "../../Constants/AlertComponent";
+import JumboEditForm from "./JumboEditForm";
 
-const particleOpt = {
-  particles: {
-    number: {
-      value: 100,
-      density: {
-        enable: true,
-        value_area: 1000
-      }
-    },
-    color: {
-      value: "#000000"
-    },
-    shape: {
-      stroke: {
-        width: 0
-      },
-      polygon: {
-        nb_sides: 5
-      }
-    },
-    opacity: {
-      value: 0.4,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false
-      }
-    },
-    size: {
-      value: 3,
-      random: true,
-      anim: {
-        enable: false,
-        speed: 40,
-        size_min: 0.1,
-        sync: false
-      }
-    },
-    line_linked: {
-      enable: true,
-      distance: 70,
-      opacity: 0.4,
-      width: 1,
-      color: "#8bce3c"
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      random: false,
-      straight: false,
-      bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200
-      }
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true
-      },
-      onclick: {
-        enable: true
-      },
-      resize: true
-    },
-    modes: {
-      grab: {
-        distance: 400,
-        line_linked: {
-          opacity: 1
-        }
-      },
-      bubble: {
-        distance: 400,
-        size: 40,
-        duration: 2,
-        opacity: 8,
-        speed: 3
-      },
-      repulse: {
-        distance: 150,
-        duration: 0.4
-      },
-      push: {
-        particles_nb: 4
-      },
-      remove: {
-        particles_nb: 2
-      }
-    }
-  }
-};
+const urlPath = "jumbotrons";
 
 class JumbotronContainer extends Component {
   constructor(props) {
@@ -112,125 +18,46 @@ class JumbotronContainer extends Component {
       line2: "",
       line3: "",
       refreshKey: false,
-      hideDiv: true
+      hideDiv: true,
+      id: null,
+      typeOfAlert: null
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.clickEdit = this.clickEdit.bind(this);
-    this.toggleRefreshKey = this.toggleRefreshKey.bind(this);
   }
 
-  toggleRefreshKey(event) {
-    this.setState({ refreshKey: true });
-  }
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  clickEdit(event) {
-    if (this.state.hideDiv === false) {
-      this.setState({ hideDiv: true });
-    } else {
-      this.setState({ hideDiv: false });
-    }
-  }
-
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
-    const url = "/api/v1/jumbotrons/1";
+    const url = `/api/v1/${urlPath}/${this.state.id}`;
     const { line1, line2, line3 } = this.state;
+    const body = { line1, line2, line3 };
 
-    const body = {
-      line1,
-      line2,
-      line3
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(this.toggleRefreshKey)
-      .catch(error => console.log(error.message));
-  }
-
-  componentDidMount = () => {
-    fetch("/api/v1/jumbotrons")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statuseText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        let newJumboData = body;
-        this.setState({
-          jumboData: newJumboData,
-          line1: newJumboData[0].line1,
-          line2: newJumboData[0].line2,
-          line3: newJumboData[0].line3
-        });
-      })
-      .catch(error => console.log(error.message));
+    putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
+  mountState = body => {
+    this.setState({
+      jumboData: body,
+      line1: body[body.length - 1].line1,
+      line2: body[body.length - 1].line2,
+      line3: body[body.length - 1].line3,
+      id: body[body.length - 1].id
+    });
+  };
+  componentDidMount = () => getFetch(urlPath, this.mountState);
+
   componentDidUpdate = () => {
-    if (this.state.refreshKey === true) {
-      fetch("/api/v1/jumbotrons")
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          let newJumbo = body;
-          this.setState({ jumboData: newJumbo });
-        })
-        .then(this.setState({ refreshKey: false }))
-        .catch(error => console.log(error.message));
-    }
+    this.state.refreshKey &&
+      getFetch(urlPath, this.mountState).then(
+        this.setState({ refreshKey: false })
+      );
   };
 
   render() {
-    if (this.state.refreshKey === true) {
-      this.setState({ refreshKey: false });
-    }
-
-    let hide;
-    if (this.state.hideDiv === true) {
-      hide = "invisible";
-    } else {
-      hide = "";
-    }
-
-    const jumboData = this.state.jumboData;
-    let jumboList = jumboData.map(element => {
+    let jumboList = this.state.jumboData.map(element => {
       return (
         <JumboTile
           key={element.id}
@@ -243,82 +70,30 @@ class JumbotronContainer extends Component {
     });
 
     return (
-      <React.Fragment>
+      <Fragment>
+        <AlertBox {...this.state} alertType={this.alertType} />
+
         <ScrollAnimation animateIn="fadeIn">
           <div className="text-black text-center">
             <div className="pt-5 jumboBackground">
-              <div className=" ">
-                <div>
-                  <Particles
-                    className="particles1 overlayParticle"
-                    params={particleOpt}
-                    height="1300px"
-                  />
-                </div>
+              <Particles
+                className="particles1 overlayParticle"
+                params={particleOpt}
+              />
 
-                <div className="pt-5">{jumboList}</div>
-              </div>
+              <div className="pt-5">{jumboList}</div>
             </div>
-            <div className={this.props.hideEditButton}>
-              <div className="col-sm-12 my-4">
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.clickEdit}
-                >
-                  Edit
-                </button>
-              </div>
-            </div>
-            <div className={"container pb-3" + " " + hide}>
-              <div className="row">
-                <div className="col-sm-12 col-lg-6 offset-lg-3">
-                  <p className="font-weight-normal mb-3">
-                    Update your info here...
-                  </p>
-
-                  <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="line1"
-                        id="line1"
-                        className="form-control"
-                        onChange={this.onChange}
-                        value={this.state.line1}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="line2"
-                        id="line2"
-                        className="form-control"
-                        onChange={this.onChange}
-                        value={this.state.line2}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <input
-                        type="textarea"
-                        name="line3"
-                        id="line3"
-                        className="form-control"
-                        onChange={this.onChange}
-                        value={this.state.line3}
-                      />
-                    </div>
-
-                    <button type="submit" className="btn custom-button mt-3">
-                      Update title data
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <JumboEditForm
+              user={this.props.user}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              clickEdit={this.clickEdit}
+              {...this.state}
+              value={this.state}
+            />
           </div>
         </ScrollAnimation>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
