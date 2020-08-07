@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { getGeocode, postNoScrollFetch } from "../../Constants/FetchComponent";
+import {
+  getGeocodeEvent,
+  postNoScrollFetch
+} from "../../Constants/FetchComponent";
 import { AddButton } from "../../Constants/Buttons";
 
 class NewEvent extends Component {
@@ -51,13 +54,9 @@ class NewEvent extends Component {
     event.preventDefault();
     let location = `${this.state.location}`;
 
-    if (Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)) {
-      alert("Please choose a current or future date!");
-    } else {
-      getGeocode(location, this.mountLatLng, this.props.alertType).then(
-        setTimeout(this.submit, 1000)
-      );
-    }
+    Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)
+      ? alert("Please choose a current or future date!")
+      : getGeocodeEvent(location, this.mountLatLng, this.props.alertType);
   };
 
   submit = () => {

@@ -177,6 +177,27 @@ export const getGeocode = (location, mountLatLng, alertType) => {
     })
     .catch(error => console.log("error message =>", error.message));
 };
+export const getGeocodeEvent = (location, mountLatLng, alertType) => {
+  return fetch(`/api/v1/events/search?location=${location}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        alertType("noGeocode");
+        throw new Error("Network response was not ok.");
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.data[0].result === "No Results") {
+        alertType("noGeocode");
+      } else {
+        alertType("successGeocodeEvent");
+        mountLatLng(body);
+      }
+    })
+    .catch(error => console.log("error message =>", error.message));
+};
 
 export const loginFetch = (url, body, alertType, handleLogin) => {
   return fetch(url, {
