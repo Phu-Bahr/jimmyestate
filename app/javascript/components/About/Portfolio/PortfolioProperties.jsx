@@ -192,20 +192,22 @@ class PortfolioProperties extends Component {
           deleteEvent={this.deleteEvent}
         />
         {this.props.user.admin && (
-          <div className=" text-center pt-5" id="formTag">
-            <EditButton onClick={this.clickEdit} />
-          </div>
-        )}
+          <Fragment>
+            <div className=" text-center pt-5" id="formTag">
+              <EditButton onClick={this.clickEdit} />
+            </div>
 
-        {this.state.hideDiv && (
-          <div className="container" id="formTag">
-            <PortfolioPropertyForm
-              onChange={this.onChange}
-              value={this.state}
-              onSubmitEdit={this.onSubmitEdit}
-              onSubmit={this.onSubmit}
-            />
-          </div>
+            {this.state.hideDiv && (
+              <div className="container" id="formTag">
+                <PortfolioPropertyForm
+                  onChange={this.onChange}
+                  value={this.state}
+                  onSubmitEdit={this.onSubmitEdit}
+                  onSubmit={this.onSubmit}
+                />
+              </div>
+            )}
+          </Fragment>
         )}
 
         <FadeIn>

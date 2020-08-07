@@ -28,14 +28,14 @@ const ScrollingSidesContainer = ({
                 <p className="name">-{item.name}</p>
               </FadeInUp>
               {admin && (
-                <React.Fragment>
+                <Fragment>
                   <DeleteButton onClick={() => handleDelete(item.id)} />
 
                   <EditButton
                     onClick={() => editModeFunc(item)}
                     value={editMode ? "Back to Create" : "Edit This"}
                   />
-                </React.Fragment>
+                </Fragment>
               )}
             </div>
           </div>

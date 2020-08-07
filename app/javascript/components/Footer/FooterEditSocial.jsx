@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FooterEditSocial = props => {
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="d-flex justify-content-center mt-3">
         <a
           href={`//` + props.facebook}
@@ -15,7 +15,7 @@ const FooterEditSocial = props => {
           <div className="c-magic-icon__outline">
             <FontAwesomeIcon
               icon={["fab", "facebook-f"]}
-              className="iconfont mt-2"
+              className="iconfont pt-2"
             />
           </div>
         </a>
@@ -26,7 +26,7 @@ const FooterEditSocial = props => {
           <div className="c-magic-icon__outline">
             <FontAwesomeIcon
               icon={["fab", "linkedin-in"]}
-              className="iconfont mt-2"
+              className="iconfont pt-2"
             />
           </div>
         </a>
@@ -41,7 +41,7 @@ const FooterEditSocial = props => {
           <div className="c-magic-icon__outline">
             <FontAwesomeIcon
               icon={["fab", "instagram"]}
-              className="iconfont mt-2"
+              className="iconfont pt-2"
             />
           </div>
         </a>
@@ -80,7 +80,7 @@ const FooterEditSocial = props => {
           </div>
         </a>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

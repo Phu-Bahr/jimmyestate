@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import RelocationPhotoForm from "./RelocationPhotoForm";
 import RelocationPhotoTile from "./RelocationPhotoTile";
 import AlertBox from "../../../../Constants/AlertComponent";
@@ -68,7 +68,7 @@ class RelocationPhotoContainer extends Component {
     });
 
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox
           {...this.state}
           alertType={this.alertType}
@@ -86,7 +86,7 @@ class RelocationPhotoContainer extends Component {
 
           {photos}
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

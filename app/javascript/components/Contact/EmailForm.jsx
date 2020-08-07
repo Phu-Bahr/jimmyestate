@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { SubmitEmailButton } from "../Constants/Buttons";
 import { postFetchEmail } from "../Constants/FetchComponent";
@@ -26,7 +26,7 @@ class EmailForm extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="name">Your Name:</label>
@@ -74,7 +74,7 @@ class EmailForm extends Component {
             onResolved={this.onResolved}
           />
         </form>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

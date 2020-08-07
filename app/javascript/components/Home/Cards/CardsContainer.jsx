@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
 import CardsContainerEdit from "./CardsContainerEdit";
@@ -70,7 +70,7 @@ class CardsContainer extends Component {
     });
 
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox
           {...this.state}
           alertType={this.alertType}
@@ -99,7 +99,7 @@ class CardsContainer extends Component {
             {cards}
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

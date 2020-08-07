@@ -104,12 +104,16 @@ class MarketReportsContainer extends Component {
                     <p className="pb-2">{this.state.paragraph1}</p>
                     <p className="pb-2">{this.state.paragraph2}</p>
                   </div>
-                  {this.state.hideDiv && (
-                    <MarketReportsContentForm
-                      onSubmitEdit={this.onSubmitEdit}
-                      onChange={this.onChange}
-                      value={this.state}
-                    />
+                  {this.props.user.admin && (
+                    <Fragment>
+                      {this.state.hideDiv && (
+                        <MarketReportsContentForm
+                          onSubmitEdit={this.onSubmitEdit}
+                          onChange={this.onChange}
+                          value={this.state}
+                        />
+                      )}
+                    </Fragment>
                   )}
                   <MarketReportsEmailForm alertType={this.alertType} />
                 </FadeInLeft>

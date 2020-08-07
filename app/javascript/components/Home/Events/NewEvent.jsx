@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { getGeocode, postNoScrollFetch } from "../../Constants/FetchComponent";
 import { AddButton } from "../../Constants/Buttons";
 
@@ -81,7 +81,7 @@ class NewEvent extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <div className="px-3">
           <h4>Add new event here:</h4>
         </div>
@@ -138,7 +138,7 @@ class NewEvent extends Component {
             <AddButton value="Create Event" />
           </form>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

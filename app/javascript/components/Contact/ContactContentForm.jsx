@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { UpdateButton, EditButton } from "../Constants/Buttons";
 import { FormMaps } from "../Constants/Constants";
 
@@ -19,7 +19,7 @@ const dataFormContent = {
 
 const ContactContentForm = ({ value, onChange, onSubmit, onUpdateGeocode }) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="container">
         <form onSubmit={onSubmit}>
           <div className="text-center pb-3">
@@ -51,7 +51,7 @@ const ContactContentForm = ({ value, onChange, onSubmit, onUpdateGeocode }) => {
           </div>
         </form>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
