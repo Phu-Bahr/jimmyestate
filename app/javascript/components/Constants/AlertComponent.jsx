@@ -148,6 +148,26 @@ const AlertBox = props => {
     </SweetAlert>
   );
 
+  const successfulGeocodeEvent = (
+    <SweetAlert
+      title={
+        <Fragment>
+          <div style={({ overflow: "hidden" }, fitGif)}>
+            <img
+              style={fitGif}
+              src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
+            />
+            <br />
+            <div>Geocode Found!!</div>
+          </div>
+        </Fragment>
+      }
+      onConfirm={() => props.submitEvent()}
+    >
+      Geocode has been updated to the database.
+    </SweetAlert>
+  );
+
   const successfulLogin = (
     <SweetAlert success title="Success!" onConfirm={() => props.directToPath()}>
       You are now logged in!
@@ -174,6 +194,8 @@ const AlertBox = props => {
         return errorGeocode;
       case "successGeocode":
         return successfulGeocode;
+      case "successGeocodeEvent":
+        return successfulGeocodeEvent;
 
       default:
         break;

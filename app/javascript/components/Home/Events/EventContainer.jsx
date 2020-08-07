@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, createRef } from "react";
 import Map from "../../Constants/MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
@@ -33,11 +33,13 @@ class EventContainer extends Component {
       idForAlert: null,
       id: null
     };
+    this.submitNewEvent = createRef();
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   clickEventEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
+  submitEvent = () => this.submitNewEvent.current.submit();
 
   setSelectedStep = stepId => {
     this.state.selectedStepId === stepId
@@ -221,6 +223,7 @@ class EventContainer extends Component {
           {...this.state}
           alertType={this.alertType}
           deleteEvent={this.deleteEvent}
+          submitEvent={this.submitEvent}
         />
 
         <div className="text-center">
@@ -231,12 +234,13 @@ class EventContainer extends Component {
                 <EditButton onClick={this.clickEventEdit} value="Edit Events" />
               </div>
 
-              {this.state.hideDiv ? null : (
+              {!this.state.hideDiv && (
                 <div className="pt-4">
                   <NewEvent
                     toggleRefreshKey={this.toggleRefreshKey}
                     alertType={this.alertType}
                     urlPath={urlPath}
+                    ref={this.submitNewEvent}
                   />
                 </div>
               )}
