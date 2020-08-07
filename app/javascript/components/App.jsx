@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import ReactGA from "react-ga";
 import Home from "../components/Home/Home";
 import Registration from "./User/Registration";
@@ -9,9 +12,6 @@ import AboutContainer from "./About/AboutJimmy/AboutContainer";
 import AboutCompanyContainer from "./About/AboutCompany/AboutCompanyContainer";
 import JimmysTipsContainer from "./About/JimmysTips/JimmysTipsContainer";
 import ContactContainer from "./Contact/ContactContainer";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import NavbarContainer from "./Navbar/NavbarContainer";
 import FooterContainer from "./Footer/FooterContainer";
 import NewTown from "./FeaturedCommunities/Town/NewTown";
@@ -43,29 +43,16 @@ class App extends Component {
       loggedInStatus: "Not Logged In",
       user: {}
     };
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-    this.refreshTownList = this.refreshTownList.bind(this);
-    this.refreshingTownList = React.createRef();
   }
 
-  // trackingId: "UA-174405415-1"
+  handleLogin = data =>
+    this.setState({ loggedInStatus: "Logged In", user: data.user });
 
-  handleLogin(data) {
-    this.setState({
-      loggedInStatus: "Logged In",
-      user: data.user
-    });
-  }
-
-  handleLogout() {
+  handleLogout = () =>
     this.setState({ loggedInStatus: "Not Logged In", user: {} });
-  }
 
-  checkLoginStatus() {
-    const url = "/logged_in";
-
-    fetch(url, { credentials: "include" })
+  checkLoginStatus = () => {
+    fetch("/logged_in", { credentials: "include" })
       .then(response => {
         if (response.ok) {
           return response;
@@ -77,32 +64,19 @@ class App extends Component {
       })
       .then(response => response.json())
       .then(data => {
-        if (
-          data.logged_in === true &&
-          (this.state.loggedInStatus = "Not Logged In")
-        ) {
-          this.setState({
-            loggedInStatus: "Logged In",
-            user: data.user
-          });
-        } else if (
-          data.logged_in === false &&
-          (this.state.loggedInStatus = "Logged In")
-        ) {
-          this.setState({ loggedInStatus: "Not Logged In", user: {} });
-        }
+        data.logged_in && (this.state.loggedInStatus = "Not Logged In")
+          ? this.setState({ loggedInStatus: "Logged In", user: data.user })
+          : data.logged_in == false && (this.state.loggedInStatus = "Logged In")
+          ? this.setState({ loggedInStatus: "Not Logged In", user: {} })
+          : null;
       })
-      .catch(error => {
-        console.log("check login error", error);
-      });
-  }
+      .catch(error => console.log("check login error", error));
+  };
 
   componentDidMount = () => {
     this.checkLoginStatus();
     ReactGA.pageview(window.location.pathname);
   };
-
-  refreshTownList = () => this.refreshingTownList.current.toggleRefreshKey();
 
   render() {
     const ProtectedRoute = ({ component: Comp, path }) => {

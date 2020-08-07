@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import AlertBox from "../Constants/AlertComponent";
 import { loginFetch } from "../Constants/FetchComponent";
@@ -37,68 +37,63 @@ class Login extends Component {
     );
   };
 
+  componentDidMount = () => window.scrollTo(0, 0);
+
   render() {
+    console.log(this.props.user.email);
+
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox
           {...this.state}
           alertType={this.alertType}
           directToPath={this.directToPath}
         />
-        <div
-          className="parallaxStyleRoutes"
-          style={{
-            backgroundImage:
-              "url(" +
-              "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
-              ")"
-          }}
-        />
 
-        <div className="flex-container">
-          <div className="container text-center my-5">
-            <div>
-              <div className="col-sm-12 col-lg-6 offset-lg-3">
-                <h1>Status: {this.props.loggedInStatus}</h1>
-                <h2>Logged in as: {this.props.user.email}</h2>
-                <h3 className="p-4">Enter Credentials Here</h3>
+        <div className="loginWrapper">
+          <div className="loginForm">
+            <h1>Status: {this.props.loggedInStatus}</h1>
+            <h2>
+              Logged in as:
+              {this.props.user.email == undefined
+                ? " No User"
+                : this.props.user.email}
+            </h2>
 
-                <form onSubmit={this.handleLoginSubmit}>
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                      className="form-control"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={this.state.password}
-                      onChange={this.handleChange}
-                      className="form-control"
-                      required
-                    />
-                  </div>
-
-                  <SubmitEmailButton value2="LOG IN" value1="Let's fix stuff" />
-                </form>
-
-                <div className="mt-3">
-                  <Link to="/">Back to Home page</Link>
-                </div>
+            <form onSubmit={this.handleLoginSubmit}>
+              <div className="form-group formWidth">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  className="form-control text-center"
+                  required
+                />
               </div>
+
+              <div className="form-group formWidth">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  className="form-control text-center"
+                  required
+                />
+              </div>
+
+              <SubmitEmailButton value2="LOG IN" value1="Let's fix stuff" />
+            </form>
+
+            <div className="mt-3">
+              <Link to="/">Back to Home page</Link>
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
