@@ -4,6 +4,7 @@ import AlertBox from "../../Constants/AlertComponent";
 import { getFetch, putFetch } from "../../Constants/FetchComponent";
 import { FormMaps } from "../../Constants/Constants";
 import { UpdateButton } from "../../Constants/Buttons";
+import { FadeIn } from "../../Constants/Constants";
 
 const urlPath = "towns";
 
@@ -93,19 +94,11 @@ class EditTown extends Component {
           alertType={this.alertType}
           directToPath={this.directToPath}
         />
-        <div
-          className="parallaxStyleRoutes"
-          style={{
-            backgroundImage:
-              "url(" +
-              "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
-              ")"
-          }}
-        />
-        <div className="container mt-5">
-          <div className="row pb-5">
-            <div className="col-sm-12 col-lg-6 offset-lg-3">
-              <h1 className="font-weight-normal mb-5">Edit your Town here.</h1>
+
+        <FadeIn>
+          <div className="newTownWrapper">
+            <div className="form">
+              <h1 className="mb-5">Edit your Town here.</h1>
 
               <form onSubmit={this.onSubmit}>
                 <FormMaps
@@ -127,8 +120,9 @@ class EditTown extends Component {
                 </Link>
               </form>
             </div>
+            {window.innerWidth > 680 && <div className="photo" />}
           </div>
-        </div>
+        </FadeIn>
       </Fragment>
     );
   }
