@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 class Registration extends Component {
@@ -63,7 +63,7 @@ class Registration extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <div
           className="parallaxStyleRoutes"
           style={{
@@ -121,7 +121,7 @@ class Registration extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

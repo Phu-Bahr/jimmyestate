@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { AddButton } from "../../../../Constants/Buttons";
 
 const RelocationPhotoForm = ({ onSubmit, onChange }) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="pb-3">
         <form onSubmit={onSubmit}>
           <label htmlFor="photo">Photo URL</label>
@@ -18,7 +18,7 @@ const RelocationPhotoForm = ({ onSubmit, onChange }) => {
           <AddButton className="mt-3" value="Add Photo" />
         </form>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

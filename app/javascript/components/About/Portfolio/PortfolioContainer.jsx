@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PortfolioProperties from "./PortfolioProperties";
 import AlertBox from "../../Constants/AlertComponent";
 import {
@@ -55,7 +55,7 @@ class PortfolioContainer extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="flex-container">
@@ -70,7 +70,7 @@ class PortfolioContainer extends Component {
           <LoadingScreen {...this.state} />
           <PortfolioProperties {...this.props} />
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

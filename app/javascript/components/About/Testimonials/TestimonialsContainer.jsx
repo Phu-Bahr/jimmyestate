@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   ParallaxBannerRoutes,
   ParallaxEditForm,
@@ -59,30 +59,32 @@ class TestimonialsContainer extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="flex-container">
           <ParallaxBannerRoutes {...this.state} />
 
           {this.props.user.admin && (
-            <div className="container text-center pt-4">
-              <EditButton onClick={this.editBanner} value="Edit Banner" />
-            </div>
-          )}
+            <Fragment>
+              <div className="container text-center pt-4">
+                <EditButton onClick={this.editBanner} value="Edit Banner" />
+              </div>
 
-          {this.state.hideDiv && (
-            <ParallaxEditForm
-              value={this.state}
-              onChange={this.onChange}
-              onSubmit={this.onSubmit}
-            />
+              {this.state.hideDiv && (
+                <ParallaxEditForm
+                  value={this.state}
+                  onChange={this.onChange}
+                  onSubmit={this.onSubmit}
+                />
+              )}
+            </Fragment>
           )}
 
           <LoadingScreen {...this.state} />
           <Testimonials user={this.props.user} />
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

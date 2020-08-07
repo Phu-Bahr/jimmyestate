@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { ParallaxBanner, FormMaps } from "../../Constants/Constants";
 import ScrollAnimation from "react-animate-on-scroll";
 import {
@@ -79,7 +79,7 @@ class CardsContainerEdit extends Component {
     );
 
     return (
-      <React.Fragment>
+      <Fragment>
         <ScrollAnimation animateIn="fadeIn">
           <ParallaxBanner {...this.state} />
 
@@ -89,7 +89,7 @@ class CardsContainerEdit extends Component {
             <img className="img-fluid rounded" src={this.state.image}></img>
           </div>
         </ScrollAnimation>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

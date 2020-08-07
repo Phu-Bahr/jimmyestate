@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import AlertBox from "../../Constants/AlertComponent";
 import TestimonialsForm from "./TestimonialsForm";
 import ScrollingSidesContainer from "./ScollingSidesContainer";
@@ -106,7 +106,7 @@ class Testimonials extends Component {
     const admin = this.props.user.admin;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <AlertBox
           {...this.state}
           alertType={this.alertType}
@@ -131,7 +131,7 @@ class Testimonials extends Component {
             value={this.state}
           />
         )}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

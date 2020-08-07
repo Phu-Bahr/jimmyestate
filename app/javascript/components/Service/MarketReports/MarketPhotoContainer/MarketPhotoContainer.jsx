@@ -83,12 +83,17 @@ class MarketPhotoContainer extends Component {
         />
 
         <div className="card border-0 col-md-6">
-          {this.props.hide && (
-            <MarketPhotoForm
-              onChange={this.onChange}
-              onSubmit={this.onSubmit}
-            />
+          {this.props.user.admin && (
+            <Fragment>
+              {this.props.hide && (
+                <MarketPhotoForm
+                  onChange={this.onChange}
+                  onSubmit={this.onSubmit}
+                />
+              )}
+            </Fragment>
           )}
+
           {photos}
         </div>
       </Fragment>

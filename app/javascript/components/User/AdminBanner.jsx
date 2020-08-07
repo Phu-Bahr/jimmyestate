@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 class AdminBanner extends Component {
@@ -25,22 +25,20 @@ class AdminBanner extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         {this.props.user.admin ? (
           <div className="container text-center p-4">
             <div className="row ">
               <div className="col-sm-6">
                 <h4 style={{ fontWeight: "bold" }}>Administration Mode</h4>
               </div>
-              <div className="col-sm-2">
+              <div className="col-sm-6 btn-group">
                 <button
                   className="btn btn-info"
                   onClick={this.handleLogoutClick}
                 >
                   Logout
                 </button>
-              </div>
-              <div className="col-sm-4">
                 <button className="btn btn-info">
                   <Link to="/registration" style={{ color: "white" }}>
                     Register
@@ -50,7 +48,7 @@ class AdminBanner extends Component {
             </div>
           </div>
         ) : null}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

@@ -16,10 +16,10 @@
 
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Roboto:wght@100&display=swap");
 
 * {
-  font-family: Ambria;
+  font-family: "Open Sans", sans-serif;
   // font-family: Roboto, ambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
@@ -334,9 +334,6 @@ body,
 
 .particles {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 
 .particles1 {
@@ -359,36 +356,32 @@ body,
 @media only screen and (min-width: 600px) {
   .jumboFont {
     font-size: 4vw;
-  }
-
-  .jumboFont2 {
-    font-size: 2vw;
-  }
-
-  .jumboFont3 {
-    font-size: 3vw;
-  }
-  .centerJumboText {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -250%);
-  }
-  .centerJumboText2 {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .centerJumboText3 {
+
+  .jumboFont2 {
+    font-size: 2vw;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -250%);
+  }
+
+  .jumboFont3 {
+    font-size: 3vw;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, 100%);
+    width: 75%;
   }
+
   .jumboBackground {
     background-color: white !important;
     height: 100vh;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   fadeIn,
@@ -79,7 +79,7 @@ export const ParallaxBanner = props => (
 
 // needs ...state or banner state. Especially id for loading
 export const ParallaxBannerRoutes = props => (
-  <React.Fragment>
+  <Fragment>
     <FadeIn>
       <div
         className="parallaxStyleRoutes"
@@ -107,7 +107,7 @@ export const ParallaxBannerRoutes = props => (
         )}
       </div>
     </FadeIn>
-  </React.Fragment>
+  </Fragment>
 );
 
 // as long as original component's state has the 3 keys below to send state down and up, this should work

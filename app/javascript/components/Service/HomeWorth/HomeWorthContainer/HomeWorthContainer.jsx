@@ -111,12 +111,14 @@ class HomeWorthContainer extends Component {
                     <p className="pb-2">{this.state.paragraph2}</p>
                   </div>
 
-                  <HomeWorthContentForm
-                    {...this.state}
-                    onChange={this.onChange}
-                    onSubmitEdit={this.onSubmitEdit}
-                    value={this.state}
-                  />
+                  {this.props.user.admin && (
+                    <HomeWorthContentForm
+                      {...this.state}
+                      onChange={this.onChange}
+                      onSubmitEdit={this.onSubmitEdit}
+                      value={this.state}
+                    />
+                  )}
 
                   <HomeWorthEmailForm alertType={this.alertType} />
                 </FadeInRight>
