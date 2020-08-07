@@ -51,7 +51,7 @@ class NavbarContainer extends Component {
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
         role="button"
-        data-toggle="dropdown"
+        data-toggle={window.innerWidth < 680 && "dropdown"}
         aria-haspopup="true"
         aria-expanded="false"
       >
