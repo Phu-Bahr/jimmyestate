@@ -1142,3 +1142,101 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   -webkit-transform: translateY(0) scale(1, 1);
   transform: translateY(0) scale(1, 1);
 }
+
+// new town/community
+
+.newTownWrapper {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr;
+  background-color: #99b3d4;
+}
+
+.newTownWrapper .form {
+  grid-area: 2 / 1 / 2 / 1;
+  padding: 10% 10%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  margin: 5%;
+}
+
+.newTownWrapper .photo {
+  background-image: url("https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  grid-area: 1 / 2 / 4 / 2;
+  background-color: green;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.newTownWrapper h1 {
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 680px) {
+  .newTownWrapper {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    background-color: #99b3d4;
+  }
+
+  .newTownWrapper .form {
+    grid-area: 1/1/1/1;
+  }
+  .newTownWrapper h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+//end of new town
+
+// new partners
+
+.newPartnerWrapper {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr;
+  background-color: #525f7d;
+}
+
+.newPartnerWrapper .form {
+  grid-area: 2 / 2 / 2 / 2;
+  padding: 10% 10%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  margin: 5%;
+}
+
+.newPartnerWrapper .photo {
+  background-image: url("https://images.pexels.com/photos/2058140/pexels-photo-2058140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  grid-area: 1 / 1 / 4 / 1;
+  background-color: green;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.newPartnerWrapper h1 {
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 680px) {
+  .newPartnerWrapper {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    background-color: #99b3d4;
+  }
+
+  .newPartnerWrapper .form {
+    grid-area: 1/1/1/1;
+  }
+  .newPartnerWrapper h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+//end of new town

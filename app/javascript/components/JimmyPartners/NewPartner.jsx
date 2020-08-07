@@ -52,38 +52,27 @@ class NewPartner extends Component {
           alertType={this.alertType}
           directToPath={this.directToPath}
         />
+
         <FadeIn>
-          <div
-            className="parallaxStyleRoutes"
-            style={{
-              backgroundImage:
-                "url(" +
-                "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
-                ")"
-            }}
-          />
-          <div className="container my-5">
-            <div className="row">
-              <div className="col-sm-12 col-lg-6 offset-lg-3">
-                <h1 className="font-weight-normal mb-5">
-                  Add new partner here
-                </h1>
+          <div className="newPartnerWrapper">
+            <div className="form">
+              <h1 className="mb-5">Add new partner here</h1>
 
-                <form onSubmit={this.onSubmit}>
-                  <FormMaps
-                    formConst={dataForm}
-                    onChange={this.onChange}
-                    value={this.state}
-                  />
+              <form onSubmit={this.onSubmit}>
+                <FormMaps
+                  formConst={dataForm}
+                  onChange={this.onChange}
+                  value={this.state}
+                />
 
-                  <AddButton className="mt-3" value="Create Partner Category" />
+                <AddButton className="mt-3" value="Create Partner Category" />
 
-                  <Link to="/" className="btn btn-link mt-3 ">
-                    Back to Home Page
-                  </Link>
-                </form>
-              </div>
+                <Link to="/" className="btn btn-link mt-3 ">
+                  Back to Home Page
+                </Link>
+              </form>
             </div>
+            {window.innerWidth > 680 && <div className="photo" />}
           </div>
         </FadeIn>
       </Fragment>

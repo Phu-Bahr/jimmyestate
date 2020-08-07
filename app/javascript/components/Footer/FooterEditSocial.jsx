@@ -1,13 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 
 const FooterEditSocial = props => {
   return (
     <React.Fragment>
       <div className="d-flex justify-content-center mt-3">
-        <Link
-          to={`//` + props.facebook}
+        <a
+          href={`//` + props.facebook}
           target="_blank"
           className="c-magic-icon"
         >
@@ -19,13 +18,9 @@ const FooterEditSocial = props => {
               className="iconfont mt-2"
             />
           </div>
-        </Link>
+        </a>
 
-        <Link
-          to={`//` + props.twitter}
-          target="_blank"
-          className="c-magic-icon"
-        >
+        <a href={`//` + props.twitter} target="_blank" className="c-magic-icon">
           <div className="c-magic-icon__fill twitter"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -34,10 +29,10 @@ const FooterEditSocial = props => {
               className="iconfont mt-2"
             />
           </div>
-        </Link>
+        </a>
 
-        <Link
-          to={`//` + props.instagram}
+        <a
+          href={`//` + props.instagram}
           target="_blank"
           className="c-magic-icon"
         >
@@ -49,9 +44,9 @@ const FooterEditSocial = props => {
               className="iconfont mt-2"
             />
           </div>
-        </Link>
+        </a>
 
-        <Link to={`//` + props.other} target="_blank" className="c-magic-icon">
+        <a href={`//` + props.other} target="_blank" className="c-magic-icon">
           <div className="c-magic-icon__fill googleplus"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -61,9 +56,9 @@ const FooterEditSocial = props => {
               src="https://www.freepngimg.com/thumb/google/66984-logo-search-google-my-business-free-transparent-image-hq.png"
             />
           </div>
-        </Link>
+        </a>
 
-        <Link to={`//` + props.zillow} target="_blank" className="c-magic-icon">
+        <a href={`//` + props.zillow} target="_blank" className="c-magic-icon">
           <div className="c-magic-icon__fill zillow"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -72,13 +67,9 @@ const FooterEditSocial = props => {
               src="https://img.pngio.com/zillow-icon-png-91-images-in-collection-page-2-zillow-icon-png-512_512.png"
             />
           </div>
-        </Link>
+        </a>
 
-        <Link
-          to={`//` + props.realtor}
-          target="_blank"
-          className="c-magic-icon"
-        >
+        <a href={`//` + props.realtor} target="_blank" className="c-magic-icon">
           <div className="c-magic-icon__fill realtor"></div>
           <div className="c-magic-icon__curtain"></div>
           <div className="c-magic-icon__outline">
@@ -87,7 +78,7 @@ const FooterEditSocial = props => {
               src="https://cdn3.iconfinder.com/data/icons/real-estate-glyph-8/100/Artboard_43-512.png"
             />
           </div>
-        </Link>
+        </a>
       </div>
     </React.Fragment>
   );

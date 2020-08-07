@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TownLinkContent = props => {
@@ -13,9 +12,9 @@ const TownLinkContent = props => {
     <Fragment>
       <div className="row">
         <div className="col-sm-6">
-          <Link to={`//` + props.townlink} target="blank" className="link">
+          <a href={`//` + props.townlink} target="_blank" className="link">
             <li>{props.townlinkdescription}</li>
-          </Link>
+          </a>
         </div>
         {props.admin && (
           <Fragment>
