@@ -754,6 +754,30 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 // end of company
 
 // login
+.loginWrapper {
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+
+.loginForm {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 30px 0px;
+  grid-area: 2 / 2 / 2 / 2;
+  text-align: center;
+  color: white;
+}
+
+.formWidth {
+  width: 75%;
+  text-align: right;
+  margin: 0 auto;
+}
 
 // end of login
 
