@@ -227,7 +227,8 @@ class EventContainer extends Component {
         />
 
         <div className="text-center">
-          <h1>Events coming up</h1>
+          <h3>Events coming up</h3>
+
           {this.props.user.admin && (
             <Fragment>
               <div className="text-center">
@@ -251,6 +252,7 @@ class EventContainer extends Component {
         <div className="p-5">
           <div className="row">
             <div className="col-lg-4">{events}</div>
+
             <div className="col-lg-8">
               <div className="row">
                 <div className="col-lg-6 py-2">
@@ -258,6 +260,7 @@ class EventContainer extends Component {
                     <img className="img-fluid" src={this.state.flier} />
                   </FadeIn>
                 </div>
+
                 <div className="col-lg-6 py-2">
                   <Map {...this.state} />
                 </div>
