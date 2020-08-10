@@ -39,7 +39,7 @@ class PartnerList extends Component {
     let partnerCategories = this.state.partnerData.map(element => {
       return (
         <Fragment key={element.id}>
-          <div className={admin ? "dropdown-item" : null}>
+          <div className={admin && "dropdown-item"}>
             <div className={admin ? "row navbar-underline" : "container py-1"}>
               <Link
                 to={`/${urlPath}/${element.id}`}
@@ -48,12 +48,12 @@ class PartnerList extends Component {
                     ? "col-sm-4 ml-n1 mr-4"
                     : "dropdown-item navbar-underline"
                 }
-                style={admin ? { fontSize: "13px" } : null}
+                style={admin && { fontSize: "13px" }}
               >
                 {element.name}
               </Link>
 
-              {admin ? (
+              {admin && (
                 <Fragment>
                   <div className="col-sm-4 mr-n4">
                     <FontAwesomeIcon
@@ -68,7 +68,7 @@ class PartnerList extends Component {
                     </Link>
                   </div>
                 </Fragment>
-              ) : null}
+              )}
             </div>
           </div>
         </Fragment>

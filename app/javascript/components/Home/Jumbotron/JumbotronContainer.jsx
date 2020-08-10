@@ -74,15 +74,22 @@ class JumbotronContainer extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <ScrollAnimation animateIn="fadeIn">
-          <div className="text-black text-center">
-            <div className="pt-5 jumboBackground">
-              <Particles
-                className="particles1 overlayParticle"
-                params={particleOpt}
-              />
+          <div className="pt-5 jumboBackground">
+            <Particles className="overlayParticle" params={particleOpt} />
 
-              <div className="pt-5">{jumboList}</div>
+            <div
+              className=""
+              style={{
+                position: "relative",
+                top: "30%",
+                right: "50",
+                textAlign: "center"
+              }}
+            >
+              {jumboList}
             </div>
+          </div>
+          <div className="text-center">
             <JumboEditForm
               user={this.props.user}
               onChange={this.onChange}

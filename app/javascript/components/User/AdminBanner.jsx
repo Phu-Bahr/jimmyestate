@@ -26,7 +26,7 @@ class AdminBanner extends Component {
   render() {
     return (
       <Fragment>
-        {this.props.user.admin ? (
+        {this.props.user.admin && (
           <div className="container text-center p-4">
             <div className="row ">
               <div className="col-sm-6">
@@ -47,7 +47,7 @@ class AdminBanner extends Component {
               </div>
             </div>
           </div>
-        ) : null}
+        )}
       </Fragment>
     );
   }

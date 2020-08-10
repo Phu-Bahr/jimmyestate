@@ -31,7 +31,7 @@ let bannerForms = {
 const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
   return (
     <Fragment>
-      {hideDiv && admin ? (
+      {hideDiv && admin && (
         <div className="container">
           <form onSubmit={onSubmit}>
             <div className="container py-3">
@@ -66,7 +66,7 @@ const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
             </div>
           </form>
         </div>
-      ) : null}
+      )}
     </Fragment>
   );
 };

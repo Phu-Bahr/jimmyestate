@@ -20,13 +20,15 @@ const ScrollingSidesContainer = ({
             className="slider-background-format"
           >
             <div className="center slide-content">
-              <FadeInDown>
-                <h1>{item.title}</h1>
-              </FadeInDown>
-              <FadeInUp>
-                <p>"{item.description}"</p>
-                <p className="name">-{item.name}</p>
-              </FadeInUp>
+              <div className="testimonyFont">
+                <FadeInDown>
+                  <h1>{item.title}</h1>
+                </FadeInDown>
+                <FadeInUp>
+                  <p>"{item.description}"</p>
+                  <p>-{item.name}</p>
+                </FadeInUp>
+              </div>
               {admin && (
                 <Fragment>
                   <DeleteButton onClick={() => handleDelete(item.id)} />
