@@ -183,15 +183,19 @@ class NavbarContainer extends Component {
     } else {
       collapseMenuLogic = <ul className="navbar-nav ml-auto">{navLists}</ul>;
     }
-    console.log("window width==>", window.innerWidth);
+    console.log(
+      "window width==>",
+      window.innerWidth,
+      document.body.getBoundingClientRect().top
+    );
 
     return (
       <Transition>
         <AlertBox {...this.state} alertType={this.alertType} />
         <StyledNavbar
           className={
-            document.body.getBoundingClientRect().top === 0
-              ? "top"
+            document.body.getBoundingClientRect().top > -75
+              ? "active"
               : this.state.show
               ? "active"
               : "hidden"
