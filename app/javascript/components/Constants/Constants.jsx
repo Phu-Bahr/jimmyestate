@@ -57,14 +57,6 @@ export const Transition = styled.div`
     opacity: 0;
     transition: visibility 0s, opacity 0.1s linear, all 2s ease-out;
   }
-  .top {
-    @media only screen and (max-width: 600px) {
-      visibility: visible;
-      opacity: 1;
-      transition: visibility 0s, opacity 0.5s linear, all 0.9s ease-in;
-      position: sticky;
-    }
-  }
 `;
 
 // needs ...state or banner state

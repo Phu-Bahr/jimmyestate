@@ -48,7 +48,14 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 82vh;
+  padding-top: 90px;
 }
+
+// @media only screen and (max-width: 680px) {
+//   .flex-container {
+//     padding-top: 90px;
+//   }
+// }
 
 .link {
   color: #8bce3c;
