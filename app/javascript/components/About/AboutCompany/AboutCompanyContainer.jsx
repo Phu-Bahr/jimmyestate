@@ -67,7 +67,11 @@ class AboutCompanyContainer extends Component {
 
           <FadeInUp>
             <div className="pt-4 pb-3 text-center">
-              <img className="img-fluid rounded" src={this.state.image}></img>
+              <img
+                className="img-fluid rounded"
+                src={this.state.image}
+                alt="RTN Logo Image"
+              ></img>
             </div>
           </FadeInUp>
 

@@ -75,48 +75,46 @@ class Registration extends Component {
         />
         <div className="flex-container">
           <div className="container text-center my-5">
-            <div>
-              <div className="col-sm-12 col-lg-6 offset-lg-3">
-                <h1 className="m-5">Status : {this.props.loggedInStatus}</h1>
-                <form onSubmit={this.handleRegSubmit}>
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                      required
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={this.state.password}
-                      onChange={this.handleChange}
-                      required
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      name="password_confirmation"
-                      placeholder="Password Confirmation"
-                      value={this.state.password_confirmation}
-                      onChange={this.handleChange}
-                      required
-                      className="form-control"
-                    />
-                  </div>
-                  <button type="submit">Register User</button>
-                </form>
-                <div className="m-4">
-                  <Link to="/">Back to Home page</Link>
+            <div className="col-sm-12 col-lg-6 offset-lg-3">
+              <h1 className="m-5">Status : {this.props.loggedInStatus}</h1>
+              <form onSubmit={this.handleRegSubmit}>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    required
+                    className="form-control"
+                  />
                 </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password Confirmation"
+                    value={this.state.password_confirmation}
+                    onChange={this.handleChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+                <button type="submit">Register User</button>
+              </form>
+              <div className="m-4">
+                <Link to="/">Back to Home page</Link>
               </div>
             </div>
           </div>

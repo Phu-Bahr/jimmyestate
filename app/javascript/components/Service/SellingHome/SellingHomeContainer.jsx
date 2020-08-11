@@ -71,14 +71,12 @@ class SellingHomeContainer extends Component {
             />
           )}
 
-          <div>
-            <DraftJSContainer
-              {...this.state}
-              {...this.props}
-              urlPath={urlPath}
-              uppertoggleRefreshKey={this.toggleRefreshKey}
-            />
-          </div>
+          <DraftJSContainer
+            {...this.state}
+            {...this.props}
+            urlPath={urlPath}
+            uppertoggleRefreshKey={this.toggleRefreshKey}
+          />
         </div>
       </Fragment>
     );

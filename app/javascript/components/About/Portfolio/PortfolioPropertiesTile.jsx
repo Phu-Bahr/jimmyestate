@@ -27,6 +27,7 @@ const PortfolioPropertiesTile = props => {
                 <img
                   className="portfolioImage card-img-top"
                   src={props.photo}
+                  alt="Portfolio Property Photo"
                 />
                 <div className="portfolioTitle">
                   {props.status == "Active" ? "On Market" : props.status}

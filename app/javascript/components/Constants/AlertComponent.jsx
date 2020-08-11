@@ -16,6 +16,7 @@ const AlertBox = props => {
             <img
               style={fitGif}
               src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
+              alt="Deleted Gif confirmation photo"
             />
             <br />
             <div>Deleted!</div>
@@ -50,6 +51,7 @@ const AlertBox = props => {
             <img
               style={fitGif}
               src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
+              alt="Sent confirmation photo"
             />
             <br />
             <div>SENT</div>
@@ -90,6 +92,7 @@ const AlertBox = props => {
             <img
               style={{ width: "100%", height: "100%" }}
               src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
+              alt="Are you sure? confirmation photo"
             />
             <br />
             <div>Are you sure?</div>
@@ -116,6 +119,7 @@ const AlertBox = props => {
             <img
               style={fitGif}
               src="https://media0.giphy.com/media/aN9GqoR7OD3nq/200.gif"
+              alt="Geocode does not exist Photo"
             />
             <br />
             <div>Location does not exist on Earth!</div>
@@ -136,6 +140,7 @@ const AlertBox = props => {
             <img
               style={fitGif}
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
+              alt="Geocode found photo"
             />
             <br />
             <div>Geocode Found!!</div>
@@ -156,6 +161,7 @@ const AlertBox = props => {
             <img
               style={fitGif}
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
+              alt="Geocode found for new event photo"
             />
             <br />
             <div>Geocode Found!!</div>

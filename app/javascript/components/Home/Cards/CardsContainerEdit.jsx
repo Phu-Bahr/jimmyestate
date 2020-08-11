@@ -86,7 +86,11 @@ class CardsContainerEdit extends Component {
           {this.props.user.admin && bannerForm}
 
           <div className="container text-center pt-5">
-            <img className="img-fluid rounded" src={this.state.image}></img>
+            <img
+              className="img-fluid rounded"
+              src={this.state.image}
+              alt="Helper card image"
+            />
           </div>
         </ScrollAnimation>
       </Fragment>

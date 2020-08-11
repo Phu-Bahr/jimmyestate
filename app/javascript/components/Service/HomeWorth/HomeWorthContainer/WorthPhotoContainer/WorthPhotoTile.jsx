@@ -8,7 +8,11 @@ const WorthPhotoTile = ({ id, photo, hide, handleDelete }) => {
       <FadeInLeft>
         <div className="parent1 m-0">
           <div className="child1 particles">
-            <img className="portfolioImage card-img-top" src={photo} />
+            <img
+              className="portfolioImage card-img-top"
+              src={photo}
+              alt={`Home worth photo ` + id}
+            />
           </div>
           {hide && (
             <div className="portfolioTitle">

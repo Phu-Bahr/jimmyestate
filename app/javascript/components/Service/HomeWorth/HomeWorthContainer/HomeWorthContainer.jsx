@@ -106,10 +106,8 @@ class HomeWorthContainer extends Component {
 
               <div className="col-sm-6">
                 <FadeInRight>
-                  <div>
-                    <p className="pb-2">{this.state.paragraph1}</p>
-                    <p className="pb-2">{this.state.paragraph2}</p>
-                  </div>
+                  <p className="pb-2">{this.state.paragraph1}</p>
+                  <p className="pb-2">{this.state.paragraph2}</p>
 
                   {this.props.user.admin && (
                     <HomeWorthContentForm
