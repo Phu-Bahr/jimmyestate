@@ -95,7 +95,11 @@ class CustomCards extends Component {
             <div className="card border-0" onClick={this.onClick}>
               <div className="parent m-0">
                 <div className="child particles">
-                  <img className="venueImage " src={element.image} />
+                  <img
+                    className="venueImage "
+                    src={element.image}
+                    alt="custom helper card image 1"
+                  />
                   <div className="venueTitle">{element.title}</div>
                 </div>
               </div>
@@ -133,7 +137,11 @@ class CustomCards extends Component {
             <div className="card border-0" onClick={this.onClick1}>
               <div className="parent m-0">
                 <div className="child particles">
-                  <img className="venueImage " src={element.image} />
+                  <img
+                    className="venueImage "
+                    src={element.image}
+                    alt="custom helper card image 2"
+                  />
                   <div className="venueTitle">{element.title}</div>
                 </div>
               </div>

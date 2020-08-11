@@ -100,10 +100,9 @@ class MarketReportsContainer extends Component {
             <div className="row">
               <div className="col-sm-6 pb-3">
                 <FadeInLeft>
-                  <div>
-                    <p className="pb-2">{this.state.paragraph1}</p>
-                    <p className="pb-2">{this.state.paragraph2}</p>
-                  </div>
+                  <p className="pb-2">{this.state.paragraph1}</p>
+                  <p className="pb-2">{this.state.paragraph2}</p>
+
                   {this.props.user.admin && (
                     <Fragment>
                       {this.state.hideDiv && (

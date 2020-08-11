@@ -54,6 +54,7 @@ const FooterEditSocial = props => {
               className="google-icon-color"
               style={{ height: "80%" }}
               src="https://www.freepngimg.com/thumb/google/66984-logo-search-google-my-business-free-transparent-image-hq.png"
+              alt="google business icon"
             />
           </div>
         </a>
@@ -65,6 +66,7 @@ const FooterEditSocial = props => {
             <img
               style={{ height: "80%", filter: "invert(100%)" }}
               src="https://img.pngio.com/zillow-icon-png-91-images-in-collection-page-2-zillow-icon-png-512_512.png"
+              alt="zillow icon"
             />
           </div>
         </a>
@@ -76,6 +78,7 @@ const FooterEditSocial = props => {
             <img
               style={{ height: "90%", filter: "invert(100%)" }}
               src="https://cdn3.iconfinder.com/data/icons/real-estate-glyph-8/100/Artboard_43-512.png"
+              alt="realtor house icon"
             />
           </div>
         </a>

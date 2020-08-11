@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import CardsContainer from "../Home/Cards/CardsContainer";
 import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
@@ -7,7 +7,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 
 const Home = props => {
   return (
-    <div>
+    <Fragment>
       <JumbotronContainer {...props} />
 
       <ScrollAnimation animateIn="fadeIn">
@@ -16,7 +16,7 @@ const Home = props => {
       <EventContainer user={props.user} />
 
       <CardsContainer {...props} />
-    </div>
+    </Fragment>
   );
 };
 

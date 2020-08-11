@@ -11,10 +11,7 @@ const AboutJimmyPhotoContainer = ({
   return (
     <Fragment>
       <div className="float-left ml-4 pr-4 mb-3">
-        <div>
-          <img className="img-fluid rounded" src={photo}></img>
-        </div>
-
+        <img className="img-fluid rounded" src={photo} alt="Jimmy Chao Photo" />
         <div className="container mt-3 text-center">
           <div className="container">
             <div style={{ fontWeight: "bolder", fontSize: "30px" }}>

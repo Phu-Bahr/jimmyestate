@@ -257,7 +257,11 @@ class EventContainer extends Component {
               <div className="row">
                 <div className="col-lg-6 py-2">
                   <FadeIn>
-                    <img className="img-fluid" src={this.state.flier} />
+                    <img
+                      className="img-fluid"
+                      src={this.state.flier}
+                      alt={`Event image ` + this.state.id}
+                    />
                   </FadeIn>
                 </div>
 
