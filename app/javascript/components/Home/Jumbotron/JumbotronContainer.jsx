@@ -59,13 +59,23 @@ class JumbotronContainer extends Component {
   render() {
     let jumboList = this.state.jumboData.map(element => {
       return (
-        <JumboTile
+        <div
           key={element.id}
-          id={element.id}
-          line1={element.line1}
-          line2={element.line2}
-          line3={element.line3}
-        />
+          style={{
+            position: "relative",
+            top: "30%",
+            right: "50",
+            textAlign: "center"
+          }}
+        >
+          <JumboTile
+            key={element.id}
+            id={element.id}
+            line1={element.line1}
+            line2={element.line2}
+            line3={element.line3}
+          />
+        </div>
       );
     });
 
@@ -76,19 +86,9 @@ class JumbotronContainer extends Component {
         <ScrollAnimation animateIn="fadeIn">
           <div className="pt-5 jumboBackground">
             <Particles className="overlayParticle" params={particleOpt} />
-
-            <div
-              className=""
-              style={{
-                position: "relative",
-                top: "30%",
-                right: "50",
-                textAlign: "center"
-              }}
-            >
-              {jumboList}
-            </div>
+            {jumboList}
           </div>
+
           <div className="text-center">
             <JumboEditForm
               user={this.props.user}
