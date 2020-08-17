@@ -22,7 +22,9 @@ export const putFetch = (url, body, alertType) => {
       alertType === undefined
         ? alert("Something went wrong")
         : alertType("error");
-      throw new Error("Network response was not ok.");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
     })
     .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
@@ -49,7 +51,9 @@ export const postFetchEmail = (url, body, alertType) => {
             "There was a network issue, please try again or Email Jimmy directly."
           )
         : alertType("error");
-      throw new Error("Network response was not ok.");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
     })
 
     .then(scrollToTop)
@@ -76,7 +80,9 @@ export const postFetch = (url, body, alertType, mountState) => {
       alertType === undefined
         ? alert("There was a network issue, please try again or contact admin.")
         : alertType("error");
-      throw new Error("Network response was not ok.");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
     })
     .then(body => {
       mountState !== undefined && mountState(body);
@@ -133,7 +139,9 @@ export const postFetchDraft = (url, body, alertType) => {
       alertType === undefined
         ? alert("There was a network issue, please try again or contact admin.")
         : alertType("error");
-      throw new Error("Network response was not ok.");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
     })
     .then(scrollToTop)
     .catch(error => console.log("error message =>", error.message));
@@ -163,7 +171,9 @@ export const getGeocode = (location, mountLatLng, alertType) => {
         return response;
       } else {
         alertType("noGeocode");
-        throw new Error("Network response was not ok.");
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
       }
     })
     .then(response => response.json())
@@ -184,7 +194,9 @@ export const getGeocodeEvent = (location, mountLatLng, alertType) => {
         return response;
       } else {
         alertType("noGeocode");
-        throw new Error("Network response was not ok.");
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
       }
     })
     .then(response => response.json())
@@ -289,7 +301,9 @@ export const putNoScrollFetch = (url, body, alertType) => {
       alertType === undefined
         ? alert("Something went wrong")
         : alertType("error");
-      throw new Error("Network response was not ok.");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
     })
     .catch(error => console.log("error message =>", error.message));
 };
@@ -313,7 +327,9 @@ export const postNoScrollFetch = (url, body, alertType, mountState) => {
       alertType === undefined
         ? alert("There was a network issue, please try again or contact admin.")
         : alertType("error");
-      throw new Error("Network response was not ok.");
+      let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw error;
     })
     .then(body => {
       mountState !== undefined && mountState(body);
