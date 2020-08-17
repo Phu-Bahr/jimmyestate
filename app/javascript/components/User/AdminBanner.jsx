@@ -4,16 +4,9 @@ import { Link } from "react-router-dom";
 const AdminBanner = props => {
   const handleLogoutClick = () => {
     const url = "/logout";
-    fetch(url, {
-      method: "DELETE",
-      credentials: "include"
-    })
-      .then(() => {
-        props.handleLogout();
-      })
-      .catch(error => {
-        console.log("logout error", error);
-      });
+    fetch(url, { method: "DELETE", credentials: "include" })
+      .then(() => props.handleLogout())
+      .catch(error => console.log("logout error", error));
   };
 
   return (

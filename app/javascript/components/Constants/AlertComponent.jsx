@@ -180,6 +180,16 @@ const AlertBox = props => {
     </SweetAlert>
   );
 
+  const successfulRegistration = (
+    <SweetAlert
+      success
+      title="Registered!!"
+      onConfirm={() => props.directToPath()}
+    >
+      User has been registered. Speak to developer for admin access rights.
+    </SweetAlert>
+  );
+
   if (props.typeOfAlert !== null) {
     switch (props.typeOfAlert) {
       case "successLogin":
@@ -202,6 +212,8 @@ const AlertBox = props => {
         return successfulGeocode;
       case "successGeocodeEvent":
         return successfulGeocodeEvent;
+      case "successRegistration":
+        return successfulRegistration;
 
       default:
         break;
@@ -212,29 +224,3 @@ const AlertBox = props => {
 };
 
 export default AlertBox;
-
-// if (props.typeOfAlert !== null) {
-//   if (props.typeOfAlert == "successDelete") {
-//     return successfulDelete;
-//   } else if (props.typeOfAlert == "delete") {
-//     return deleteItem;
-//   } else if (props.typeOfAlert == "successAdd") {
-//     return successfulAdd;
-//   } else if (props.typeOfAlert == "error") {
-//     return errorMessage;
-//   } else if (props.typeOfAlert == "successEmail") {
-//     return successfulEmail;
-//   } else if (props.typeOfAlert == "successEdit") {
-//     return successfulEdit;
-//   } else if (props.typeOfAlert == "noGeocode") {
-//     return errorGeocode;
-//   } else if (props.typeOfAlert == "successGeocode") {
-//     return successfulGeocode;
-//   } else if (props.typeOfAlert == "successEditTownList") {
-//     return editTownList;
-//   } else if (props.typeOfAlert == "successLogin") {
-//     return successfulLogin;
-//   }
-// } else {
-//   return null;
-// }

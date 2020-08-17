@@ -1,5 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import AlertBox from "../Constants/AlertComponent";
+import { SubmitEmailButton } from "../Constants/Buttons";
+
+const urlPath = "registrations";
 
 class Registration extends Component {
   constructor(props) {
@@ -8,19 +12,20 @@ class Registration extends Component {
       email: "",
       password: "",
       password_confirmation: "",
-      registrationErrors: ""
+      typeOfAlert: null
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleRegSubmit = this.handleRegSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  directToPath = () => {
+    this.setState({ typeOfAlert: null });
+    this.props.history.goBack();
+  };
 
-  handleRegSubmit(event) {
+  handleRegSubmit = event => {
     event.preventDefault();
-    const url = "/api/v1/registrations";
+    const url = `/api/v1/${urlPath}`;
     const { email, password, password_confirmation } = this.state;
 
     const body = {
@@ -41,81 +46,73 @@ class Registration extends Component {
     })
       .then(response => {
         if (response.ok) {
-          return response;
+          this.setState({ typeOfAlert: "successRegistration" });
         } else {
+          this.setState({ typeOfAlert: "error" });
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
           throw error;
         }
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === "created") {
-          this.props.handleLogin(data);
-        }
-      })
-      .then(alert("User created. Ask Admin to give you credentials."))
-      .then(this.props.history.push("/"))
       .catch(error => {
         console.log("registration error", error);
       });
-  }
+  };
+
+  componentDidMount = () => window.scrollTo(0, 0);
 
   render() {
     return (
       <Fragment>
-        <div
-          className="parallaxStyleRoutes"
-          style={{
-            backgroundImage:
-              "url(" +
-              "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" +
-              ")"
-          }}
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          directToPath={this.directToPath}
         />
-        <div className="flex-container">
-          <div className="container text-center my-5">
-            <div className="col-sm-12 col-lg-6 offset-lg-3">
-              <h1 className="m-5">Status : {this.props.loggedInStatus}</h1>
-              <form onSubmit={this.handleRegSubmit}>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="Password Confirmation"
-                    value={this.state.password_confirmation}
-                    onChange={this.handleChange}
-                    required
-                    className="form-control"
-                  />
-                </div>
-                <button type="submit">Register User</button>
-              </form>
-              <div className="m-4">
-                <Link to="/">Back to Home page</Link>
+
+        <div className="loginWrapper">
+          <div className="loginForm">
+            <h1>Register User Here</h1>
+
+            <form onSubmit={this.handleRegSubmit}>
+              <div className="form-group formWidth">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
+                  className="form-control"
+                />
               </div>
+              <div className="form-group formWidth">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  required
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group formWidth">
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  placeholder="Password Confirmation"
+                  value={this.state.password_confirmation}
+                  onChange={this.handleChange}
+                  required
+                  className="form-control"
+                />
+              </div>
+
+              <SubmitEmailButton value2="Submit User" value1="Register" />
+            </form>
+            <div className="m-4">
+              <Link to="/">Back to Home page</Link>
             </div>
           </div>
         </div>
