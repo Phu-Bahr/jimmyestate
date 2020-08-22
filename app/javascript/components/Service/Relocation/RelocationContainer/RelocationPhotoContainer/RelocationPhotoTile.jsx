@@ -11,7 +11,7 @@ const RelocationPhotoTile = ({ photo, hide, handleDelete }) => {
             <img
               className="portfolioImage card-img-top"
               src={photo}
-              alt="relocation photo"
+              alt="a photo filler for relocation path"
             />
           </div>
           {hide && (
