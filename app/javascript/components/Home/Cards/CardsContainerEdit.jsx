@@ -85,7 +85,7 @@ class CardsContainerEdit extends Component {
 
           {this.props.user.admin && bannerForm}
 
-          <div className="container text-center pt-5">
+          <div className="text-center py-5 card-photo-background">
             <img
               className="img-fluid rounded"
               src={this.state.image}

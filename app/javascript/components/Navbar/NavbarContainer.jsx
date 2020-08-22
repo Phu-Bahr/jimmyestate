@@ -183,11 +183,6 @@ class NavbarContainer extends Component {
     } else {
       collapseMenuLogic = <ul className="navbar-nav ml-auto">{navLists}</ul>;
     }
-    console.log(
-      "window width==>",
-      window.innerWidth,
-      document.body.getBoundingClientRect().top
-    );
 
     return (
       <Transition>
@@ -202,7 +197,7 @@ class NavbarContainer extends Component {
           }
         >
           <FadeInDown>
-            <nav className="navbar navbar-expand-lg navbar-light site-header py-4 navbar-font-type">
+            <nav className="navbar navbar-expand-lg navbar-light site-header py-4">
               <div className="container-fluid" style={{ maxWidth: 1150 }}>
                 {this.props.user.admin ? (
                   <AdminBanner
@@ -212,8 +207,12 @@ class NavbarContainer extends Component {
                     handleLogout={this.props.handleLogout}
                   />
                 ) : (
-                  <Link to="/" onClick={this.scrollToTop}>
-                    <div className="navbar-font">Jimmy Chao</div>
+                  <Link
+                    to="/"
+                    onClick={this.scrollToTop}
+                    className="navbar-font"
+                  >
+                    <div>Jimmy Chao</div>
                   </Link>
                 )}
                 <button
