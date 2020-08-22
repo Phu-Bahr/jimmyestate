@@ -85,6 +85,7 @@ export const SubmitEmailButton = ({ className, value1, value2 }) => {
         className == null ? "btn1 effect04" : `btn1 effect04 ${className}`
       }
       data-sm-link-text={value2 == null ? "Send" : value2}
+      style={{ border: "0" }}
     >
       <span>{value1 == null ? "Contact Me" : value1}</span>
     </button>

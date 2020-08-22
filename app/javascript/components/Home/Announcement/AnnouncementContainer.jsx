@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { ParallaxBanner } from "../../Constants/Constants";
-import { getNoScrollFetch, putFetch } from "../../Constants/FetchComponent";
+import {
+  getNoScrollFetch,
+  putNoScrollFetch
+} from "../../Constants/FetchComponent";
 import { UpdateButton, EditButton } from "../../Constants/Buttons";
 import AlertBox from "../../Constants/AlertComponent";
 
@@ -32,7 +35,7 @@ class AnnouncementContainer extends Component {
     const { description, title, bannerImage } = this.state;
     const body = { description, title, bannerImage };
 
-    putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
+    putNoScrollFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
   mountState = body => {
