@@ -9,6 +9,7 @@ import {
   getNoScrollFetch,
   deleteNoScrollFetch
 } from "../../Constants/FetchComponent";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const urlPathDraft = "card_drafts";
 const urlPath = "helper_links";
@@ -77,14 +78,19 @@ class CardsContainer extends Component {
           deleteEvent={this.deleteCard}
         />
 
-        <CardsContainerEdit user={this.props.user} alertType={this.alertType} />
+        <ScrollAnimation animateIn="fadeIn">
+          <CardsContainerEdit
+            user={this.props.user}
+            alertType={this.alertType}
+          />
 
-        <DraftJSContainer
-          {...this.state}
-          {...this.props}
-          hocRefresh={this.toggleRefreshKey}
-          urlPath={urlPathDraft}
-        />
+          <DraftJSContainer
+            {...this.state}
+            {...this.props}
+            hocRefresh={this.toggleRefreshKey}
+            urlPath={urlPathDraft}
+          />
+        </ScrollAnimation>
 
         <div className="container pb-5 pt-2 px-5">
           {this.props.user.admin && (
