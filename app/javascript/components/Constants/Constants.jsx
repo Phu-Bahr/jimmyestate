@@ -6,7 +6,8 @@ import {
   fadeInDown,
   fadeInRight,
   fadeInLeft,
-  fadeOut
+  fadeOut,
+  flipInY
 } from "react-animations";
 import { UpdateButton } from "./Buttons";
 import { CommonLoading } from "react-loadingg";
@@ -34,6 +35,10 @@ export const FadeInLeft = styled.div`
 
 export const FadeOut = styled.div`
   animation: 1s ${keyframes`${fadeOut}`};
+`;
+
+export const FlipIn = styled.div`
+  animation: 1s ${keyframes`${flipInY}`};
 `;
 
 //for navbar

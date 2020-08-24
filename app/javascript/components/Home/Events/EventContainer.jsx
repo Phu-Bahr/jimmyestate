@@ -2,7 +2,7 @@ import React, { Component, Fragment, createRef } from "react";
 import Map from "../../Constants/MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
-import { FadeIn } from "../../Constants/Constants";
+import { FlipIn } from "../../Constants/Constants";
 import {
   getGeocode,
   deleteNoScrollFetch,
@@ -139,6 +139,8 @@ class EventContainer extends Component {
   };
 
   render() {
+    console.log(this.state);
+
     let events = this.state.eventData.map(element => {
       let hideUpdate;
       element.id === this.state.selectedStepId
@@ -227,7 +229,8 @@ class EventContainer extends Component {
         />
 
         <div className="text-center">
-          <h3>Events coming up</h3>
+          <h1>EVENTS</h1>
+          <div className="event-line-break mt-3"></div>
 
           {this.props.user.admin && (
             <Fragment>
@@ -252,17 +255,17 @@ class EventContainer extends Component {
         <div className="p-5">
           <div className="row">
             <div className="col-lg-4">{events}</div>
-
             <div className="col-lg-8">
               <div className="row">
                 <div className="col-lg-6 py-2">
-                  <FadeIn>
+                  <FlipIn>
                     <img
                       className="img-fluid"
                       src={this.state.flier}
                       alt={`Event image ` + this.state.id}
+                      style={{ boxShadow: "0px 10px 13px -7px #000000" }}
                     />
-                  </FadeIn>
+                  </FlipIn>
                 </div>
 
                 <div className="col-lg-6 py-2">
