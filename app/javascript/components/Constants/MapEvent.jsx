@@ -7,7 +7,8 @@ const containerStyle = {
   display: "flex",
   flexFlow: "row nowrap",
   justifyContent: "center",
-  padding: "0"
+  padding: "0",
+  boxShadow: "0px 10px 13px -7px #000000"
 };
 
 const containerStyleMobile = {
