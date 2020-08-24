@@ -89,10 +89,10 @@ class CustomCards extends Component {
         return (
           <div
             key={element.id}
-            className="col-md-6 col-middle py-2"
+            className="col-md-6 col-middle px-4 py-3"
             style={{ zIndex: 0 }}
           >
-            <div className="card border-0" onClick={this.onClick}>
+            <div className="card border-0 helper-card" onClick={this.onClick}>
               <div className="parent m-0">
                 <div className="child particles">
                   <img
@@ -131,10 +131,10 @@ class CustomCards extends Component {
         return (
           <div
             key={element.id}
-            className="col-md-6 col-middle py-2"
+            className="col-md-6 col-middle px-4 py-3"
             style={{ zIndex: 0 }}
           >
-            <div className="card border-0" onClick={this.onClick1}>
+            <div className="card border-0 helper-card" onClick={this.onClick1}>
               <div className="parent m-0">
                 <div className="child particles">
                   <img

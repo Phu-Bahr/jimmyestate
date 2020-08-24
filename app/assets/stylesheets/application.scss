@@ -813,13 +813,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   padding: 0;
 }
 
-// .event-line-break {
-//   border: solid #8bce3c 3px;
-//   width: 50%;
-//   left: 25%;
-//   position: relative;
-// }
-
 .event-line-break {
   background: linear-gradient(271deg, #344026, $rtnColor);
   background-size: 400% 400%;
@@ -931,6 +924,15 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   }
 }
 
+.helper-card {
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-out;
+}
+
+.helper-card:hover {
+  transform: translateY(-10px) translateZ(0) scale(1.05);
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.2), 0 24px 46px rgba(0, 0, 0, 0.2);
+}
 // end of announcements
 
 // beginning SHOWPAGE
