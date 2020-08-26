@@ -68,7 +68,6 @@ class Login extends Component {
                   onChange={this.handleChange}
                   className="form-control text-center"
                   required
-                  disabled
                 />
               </div>
 
@@ -81,7 +80,6 @@ class Login extends Component {
                   onChange={this.handleChange}
                   className="form-control text-center"
                   required
-                  disabled
                 />
               </div>
 
