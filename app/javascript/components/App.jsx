@@ -118,6 +118,7 @@ class App extends Component {
           ref={this.refreshingTownList}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
+          {...this.props}
         />
 
         <Switch>
