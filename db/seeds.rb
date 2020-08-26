@@ -21,9 +21,9 @@ footer = Footer.create!(
 )
 
 announcement = Announcement.create!(
-    description: "hello, we are going to party soon", 
-    title: "place title here",
-    bannerImage: "test"
+        bannerImage: "https://images.pexels.com/photos/421927/pexels-photo-421927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        title: "place title here",
+        description: "hello, we are going to party soon"
 )
 
 about = About.create!(
@@ -69,6 +69,14 @@ aboutCompanySeed = AboutCompany.create!(
 
 venueEditSeed = VenueEdit.create!(
     bannerImage: "test"
+)
+
+venueTemplating = VenueTemplate.create!(
+        content: "test",
+        headerText1: "test",
+        headerText2: "test",
+        image: "test",
+        bannerImage: "test"
 )
 
 portfolioEdit = PortfolioEdit.create!(
