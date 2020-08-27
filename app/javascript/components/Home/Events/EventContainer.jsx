@@ -147,7 +147,7 @@ class EventContainer extends Component {
 
       let handleDelete = () => {
         this.setState({ idForAlert: element.id });
-        this.alertType("delete");
+        this.deleteEvent(element.id);
       };
 
       let submitUpdate = () => this.updateEvent(element.id);

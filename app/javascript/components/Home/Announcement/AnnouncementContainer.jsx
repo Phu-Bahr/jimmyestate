@@ -5,7 +5,6 @@ import {
   putNoScrollFetch
 } from "../../Constants/FetchComponent";
 import { UpdateButton, EditButton } from "../../Constants/Buttons";
-import AlertBox from "../../Constants/AlertComponent";
 
 const urlPath = "announcements";
 
@@ -19,8 +18,7 @@ class AnnouncementContainer extends Component {
       title: "",
       refreshKey: false,
       bannerImage: "",
-      id: null,
-      typeOfAlert: null
+      id: null
     };
   }
 
@@ -61,7 +59,6 @@ class AnnouncementContainer extends Component {
   render() {
     return (
       <Fragment>
-        <AlertBox {...this.state} alertType={this.alertType} />
         <ParallaxBanner {...this.state} />
 
         <div className="container-fluid pt-5">
