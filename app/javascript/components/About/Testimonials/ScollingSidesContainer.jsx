@@ -26,7 +26,7 @@ const ScrollingSidesContainer = ({
                 </FadeInDown>
                 <FadeInUp>
                   <p>"{item.description}"</p>
-                  <p>-{item.name}</p>
+                  <p id="testimony-name">-{item.name}</p>
                 </FadeInUp>
               </div>
               {admin && (
