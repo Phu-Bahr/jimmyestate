@@ -74,7 +74,7 @@ class EventContainer extends Component {
 
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
-    deleteNoScrollFetch(url, this.alertType).then(this.toggleRefreshKey);
+    deleteNoScrollFetch(url, this.props.alertType).then(this.toggleRefreshKey);
   };
 
   updateEvent = id => {
@@ -92,7 +92,7 @@ class EventContainer extends Component {
       lng
     };
 
-    putNoScrollFetch(url, body, this.alertType)
+    putNoScrollFetch(url, body, this.props.alertType)
       .then(this.props.toggleRefreshKey)
       .then(
         this.setState({
@@ -139,8 +139,6 @@ class EventContainer extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     let events = this.state.eventData.map(element => {
       let hideUpdate;
       element.id === this.state.selectedStepId
@@ -149,7 +147,7 @@ class EventContainer extends Component {
 
       let handleDelete = () => {
         this.setState({ idForAlert: element.id });
-        this.alertType("delete");
+        this.deleteEvent(element.id);
       };
 
       let submitUpdate = () => this.updateEvent(element.id);

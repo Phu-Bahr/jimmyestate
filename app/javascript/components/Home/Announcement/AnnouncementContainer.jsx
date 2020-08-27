@@ -5,7 +5,6 @@ import {
   putNoScrollFetch
 } from "../../Constants/FetchComponent";
 import { UpdateButton, EditButton } from "../../Constants/Buttons";
-import AlertBox from "../../Constants/AlertComponent";
 
 const urlPath = "announcements";
 
@@ -19,12 +18,10 @@ class AnnouncementContainer extends Component {
       title: "",
       refreshKey: false,
       bannerImage: "",
-      id: null,
-      typeOfAlert: null
+      id: null
     };
   }
 
-  alertType = payload => this.setState({ typeOfAlert: payload });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -35,7 +32,9 @@ class AnnouncementContainer extends Component {
     const { description, title, bannerImage } = this.state;
     const body = { description, title, bannerImage };
 
-    putNoScrollFetch(url, body, this.alertType).then(this.toggleRefreshKey);
+    putNoScrollFetch(url, body, this.props.alertType).then(
+      this.toggleRefreshKey
+    );
   };
 
   mountState = body => {
@@ -60,7 +59,6 @@ class AnnouncementContainer extends Component {
   render() {
     return (
       <Fragment>
-        <AlertBox {...this.state} alertType={this.alertType} />
         <ParallaxBanner {...this.state} />
 
         <div className="container-fluid pt-5">
