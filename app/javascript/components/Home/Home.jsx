@@ -1,26 +1,38 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import CardsContainer from "../Home/Cards/CardsContainer";
 import JumbotronContainer from "../Home/Jumbotron/JumbotronContainer";
 import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
 import EventContainer from "../Home/Events/EventContainer";
 import ScrollAnimation from "react-animate-on-scroll";
+import AlertBox from "../Constants/AlertComponent";
 
-const Home = props => {
-  return (
-    <Fragment>
-      <JumbotronContainer {...props} />
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      typeOfAlert: null
+    };
+  }
 
-      <ScrollAnimation animateIn="fadeIn">
-        <AnnouncementContainer {...props} />
-      </ScrollAnimation>
+  alertType = payload => this.setState({ typeOfAlert: payload });
+  render() {
+    return (
+      <Fragment>
+        <AlertBox {...this.state} alertType={this.alertType} />
+        <JumbotronContainer {...this.props} />
 
-      <ScrollAnimation animateIn="fadeIn">
-        <EventContainer user={props.user} />
-      </ScrollAnimation>
+        <ScrollAnimation animateIn="fadeIn">
+          <AnnouncementContainer {...this.props} alertType={this.alertType} />
+        </ScrollAnimation>
 
-      <CardsContainer {...props} />
-    </Fragment>
-  );
-};
+        <ScrollAnimation animateIn="fadeIn">
+          <EventContainer user={this.props.user} alertType={this.alertType} />
+        </ScrollAnimation>
+
+        <CardsContainer {...this.props} alertType={this.alertType} />
+      </Fragment>
+    );
+  }
+}
 
 export default Home;

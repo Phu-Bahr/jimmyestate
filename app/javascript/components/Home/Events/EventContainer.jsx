@@ -92,7 +92,7 @@ class EventContainer extends Component {
       lng
     };
 
-    putNoScrollFetch(url, body, this.alertType)
+    putNoScrollFetch(url, body, this.props.alertType)
       .then(this.props.toggleRefreshKey)
       .then(
         this.setState({

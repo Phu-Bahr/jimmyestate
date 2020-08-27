@@ -24,7 +24,6 @@ class AnnouncementContainer extends Component {
     };
   }
 
-  alertType = payload => this.setState({ typeOfAlert: payload });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -35,7 +34,9 @@ class AnnouncementContainer extends Component {
     const { description, title, bannerImage } = this.state;
     const body = { description, title, bannerImage };
 
-    putNoScrollFetch(url, body, this.alertType).then(this.toggleRefreshKey);
+    putNoScrollFetch(url, body, this.props.alertType).then(
+      this.toggleRefreshKey
+    );
   };
 
   mountState = body => {

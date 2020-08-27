@@ -89,6 +89,7 @@ class CardsContainer extends Component {
             {...this.props}
             hocRefresh={this.toggleRefreshKey}
             urlPath={urlPathDraft}
+            alertType={this.props.alertType}
           />
         </ScrollAnimation>
 
