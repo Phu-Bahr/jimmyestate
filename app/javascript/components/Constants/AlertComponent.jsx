@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { relative } from "upath";
 
 const payload = null;
 const fitGif = {
@@ -70,7 +71,9 @@ const AlertBox = props => {
   const successfulEdit = (
     <SweetAlert
       success
-      title="Success!"
+      title={
+        <div style={{ position: "relative", zIndex: "1" }}>"Success!"</div>
+      }
       onConfirm={
         props.directToPath
           ? () => props.directToPath()

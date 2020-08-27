@@ -139,8 +139,6 @@ class EventContainer extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     let events = this.state.eventData.map(element => {
       let hideUpdate;
       element.id === this.state.selectedStepId

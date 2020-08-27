@@ -789,6 +789,11 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   );
 }
 
+.card-photo-size {
+  height: 800px;
+  width: 300px;
+}
+
 @media only screen and (max-width: 680px) {
   .mobile-view {
     font-size: 16px;
@@ -1219,10 +1224,14 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 
 .newTownWrapper .form {
   grid-area: 2 / 1 / 2 / 1;
-  padding: 10% 10%;
+  padding: 10%;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
   margin: 5%;
+}
+
+.form h1 {
+  font-size: 2.2em;
 }
 
 .newTownWrapper .photo {

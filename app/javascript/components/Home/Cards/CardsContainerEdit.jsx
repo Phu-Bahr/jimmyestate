@@ -90,6 +90,7 @@ class CardsContainerEdit extends Component {
               className="img-fluid rounded"
               src={this.state.image}
               alt="Helper card image"
+              style={{ width: "300px", height: "400px" }}
             />
           </div>
         </ScrollAnimation>
