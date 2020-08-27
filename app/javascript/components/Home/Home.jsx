@@ -8,7 +8,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 const Home = props => {
   return (
     <Fragment>
-      {/* <JumbotronContainer {...props} />
+      <JumbotronContainer {...props} />
 
       <ScrollAnimation animateIn="fadeIn">
         <AnnouncementContainer {...props} />
@@ -16,7 +16,7 @@ const Home = props => {
 
       <ScrollAnimation animateIn="fadeIn">
         <EventContainer user={props.user} />
-      </ScrollAnimation> */}
+      </ScrollAnimation>
 
       <CardsContainer {...props} />
     </Fragment>
