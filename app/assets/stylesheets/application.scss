@@ -1309,6 +1309,9 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
 }
 //end of new town
 
+.testimonyFont #testimony-name {
+  text-align: right;
+}
 @media only screen and (max-width: 680px) {
   .testimonyFont h1 {
     font-size: 22px;
