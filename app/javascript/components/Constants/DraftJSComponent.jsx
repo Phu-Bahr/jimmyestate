@@ -26,7 +26,12 @@ class DraftJSContainer extends Component {
     this.onSubmitUpdate = this.onSubmitUpdate.bind(this);
   }
 
-  alertType = payload => this.setState({ typeOfAlert: payload });
+  alertType = payload => {
+    this.props.alertType
+      ? this.props.alertType(payload)
+      : this.setState({ typeOfAlert: payload });
+  };
+
   toggleRefreshKey = () => this.setState({ refreshKey: true });
 
   updateEditorState(editorState) {
