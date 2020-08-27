@@ -15,7 +15,11 @@ const AboutJimmyPhotoContainer = ({
           className="img-fluid rounded"
           src={photo}
           alt="Jimmy Chao Photo"
-          style={{ boxShadow: "0px 10px 13px -7px #000000" }}
+          style={{
+            boxShadow: "0px 10px 13px -7px #000000",
+            width: "300px",
+            height: "400px"
+          }}
         />
         <div className="container mt-3 text-center">
           <div className="container">
