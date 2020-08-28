@@ -1,6 +1,7 @@
 class CreateAbouts < ActiveRecord::Migration[5.2]
   def change
     create_table :abouts do |t|
+      t.string :bannerImage
       t.string :bannerText1
       t.string :bannerText2
       t.string :paragraph1

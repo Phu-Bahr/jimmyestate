@@ -74,7 +74,7 @@ class EventContainer extends Component {
 
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
-    deleteNoScrollFetch(url, this.alertType).then(this.toggleRefreshKey);
+    deleteNoScrollFetch(url, this.props.alertType).then(this.toggleRefreshKey);
   };
 
   updateEvent = id => {

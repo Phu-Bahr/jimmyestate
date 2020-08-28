@@ -11,7 +11,10 @@ class EmailForm extends Component {
     this.state = { name: "", email: "", message: "" };
   }
 
-  onResolved = () => console.log("Captcha resolved");
+  onResolved = () =>
+    console.log(
+      "Recaptcha resolved with response: " + this.recaptcha.getResponse()
+    );
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {

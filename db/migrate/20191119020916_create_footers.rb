@@ -12,6 +12,8 @@ class CreateFooters < ActiveRecord::Migration[5.2]
       t.string :twitter
       t.string :instagram
       t.string :other
+      t.string :zillow
+      t.string :realtor
 
       t.timestamps
     end

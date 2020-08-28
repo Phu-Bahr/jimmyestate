@@ -1,6 +1,7 @@
 class CreateWorthEdits < ActiveRecord::Migration[5.2]
   def change
     create_table :worth_edits do |t|
+      t.string :bannerImage
       t.string :paragraph1
       t.string :paragraph2
       t.string :bannerText1
