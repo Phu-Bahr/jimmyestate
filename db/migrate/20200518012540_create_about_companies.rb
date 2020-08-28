@@ -1,6 +1,7 @@
 class CreateAboutCompanies < ActiveRecord::Migration[5.2]
   def change
     create_table :about_companies do |t|
+      t.string :bannerImage
       t.string :content
       t.string :image
       t.string :headerText1
