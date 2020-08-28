@@ -8,10 +8,7 @@ import ReactGA from "react-ga";
 ReactGA.initialize(
   [
     {
-      trackingId: "UA-173933096-2"
-    },
-    {
-      trackingId: "UA-174405415-1"
+      trackingId: "UA-173933096-3"
     }
   ]
   // { debug: true, alwaysSendToDefaultTracker: false }
