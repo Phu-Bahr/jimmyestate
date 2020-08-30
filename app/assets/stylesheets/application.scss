@@ -528,6 +528,18 @@ body,
 
 // footer
 
+.footerFont {
+  position: relative;
+  left: 5%;
+  line-height: 1.7;
+  font-size: 1.2em;
+  letter-spacing: 1.5px;
+}
+
+.footerFont h3 {
+  font-weight: 900;
+}
+
 .footerbackground {
   background: #d6d6d6;
   color: black;
@@ -540,73 +552,7 @@ body,
 
 // social css
 
-$primary: hsla(120, 74%, 75%, 0.6); //#8eee8e
-$primary-dark: hsla(120, 74%, 75%, 0.3); //#8eee8e
-
-$white87: hsla(0, 0%, 100%, 0.87); //#fff
-$white60: hsla(0, 0%, 100%, 0.6); //#fff
-$white30: hsla(0, 0%, 100%, 0.3); //#fff
-$white15: hsla(0, 0%, 100%, 0.15); //#fff
-$white0: hsla(0, 0%, 100%, 0); //#fff
-
-$dark-gray: hsla(0, 0%, 7%, 1); //#121212
-
-$link: hsla(208, 100, 67, 1); //#56afff
-$link-light: hsla(192, 100, 49, 1); //#00C8FB
-
-/**
- * rem
- */
-// Convert a pixel value to REM units
-@function rem($pixel) {
-  @return $pixel / 16 + rem;
-}
-
-// icon
-.c-magic-icon {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  outline: none;
-  line-height: rem(45);
-  display: inline-block;
-  text-align: center;
-  margin: 0 rem(4);
-
-  & * {
-    pointer-events: none;
-  }
-
-  &:hover .google-icon-color {
-    -webkit-filter: none;
-    filter: none;
-  }
-
-  &:hover .c-magic-icon__curtain {
-    transform: translate(0, 100%);
-  }
-
-  &:focus {
-    .c-magic-icon__outline {
-      border: rem(1) solid $link;
-      color: $link;
-    }
-  }
-
-  &:active .c-magic-icon__fill {
-    opacity: 40%;
-  }
-}
-
 // icons layers
-
-.c-magic-icon__fill {
-  border-radius: 50%;
-  color: $dark-gray;
-  display: inline-block;
-  width: rem(45);
-  height: rem(45);
-}
 
 .facebook {
   background-color: #3b5998;
@@ -629,19 +575,6 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   background: white;
 }
 
-.google-icon-color {
-  -webkit-filter: grayscale(100%) brightness(135%) contrast(120%);
-  filter: grayscale(100%) brightness(135%) contrast(120%);
-  transition: filter 0.3s;
-  -webkit-transition: filter 0.3s, -webkit-filter 0.3s;
-}
-
-.google-icon-color:hover,
-.google-icon-color:focus {
-  -webkit-filter: none;
-  filter: none;
-}
-
 .zillow {
   background-color: #0767f8;
 }
@@ -650,47 +583,137 @@ $link-light: hsla(192, 100, 49, 1); //#00C8FB
   background-color: #d42331;
 }
 
-.c-magic-icon__fill {
-  opacity: 80%;
+// social
+//courtesy of matt henley codepen
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
+$timing: 265ms;
+$iconColor: #00b5f5;
+$accent: #002a8f;
+$bluefade: #0043e0;
+$gradient: #00b5f5;
+
+@mixin transformScale($size: 1) {
+  transform: scale($size);
+  -ms-transform: scale($size);
+  -webkit-transform: scale($size);
 }
 
-.c-magic-icon__curtain {
-  position: absolute;
+.social-container {
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #d6d6d6;
-  transform: translate(0, 0%);
-  transition: transform 0.18s ease-out;
+  text-align: center;
 }
 
-.c-magic-icon__outline {
-  border-radius: 50%;
-  color: black;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: rem(45);
-  height: rem(45);
+.social-icons {
+  padding: 0;
+  list-style: none;
+  margin: 1em;
+
+  li {
+    display: inline-block;
+    margin: 0.15em;
+    position: relative;
+    font-size: 1.2em;
+  }
+
+  i {
+    color: #fff;
+    position: absolute;
+    top: 21px;
+    left: 21px;
+    transition: all $timing ease-out;
+  }
+
+  img {
+    color: #fff;
+    position: absolute;
+    bottom: 21px;
+    left: 13px;
+    transition: all $timing ease-out;
+    height: 50%;
+    filter: invert(100%);
+  }
+
+  #google-icon {
+    color: #fff;
+    position: absolute;
+    bottom: 21px;
+    left: 10px;
+    transition: all $timing ease-out;
+    height: 50%;
+    -webkit-filter: grayscale(100%) brightness(135%) contrast(120%);
+    filter: grayscale(100%) brightness(135%) contrast(120%);
+  }
+
+  a {
+    display: inline-block;
+
+    &:before {
+      @include transformScale();
+      content: " ";
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      display: block;
+      background: linear-gradient(45deg, $iconColor, $accent);
+      transition: all $timing ease-out;
+    }
+
+    &:hover:before {
+      transform: scale(0);
+      transition: all $timing ease-in;
+    }
+
+    &:hover i {
+      @include transformScale(2.2);
+      color: $iconColor;
+      background: -webkit-linear-gradient(45deg, $iconColor, $accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all $timing ease-in;
+    }
+
+    &:hover img {
+      @include transformScale(1.6);
+      color: $iconColor !important;
+      background: -webkit-linear-gradient(45deg, $iconColor, $accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all $timing ease-in;
+      filter: invert(25%) sepia(50%) saturate(6893%) hue-rotate(214deg)
+        brightness(105%) contrast(95%);
+    }
+
+    &:hover #google-icon {
+      @include transformScale(1.6);
+      color: $iconColor;
+      background: -webkit-linear-gradient(45deg, $iconColor, $accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all $timing ease-in;
+      -webkit-filter: none;
+      filter: none;
+    }
+  }
 }
 
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem; /* Footer height */
+@media only screen and (max-width: 680px) {
+  .footerAlignment {
+  }
+
+  .footerFont {
+    position: relative;
+    left: 0%;
+    line-height: 1.4;
+    font-size: 16px;
+    letter-spacing: 0px;
+  }
+
+  .social-container {
+    width: 70%;
+    text-align: left;
+  }
 }
-
-// end of social css
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem; /* Footer height */
-}
-
 // end of footer
 
 // beginning Company component
