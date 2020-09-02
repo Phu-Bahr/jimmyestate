@@ -14,7 +14,7 @@ const EventTile = props => {
   return (
     <Fragment>
       <div className="mobile-view companycontent">
-        <div className="hvr-bounce-to-right p-3 mb-3">
+        <div className="hvr-bounce-to-right p-3 mb-3" onClick={props.payload}>
           <div>{props.title}</div>
           <div>{props.location}</div>
           <div>
@@ -23,12 +23,9 @@ const EventTile = props => {
         </div>
         {props.user.admin && (
           <div className="pb-3">
-            {props.hide ? null : (
-              <Fragment>
-                <EditButton onClick={props.payload} />
-                <DeleteButton onClick={props.handleDelete} className="ml-2" />
-              </Fragment>
-            )}
+            <EditButton onClick={props.payload} />
+            <DeleteButton onClick={props.handleDelete} className="ml-2" />
+
             <div className={"py-4" + " " + props.hideUpdate}>
               <form onSubmit={props.submitUpdate}>
                 <div className="row">

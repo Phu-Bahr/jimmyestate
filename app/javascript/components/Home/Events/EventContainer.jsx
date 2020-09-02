@@ -246,7 +246,7 @@ class EventContainer extends Component {
           {this.props.user.admin && (
             <Fragment>
               <div className="text-center">
-                <EditButton onClick={this.clickEventEdit} value="Edit Events" />
+                <EditButton onClick={this.clickEventEdit} value="Add Event" />
               </div>
 
               {!this.state.hideDiv && (
