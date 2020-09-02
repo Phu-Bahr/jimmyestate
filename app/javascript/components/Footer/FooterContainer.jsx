@@ -149,7 +149,10 @@ class FooterContainer extends Component {
 
     let footerSocialData = footerData.map(element => {
       return (
-        <div key={element.id} className="col-xs-12 col-sm-4 col-md-4">
+        <div
+          key={element.id}
+          className="col-xs-12 col-sm-4 col-md-4 socialFont"
+        >
           <FooterEditSocial
             key={element.id}
             id={element.id}

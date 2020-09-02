@@ -698,12 +698,9 @@ $gradient: #00b5f5;
 }
 
 @media only screen and (max-width: 680px) {
-  .footerAlignment {
-  }
-
   .footerFont {
     position: relative;
-    left: 0%;
+    left: 10%;
     line-height: 1.4;
     font-size: 16px;
     letter-spacing: 0px;
@@ -712,6 +709,11 @@ $gradient: #00b5f5;
   .social-container {
     width: 70%;
     text-align: left;
+  }
+
+  .socialFont {
+    position: relative;
+    left: 10%;
   }
 }
 // end of footer
