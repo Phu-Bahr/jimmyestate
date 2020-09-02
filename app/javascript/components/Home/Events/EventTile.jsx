@@ -14,7 +14,7 @@ const EventTile = props => {
   return (
     <Fragment>
       <div className="mobile-view companycontent">
-        <div className="hvr-bounce-to-right p-3 mb-3" onClick={props.payload}>
+        <div className="hvr-bounce-to-right p-3 mb-3">
           <div>{props.title}</div>
           <div>{props.location}</div>
           <div>
