@@ -27,6 +27,7 @@ import TestimonialsContainer from "./About/Testimonials/TestimonialsContainer";
 import NewPartner from "./JimmyPartners/NewPartner";
 import PartnerShowPage from "./JimmyPartners/PartnerShowPage";
 import EditPartner from "./JimmyPartners/EditPartner";
+import NotFoundPage from "./Constants/NotFoundPage";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -265,6 +266,7 @@ class App extends Component {
               />
             )}
           />
+
           <Route
             exact
             path="/partner_categories/:id?"
@@ -307,7 +309,7 @@ class App extends Component {
             )}
           />
           <ProtectedRoute exact path="/registration" component={Registration} />
-          <Route path="*" component={() => "404 NOT FOUND"} />
+          <Route component={NotFoundPage} />
         </Switch>
         <FooterContainer
           loggedInStatus={this.state.loggedInStatus}
