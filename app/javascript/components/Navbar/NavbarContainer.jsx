@@ -212,7 +212,7 @@ class NavbarContainer extends Component {
                     onClick={this.scrollToTop}
                     className="navbar-font"
                   >
-                    <div>Jimmy Chao</div>
+                    Jimmy Chao
                   </Link>
                 )}
                 <button

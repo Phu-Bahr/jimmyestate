@@ -2,7 +2,6 @@ import React, { Component, Fragment, createRef } from "react";
 import Map from "../../Constants/MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
-import { FlipIn } from "../../Constants/Constants";
 import {
   getGeocode,
   deleteNoScrollFetch,
@@ -11,6 +10,7 @@ import {
 } from "../../Constants/FetchComponent";
 import AlertBox from "../../Constants/AlertComponent";
 import { EditButton } from "../../Constants/Buttons";
+import { Link } from "react-scroll";
 
 const urlPath = "events";
 
@@ -109,13 +109,23 @@ class EventContainer extends Component {
   };
 
   mountState = body => {
-    this.setState({
-      eventData: body,
-      flier: body[body.length - 1].flier,
-      lat: body[body.length - 1].lat,
-      lng: body[body.length - 1].lng,
-      id: body[body.length - 1].id
-    });
+    console.log("mount state body", body);
+    body.length == 0
+      ? this.setState({
+          eventData: body,
+          flier: "",
+          lat: "",
+          lng: "",
+          id: "",
+          location: ""
+        })
+      : this.setState({
+          eventData: body,
+          flier: body[body.length - 1].flier,
+          lat: body[body.length - 1].lat,
+          lng: body[body.length - 1].lng,
+          id: body[body.length - 1].id
+        });
   };
 
   componentDidMount = () => getNoScrollFetch(urlPath, this.mountState);
@@ -217,6 +227,9 @@ class EventContainer extends Component {
       );
     });
 
+    console.log("state", this.state);
+    console.log("refreshkey", this.state.refreshKey);
+
     return (
       <Fragment>
         <AlertBox
@@ -251,27 +264,33 @@ class EventContainer extends Component {
         </div>
 
         <div className="p-5">
-          <div className="row">
-            <div className="col-lg-4">{events}</div>
-            <div className="col-lg-8">
-              <div className="row">
-                <div className="col-lg-6 py-2">
-                  <FlipIn>
+          {this.state.eventData.length == 0 ? (
+            <div className="empty-event">
+              <Link to="social" smooth={true} offset={-90} duration={1000}>
+                NO EVENTS LINED UP, FOLLOW ME ON SOCIAL!
+              </Link>
+            </div>
+          ) : (
+            <div className="row">
+              <div className="col-lg-4">{events}</div>
+              <div className="col-lg-8">
+                <div className="row">
+                  <div className="col-lg-6 py-2">
                     <img
                       className="img-fluid"
                       src={this.state.flier}
                       alt={`Event image ` + this.state.id}
                       style={{ boxShadow: "0px 10px 13px -7px #000000" }}
                     />
-                  </FlipIn>
-                </div>
+                  </div>
 
-                <div className="col-lg-6 py-2">
-                  <Map {...this.state} />
+                  <div className="col-lg-6 py-2">
+                    <Map {...this.state} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </Fragment>
     );
