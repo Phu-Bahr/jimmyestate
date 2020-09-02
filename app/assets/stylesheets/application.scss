@@ -700,20 +700,20 @@ $gradient: #00b5f5;
 @media only screen and (max-width: 680px) {
   .footerFont {
     position: relative;
-    left: 10%;
+    left: 0%;
     line-height: 1.4;
     font-size: 16px;
     letter-spacing: 0px;
+    padding-left: 15% !important;
   }
 
   .social-container {
-    width: 70%;
+    width: 100%;
     text-align: left;
   }
 
   .socialFont {
-    position: relative;
-    left: 10%;
+    padding-left: 15% !important;
   }
 }
 // end of footer
