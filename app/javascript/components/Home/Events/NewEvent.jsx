@@ -134,7 +134,7 @@ class NewEvent extends Component {
               value={this.state.flier}
               placeholder="Image URL"
             />
-            <AddButton value="Create Event" />
+            <AddButton value="Create Event" className="mt-3" />
           </form>
         </div>
       </Fragment>

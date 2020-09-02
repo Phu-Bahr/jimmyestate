@@ -26,7 +26,7 @@ const EventTile = props => {
             {props.hide ? null : (
               <Fragment>
                 <EditButton onClick={props.payload} />
-                <DeleteButton onClick={props.handleDelete} />
+                <DeleteButton onClick={props.handleDelete} className="ml-2" />
               </Fragment>
             )}
             <div className={"py-4" + " " + props.hideUpdate}>
