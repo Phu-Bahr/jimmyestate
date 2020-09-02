@@ -63,7 +63,7 @@ class CardsContainerEdit extends Component {
     let bannerForm = (
       <div className="container pt-5">
         <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-12">
+          <div className="col-xs-12 col-sm-12 col-md-12 pb-5">
             <form onSubmit={this.onSubmit}>
               <FormMaps
                 onChange={this.onChange}

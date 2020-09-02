@@ -68,10 +68,10 @@ class EditHelperLinks extends Component {
             </div>
           </div>
 
-          <UpdateButton className="mt-3" value="Update Card" />
+          <UpdateButton className="my-3" value="Update Card" />
           <DeleteButton
             type="button"
-            className="mt-3"
+            className="m-3"
             onClick={this.props.handleClick}
           />
         </form>

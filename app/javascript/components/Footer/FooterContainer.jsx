@@ -151,6 +151,7 @@ class FooterContainer extends Component {
       return (
         <div
           key={element.id}
+          id="social"
           className="col-xs-12 col-sm-4 col-md-4 socialFont"
         >
           <FooterEditSocial
