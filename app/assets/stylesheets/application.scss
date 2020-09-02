@@ -1431,12 +1431,13 @@ $gradient: #00b5f5;
 .mainbox-background {
   background-color: #95c2de;
   padding-top: 90px;
+  height: 80vh;
 }
 
 .mainbox {
   background-color: #95c2de;
   margin: auto;
-  height: 600px;
+  height: 100%;
   width: 600px;
   position: relative;
 }
@@ -1477,12 +1478,58 @@ $gradient: #00b5f5;
   width: 75%;
 }
 
-a {
+.msg a {
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 680px) {
+  .mainbox {
+    background-color: #95c2de;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .err {
+    color: #ffffff;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 8rem;
+    position: absolute;
+    left: 20%;
+    top: 8%;
+  }
+
+  .far {
+    position: absolute;
+    font-size: 5.5rem;
+    left: 40%;
+    top: 18%;
+    color: #ffffff;
+  }
+
+  .err2 {
+    color: #ffffff;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 8rem;
+    position: absolute;
+    left: 68%;
+    top: 8%;
+  }
+
+  .msg {
+    text-align: center;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1rem;
+    position: absolute;
+    left: 16%;
+    top: 45%;
+    width: 75%;
+  }
 }
 //end of 404
