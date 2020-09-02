@@ -112,8 +112,11 @@ class FooterContainer extends Component {
 
     let footerOfficeData = footerData.map(element => {
       return (
-        <div key={element.id} className="col-xs-12 col-sm-4 col-md-4">
-          <h3 className="d-flex justify-content-center">OFFICE</h3>
+        <div
+          key={element.id}
+          className="col-xs-12 col-sm-4 col-md-4 footerFont"
+        >
+          <h3 className="footerAlignment">OFFICE</h3>
           <FooterEditOffice
             key={element.id}
             id={element.id}
@@ -127,8 +130,11 @@ class FooterContainer extends Component {
 
     let footerContactUsData = footerData.map(element => {
       return (
-        <div key={element.id} className="col-xs-12 col-sm-4 col-md-4">
-          <h3 className="d-flex justify-content-center">CONTACT ME</h3>
+        <div
+          key={element.id}
+          className="col-xs-12 col-sm-4 col-md-4 footerFont"
+        >
+          <h3 className="footerAlignment">CONTACT ME</h3>
           <FooterEditContactUs
             key={element.id}
             id={element.id}
@@ -143,8 +149,10 @@ class FooterContainer extends Component {
 
     let footerSocialData = footerData.map(element => {
       return (
-        <div key={element.id} className="col-xs-12 col-sm-4 col-md-4">
-          <h3 className="d-flex justify-content-center">SOCIAL</h3>
+        <div
+          key={element.id}
+          className="col-xs-12 col-sm-4 col-md-4 socialFont"
+        >
           <FooterEditSocial
             key={element.id}
             id={element.id}
