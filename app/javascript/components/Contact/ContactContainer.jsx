@@ -141,7 +141,7 @@ class ContactContainer extends Component {
                         href={`tel: ` + this.state.phonenumber}
                         style={{ color: "black" }}
                       >
-                        <div className="fa fa-phone pr-2" />
+                        <div className="fa fa-phone pr-2 contact-icons" />
                         {this.state.phonenumber}
                       </a>
                     </div>
@@ -150,7 +150,7 @@ class ContactContainer extends Component {
                         href={`mailto:` + this.state.email}
                         style={{ color: "black" }}
                       >
-                        <div className="fa fa-envelope pr-2" />
+                        <div className="fa fa-envelope pr-2 contact-icons" />
                         {this.state.email}
                       </a>
                     </div>
