@@ -7,7 +7,7 @@ import AlertBox from "./AlertComponent";
 import { postFetchDraft, putFetch, getFetch } from "./FetchComponent";
 
 //parent component needs to supply url state
-//send {...this.state}, and user={this.props.user} <- for admin
+//{...this.props} <- for admin
 //have a content column in their Model
 //:content in params controller
 
