@@ -28,8 +28,18 @@ const AboutJimmyPhotoContainer = ({
             </div>
           </div>
           <div className="container mt-2">
-            <div>{photonumber}</div>
-            <div>{photoemail}</div>
+            <div>
+              <a href={`tel: ` + photonumber} style={{ color: "black" }}>
+                <div className="fa fa-phone pr-2 contact-icons" />
+                {photonumber}
+              </a>
+            </div>
+            <div>
+              <a href={`mailto:` + photoemail} style={{ color: "black" }}>
+                <div className="fa fa-envelope pr-2 contact-icons" />
+                {photoemail}
+              </a>
+            </div>
             <div>{photoaddress1}</div>
             <div>{photoaddress2}</div>
           </div>

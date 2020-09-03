@@ -28,6 +28,7 @@ import NewPartner from "./JimmyPartners/NewPartner";
 import PartnerShowPage from "./JimmyPartners/PartnerShowPage";
 import EditPartner from "./JimmyPartners/EditPartner";
 import NotFoundPage from "./Constants/NotFoundPage";
+import PrivacyPolicy from "./Constants/PrivacyPolicy";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -310,6 +311,18 @@ class App extends Component {
             )}
           />
           <ProtectedRoute exact path="/registration" component={Registration} />
+          <Route
+            exact
+            path="/privacy-policy"
+            render={props => (
+              <PrivacyPolicy
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route path="/page-404" component={NotFoundPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <FooterContainer

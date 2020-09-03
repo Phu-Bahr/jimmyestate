@@ -191,6 +191,15 @@ class FooterContainer extends Component {
             />
           )}
 
+          <div className="text-center">
+            <Link
+              to="/privacy-policy"
+              style={{ color: "#8cce3c", fontSize: "20px" }}
+            >
+              Privacy Policy
+            </Link>
+          </div>
+
           <Link
             to="/login"
             className="float-left btn"
