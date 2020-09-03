@@ -1,4 +1,5 @@
 import React from "react";
+import { gaContactLinks } from "./GoogleAnalyticEvents";
 // import styled from "styled-components";
 
 // export const CustomerButton = styled.button`
@@ -77,7 +78,7 @@ export const DeleteButton = ({ type, className, onClick, value }) => {
   );
 };
 
-export const SubmitEmailButton = ({ className, value1, value2 }) => {
+export const SubmitEmailButton = ({ className, value1, value2, GAValue }) => {
   return (
     <button
       type="submit"
@@ -86,6 +87,7 @@ export const SubmitEmailButton = ({ className, value1, value2 }) => {
       }
       data-sm-link-text={value2 == null ? "Send" : value2}
       style={{ border: "0" }}
+      onClick={() => gaContactLinks(GAValue)}
     >
       <span>{value1 == null ? "Contact Me" : value1}</span>
     </button>

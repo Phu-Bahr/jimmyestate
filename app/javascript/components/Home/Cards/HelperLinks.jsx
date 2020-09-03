@@ -2,12 +2,16 @@ import React from "react";
 import EditHelperLinks from "./EditHelperLinks";
 import { Link } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
+import { gaLinks } from "../../Constants/GoogleAnalyticEvents";
 
 const HelperLinks = props => {
   return (
     <div className="col-md-6 col-middle px-4 py-3">
       <ScrollAnimation animateIn="fadeIn">
-        <Link to={`/${props.route}`}>
+        <Link
+          to={`/${props.route}`}
+          onClick={() => gaLinks(`${props.title} Card`)}
+        >
           <div className="card border-0 helper-card">
             <div className="parent m-0">
               <div className="child particles">

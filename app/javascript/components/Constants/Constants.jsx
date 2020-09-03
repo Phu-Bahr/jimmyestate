@@ -12,6 +12,7 @@ import {
 import { UpdateButton } from "./Buttons";
 import { CommonLoading } from "react-loadingg";
 import { Link } from "react-router-dom";
+import { gaNavLinks } from "./GoogleAnalyticEvents";
 
 export const FadeIn = styled.div`
   animation: 1s ${keyframes`${fadeIn}`};
@@ -227,7 +228,11 @@ export const DropdownHelper = props => {
   const formValue = props.formConst.map(element => {
     return (
       <div key={element.title} className="container py-1">
-        <Link to={element.path} className="dropdown-item navbar-underline">
+        <Link
+          to={element.path}
+          className="dropdown-item navbar-underline"
+          onClick={() => gaNavLinks(element.title)}
+        >
           {element.title}
         </Link>
       </div>

@@ -123,6 +123,7 @@ class TownLinks extends Component {
           deleteEvent={this.deleteEvent}
           handleEdit={this.handleEdit}
           id={element.id}
+          townName={this.props.townName}
         />
       );
     });

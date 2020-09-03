@@ -69,7 +69,7 @@ class EmailForm extends Component {
             />
           </div>
 
-          <SubmitEmailButton />
+          <SubmitEmailButton GAValue="Contact Email Button" />
 
           <Recaptcha
             ref={ref => (this.recaptcha = ref)}

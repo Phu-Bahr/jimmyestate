@@ -6,6 +6,7 @@ import AlertBox from "../Constants/AlertComponent";
 import { getFetch, putFetch } from "../Constants/FetchComponent";
 import FooterEditForm from "./FooterEditForm";
 import { Link } from "react-router-dom";
+import { gaLinks } from "../Constants/GoogleAnalyticEvents";
 
 const urlPath = "footers";
 
@@ -195,6 +196,7 @@ class FooterContainer extends Component {
             <Link
               to="/privacy-policy"
               style={{ color: "#8cce3c", fontSize: "20px" }}
+              onClick={() => gaLinks("Privacy Policy")}
             >
               Privacy Policy
             </Link>
