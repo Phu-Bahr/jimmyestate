@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { gaContactLinks } from "../../Constants/GoogleAnalyticEvents";
 
 const AboutJimmyPhotoContainer = ({
   photo,
@@ -29,13 +30,21 @@ const AboutJimmyPhotoContainer = ({
           </div>
           <div className="container mt-2">
             <div>
-              <a href={`tel: ` + photonumber} style={{ color: "black" }}>
+              <a
+                href={`tel: ` + photonumber}
+                style={{ color: "black" }}
+                onClick={() => gaContactLinks("Phone About Page")}
+              >
                 <div className="fa fa-phone pr-2 contact-icons" />
                 {photonumber}
               </a>
             </div>
             <div>
-              <a href={`mailto:` + photoemail} style={{ color: "black" }}>
+              <a
+                href={`mailto:` + photoemail}
+                style={{ color: "black" }}
+                onClick={() => gaContactLinks("Email About Page")}
+              >
                 <div className="fa fa-envelope pr-2 contact-icons" />
                 {photoemail}
               </a>

@@ -9,6 +9,7 @@ import {
 import AlertBox from "../Constants/AlertComponent";
 import { getFetch, putFetch, getGeocode } from "../Constants/FetchComponent";
 import ContactContentForm from "./ContactContentForm";
+import { gaContactLinks } from "../Constants/GoogleAnalyticEvents";
 
 const urlPath = "contact_edits";
 
@@ -140,6 +141,7 @@ class ContactContainer extends Component {
                       <a
                         href={`tel: ` + this.state.phonenumber}
                         style={{ color: "black" }}
+                        onClick={() => gaContactLinks("Phone Contact Page")}
                       >
                         <div className="fa fa-phone pr-2 contact-icons" />
                         {this.state.phonenumber}
@@ -149,6 +151,7 @@ class ContactContainer extends Component {
                       <a
                         href={`mailto:` + this.state.email}
                         style={{ color: "black" }}
+                        onClick={() => gaContactLinks("Phone Contact Page")}
                       >
                         <div className="fa fa-envelope pr-2 contact-icons" />
                         {this.state.email}

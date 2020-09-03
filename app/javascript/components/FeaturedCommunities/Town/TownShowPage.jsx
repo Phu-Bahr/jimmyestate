@@ -36,6 +36,8 @@ class TownShowPage extends Component {
   };
 
   render() {
+    console.log(this.state.townData.name);
+
     return (
       <Fragment>
         <AlertBox
@@ -63,6 +65,7 @@ class TownShowPage extends Component {
                   loggedInStatus={this.props.loggedInStatus}
                   user={this.props.user}
                   paramID={this.props.match.params.id}
+                  townName={this.state.townData.name}
                 />
               </ul>
             </div>

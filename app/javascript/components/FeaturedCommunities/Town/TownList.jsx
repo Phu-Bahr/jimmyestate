@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getFetch, deleteFetch } from "../../Constants/FetchComponent";
+import { gaNavLinks } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPath = "towns";
 const editUrlPath = "editcommunity";
@@ -38,7 +39,10 @@ class TownList extends Component {
     let listOfTowns = this.state.townData.map(element => {
       return (
         <Fragment key={element.id}>
-          <div className={admin ? "dropdown-item" : null}>
+          <div
+            className={admin ? "dropdown-item" : null}
+            onClick={() => gaNavLinks(element.name)}
+          >
             <div className={admin ? "row navbar-underline" : "container py-1"}>
               <Link
                 to={`/${urlPath}/${element.id}`}

@@ -164,7 +164,7 @@ class RelocationEmailForm extends Component {
               placeholder="Additional information you'd like to tell me."
             />
           </div>
-          <SubmitEmailButton />
+          <SubmitEmailButton GAValue="Relocation Email Button" />
           <Recaptcha
             ref={ref => (this.recaptcha = ref)}
             sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
