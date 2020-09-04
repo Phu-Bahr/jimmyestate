@@ -42,6 +42,34 @@ export const gaInteraction = title => {
   }
 };
 
+export const gaEvents = title => {
+  if (innerWidth < 680) {
+    ReactGA.event({
+      category: "Events Mobile",
+      action: `Mobile ${title} Clicked`
+    });
+  } else {
+    ReactGA.event({
+      category: "Events",
+      action: `${title} Clicked`
+    });
+  }
+};
+
+export const gaCards = title => {
+  if (innerWidth < 680) {
+    ReactGA.event({
+      category: "Cards Mobile",
+      action: `Mobile ${title} Clicked`
+    });
+  } else {
+    ReactGA.event({
+      category: "Cards",
+      action: `${title} Clicked`
+    });
+  }
+};
+
 export const gaContactLinks = title => {
   if (innerWidth < 680) {
     ReactGA.event({

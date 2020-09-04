@@ -11,7 +11,7 @@ import {
 import AlertBox from "../../Constants/AlertComponent";
 import { EditButton } from "../../Constants/Buttons";
 import { Link } from "react-scroll";
-import { gaLinks, gaInteraction } from "../../Constants/GoogleAnalyticEvents";
+import { gaLinks, gaEvents } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPath = "events";
 
@@ -176,7 +176,7 @@ class EventContainer extends Component {
           element.lng
         );
         this.setSelectedStep(element.id);
-        gaInteraction(`${element.title} event`);
+        gaEvents(`${element.title} event`);
       };
 
       let titleState;
@@ -228,9 +228,6 @@ class EventContainer extends Component {
         />
       );
     });
-
-    console.log("state", this.state);
-    console.log("refreshkey", this.state.refreshKey);
 
     return (
       <Fragment>
