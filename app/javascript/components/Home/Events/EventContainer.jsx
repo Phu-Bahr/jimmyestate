@@ -11,6 +11,7 @@ import {
 import AlertBox from "../../Constants/AlertComponent";
 import { EditButton } from "../../Constants/Buttons";
 import { Link } from "react-scroll";
+import { gaLinks, gaEvents } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPath = "events";
 
@@ -175,6 +176,7 @@ class EventContainer extends Component {
           element.lng
         );
         this.setSelectedStep(element.id);
+        gaEvents(`${element.title} event`);
       };
 
       let titleState;
@@ -227,9 +229,6 @@ class EventContainer extends Component {
       );
     });
 
-    console.log("state", this.state);
-    console.log("refreshkey", this.state.refreshKey);
-
     return (
       <Fragment>
         <AlertBox
@@ -265,11 +264,17 @@ class EventContainer extends Component {
 
         <div className="p-5">
           {this.state.eventData.length == 0 ? (
-            <div className="empty-event">
-              <Link to="social" smooth={true} offset={-90} duration={1000}>
+            <Link
+              to="social"
+              smooth={true}
+              offset={-90}
+              duration={1000}
+              onClick={() => gaLinks("No Events Banner")}
+            >
+              <div className="empty-event">
                 NO EVENTS LINED UP, FOLLOW ME ON SOCIAL!
-              </Link>
-            </div>
+              </div>
+            </Link>
           ) : (
             <div className="row">
               <div className="col-lg-4">{events}</div>

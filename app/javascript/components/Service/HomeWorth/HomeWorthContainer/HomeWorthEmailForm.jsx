@@ -107,7 +107,7 @@ class HomeWorthEmailForm extends Component {
             />
           </div>
 
-          <SubmitEmailButton />
+          <SubmitEmailButton GAValue="Homeworth Email Button" />
 
           <Recaptcha
             ref={ref => (this.recaptcha = ref)}

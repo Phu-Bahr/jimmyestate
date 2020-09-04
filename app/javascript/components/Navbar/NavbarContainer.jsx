@@ -5,6 +5,8 @@ import PartnerList from "../JimmyPartners/PartnerList";
 import { animateScroll as scroll } from "react-scroll";
 import AdminBanner from "../User/AdminBanner";
 import AlertBox from "../Constants/AlertComponent";
+import ReactGA from "react-ga";
+
 import {
   FadeInDown,
   Transition,
@@ -26,7 +28,24 @@ class NavbarContainer extends Component {
   alertType = payload => this.setState({ typeOfAlert: payload });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   toggleRefreshFalse = () => this.setState({ refreshKey: false });
-  scrollToTop = () => scroll.scrollToTop();
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
+  gaNavLinks = title => {
+    if (innerWidth < 680) {
+      ReactGA.event({
+        category: "Mobile Navbar Link",
+        action: `Mobile ${title} Nav Link Clicked`
+      });
+    } else {
+      ReactGA.event({
+        category: "Navbar Link",
+        action: `${title} Nav Link Clicked`
+      });
+    }
+    scroll.scrollToTop();
+  };
 
   componentDidMount = () =>
     window.addEventListener("scroll", this.handleScroll);
@@ -81,7 +100,7 @@ class NavbarContainer extends Component {
           <Link
             to="/"
             className="nav-link navbar-underline"
-            onClick={this.scrollToTop}
+            onClick={() => this.gaNavLinks("Home")}
           >
             Home
           </Link>
@@ -162,7 +181,11 @@ class NavbarContainer extends Component {
         </li>
 
         <li>
-          <Link to="/contact" className="nav-link navbar-underline">
+          <Link
+            to="/contact"
+            className="nav-link navbar-underline"
+            onClick={() => this.gaNavLinks("Contact")}
+          >
             Contact
           </Link>
         </li>
@@ -209,7 +232,7 @@ class NavbarContainer extends Component {
                 ) : (
                   <Link
                     to="/login"
-                    onClick={this.scrollToTop}
+                    onClick={() => this.gaNavLinks("Log In")}
                     className="navbar-font"
                   >
                     <div>LOG IN HERE</div>
@@ -223,6 +246,7 @@ class NavbarContainer extends Component {
                   aria-controls="navbarSupportedContent"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
+                  onClick={() => this.gaNavLinks("Hamburger Menu")}
                 >
                   <span className="navbar-toggler-icon"></span>
                 </button>

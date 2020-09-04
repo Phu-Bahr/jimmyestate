@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getFetch, deleteFetch } from "../Constants/FetchComponent";
+import { gaNavLinks } from "../Constants/GoogleAnalyticEvents";
 
 const urlPath = "partner_categories";
 const editUrlPath = "edit-partner-category";
@@ -39,7 +40,10 @@ class PartnerList extends Component {
     let partnerCategories = this.state.partnerData.map(element => {
       return (
         <Fragment key={element.id}>
-          <div className={admin && "dropdown-item"}>
+          <div
+            className={admin && "dropdown-item"}
+            onClick={() => gaNavLinks(element.name)}
+          >
             <div className={admin ? "row navbar-underline" : "container py-1"}>
               <Link
                 to={`/${urlPath}/${element.id}`}

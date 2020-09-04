@@ -8,6 +8,7 @@ import {
   deleteFetch,
   putFetch
 } from "../../Constants/FetchComponent";
+import { gaInteraction } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPath = "testimonials";
 
@@ -113,7 +114,10 @@ class Testimonials extends Component {
           deleteEvent={this.deleteTestimonial}
         />
 
-        <div className="slider-border">
+        <div
+          className="slider-border"
+          onClick={() => gaInteraction("Testimonial Area")}
+        >
           <ScrollingSidesContainer
             {...this.state}
             admin={admin}

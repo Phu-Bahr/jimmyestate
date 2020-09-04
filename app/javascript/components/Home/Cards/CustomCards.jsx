@@ -3,6 +3,7 @@ import { FadeIn } from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import CustomEditLinks from "./CustomEditLinks";
 import { getNoScrollFetch } from "../../Constants/FetchComponent";
+import { gaCards, gaLinks } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPathCustom = "custom_cards";
 const urlPathPartner = "partner_categories";
@@ -27,12 +28,14 @@ class CustomCards extends Component {
     this.state.visible
       ? this.setState({ visible: false, visible1: false })
       : this.setState({ visible: true, visible1: false });
+    gaCards("Featured Communities Card");
   };
 
   onClick1 = () => {
     this.state.visible1
       ? this.setState({ visible1: false, visible: false })
       : this.setState({ visible1: true, visible: false });
+    gaCards("Business Partners Card");
   };
 
   mountStateTowns = body => {
@@ -64,7 +67,11 @@ class CustomCards extends Component {
     let townlist = this.state.townListData.map(element => {
       return (
         <div className="col-md-6" key={element.id}>
-          <Link to={`/${urlPathTowns}/${element.id}`} className="helperL py-1">
+          <Link
+            to={`/${urlPathTowns}/${element.id}`}
+            className="helperL py-1"
+            onClick={() => gaLinks(`${element.name} from Featured Card`)}
+          >
             {element.name}
           </Link>
         </div>
@@ -77,6 +84,7 @@ class CustomCards extends Component {
           <Link
             to={`/${urlPathPartner}/${element.id}`}
             className="helperL py-1"
+            onClick={() => gaLinks(`${element.name} from Partners Card`)}
           >
             {element.name}
           </Link>

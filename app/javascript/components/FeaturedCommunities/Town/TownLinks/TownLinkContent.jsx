@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { gaLinks } from "../../../Constants/GoogleAnalyticEvents";
 
 const TownLinkContent = props => {
   let payload = {
@@ -12,7 +13,16 @@ const TownLinkContent = props => {
     <Fragment>
       <div className="row">
         <div className="col-sm-6">
-          <a href={`//` + props.townlink} target="_blank" className="link">
+          <a
+            href={`//` + props.townlink}
+            target="_blank"
+            className="link"
+            onClick={() =>
+              gaLinks(
+                `${props.townlinkdescription} from Town ${props.townName}`
+              )
+            }
+          >
             <li>{props.townlinkdescription}</li>
           </a>
         </div>

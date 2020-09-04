@@ -6,6 +6,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 import { putFetch, getFetch } from "../../Constants/FetchComponent";
 import AlertBox from "../../Constants/AlertComponent";
 import JumboEditForm from "./JumboEditForm";
+import { gaInteraction } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPath = "jumbotrons";
 
@@ -84,7 +85,10 @@ class JumbotronContainer extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <ScrollAnimation animateIn="fadeIn">
-          <div className="pt-5 jumboBackground">
+          <div
+            className="pt-5 jumboBackground"
+            onClick={() => gaInteraction("Particles")}
+          >
             <Particles className="overlayParticle" params={particleOpt} />
             {jumboList}
           </div>

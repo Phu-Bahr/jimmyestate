@@ -105,7 +105,7 @@ class MarketReportsEmailForm extends Component {
             placeholder="Please provide any additional questions or information."
           />
         </div>
-        <SubmitEmailButton />
+        <SubmitEmailButton GAValue="Market Report Email Button" />
         <Recaptcha
           ref={ref => (this.recaptcha = ref)}
           sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
