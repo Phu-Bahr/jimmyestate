@@ -19,56 +19,57 @@ const PortfolioPropertiesTile = props => {
 
   return (
     <Fragment>
-      <div className="col-md-4 col-middle px-3 py-2">
-        <ScrollAnimation animateIn="fadeIn">
-          <div className="card border-0">
-            <div className="parent1 m-0">
-              <div className="child1 particles">
-                <img
-                  className="portfolioImage card-img-top"
-                  src={props.photo}
-                  alt="Portfolio Property Photo"
-                />
-                <div className="portfolioTitle">
-                  {props.status == "Active" ? "On Market" : props.status}
-                </div>
-              </div>
-            </div>
+      <ScrollAnimation animateIn="fadeIn">
+        <div className="cardPort card-1">
+          <div className="card-img"></div>
+          <div
+            className="card-img-hovered"
+            style={{
+              backgroundImage: "url(" + props.photo + ")"
+            }}
+          ></div>
 
-            <div className="card-body">
-              <div style={{ fontWeight: "900" }}>
+          <div className="card-info">
+            <div className="card-about">
+              <a className="card-tag tag-news">
+                {props.status == "Active" ? "On Market" : props.status}
+              </a>
+              <div className="card-time">
                 $
                 {props.price.toLocaleString(navigator.language, {
                   minimumFractionDigits: 2
                 })}
               </div>
+            </div>
+            <h1 className="card-title">
               <div>{`${props.streetnumber} ${props.street} ${props.aptnumber}`}</div>
               <div>{`${props.city}, ${props.state} ${props.zip}`}</div>
-            </div>
+            </h1>
+            <div className="card-creator"></div>
           </div>
-        </ScrollAnimation>
+        </div>
+      </ScrollAnimation>
 
-        {props.hide && (
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-6">
-                <DeleteButton
-                  onClick={() => props.handleDelete(props.id)}
-                  value="Delete Property"
+      {props.user.admin && props.hide && (
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              <DeleteButton
+                onClick={() => props.handleDelete(props.id)}
+                value="Delete Property"
+              />
+            </div>
+            <div className="col-sm-6">
+              <Link to="formTag" smooth={true} offset={-90} duration={1100}>
+                <EditButton
+                  onClick={() => props.handleEdit(editPayload)}
+                  value="Edit Property"
                 />
-              </div>
-              <div className="col-sm-6">
-                <Link to="formTag" smooth={true} offset={-90} duration={1100}>
-                  <EditButton
-                    onClick={() => props.handleEdit(editPayload)}
-                    value="Edit Property"
-                  />
-                </Link>
-              </div>
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </Fragment>
   );
 };

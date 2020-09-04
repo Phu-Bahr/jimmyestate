@@ -12,7 +12,7 @@ const HelperLinks = props => {
           to={`/${props.route}`}
           onClick={() => gaCards(`${props.title} Card`)}
         >
-          <div className="card border-0 helper-card">
+          <div className="card border-0 helper-card imageShadow">
             <div className="parent m-0">
               <div className="child particles">
                 <img
