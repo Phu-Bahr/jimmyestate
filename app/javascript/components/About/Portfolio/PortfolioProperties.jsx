@@ -177,6 +177,7 @@ class PortfolioProperties extends Component {
               handleDelete={this.handleDelete}
               handleEdit={this.handleEdit}
               status={element.status}
+              user={this.props.user}
             />
           );
         }
@@ -211,13 +212,13 @@ class PortfolioProperties extends Component {
         )}
 
         <FadeIn>
-          <div className="container py-5 text-center">
+          <div className="container py-5 text-center portHeaders">
             <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
-            <div className="row pt-3 pb-5">{propertyTile("Active")}</div>
+            <div className="row card-container">{propertyTile("Active")}</div>
             <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES</h2>
-            <div className="row pt-3 pb-5">{propertyTile("Sold")}</div>
+            <div className="row card-container">{propertyTile("Sold")}</div>
             <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
-            <div className="row pt-3 pb-5">{propertyTile("Rental")}</div>
+            <div className="row card-container">{propertyTile("Rental")}</div>
           </div>
         </FadeIn>
       </Fragment>

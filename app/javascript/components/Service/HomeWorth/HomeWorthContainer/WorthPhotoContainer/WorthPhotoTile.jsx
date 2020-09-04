@@ -6,7 +6,7 @@ const WorthPhotoTile = ({ id, photo, hide, handleDelete }) => {
   return (
     <div className="pb-3" key={id}>
       <FadeInLeft>
-        <div className="parent1 m-0">
+        <div className="parent1 m-0 imageShadow">
           <div className="child1 particles">
             <img
               className="portfolioImage card-img-top"
