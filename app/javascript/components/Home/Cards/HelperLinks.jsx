@@ -2,7 +2,7 @@ import React from "react";
 import EditHelperLinks from "./EditHelperLinks";
 import { Link } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
-import { gaLinks } from "../../Constants/GoogleAnalyticEvents";
+import { gaCards } from "../../Constants/GoogleAnalyticEvents";
 
 const HelperLinks = props => {
   return (
@@ -10,7 +10,7 @@ const HelperLinks = props => {
       <ScrollAnimation animateIn="fadeIn">
         <Link
           to={`/${props.route}`}
-          onClick={() => gaLinks(`${props.title} Card`)}
+          onClick={() => gaCards(`${props.title} Card`)}
         >
           <div className="card border-0 helper-card">
             <div className="parent m-0">

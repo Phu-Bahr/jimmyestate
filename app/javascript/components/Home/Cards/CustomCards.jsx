@@ -3,7 +3,7 @@ import { FadeIn } from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import CustomEditLinks from "./CustomEditLinks";
 import { getNoScrollFetch } from "../../Constants/FetchComponent";
-import { gaInteraction, gaLinks } from "../../Constants/GoogleAnalyticEvents";
+import { gaCards, gaLinks } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPathCustom = "custom_cards";
 const urlPathPartner = "partner_categories";
@@ -28,14 +28,14 @@ class CustomCards extends Component {
     this.state.visible
       ? this.setState({ visible: false, visible1: false })
       : this.setState({ visible: true, visible1: false });
-    gaInteraction("Featured Communities Card");
+    gaCards("Featured Communities Card");
   };
 
   onClick1 = () => {
     this.state.visible1
       ? this.setState({ visible1: false, visible: false })
       : this.setState({ visible1: true, visible: false });
-    gaInteraction("Business Partners Card");
+    gaCards("Business Partners Card");
   };
 
   mountStateTowns = body => {

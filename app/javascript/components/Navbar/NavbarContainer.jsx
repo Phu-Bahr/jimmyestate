@@ -35,12 +35,12 @@ class NavbarContainer extends Component {
   gaNavLinks = title => {
     if (innerWidth < 680) {
       ReactGA.event({
-        category: "Mobile Nav Link",
+        category: "Mobile Navbar Link",
         action: `Mobile ${title} Nav Link Clicked`
       });
     } else {
       ReactGA.event({
-        category: "Nav Link",
+        category: "Navbar Link",
         action: `${title} Nav Link Clicked`
       });
     }
@@ -184,7 +184,7 @@ class NavbarContainer extends Component {
           <Link
             to="/contact"
             className="nav-link navbar-underline"
-            onclick={() => this.gaNavLinks("Contact")}
+            onClick={() => this.gaNavLinks("Contact")}
           >
             Contact
           </Link>
