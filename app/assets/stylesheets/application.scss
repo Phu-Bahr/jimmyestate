@@ -75,7 +75,7 @@ body,
   width: 60%;
   text-align: center;
   background: white;
-  color: #8bce3c;
+  color: black;
   transition: width 1s, background 0.1s, 0.5s;
   border-radius: 3px;
 }
@@ -961,13 +961,12 @@ $gradient: #00b5f5;
 }
 
 .helper-card {
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease-out;
 }
 
 .helper-card:hover {
-  transform: translateY(-10px) translateZ(0) scale(1.05);
-  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.2), 0 24px 46px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 5px 26px rgba(0, 0, 0, 0.2), 0 5px 26px rgba(0, 0, 0, 0.2);
 }
 
 .empty-event {
@@ -1033,6 +1032,10 @@ $gradient: #00b5f5;
 
 // About Portfolio page
 
+.imageShadow {
+  box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.2),
+    0px 5px 15px rgba(0, 0, 0, 0.2);
+}
 .caption {
   position: absolute;
   top: 40%;
@@ -1116,6 +1119,175 @@ $gradient: #00b5f5;
 .parent1:hover .portfolioImage {
   opacity: 1;
 }
+
+//base code courtesy of Sardorbek Usmonov
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  transition: all 200ms ease-in-out;
+  padding-bottom: 2rem;
+  padding-top: 1.5rem;
+  padding-left: 2.9rem;
+}
+
+.cardPort {
+  align-self: flex-start;
+  position: relative;
+  width: 325px;
+  min-width: 275px;
+  margin: 1.25rem 0.75rem;
+  background: white;
+  transition: all 300ms ease-in-out;
+  border: solid #d6d6d6 thin;
+  box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.1),
+    0px 5px 15px rgba(0, 0, 0, 0.07);
+
+  .card-img {
+    visibility: hidden;
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+  }
+
+  .card-img-hovered {
+    transition: all 350ms ease-in-out;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    height: 200px;
+    top: 0;
+  }
+
+  .card-info {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    transition: all 200ms ease-in-out;
+
+    .card-about {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      transition: all 200ms ease-in-out;
+
+      .card-tag {
+        width: 100px;
+        max-width: 100px;
+        padding: 0.2rem 0.5rem;
+        font-size: 12px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: #505f79;
+        color: #fff;
+
+        &.tag-news {
+          background: #8cce3c;
+        }
+      }
+    }
+
+    .card-title {
+      z-index: 10;
+      font-size: 1.5rem;
+      padding-bottom: 0.75rem;
+      transition: all 350ms ease-in-out;
+      padding-top: 0.75rem;
+    }
+
+    .card-creator {
+      padding-bottom: 0.75rem;
+      transition: all 250ms ease-in-out;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.1),
+      0px 5px 15px rgba(0, 0, 0, 0.07);
+    transform: scale(1);
+
+    .card-img-hovered {
+      filter: brightness(80%);
+      height: 100%;
+    }
+
+    .card-about,
+    .card-creator {
+      opacity: 0;
+    }
+
+    .card-info {
+      background-color: transparent;
+    }
+
+    .card-title {
+      color: #ebecf0;
+      // margin-bottom: -40px;
+      transform: translate(0, 40px);
+    }
+  }
+}
+
+// CARD IMAGES
+.card-1 {
+  .card-img,
+  .card-img-hovered {
+    filter: brightness(100%);
+  }
+}
+
+.portHeaders h2 {
+  padding: 0.75rem;
+}
+
+.port-line-break {
+  background: linear-gradient(271deg, #344026, $rtnColor);
+  background-size: 400% 400%;
+  width: 90%;
+  left: 5%;
+  position: relative;
+  height: 3px;
+
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+}
+
+@media only screen and (max-width: 680px) {
+  .card-container {
+    padding-left: 2%;
+  }
+
+  .cardPort {
+    width: 325px;
+    min-width: 275px;
+  }
+}
+
+.empty-active-container {
+  padding: 50px;
+}
+
+.empty-active-prop {
+  height: 100px;
+  font-size: 1.8em;
+  background: linear-gradient(271deg, #344026, $rtnColor);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+  box-shadow: 0px 10px 13px -7px #000000;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+}
 // end of portfolio page
 
 //end of selling
@@ -1180,13 +1352,6 @@ $gradient: #00b5f5;
   #header2 {
     font-size: 16px;
   }
-
-  // .header-alignment h4 {
-  //   position: absolute;
-  //   top: 50%;
-  //   -ms-transform: translateY(-50%);
-  //   transform: translateY(-50%);
-  // }
 }
 
 // user button

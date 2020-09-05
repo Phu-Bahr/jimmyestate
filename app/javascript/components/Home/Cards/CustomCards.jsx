@@ -100,11 +100,14 @@ class CustomCards extends Component {
             className="col-md-6 col-middle px-4 py-3"
             style={{ zIndex: 0 }}
           >
-            <div className="card border-0 helper-card" onClick={this.onClick}>
+            <div
+              className="card border-0 helper-card imageShadow"
+              onClick={this.onClick}
+            >
               <div className="parent m-0">
                 <div className="child particles">
                   <img
-                    className="venueImage "
+                    className="venueImage"
                     src={element.image}
                     alt="custom helper card image 1"
                   />
@@ -142,7 +145,10 @@ class CustomCards extends Component {
             className="col-md-6 col-middle px-4 py-3"
             style={{ zIndex: 0 }}
           >
-            <div className="card border-0 helper-card" onClick={this.onClick1}>
+            <div
+              className="card border-0 helper-card imageShadow"
+              onClick={this.onClick1}
+            >
               <div className="parent m-0">
                 <div className="child particles">
                   <img

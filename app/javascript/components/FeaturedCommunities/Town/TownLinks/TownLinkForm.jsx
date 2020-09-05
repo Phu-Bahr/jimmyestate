@@ -14,7 +14,7 @@ const TownLinkForm = props => {
             className="form-control"
             required
             onChange={props.onChange}
-            placeholder="ex: www.wikipedia.com, **only use www or http(s) in front of it."
+            placeholder="www.wikipedia.com, no need for http(s)."
             value={props.townlink}
           />
         </div>
