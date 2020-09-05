@@ -158,6 +158,17 @@ class PortfolioProperties extends Component {
   render() {
     let data = this.state.portfolioData;
 
+    const activeLogic = data => {
+      let activeStatus = false;
+      data.map(element => {
+        if (element.status == "Active") {
+          return (activeStatus = true);
+        }
+      });
+
+      return activeStatus;
+    };
+
     const propertyTile = status => {
       let displayActivePortfolio = data.map(element => {
         if (element.status == status) {
@@ -213,11 +224,27 @@ class PortfolioProperties extends Component {
 
         <FadeIn>
           <div className="container py-5 text-center portHeaders">
+            <div className="port-line-break"></div>
             <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
-            <div className="row card-container">{propertyTile("Active")}</div>
+            <div className="port-line-break"></div>
+            {activeLogic(this.state.portfolioData) == false ? (
+              <div className="empty-active-container">
+                <div className="empty-active-prop">
+                  None active at the moment.
+                </div>
+              </div>
+            ) : (
+              <div className="row card-container">{propertyTile("Active")}</div>
+            )}
+
+            <div className="port-line-break"></div>
             <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES</h2>
+            <div className="port-line-break"></div>
             <div className="row card-container">{propertyTile("Sold")}</div>
+
+            <div className="port-line-break"></div>
             <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
+            <div className="port-line-break"></div>
             <div className="row card-container">{propertyTile("Rental")}</div>
           </div>
         </FadeIn>

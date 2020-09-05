@@ -17,6 +17,8 @@ const PortfolioPropertiesTile = props => {
     status: props.status
   };
 
+  console.log(props.status);
+
   return (
     <Fragment>
       <ScrollAnimation animateIn="fadeIn">
@@ -48,28 +50,27 @@ const PortfolioPropertiesTile = props => {
             <div className="card-creator"></div>
           </div>
         </div>
-      </ScrollAnimation>
-
-      {props.user.admin && props.hide && (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6">
-              <DeleteButton
-                onClick={() => props.handleDelete(props.id)}
-                value="Delete Property"
-              />
-            </div>
-            <div className="col-sm-6">
-              <Link to="formTag" smooth={true} offset={-90} duration={1100}>
-                <EditButton
-                  onClick={() => props.handleEdit(editPayload)}
-                  value="Edit Property"
+        {props.user.admin && props.hide && (
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-6">
+                <DeleteButton
+                  onClick={() => props.handleDelete(props.id)}
+                  value="Delete Property"
                 />
-              </Link>
+              </div>
+              <div className="col-sm-6">
+                <Link to="formTag" smooth={true} offset={-90} duration={1100}>
+                  <EditButton
+                    onClick={() => props.handleEdit(editPayload)}
+                    value="Edit Property"
+                  />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </ScrollAnimation>
     </Fragment>
   );
 };
