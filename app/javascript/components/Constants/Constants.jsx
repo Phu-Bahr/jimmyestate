@@ -50,7 +50,6 @@ export const StyledNavbar = styled.div`
   z-index: 1000;
 `;
 
-//for navbar
 export const Transition = styled.div`
   .active {
     visibility: visible;
@@ -64,6 +63,25 @@ export const Transition = styled.div`
     transition: visibility 0s, opacity 0.1s linear, all 2s ease-out;
   }
 `;
+
+export const DropdownHelper = props => {
+  const formValue = props.formConst.map(element => {
+    return (
+      <div key={element.title} className="container py-1">
+        <Link
+          to={element.path}
+          className="dropdown-item navbar-underline"
+          onClick={() => gaNavLinks(element.title)}
+        >
+          {element.title}
+        </Link>
+      </div>
+    );
+  });
+  return formValue;
+};
+
+//end for navbar
 
 // needs ...state or banner state
 export const ParallaxBanner = props => (
@@ -222,23 +240,6 @@ export const LoadingScreen = props => {
       </div>
     )
   );
-};
-
-export const DropdownHelper = props => {
-  const formValue = props.formConst.map(element => {
-    return (
-      <div key={element.title} className="container py-1">
-        <Link
-          to={element.path}
-          className="dropdown-item navbar-underline"
-          onClick={() => gaNavLinks(element.title)}
-        >
-          {element.title}
-        </Link>
-      </div>
-    );
-  });
-  return formValue;
 };
 
 //particles
