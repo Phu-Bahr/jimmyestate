@@ -66,11 +66,11 @@ class NavbarContainer extends Component {
 
     let headerLink = title => (
       <Link
-        to="/"
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
         role="button"
-        data-toggle={window.innerWidth < 680 && "dropdown"}
+        //width determines how wide screen is then close hamburger menu on link click
+        data-toggle={window.innerWidth < 990 && "dropdown"}
         aria-haspopup="true"
         aria-expanded="false"
       >
