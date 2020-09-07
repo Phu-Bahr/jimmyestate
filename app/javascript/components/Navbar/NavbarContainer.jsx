@@ -66,11 +66,11 @@ class NavbarContainer extends Component {
 
     let headerLink = title => (
       <Link
-        to="/"
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
         role="button"
-        data-toggle={window.innerWidth < 680 && "dropdown"}
+        //width determines how wide screen is then close hamburger menu on link click
+        data-toggle={window.innerWidth < 990 && "dropdown"}
         aria-haspopup="true"
         aria-expanded="false"
       >
@@ -193,7 +193,7 @@ class NavbarContainer extends Component {
     );
 
     let collapseMenuLogic;
-    if (window.innerWidth < 1100) {
+    if (window.innerWidth < 990) {
       collapseMenuLogic = (
         <ul
           className="navbar-nav ml-auto"
@@ -220,7 +220,7 @@ class NavbarContainer extends Component {
           }
         >
           <FadeInDown>
-            <nav className="navbar navbar-expand-lg navbar-light site-header py-4">
+            <nav className="navbar navbar-expand-lg navbar-light site-header py-2">
               <div className="container-fluid" style={{ maxWidth: 1150 }}>
                 {this.props.user.admin ? (
                   <AdminBanner
@@ -246,7 +246,6 @@ class NavbarContainer extends Component {
                   aria-controls="navbarSupportedContent"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
-                  onClick={() => this.gaNavLinks("Hamburger Menu")}
                 >
                   <span className="navbar-toggler-icon"></span>
                 </button>
