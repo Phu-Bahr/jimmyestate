@@ -513,7 +513,8 @@ body,
   margin-right: 10px;
 }
 
-@media only screen and (min-width: 768px) {
+//determines when hover drop vs click drop down will work
+@media only screen and (min-width: 990px) {
   .dropdown:hover .dropdown-menu {
     display: block;
   }
