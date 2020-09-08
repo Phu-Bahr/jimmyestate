@@ -840,6 +840,14 @@ $gradient: #00b5f5;
   .socialFont {
     padding-left: 15% !important;
   }
+
+  .social-icons {
+    padding-right: 4em;
+    padding-left: 1em;
+    list-style: none;
+    margin: 0em;
+    text-align: center;
+  }
 }
 // end of footer
 
@@ -1514,6 +1522,12 @@ $gradient: #00b5f5;
   position: relative;
   z-index: 1;
   height: 400px;
+}
+
+@media only screen and (max-width: 680px) {
+  .parallaxStyleHome {
+    background-attachment: inherit;
+  }
 }
 
 .parallaxStyleRoutes {
