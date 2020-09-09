@@ -110,7 +110,6 @@ class EventContainer extends Component {
   };
 
   mountState = body => {
-    console.log("mount state body", body);
     body.length == 0
       ? this.setState({
           eventData: body,

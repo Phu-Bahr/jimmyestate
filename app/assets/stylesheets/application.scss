@@ -1524,12 +1524,6 @@ $gradient: #00b5f5;
   height: 400px;
 }
 
-@media only screen and (max-width: 680px) {
-  .parallaxStyleHome {
-    background-attachment: inherit;
-  }
-}
-
 .parallaxStyleRoutes {
   background-position: center;
   background-repeat: no-repeat;
@@ -2017,4 +2011,10 @@ a:hover {
 
 .contact-icons {
   color: #8cce3c;
+}
+
+@media only screen and (max-width: 680px) {
+  .parallaxStyleHome {
+    background-attachment: inherit;
+  }
 }

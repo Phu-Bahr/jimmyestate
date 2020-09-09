@@ -17,8 +17,6 @@ const PortfolioPropertiesTile = props => {
     status: props.status
   };
 
-  console.log(props.status);
-
   return (
     <Fragment>
       <ScrollAnimation animateIn="fadeIn">
