@@ -36,8 +36,6 @@ class TownShowPage extends Component {
   };
 
   render() {
-    console.log(this.state.townData.name);
-
     return (
       <Fragment>
         <AlertBox
