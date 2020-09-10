@@ -66,6 +66,7 @@ class NavbarContainer extends Component {
 
     let headerLink = title => (
       <Link
+        to=""
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
         role="button"
