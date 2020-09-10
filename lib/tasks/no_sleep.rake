@@ -1,5 +1,5 @@
-desc "Keeping Jimmy Estate site awake"
+desc "Keeping sandbox active"
 task no_sleep: :environment do
-    puts "Keeping Jimmy Estate site awake"
-    HTTParty.get("https://jimmyestates.herokuapp.com/")
+    puts "Keeping sandbox active"
+    HTTParty.get("https://jimmy-estates-sandbox.herokuapp.com/")
 end
