@@ -66,6 +66,7 @@ class NavbarContainer extends Component {
 
     let headerLink = title => (
       <Link
+        to=""
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
         role="button"
@@ -90,7 +91,7 @@ class NavbarContainer extends Component {
       { path: "/about", title: "About Jimmy Chao" },
       { path: "/portfolio", title: "Sold Portfolio" },
       { path: "/aboutcompany", title: "About RTN Realty Advisors" },
-      { path: "/jimmys-tips", title: "Jimmy's Tips" },
+      // { path: "/jimmys-tips", title: "Jimmy's Tips" },
       { path: "/testimonials", title: "Testimonials" }
     ];
 

@@ -4,7 +4,7 @@ import { DeleteButton } from "../../../../Constants/Buttons";
 
 const WorthPhotoTile = ({ id, photo, hide, handleDelete }) => {
   return (
-    <div className="pb-3" key={id}>
+    <div className="pb-3 image-hide" key={id}>
       <FadeInLeft>
         <div className="parent1 m-0 imageShadow">
           <div className="child1 particles">

@@ -46,7 +46,7 @@ const TestimonialsForm = ({
             </div>
 
             {editMode ? (
-              <UpdateButton value="Edit Testimonial" className="mt-3" />
+              <UpdateButton value="Update Testimonial" className="mt-3" />
             ) : (
               <AddButton className="mt-3" value="Create Testimonial" />
             )}

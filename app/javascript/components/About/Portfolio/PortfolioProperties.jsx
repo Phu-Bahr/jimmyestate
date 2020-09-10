@@ -106,7 +106,9 @@ class PortfolioProperties extends Component {
     event.preventDefault();
     const url = `/api/v1/${urlPath}`;
 
-    postFetch(url, body, this.alertType).then(this.toggleRefreshKey);
+    postFetch(url, body, this.alertType)
+      .then(this.clearState)
+      .then(this.toggleRefreshKey);
   };
 
   onSubmitEdit = () => {
@@ -223,7 +225,7 @@ class PortfolioProperties extends Component {
         )}
 
         <FadeIn>
-          <div className="container py-5 text-center portHeaders">
+          <div className="pt-5 text-center portHeaders">
             <div className="port-line-break"></div>
             <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
             <div className="port-line-break"></div>
@@ -234,18 +236,24 @@ class PortfolioProperties extends Component {
                 </div>
               </div>
             ) : (
-              <div className="row card-container">{propertyTile("Active")}</div>
+              <div className="card-container-wrapper">
+                <div className="card-container">{propertyTile("Active")}</div>
+              </div>
             )}
 
             <div className="port-line-break"></div>
             <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES</h2>
             <div className="port-line-break"></div>
-            <div className="row card-container">{propertyTile("Sold")}</div>
+            <div className="card-container-wrapper">
+              <div className="card-container">{propertyTile("Sold")}</div>
+            </div>
 
             <div className="port-line-break"></div>
             <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
             <div className="port-line-break"></div>
-            <div className="row card-container">{propertyTile("Rental")}</div>
+            <div className="card-container-wrapper">
+              <div className="card-container">{propertyTile("Rental")}</div>
+            </div>
           </div>
         </FadeIn>
       </Fragment>

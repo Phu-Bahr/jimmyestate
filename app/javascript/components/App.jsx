@@ -223,7 +223,7 @@ class App extends Component {
               />
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/jimmys-tips"
             render={props => (
@@ -233,7 +233,7 @@ class App extends Component {
                 user={this.state.user}
               />
             )}
-          />
+          /> */}
           <Route
             exact
             path="/testimonials"
