@@ -54,7 +54,7 @@ class TownShowPage extends Component {
               editUrlPath={editUrlPath}
             />
 
-            <div className="container pb-5">
+            <div className="container px-5 pb-1">
               <div className="townheader-font">
                 {this.state.townData.townheader}
               </div>

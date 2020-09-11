@@ -109,7 +109,7 @@ export const ParallaxBannerRoutes = props => (
         <div className="container">
           <div className="header-alignment">
             <h1 id="header1">{props.headerText1}</h1>
-            <h4 id="header2">{props.headerText2}</h4>
+            <h2 id="header2">{props.headerText2}</h2>
           </div>
         </div>
         {props.id == null && (

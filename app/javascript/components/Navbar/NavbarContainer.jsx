@@ -66,7 +66,7 @@ class NavbarContainer extends Component {
 
     let headerLink = title => (
       <Link
-        to=""
+        to="#"
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
         role="button"
@@ -207,6 +207,8 @@ class NavbarContainer extends Component {
     } else {
       collapseMenuLogic = <ul className="navbar-nav ml-auto">{navLists}</ul>;
     }
+
+    console.log("window width", window.innerWidth);
 
     return (
       <Transition>

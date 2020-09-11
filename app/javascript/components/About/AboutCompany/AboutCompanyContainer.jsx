@@ -66,7 +66,7 @@ class AboutCompanyContainer extends Component {
           <ParallaxBannerRoutes {...this.state} {...this.props} />
 
           <FadeInUp>
-            <div className="pt-4 pb-3 text-center">
+            <div className="pt-4 pb-3 px-4 text-center">
               <img
                 className="img-fluid rounded"
                 src={this.state.image}

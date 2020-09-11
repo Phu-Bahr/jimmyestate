@@ -126,7 +126,7 @@ class ContactContainer extends Component {
 
           <div className="container py-5">
             <div className="row">
-              <div className="col-md-6 pb-3">
+              <div className="col-md-6 pb-5">
                 <FadeInLeft>
                   <EmailForm alertType={this.alertType} />
                 </FadeInLeft>
@@ -134,13 +134,12 @@ class ContactContainer extends Component {
 
               <div className="col-md-6">
                 <FadeInRight>
-                  <div className="text-center pb-3">
+                  <div className="p-3 contact-info-wrapper">
                     <div>{this.state.name}</div>
                     <div>{this.state.address}</div>
                     <div>
                       <a
                         href={`tel: ` + this.state.phonenumber}
-                        style={{ color: "black" }}
                         onClick={() => gaContactLinks("Phone Contact Page")}
                       >
                         <div className="fa fa-phone pr-2 contact-icons" />
@@ -150,7 +149,6 @@ class ContactContainer extends Component {
                     <div>
                       <a
                         href={`mailto:` + this.state.email}
-                        style={{ color: "black" }}
                         onClick={() => gaContactLinks("Phone Contact Page")}
                       >
                         <div className="fa fa-envelope pr-2 contact-icons" />
