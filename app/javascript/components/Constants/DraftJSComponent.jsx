@@ -115,7 +115,7 @@ class DraftJSContainer extends Component {
 
   render() {
     let adminToggle = this.props.user.admin ? (
-      <div className="container pb-5 pt-3">
+      <div className="container pb-2 pt-3">
         {this.state.id === null && (
           <Fragment>
             <div className="container text-center pt-3">
@@ -154,7 +154,7 @@ class DraftJSContainer extends Component {
         </div>
       </div>
     ) : (
-      <div className="container py-3">
+      <div className="container py-3 px-4">
         <Editor
           toolbarHidden
           editorState={this.state.editorState}
