@@ -116,7 +116,6 @@ class NavbarContainer extends Component {
           {headerLink("Services")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
-            id="about"
             aria-labelledby="navbarDropdown"
           >
             <DropdownHelper formConst={serviceList} />
@@ -127,7 +126,6 @@ class NavbarContainer extends Component {
           {headerLink("About")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
-            id="about"
             aria-labelledby="navbarDropdown"
           >
             <DropdownHelper formConst={aboutList} />

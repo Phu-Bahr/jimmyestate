@@ -2,19 +2,15 @@ import React, { Fragment } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 const payload = null;
-const fitGif = {
-  height: "100%",
-  width: "100%"
-};
 
 const AlertBox = props => {
   const successfulDelete = (
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGif)}>
+          <div className="alert-modal-wrapper">
             <img
-              style={fitGif}
+              className="alert-image-modal"
               src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
               alt="Deleted Gif confirmation photo"
             />
@@ -47,9 +43,9 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGif)}>
+          <div className="alert-modal-wrapper">
             <img
-              style={fitGif}
+              className="alert-image-modal"
               src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
               alt="Sent confirmation photo"
             />
@@ -88,9 +84,9 @@ const AlertBox = props => {
       confirmBtnBsStyle="danger"
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGif)}>
+          <div className="alert-modal-wrapper">
             <img
-              style={{ width: "100%", height: "100%" }}
+              className="alert-image-modal"
               src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
               alt="Are you sure? confirmation photo"
             />
@@ -115,9 +111,9 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGif)}>
+          <div className="alert-modal-wrapper">
             <img
-              style={fitGif}
+              className="alert-image-modal"
               src="https://media0.giphy.com/media/aN9GqoR7OD3nq/200.gif"
               alt="Geocode does not exist Photo"
             />
@@ -136,9 +132,9 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGif)}>
+          <div className="alert-modal-wrapper">
             <img
-              style={fitGif}
+              className="alert-image-modal"
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
               alt="Geocode found photo"
             />
@@ -157,9 +153,9 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div style={({ overflow: "hidden" }, fitGif)}>
+          <div className="alert-modal-wrapper">
             <img
-              style={fitGif}
+              className="alert-image-modal"
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
               alt="Geocode found for new event photo"
             />

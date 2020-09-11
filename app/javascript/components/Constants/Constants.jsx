@@ -67,14 +67,16 @@ export const Transition = styled.div`
 export const DropdownHelper = props => {
   const formValue = props.formConst.map(element => {
     return (
-      <div key={element.title} className="container py-1">
-        <Link
-          to={element.path}
-          className="dropdown-item navbar-underline"
-          onClick={() => gaNavLinks(element.title)}
-        >
-          {element.title}
-        </Link>
+      <div>
+        <div key={element.title} className="container py-1">
+          <Link
+            to={element.path}
+            className="dropdown-item navbar-underline"
+            onClick={() => gaNavLinks(element.title)}
+          >
+            {element.title}
+          </Link>
+        </div>
       </div>
     );
   });
