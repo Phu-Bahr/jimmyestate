@@ -1,7 +1,7 @@
 import ReactGA from "react-ga";
 
 export const gaNavLinks = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Mobile Navbar Link",
       action: `Mobile ${title} Navbar Link Clicked`
@@ -15,7 +15,7 @@ export const gaNavLinks = title => {
 };
 
 export const gaLinks = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Mobile Link",
       action: `Mobile ${title} Link Clicked`
@@ -29,7 +29,7 @@ export const gaLinks = title => {
 };
 
 export const gaInteraction = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Interaction Mobile",
       action: `Mobile ${title} Clicked`
@@ -43,7 +43,7 @@ export const gaInteraction = title => {
 };
 
 export const gaEvents = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Events Mobile",
       action: `Mobile ${title} Clicked`
@@ -57,7 +57,7 @@ export const gaEvents = title => {
 };
 
 export const gaCards = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Cards Mobile",
       action: `Mobile ${title} Clicked`
@@ -71,7 +71,7 @@ export const gaCards = title => {
 };
 
 export const gaContactLinks = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Contact Mobile",
       action: `Mobile ${title} Clicked`
@@ -85,7 +85,7 @@ export const gaContactLinks = title => {
 };
 
 export const gaSocialLinks = title => {
-  if (innerWidth < 680) {
+  if (window.innerWidth < 680) {
     ReactGA.event({
       category: "Social Mobile",
       action: `Mobile ${title} Clicked`

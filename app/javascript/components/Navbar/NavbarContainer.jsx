@@ -21,16 +21,15 @@ class NavbarContainer extends Component {
       refreshKey: false,
       show: true,
       scrollPos: 0,
-      typeOfAlert: null
+      typeOfAlert: null,
+      width: null
     };
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   toggleRefreshFalse = () => this.setState({ refreshKey: false });
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
+  scrollToTop = () => scroll.scrollToTop();
 
   gaNavLinks = title => {
     if (innerWidth < 680) {
@@ -47,21 +46,28 @@ class NavbarContainer extends Component {
     scroll.scrollToTop();
   };
 
-  componentDidMount = () =>
+  componentDidMount = () => {
+    this.setState({ width: document.body.getBoundingClientRect().width });
     window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleScroll);
+  };
 
-  componentWillUnmount = () =>
+  componentWillUnmount = () => {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleScroll);
+  };
 
   handleScroll = () => {
     const { scrollPos } = this.state;
     this.setState({
       scrollPos: document.body.getBoundingClientRect().top,
-      show: document.body.getBoundingClientRect().top > scrollPos
+      show: document.body.getBoundingClientRect().top > scrollPos,
+      width: document.body.getBoundingClientRect().width
     });
   };
 
   render() {
+    console.log("window width", this.state.width);
     let admin = this.props.user.admin;
 
     let headerLink = title => (
@@ -69,9 +75,8 @@ class NavbarContainer extends Component {
         to="#"
         className="nav-link dropdown-toggle navbar-underline"
         id="navbarDropdown"
-        role="button"
         //width determines how wide screen is then close hamburger menu on link click
-        data-toggle={window.innerWidth < 990 && "dropdown"}
+        data-toggle={this.state.width < 990 && "dropdown"}
         aria-haspopup="true"
         aria-expanded="false"
       >
@@ -194,7 +199,7 @@ class NavbarContainer extends Component {
     );
 
     let collapseMenuLogic;
-    if (window.innerWidth < 990) {
+    if (this.state.width < 990) {
       collapseMenuLogic = (
         <ul
           className="navbar-nav ml-auto"
@@ -207,8 +212,6 @@ class NavbarContainer extends Component {
     } else {
       collapseMenuLogic = <ul className="navbar-nav ml-auto">{navLists}</ul>;
     }
-
-    console.log("window width", window.innerWidth);
 
     return (
       <Transition>
