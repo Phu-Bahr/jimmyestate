@@ -1188,23 +1188,6 @@ $gradient: #00b5f5;
 
 // ending SHOWPAGE
 
-//MOBILE VIEW CSS
-
-//navbar bigger than mobile
-@media only screen and (min-width: 600px) {
-  #about {
-    width: 280px;
-  }
-}
-
-//mobile view
-@media only screen and (max-width: 600px) {
-  #companyfont {
-    font-size: 16px;
-  }
-}
-// ending mobile view css
-
 // About Portfolio page
 
 .about-position {
@@ -2101,3 +2084,29 @@ a:hover {
 }
 
 //end of contact page
+
+.alert-image-modal {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.alert-modal-wrapper {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+@media only screen and (max-width: 680px) {
+  .alert-image-modal {
+    height: 50%;
+    width: 50%;
+  }
+
+  .alert-modal-wrapper {
+    overflow: hidden;
+    height: 50%;
+    width: 75%;
+    position: relative;
+    left: 12.5%;
+  }
+}
