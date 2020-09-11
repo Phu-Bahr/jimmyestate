@@ -26,7 +26,7 @@ const EventTile = props => {
             <EditButton onClick={props.payload} />
             <DeleteButton onClick={props.handleDelete} className="ml-2" />
 
-            <div className={"py-4" + " " + props.hideUpdate}>
+            <div className={"p-4" + " " + props.hideUpdate}>
               <form onSubmit={props.submitUpdate}>
                 <div className="row">
                   <div className="col-sm-6">

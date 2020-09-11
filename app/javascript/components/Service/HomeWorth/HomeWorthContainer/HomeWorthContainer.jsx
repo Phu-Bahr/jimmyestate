@@ -104,7 +104,7 @@ class HomeWorthContainer extends Component {
                 hide={this.state.hideDiv}
               />
 
-              <div className="col-sm-6">
+              <div className="col-sm-12 col-md-6">
                 <FadeInRight>
                   <p className="pb-2">{this.state.paragraph1}</p>
                   <p className="pb-2">{this.state.paragraph2}</p>

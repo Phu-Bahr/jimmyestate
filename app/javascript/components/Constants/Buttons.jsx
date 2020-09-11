@@ -53,8 +53,8 @@ export const UpdateButton = ({ type, className, onClick, value }) => {
       type={type == "" ? submit : type}
       className={
         className == null
-          ? "btn btn-outline-warning"
-          : `btn btn-outline-warning ${className}`
+          ? "btn btn-outline-primary"
+          : `btn btn-outline-primary ${className}`
       }
       onClick={onClick}
     >

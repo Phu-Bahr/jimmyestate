@@ -11,7 +11,7 @@ const AboutJimmyPhotoContainer = ({
 }) => {
   return (
     <Fragment>
-      <div className="float-left ml-4 pr-4 mb-3">
+      <div className="about-position">
         <img
           className="img-fluid rounded"
           src={photo}
