@@ -19,12 +19,11 @@ class PartnerList extends Component {
   mountState = body => this.setState({ partnerData: body });
   componentDidMount = () => getFetch(urlPath, this.mountState);
 
-  componentDidUpdate = () => {
+  componentDidUpdate = () =>
     this.state.refreshKey &&
-      getFetch(urlPath, this.mountState).then(
-        this.setState({ refreshKey: false })
-      );
-  };
+    getFetch(urlPath, this.mountState).then(
+      this.setState({ refreshKey: false })
+    );
 
   deleteEvent = id => {
     const url = `/api/v1/${urlPath}/${id}`;
@@ -36,7 +35,6 @@ class PartnerList extends Component {
 
   render() {
     let admin = this.props.user.admin;
-
     let partnerCategories = this.state.partnerData.map(element => {
       return (
         <Fragment key={element.id}>
@@ -44,34 +42,33 @@ class PartnerList extends Component {
             className={admin && "dropdown-item"}
             onClick={() => gaNavLinks(element.name)}
           >
-            <div className={admin ? "row navbar-underline" : "container py-1"}>
+            <div className={admin ? "navbar-underline py-2" : "container py-1"}>
               <Link
                 to={`/${urlPath}/${element.id}`}
-                className={
-                  admin
-                    ? "col-sm-4 ml-n1 mr-4"
-                    : "dropdown-item navbar-underline"
-                }
+                className={admin ? "" : "dropdown-item navbar-underline"}
                 style={admin && { fontSize: "13px" }}
               >
                 {element.name}
               </Link>
 
               {admin && (
-                <Fragment>
-                  <div className="col-sm-4 mr-n4">
+                <div className="float-right">
+                  <div
+                    className="px-1"
+                    style={{ display: "inline-block", cursor: "pointer" }}
+                  >
                     <FontAwesomeIcon
                       icon="trash-alt"
                       size="2x"
                       onClick={() => this.deleteEvent(element.id)}
                     />
                   </div>
-                  <div className="col-sm-4 m-auto">
+                  <div className="px-1" style={{ display: "inline-block" }}>
                     <Link to={`/${editUrlPath}/${element.id}`}>
                       <FontAwesomeIcon icon="edit" size="2x" />
                     </Link>
                   </div>
-                </Fragment>
+                </div>
               )}
             </div>
           </div>
