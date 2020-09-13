@@ -417,6 +417,15 @@ body,
 * Browsers: last 4 version
 */
 
+.ellipsis {
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .dropdown-item {
   background: transparent !important;
 }

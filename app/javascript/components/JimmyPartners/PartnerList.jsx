@@ -39,20 +39,12 @@ class PartnerList extends Component {
       return (
         <Fragment key={element.id}>
           <div
-            className={admin && "dropdown-item"}
+            className={admin && "dropdown-item px-3"}
             onClick={() => gaNavLinks(element.name)}
           >
             <div className={admin ? "navbar-underline py-2" : "container py-1"}>
-              <Link
-                to={`/${urlPath}/${element.id}`}
-                className={admin ? "" : "dropdown-item navbar-underline"}
-                style={admin && { fontSize: "13px" }}
-              >
-                {element.name}
-              </Link>
-
               {admin && (
-                <div className="float-right">
+                <div className="float-left">
                   <div
                     className="px-1"
                     style={{ display: "inline-block", cursor: "pointer" }}
@@ -70,6 +62,15 @@ class PartnerList extends Component {
                   </div>
                 </div>
               )}
+              <div className="ellipsis">
+                <Link
+                  to={`/${urlPath}/${element.id}`}
+                  className={admin ? "" : "dropdown-item navbar-underline"}
+                  style={admin && { fontSize: "13px" }}
+                >
+                  {element.name}
+                </Link>
+              </div>
             </div>
           </div>
         </Fragment>
