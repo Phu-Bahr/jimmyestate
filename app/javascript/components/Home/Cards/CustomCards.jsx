@@ -156,8 +156,8 @@ class CustomCards extends Component {
                     src={element.image}
                     alt="custom helper card image 2"
                   />
-                  <div className="venueTitle">{element.title}</div>
                 </div>
+                <div className="venueTitle">{element.title}</div>
               </div>
             </div>
 

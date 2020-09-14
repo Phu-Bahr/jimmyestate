@@ -12,7 +12,7 @@ import AlertBox from "../../Constants/AlertComponent";
 import { EditButton } from "../../Constants/Buttons";
 import { Link } from "react-scroll";
 import { gaLinks, gaEvents } from "../../Constants/GoogleAnalyticEvents";
-
+import Testimonials from "../../About/Testimonials/Testimonials";
 const urlPath = "events";
 
 class EventContainer extends Component {
@@ -286,6 +286,7 @@ class EventContainer extends Component {
                       alt={`Event image ` + this.state.id}
                       style={{ boxShadow: "0px 10px 13px -7px #000000" }}
                     />
+                    {/* <Testimonials user={this.props.user}/> */}
                   </div>
 
                   <div className="col-lg-6 py-2">
