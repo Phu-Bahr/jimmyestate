@@ -225,7 +225,7 @@ body,
 }
 
 // mobile view
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 680px) {
   .venueImage {
     display: block;
     width: 100%;
@@ -288,9 +288,9 @@ body,
 
   .parent:hover .child,
   .parent:focus .child {
-    -ms-transform: scale(1.2);
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
     cursor: pointer;
   }
 
@@ -1550,18 +1550,13 @@ $gradient: #00b5f5;
 }
 
 .header-alignment {
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
     0px 18px 23px rgba(0, 0, 0, 0.1);
   h1 {
-    font-size: 3em;
+    font-size: 2.8em;
   }
   h2 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
 
@@ -1592,10 +1587,10 @@ $gradient: #00b5f5;
   }
 
   #header1 {
-    font-size: 1.2em;
+    font-size: 1em;
   }
   #header2 {
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 }
 
