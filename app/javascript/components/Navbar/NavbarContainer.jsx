@@ -67,7 +67,6 @@ class NavbarContainer extends Component {
   };
 
   render() {
-    console.log("window width", this.state.width);
     let admin = this.props.user.admin;
 
     let headerLink = title => (
