@@ -98,7 +98,7 @@ class MarketReportsContainer extends Component {
 
           <div className="container py-5">
             <div className="row">
-              <div className="col-sm-6 pb-3">
+              <div className="col-sm-12 col-md-6 pb-3">
                 <FadeInLeft>
                   <p className="pb-2">{this.state.paragraph1}</p>
                   <p className="pb-2">{this.state.paragraph2}</p>

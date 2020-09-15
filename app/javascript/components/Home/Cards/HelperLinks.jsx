@@ -6,7 +6,7 @@ import { gaCards } from "../../Constants/GoogleAnalyticEvents";
 
 const HelperLinks = props => {
   return (
-    <div className="col-md-6 col-middle px-4 py-3">
+    <div className="col-md-12 col-lg-6 col-middle px-4 py-3">
       <ScrollAnimation animateIn="fadeIn">
         <Link
           to={`/${props.route}`}
@@ -20,7 +20,7 @@ const HelperLinks = props => {
                   src={props.image}
                   alt={`helper card image ` + props.id}
                 />
-                <div className="venueTitle">{props.title}</div>
+                <div className="venueTitle px-3 py-1">{props.title}</div>
               </div>
             </div>
           </div>
