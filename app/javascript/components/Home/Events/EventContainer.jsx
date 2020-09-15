@@ -12,7 +12,7 @@ import AlertBox from "../../Constants/AlertComponent";
 import { EditButton } from "../../Constants/Buttons";
 import { Link } from "react-scroll";
 import { gaLinks, gaEvents } from "../../Constants/GoogleAnalyticEvents";
-
+import Testimonials from "../../About/Testimonials/Testimonials";
 const urlPath = "events";
 
 class EventContainer extends Component {
@@ -276,19 +276,22 @@ class EventContainer extends Component {
             </Link>
           ) : (
             <div className="row">
-              <div className="col-lg-4">{events}</div>
-              <div className="col-lg-8">
+              <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                {events}
+              </div>
+              <div className="col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 <div className="row">
-                  <div className="col-lg-6 py-2">
+                  <div className="col-sm-12 col-md-6 col-lg-12 col-xl-6 py-2">
                     <img
                       className="img-fluid"
                       src={this.state.flier}
                       alt={`Event image ` + this.state.id}
                       style={{ boxShadow: "0px 10px 13px -7px #000000" }}
                     />
+                    {/* <Testimonials user={this.props.user}/> */}
                   </div>
 
-                  <div className="col-lg-6 py-2">
+                  <div className="col-sm-12 col-md-6 col-lg-12 col-xl-6 py-2">
                     <Map {...this.state} />
                   </div>
                 </div>

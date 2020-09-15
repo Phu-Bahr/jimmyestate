@@ -67,16 +67,14 @@ export const Transition = styled.div`
 export const DropdownHelper = props => {
   const formValue = props.formConst.map(element => {
     return (
-      <div>
-        <div key={element.title} className="container py-1">
-          <Link
-            to={element.path}
-            className="dropdown-item navbar-underline"
-            onClick={() => gaNavLinks(element.title)}
-          >
-            {element.title}
-          </Link>
-        </div>
+      <div key={element.title} className="container py-1">
+        <Link
+          to={element.path}
+          className="dropdown-item navbar-underline"
+          onClick={() => gaNavLinks(element.title)}
+        >
+          {element.title}
+        </Link>
       </div>
     );
   });
@@ -108,10 +106,12 @@ export const ParallaxBannerRoutes = props => (
             ")"
         }}
       >
-        <div className="container">
-          <div className="header-alignment">
-            <h1 id="header1">{props.headerText1}</h1>
-            <h2 id="header2">{props.headerText2}</h2>
+        <div className="container h-100">
+          <div className="row h-100">
+            <div className="col-sm-12 my-auto header-alignment">
+              <h1 id="header1">{props.headerText1}</h1>
+              <h2 id="header2">{props.headerText2}</h2>
+            </div>
           </div>
         </div>
         {props.id == null && (

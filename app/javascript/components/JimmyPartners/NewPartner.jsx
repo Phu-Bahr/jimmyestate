@@ -72,7 +72,7 @@ class NewPartner extends Component {
                 </Link>
               </form>
             </div>
-            {window.innerWidth > 680 && <div className="photo" />}
+            {window.innerWidth > 768 && <div className="photo" />}
           </div>
         </FadeIn>
       </Fragment>

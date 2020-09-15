@@ -97,7 +97,7 @@ class CustomCards extends Component {
         return (
           <div
             key={element.id}
-            className="col-md-6 col-middle px-4 py-3"
+            className="col-md-12 col-lg-6 col-middle px-4 py-3"
             style={{ zIndex: 0 }}
           >
             <div
@@ -111,7 +111,7 @@ class CustomCards extends Component {
                     src={element.image}
                     alt="custom helper card image 1"
                   />
-                  <div className="venueTitle">{element.title}</div>
+                  <div className="venueTitle px-3 py-1">{element.title}</div>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ class CustomCards extends Component {
         return (
           <div
             key={element.id}
-            className="col-md-6 col-middle px-4 py-3"
+            className="col-md-12 col-lg-6 col-middle px-4 py-3"
             style={{ zIndex: 0 }}
           >
             <div
@@ -152,12 +152,12 @@ class CustomCards extends Component {
               <div className="parent m-0">
                 <div className="child particles">
                   <img
-                    className="venueImage "
+                    className="venueImage"
                     src={element.image}
                     alt="custom helper card image 2"
                   />
-                  <div className="venueTitle">{element.title}</div>
                 </div>
+                <div className="venueTitle px-3 py-1">{element.title}</div>
               </div>
             </div>
 

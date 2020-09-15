@@ -225,7 +225,8 @@ body,
 }
 
 // mobile view
-@media only screen and (max-width: 600px) {
+
+@media only screen and (max-width: 680px) {
   .venueImage {
     display: block;
     width: 100%;
@@ -288,9 +289,9 @@ body,
 
   .parent:hover .child,
   .parent:focus .child {
-    -ms-transform: scale(1.2);
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
     cursor: pointer;
   }
 
@@ -416,6 +417,15 @@ body,
 * Autoprefixer: v9.7.6
 * Browsers: last 4 version
 */
+
+.ellipsis {
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
 
 .dropdown-item {
   background: transparent !important;
@@ -1546,18 +1556,13 @@ $gradient: #00b5f5;
 }
 
 .header-alignment {
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
     0px 18px 23px rgba(0, 0, 0, 0.1);
   h1 {
-    font-size: 3em;
+    font-size: 2.8em;
   }
   h2 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
 
@@ -1588,10 +1593,10 @@ $gradient: #00b5f5;
   }
 
   #header1 {
-    font-size: 1.2em;
+    font-size: 1em;
   }
   #header2 {
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 }
 
@@ -1704,7 +1709,7 @@ $gradient: #00b5f5;
 
 .newTownWrapper {
   width: 100%;
-  height: 100vh;
+  height: 950px;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr 1fr 1fr;
@@ -1770,7 +1775,7 @@ $gradient: #00b5f5;
 
 .newPartnerWrapper {
   width: 100%;
-  height: 100vh;
+  height: 930px;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr 1fr 1fr;
@@ -1813,7 +1818,7 @@ $gradient: #00b5f5;
     -ms-grid-rows: 1fr;
     -ms-grid-columns: 1fr;
     grid-template: 1fr / 1fr;
-    background-color: #99b3d4;
+    background-color: #525f7d;
   }
 
   .newPartnerWrapper .form {
@@ -1822,7 +1827,7 @@ $gradient: #00b5f5;
     grid-area: 1/1/1/1;
   }
   .newPartnerWrapper h1 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
   }
 }
@@ -1832,8 +1837,13 @@ $gradient: #00b5f5;
   text-align: right;
 }
 @media only screen and (max-width: 680px) {
-  .testimonyFont h1 {
-    font-size: 22px;
+  .testimonyFont {
+    h1 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.9;
+    }
   }
 }
 
@@ -2034,7 +2044,7 @@ a:hover {
   color: #8cce3c;
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 768px) {
   //homepage banners
   .parallaxStyleHome {
     background-attachment: inherit;
@@ -2101,6 +2111,7 @@ a:hover {
   height: 100%;
   width: 100%;
 }
+
 @media only screen and (max-width: 680px) {
   .alert-image-modal {
     height: 50%;
