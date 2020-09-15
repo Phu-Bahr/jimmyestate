@@ -83,13 +83,15 @@ class NewTown extends Component {
                   onChange={this.onChange}
                   value={this.state}
                 />
+
                 <AddButton className="mt-3" value="Create Community" />
+
                 <Link to="/" className="btn btn-link mt-3">
                   Back to Home Page
                 </Link>
               </form>
             </div>
-            {window.innerWidth > 680 && <div className="photo" />}
+            {window.innerWidth > 768 && <div className="photo" />}
           </div>
         </FadeIn>
       </Fragment>
