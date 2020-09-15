@@ -215,7 +215,8 @@ class NavbarContainer extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
         <StyledNavbar
           className={
-            document.body.getBoundingClientRect().top > -75
+            //controls when nav bar fades out based on scroll down position
+            document.body.getBoundingClientRect().top > -15
               ? "active"
               : this.state.show
               ? "active"
