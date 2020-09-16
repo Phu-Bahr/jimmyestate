@@ -3,7 +3,6 @@ import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
 import CardsContainerEdit from "./CardsContainerEdit";
 import CustomCards from "./CustomCards";
-import DraftJSContainer from "../../Constants/DraftJSComponent";
 import AlertBox from "../../Constants/AlertComponent";
 import {
   getNoScrollFetch,
@@ -11,7 +10,6 @@ import {
 } from "../../Constants/FetchComponent";
 import ScrollAnimation from "react-animate-on-scroll";
 
-const urlPathDraft = "card_drafts";
 const urlPath = "helper_links";
 
 class CardsContainer extends Component {
@@ -82,14 +80,6 @@ class CardsContainer extends Component {
           <CardsContainerEdit
             user={this.props.user}
             alertType={this.alertType}
-          />
-
-          <DraftJSContainer
-            {...this.state}
-            {...this.props}
-            hocRefresh={this.toggleRefreshKey}
-            urlPath={urlPathDraft}
-            alertType={this.props.alertType}
           />
         </ScrollAnimation>
 
