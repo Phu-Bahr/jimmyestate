@@ -6,6 +6,7 @@ import {
   putNoScrollFetch
 } from "../../Constants/FetchComponent";
 import { UpdateButton } from "../../Constants/Buttons";
+import BioContainer from "./BioContainer";
 
 const urlPath = "venue_templates";
 
@@ -93,6 +94,11 @@ class CardsContainerEdit extends Component {
               style={{ width: "300px", height: "400px" }}
             />
           </div>
+
+          <BioContainer
+            alertType={this.props.alertType}
+            user={this.props.user}
+          />
         </ScrollAnimation>
       </Fragment>
     );
