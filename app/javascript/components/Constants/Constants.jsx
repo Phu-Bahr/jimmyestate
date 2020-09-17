@@ -232,6 +232,31 @@ export const FormMapsV2 = props => {
   return formValue;
 };
 
+export const RadioDials = props => {
+  const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
+    return (
+      <div
+        key={key}
+        className="custom-control custom-radio custom-control-inline"
+      >
+        <input
+          type="radio"
+          id={"opacity" + value}
+          name="opacity"
+          className="custom-control-input"
+          onChange={props.onChange}
+          value={value}
+        />
+        <label className="custom-control-label" htmlFor={"opacity" + value}>
+          {key}
+        </label>
+      </div>
+    );
+  });
+
+  return keyValuePair;
+};
+
 //needs this.state sent  or id in state
 export const LoadingScreen = props => {
   return (
