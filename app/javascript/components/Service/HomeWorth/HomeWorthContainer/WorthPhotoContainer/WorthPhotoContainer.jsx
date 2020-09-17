@@ -40,9 +40,7 @@ class WorthPhotoContainer extends Component {
     deleteFetch(url, this.alertType).then(this.toggleRefreshKey);
   };
 
-  mountState = body => {
-    this.setState({ photoData: body });
-  };
+  mountState = body => this.setState({ photoData: body });
 
   componentDidMount = () => getFetch(urlPath, this.mountState);
 

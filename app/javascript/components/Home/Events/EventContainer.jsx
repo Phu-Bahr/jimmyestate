@@ -276,12 +276,12 @@ class EventContainer extends Component {
             </Link>
           ) : (
             <div className="row">
-              <div className="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+              <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4">
                 {events}
               </div>
-              <div className="col-sm-12 col-md-12 col-lg-6 col-xl-8">
+              <div className="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div className="row">
-                  <div className="col-sm-12 col-md-6 col-lg-12 col-xl-6 py-2">
+                  <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
                     <img
                       className="img-fluid"
                       src={this.state.flier}
@@ -291,7 +291,7 @@ class EventContainer extends Component {
                     {/* <Testimonials user={this.props.user}/> */}
                   </div>
 
-                  <div className="col-sm-12 col-md-6 col-lg-12 col-xl-6 py-2">
+                  <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
                     <Map {...this.state} />
                   </div>
                 </div>

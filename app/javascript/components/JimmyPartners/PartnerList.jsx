@@ -62,7 +62,7 @@ class PartnerList extends Component {
                   </div>
                 </div>
               )}
-              <div className="ellipsis">
+              <div className={admin ? "ellipsis" : "ellipsis container"}>
                 <Link
                   to={`/${urlPath}/${element.id}`}
                   className={admin ? "" : "dropdown-item navbar-underline"}

@@ -58,7 +58,7 @@ class RelocationEmailForm extends Component {
       <Fragment>
         <form onSubmit={this.onSubmit}>
           <div className="form-row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="name">Your Name</label>
               <input
                 type="text"
@@ -69,7 +69,7 @@ class RelocationEmailForm extends Component {
                 required
               />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="email">Your Email</label>
               <input
                 type="text"
@@ -82,7 +82,7 @@ class RelocationEmailForm extends Component {
             </div>
           </div>
           <div className="form-row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="phone">Phone Number</label>
               <input
                 type="text"
@@ -93,7 +93,7 @@ class RelocationEmailForm extends Component {
                 required
               />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="time">Best time to reach you?</label>
               <select
                 type="text"
@@ -123,7 +123,7 @@ class RelocationEmailForm extends Component {
             />
           </div>
           <div className="form-row">
-            <div className="form-group col-md-7">
+            <div className="form-group col-sm-12 col-md-12 col-lg-7">
               <label htmlFor="timeframe">Moving time frame?</label>
               <input
                 type="text"
@@ -133,7 +133,7 @@ class RelocationEmailForm extends Component {
                 onChange={this.onChange}
               />
             </div>
-            <div className="form-group col-md-5">
+            <div className="form-group col-sm-12 col-md-12 col-lg-5">
               <label htmlFor="assistsell">Need assistance selling?</label>
               <select
                 type="text"

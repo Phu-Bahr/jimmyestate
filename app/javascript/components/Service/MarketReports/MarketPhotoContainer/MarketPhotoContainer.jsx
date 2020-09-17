@@ -30,9 +30,7 @@ class MarketPhotoContainer extends Component {
     event.preventDefault();
     const url = `/api/v1/${urlPath}`;
     const { photo } = this.state;
-    const body = {
-      photo
-    };
+    const body = { photo };
 
     postFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
@@ -42,11 +40,7 @@ class MarketPhotoContainer extends Component {
     deleteFetch(url, this.alertType).then(this.toggleRefreshKey);
   };
 
-  mountState = body => {
-    this.setState({
-      photoData: body
-    });
-  };
+  mountState = body => this.setState({ photoData: body });
 
   componentDidMount = () => getFetch(urlPath, this.mountState);
 
