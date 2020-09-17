@@ -58,7 +58,7 @@ class PortfolioContainer extends Component {
       <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
 
-        <div className="flex-container">
+        <div className="">
           <ParallaxBannerRoutes {...this.state} />
           {this.props.user.admin && (
             <ParallaxEditForm
