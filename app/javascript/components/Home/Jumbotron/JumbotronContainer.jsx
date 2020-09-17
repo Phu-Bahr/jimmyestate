@@ -87,6 +87,10 @@ class JumbotronContainer extends Component {
         <ScrollAnimation animateIn="fadeIn">
           <div
             className="pt-5 jumboBackground"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
+            }}
             onClick={() => gaInteraction("Particles")}
           >
             <Particles className="overlayParticle" params={particleOpt} />
