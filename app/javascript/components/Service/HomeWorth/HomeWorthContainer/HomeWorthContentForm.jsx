@@ -14,7 +14,7 @@ const HomeWorthContentForm = ({ hideDiv, onSubmitEdit, onChange, value }) => {
   return (
     <Fragment>
       {hideDiv && (
-        <div className="container">
+        <div className="container" style={{ borderStyle: "dotted" }}>
           <form onSubmit={onSubmitEdit}>
             <FormMaps
               formConst={homeWorthEditForm}

@@ -42,7 +42,7 @@ class TownList extends Component {
             className={admin && "dropdown-item px-3"}
             onClick={() => gaNavLinks(element.name)}
           >
-            <div className={admin ? "navbar-underline py-2" : "container py-1"}>
+            <div className={admin ? "navbar-underline py-2" : "py-1"}>
               {admin && (
                 <div className="float-left">
                   <div
@@ -62,7 +62,7 @@ class TownList extends Component {
                   </div>
                 </div>
               )}
-              <div className="ellipsis">
+              <div className={admin ? "ellipsis" : "ellipsis container"}>
                 <Link
                   to={`/${urlPath}/${element.id}`}
                   className={admin ? "" : "dropdown-item navbar-underline"}

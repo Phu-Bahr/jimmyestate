@@ -12,7 +12,7 @@ const marketFormData = {
 
 const MarketReportsContentForm = ({ onChange, onSubmitEdit, value }) => {
   return (
-    <div className="container">
+    <div className="container" style={{ borderStyle: "dotted" }}>
       <form onSubmit={onSubmitEdit}>
         <FormMaps
           formConst={marketFormData}
