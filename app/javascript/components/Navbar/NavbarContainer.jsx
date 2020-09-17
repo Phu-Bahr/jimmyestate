@@ -160,7 +160,7 @@ class NavbarContainer extends Component {
         <li className="nav-item m-0 dropdown">
           {headerLink("Business Partners")}
           <div
-            className="dropdown-menu dropdown-menu-right dropdown-menu-lg-right dropdown-menu-xl-left py-3 animate slideIn"
+            className="dropdown-menu dropdown-menu-right dropdown-menu-lg-right dropdown-menu-xl-right py-3 animate slideIn"
             aria-labelledby="navbarDropdown"
           >
             <PartnerList

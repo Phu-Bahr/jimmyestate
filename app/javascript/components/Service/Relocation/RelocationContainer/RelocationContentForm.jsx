@@ -20,7 +20,7 @@ const RelocationContentForm = ({
   return (
     <Fragment>
       {hideDiv && admin && (
-        <div className="container">
+        <div className="container" style={{ borderStyle: "dotted" }}>
           <form onSubmit={onSubmitEdit}>
             <FormMaps
               formConst={relocationEditFormData}

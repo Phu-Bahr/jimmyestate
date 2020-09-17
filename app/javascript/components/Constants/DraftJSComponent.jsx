@@ -155,15 +155,17 @@ class DraftJSContainer extends Component {
       </div>
     ) : (
       <div className="container py-3 px-4">
-        <Editor
-          toolbarHidden
-          editorState={this.state.editorState}
-          wrapperClassName="wrapperClassName"
-          editorClassName="editorClassName"
-          onEditorStateChange={this.updateEditorState.bind(this)}
-          readOnly={true}
-          placeholder="Sign In to Admin to edit"
-        />
+        <FadeIn>
+          <Editor
+            toolbarHidden
+            editorState={this.state.editorState}
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.updateEditorState.bind(this)}
+            readOnly={true}
+            placeholder="Sign In to Admin to edit"
+          />
+        </FadeIn>
       </div>
     );
 

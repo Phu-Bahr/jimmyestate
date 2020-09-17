@@ -39,7 +39,7 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 82vh;
-  padding-top: 65px;
+  padding-top: 75px;
 }
 
 .link {
@@ -506,7 +506,7 @@ body,
 
 .navbar-underline:link {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .navbar-underline:hover,
@@ -1495,11 +1495,17 @@ $gradient: #00b5f5;
   left: 15%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767.98px) {
   .card-container-wrapper {
     position: relative;
     width: 100%;
     left: 0%;
+  }
+
+  //home worth mobile
+  .image-hide {
+    position: absolute;
+    visibility: none;
   }
 }
 
@@ -2045,12 +2051,6 @@ a:hover {
     background-attachment: inherit;
   }
 
-  //home worth mobile
-  .image-hide {
-    position: absolute;
-    visibility: none;
-  }
-
   //padding about picture
   .about-position {
     text-align: center;
@@ -2123,21 +2123,23 @@ a:hover {
 }
 
 @media only screen and (max-width: 992px) {
+  //nav-item is each title in dropdown menu
   .nav-item {
     padding-left: 25px;
     padding-right: 25px;
   }
 
+  //when you dropdown from nav-item, these are the elements in them
   .dropdown-item {
     white-space: normal !important;
-    line-height: 20px;
+    line-height: 1em;
   }
 }
 
 @media only screen and (min-width: 415px) and (max-width: 992px) {
   .dropdown-item {
     white-space: normal !important;
-    line-height: 15px;
+    line-height: 1em;
     text-align: center !important;
   }
 

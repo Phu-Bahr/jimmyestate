@@ -87,12 +87,8 @@ class MarketReportsContainer extends Component {
           />
 
           {this.props.user.admin && (
-            <div className="container py-3">
-              <div className="row">
-                <div className="col text-center">
-                  <EditButton onClick={this.clickEdit} />
-                </div>
-              </div>
+            <div className="container text-center py-3">
+              <EditButton onClick={this.clickEdit} />
             </div>
           )}
 
