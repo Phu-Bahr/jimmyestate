@@ -111,7 +111,7 @@ class NavbarContainer extends Component {
           </Link>
         </li>
 
-        <li className="nav-item dropdown">
+        <li className="nav-item m-0 dropdown">
           {headerLink("Services")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
@@ -121,7 +121,7 @@ class NavbarContainer extends Component {
           </div>
         </li>
 
-        <li className="nav-item dropdown">
+        <li className="nav-item m-0 dropdown">
           {headerLink("About")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
@@ -131,7 +131,7 @@ class NavbarContainer extends Component {
           </div>
         </li>
 
-        <li className="nav-item dropdown">
+        <li className="nav-item m-0 dropdown">
           {headerLink("Featured Communities")}
           <div
             className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
@@ -157,10 +157,10 @@ class NavbarContainer extends Component {
           </div>
         </li>
 
-        <li className="nav-item dropdown">
+        <li className="nav-item m-0 dropdown">
           {headerLink("Business Partners")}
           <div
-            className="dropdown-menu dropdown-menu-left py-3 animate slideIn"
+            className="dropdown-menu dropdown-menu-right dropdown-menu-lg-right dropdown-menu-xl-left py-3 animate slideIn"
             aria-labelledby="navbarDropdown"
           >
             <PartnerList
@@ -183,7 +183,7 @@ class NavbarContainer extends Component {
           </div>
         </li>
 
-        <li>
+        <li className="nav-item">
           <Link
             to="/contact"
             className="nav-link navbar-underline"
@@ -199,7 +199,7 @@ class NavbarContainer extends Component {
     if (this.state.width < 990) {
       collapseMenuLogic = (
         <ul
-          className="navbar-nav ml-auto"
+          className="navbar-nav ml-auto py-3"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
         >
@@ -207,7 +207,9 @@ class NavbarContainer extends Component {
         </ul>
       );
     } else {
-      collapseMenuLogic = <ul className="navbar-nav ml-auto">{navLists}</ul>;
+      collapseMenuLogic = (
+        <ul className="navbar-nav ml-auto py-3">{navLists}</ul>
+      );
     }
 
     return (
