@@ -42,7 +42,7 @@ class PartnerList extends Component {
             className={admin && "dropdown-item px-3"}
             onClick={() => gaNavLinks(element.name)}
           >
-            <div className={admin ? "navbar-underline py-2" : "container py-1"}>
+            <div className={admin ? "navbar-underline py-2" : "py-1"}>
               {admin && (
                 <div className="float-left">
                   <div
