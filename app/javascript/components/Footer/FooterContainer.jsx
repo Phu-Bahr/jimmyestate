@@ -117,7 +117,7 @@ class FooterContainer extends Component {
           key={element.id}
           className="col-sm-12 col-md-6 col-lg-4 footerFont"
         >
-          <h3 className="footerAlignment">OFFICE</h3>
+          <h1 className="footerAlignment">OFFICE</h1>
           <FooterEditOffice
             key={element.id}
             id={element.id}
@@ -135,7 +135,7 @@ class FooterContainer extends Component {
           key={element.id}
           className="col-sm-12 col-md-6 col-lg-4 footerFont"
         >
-          <h3 className="footerAlignment">CONTACT ME</h3>
+          <h1 className="footerAlignment">CONTACT ME</h1>
           <FooterEditContactUs
             key={element.id}
             id={element.id}

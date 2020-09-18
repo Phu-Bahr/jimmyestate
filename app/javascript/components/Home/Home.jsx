@@ -21,7 +21,7 @@ class Home extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
         <JumbotronContainer {...this.props} />
 
-        {/* <ScrollAnimation animateIn="fadeIn">
+        <ScrollAnimation animateIn="fadeIn">
           <AnnouncementContainer {...this.props} alertType={this.alertType} />
         </ScrollAnimation>
 
@@ -29,7 +29,7 @@ class Home extends Component {
           <EventContainer user={this.props.user} alertType={this.alertType} />
         </ScrollAnimation>
 
-        <CardsContainer {...this.props} alertType={this.alertType} /> */}
+        <CardsContainer {...this.props} alertType={this.alertType} />
       </Fragment>
     );
   }

@@ -29,7 +29,7 @@ const PortfolioPropertiesTile = props => {
             }}
           ></div>
 
-          <div className="card-info">
+          <section className="card-info">
             <div className="card-about">
               <a className="card-tag tag-news">
                 {props.status == "Active" ? "On Market" : props.status}
@@ -46,7 +46,7 @@ const PortfolioPropertiesTile = props => {
               <div>{`${props.city}, ${props.state} ${props.zip}`}</div>
             </h1>
             <div className="card-creator"></div>
-          </div>
+          </section>
         </div>
         {props.user.admin && props.hide && (
           <div className="container">

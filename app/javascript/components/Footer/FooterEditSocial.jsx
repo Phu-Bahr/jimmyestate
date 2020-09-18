@@ -5,7 +5,7 @@ const FooterEditSocial = props => {
   return (
     <Fragment>
       <div className="social-container">
-        <h3 style={{ fontWeight: "900" }}>SOCIAL</h3>
+        <h1>SOCIAL</h1>
         <ul className="social-icons">
           <li>
             <a
