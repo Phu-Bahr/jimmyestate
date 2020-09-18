@@ -14,19 +14,23 @@ const ScrollingSidesContainer = ({
     <Fragment>
       <Slider>
         {testimonialData.map((item, index) => (
-          <div
+          <main
             key={index}
             style={{ background: `url('${item.image}')` }}
             className="slider-background-format"
           >
-            <div className="center slide-content">
+            <section className="center slide-content">
               <div className="testimonyFont">
                 <FadeInDown>
-                  <h1>{item.title}</h1>
+                  <header>
+                    <h1>{item.title}</h1>
+                  </header>
                 </FadeInDown>
                 <FadeInUp>
-                  <p>"{item.description}"</p>
-                  <p id="testimony-name">-{item.name}</p>
+                  <article>
+                    <p>"{item.description}"</p>
+                    <p id="testimony-name">-{item.name}</p>
+                  </article>
                 </FadeInUp>
               </div>
               {admin && (
@@ -39,8 +43,8 @@ const ScrollingSidesContainer = ({
                   />
                 </Fragment>
               )}
-            </div>
-          </div>
+            </section>
+          </main>
         ))}
       </Slider>
     </Fragment>

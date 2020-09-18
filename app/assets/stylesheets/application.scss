@@ -656,8 +656,14 @@ body,
   letter-spacing: 1.5px;
 }
 
-.footerFont h3 {
-  font-weight: 900;
+.footerFont h1 {
+  font-size: 1.8rem;
+  font-weight: 900 !important;
+}
+
+.social-container h1 {
+  font-size: 1.8rem;
+  font-weight: 900 !important;
 }
 
 .footerbackground {
@@ -846,7 +852,7 @@ $gradient: #00b5f5;
   .footerFont {
     position: relative;
     left: 0%;
-    line-height: 1.4;
+    line-height: 1.5;
     font-size: 16px;
     letter-spacing: 0px;
     padding-left: 15% !important;
@@ -1476,8 +1482,10 @@ $gradient: #00b5f5;
   }
 }
 
-.portHeaders h2 {
+.portHeaders h1 {
   padding: 0.75rem;
+  font-size: 2rem;
+  font-weight: 900 !important;
 }
 
 .port-line-break {
@@ -2066,16 +2074,15 @@ a:hover {
   .parallaxStyleHome {
     background-attachment: inherit;
   }
+}
 
+@media only screen and (max-width: 768px) {
   //padding about picture
   .about-position {
     text-align: center;
     width: 100%;
   }
-
-  //sold portfolios center card
 }
-
 //contact page
 
 .contact-info-wrapper {

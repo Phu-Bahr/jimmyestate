@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 const AboutJimmyContent = props => {
   return (
     <Fragment>
-      <div className="container">
+      <article className="container">
         <p>{props.paragraph1}</p>
         <p>{props.paragraph2}</p>
         <p>{props.paragraph3}</p>
@@ -12,7 +12,7 @@ const AboutJimmyContent = props => {
         <p>{props.paragraph6}</p>
         <p>{props.paragraph7}</p>
         <p>{props.paragraph8}</p>
-      </div>
+      </article>
     </Fragment>
   );
 };

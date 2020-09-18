@@ -14,14 +14,16 @@ const HelperLinks = props => {
         >
           <div className="card border-0 helper-card imageShadow">
             <div className="parent m-0">
-              <div className="child particles">
+              <figure className="child particles">
                 <img
                   className="venueImage card-img-top"
                   src={props.image}
                   alt={`helper card image ` + props.id}
                 />
-                <div className="venueTitle px-3 py-1">{props.title}</div>
-              </div>
+                <figcaption className="venueTitle px-3 py-1">
+                  {props.title}
+                </figcaption>
+              </figure>
             </div>
           </div>
         </Link>

@@ -13,6 +13,7 @@ import { UpdateButton } from "./Buttons";
 import { CommonLoading } from "react-loadingg";
 import { Link } from "react-router-dom";
 import { gaNavLinks } from "./GoogleAnalyticEvents";
+import Slider, { Range } from "rc-slider";
 
 export const FadeIn = styled.div`
   animation: 1s ${keyframes`${fadeIn}`};
@@ -232,6 +233,12 @@ export const FormMapsV2 = props => {
   return formValue;
 };
 
+// <RadioDials formConst={dialData} onChange={props.onChange} />
+// props in below format
+// let dialData = {
+//   1: 0.1,
+//   2: 0.2
+// };
 export const RadioDials = props => {
   const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
     return (
@@ -266,6 +273,30 @@ export const LoadingScreen = props => {
         <CommonLoading />
       </div>
     )
+  );
+};
+
+// reusable slider
+// needs this wherever state is stored then give to onChange
+// onSliderChange = value => {
+//   let convertedValue = value / 100;
+//   this.setState({ opacity: convertedValue });
+// };
+export const SliderBar = props => {
+  return (
+    <Slider
+      step={1}
+      defaultValue={100}
+      onChange={props.onSliderChange}
+      value={props.opacity ? props.opacity : props.opacity * 100}
+
+      // dots
+      // step={20}
+      // defaultValue={100}
+      // onAfterChange={log}
+      // dotStyle={{ borderColor: "orange" }}
+      // activeDotStyle={{ borderColor: "yellow" }}
+    />
   );
 };
 
