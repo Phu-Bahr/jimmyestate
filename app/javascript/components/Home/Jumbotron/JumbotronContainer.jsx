@@ -21,7 +21,9 @@ class JumbotronContainer extends Component {
       refreshKey: false,
       hideDiv: true,
       id: null,
-      typeOfAlert: null
+      typeOfAlert: null,
+      image: "",
+      opacity: ""
     };
   }
 
@@ -33,8 +35,8 @@ class JumbotronContainer extends Component {
   onSubmit = event => {
     event.preventDefault();
     const url = `/api/v1/${urlPath}/${this.state.id}`;
-    const { line1, line2, line3 } = this.state;
-    const body = { line1, line2, line3 };
+    const { line1, line2, line3, image, opacity } = this.state;
+    const body = { line1, line2, line3, image, opacity };
 
     putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
@@ -45,6 +47,8 @@ class JumbotronContainer extends Component {
       line1: body[body.length - 1].line1,
       line2: body[body.length - 1].line2,
       line3: body[body.length - 1].line3,
+      image: body[body.length - 1].image,
+      opacity: body[body.length - 1].opacity,
       id: body[body.length - 1].id
     });
   };
@@ -88,8 +92,7 @@ class JumbotronContainer extends Component {
           <div
             className="pt-5 jumboBackground"
             style={{
-              backgroundImage:
-                "linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
+              backgroundImage: `linear-gradient(rgba(255, 255, 255, ${this.state.opacity}), rgba(255, 255, 255, ${this.state.opacity})), url(${this.state.image})`
             }}
             onClick={() => gaInteraction("Particles")}
           >
