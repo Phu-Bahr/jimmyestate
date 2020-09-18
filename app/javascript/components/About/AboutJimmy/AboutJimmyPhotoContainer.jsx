@@ -11,7 +11,7 @@ const AboutJimmyPhotoContainer = ({
 }) => {
   return (
     <Fragment>
-      <div className="about-position">
+      <figure className="about-position">
         <img
           className="img-fluid rounded"
           src={photo}
@@ -22,7 +22,7 @@ const AboutJimmyPhotoContainer = ({
             height: "400px"
           }}
         />
-        <div className="container mt-3 text-center">
+        <figcaption className="container mt-3 text-center">
           <div className="container">
             <div style={{ fontWeight: "bolder", fontSize: "30px" }}>
               {photoname}
@@ -52,8 +52,8 @@ const AboutJimmyPhotoContainer = ({
             <div>{photoaddress1}</div>
             <div>{photoaddress2}</div>
           </div>
-        </div>
-      </div>
+        </figcaption>
+      </figure>
     </Fragment>
   );
 };

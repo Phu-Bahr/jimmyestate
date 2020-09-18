@@ -31,6 +31,10 @@ class JumbotronContainer extends Component {
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   clickEdit = () => this.setState({ hideDiv: !this.state.hideDiv });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
+  onSliderChange = value => {
+    let convertedValue = value / 100;
+    this.setState({ opacity: convertedValue });
+  };
 
   onSubmit = event => {
     event.preventDefault();
@@ -89,7 +93,7 @@ class JumbotronContainer extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <ScrollAnimation animateIn="fadeIn">
-          <div
+          <header
             className="pt-5 jumboBackground"
             style={{
               backgroundImage: `linear-gradient(rgba(255, 255, 255, ${this.state.opacity}), rgba(255, 255, 255, ${this.state.opacity})), url(${this.state.image})`
@@ -98,7 +102,7 @@ class JumbotronContainer extends Component {
           >
             <Particles className="overlayParticle" params={particleOpt} />
             {jumboList}
-          </div>
+          </header>
 
           <div className="text-center">
             <JumboEditForm
@@ -108,6 +112,7 @@ class JumbotronContainer extends Component {
               clickEdit={this.clickEdit}
               {...this.state}
               value={this.state}
+              onSliderChange={this.onSliderChange}
             />
           </div>
         </ScrollAnimation>

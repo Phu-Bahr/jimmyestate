@@ -226,43 +226,45 @@ class NavbarContainer extends Component {
           }
         >
           <FadeInDown>
-            <nav className="navbar navbar-expand-lg navbar-light site-header py-2">
-              <div className="container-fluid" style={{ maxWidth: 1150 }}>
-                {this.props.user.admin ? (
-                  <AdminBanner
-                    user={this.props.user}
-                    loggedInStatus={this.props.loggedInStatus}
-                    handleLogin={this.props.handleLogin}
-                    handleLogout={this.props.handleLogout}
-                  />
-                ) : (
-                  <Link
-                    to="/"
-                    onClick={() => this.gaNavLinks("Jimmy Chao")}
-                    className="navbar-font"
+            <header>
+              <nav className="navbar navbar-expand-lg navbar-light site-header py-2">
+                <div className="container-fluid" style={{ maxWidth: 1150 }}>
+                  {this.props.user.admin ? (
+                    <AdminBanner
+                      user={this.props.user}
+                      loggedInStatus={this.props.loggedInStatus}
+                      handleLogin={this.props.handleLogin}
+                      handleLogout={this.props.handleLogout}
+                    />
+                  ) : (
+                    <Link
+                      to="/"
+                      onClick={() => this.gaNavLinks("Jimmy Chao")}
+                      className="navbar-font"
+                    >
+                      Jimmy Chao
+                    </Link>
+                  )}
+                  <button
+                    type="button"
+                    className="navbar-toggler"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
                   >
-                    Jimmy Chao
-                  </Link>
-                )}
-                <button
-                  type="button"
-                  className="navbar-toggler"
-                  data-toggle="collapse"
-                  data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div
-                  className="collapse navbar-collapse justify-content-between"
-                  id="navbarSupportedContent"
-                >
-                  {collapseMenuLogic}
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div
+                    className="collapse navbar-collapse justify-content-between"
+                    id="navbarSupportedContent"
+                  >
+                    {collapseMenuLogic}
+                  </div>
                 </div>
-              </div>
-            </nav>
+              </nav>
+            </header>
           </FadeInDown>
         </StyledNavbar>
       </Transition>

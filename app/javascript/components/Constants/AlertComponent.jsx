@@ -8,15 +8,15 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div className="alert-modal-wrapper">
+          <figure className="alert-modal-wrapper">
             <img
               className="alert-image-modal"
               src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
               alt="Deleted Gif confirmation photo"
             />
             <br />
-            <div>Deleted!</div>
-          </div>
+            <figcaption>Deleted!</figcaption>
+          </figure>
         </Fragment>
       }
       onConfirm={() => props.alertType(payload)}
@@ -43,15 +43,15 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div className="alert-modal-wrapper">
+          <figure className="alert-modal-wrapper">
             <img
               className="alert-image-modal"
               src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
               alt="Sent confirmation photo"
             />
             <br />
-            <div>SENT</div>
-          </div>
+            <figcaption>SENT</figcaption>
+          </figure>
         </Fragment>
       }
       onConfirm={() => props.alertType(payload)}
@@ -84,15 +84,15 @@ const AlertBox = props => {
       confirmBtnBsStyle="danger"
       title={
         <Fragment>
-          <div className="alert-modal-wrapper">
+          <figure className="alert-modal-wrapper">
             <img
               className="alert-image-modal"
               src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
               alt="Are you sure? confirmation photo"
             />
             <br />
-            <div>Are you sure?</div>
-          </div>
+            <figcaption>Are you sure?</figcaption>
+          </figure>
         </Fragment>
       }
       onConfirm={() => props.deleteEvent(props.idForAlert)}
@@ -111,15 +111,15 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div className="alert-modal-wrapper">
+          <figure className="alert-modal-wrapper">
             <img
               className="alert-image-modal"
               src="https://media0.giphy.com/media/aN9GqoR7OD3nq/200.gif"
               alt="Geocode does not exist Photo"
             />
             <br />
-            <div>Location does not exist on Earth!</div>
-          </div>
+            <figcaption>Location does not exist on Earth!</figcaption>
+          </figure>
         </Fragment>
       }
       onConfirm={() => props.alertType(payload)}
@@ -132,15 +132,15 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div className="alert-modal-wrapper">
+          <figure className="alert-modal-wrapper">
             <img
               className="alert-image-modal"
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
               alt="Geocode found photo"
             />
             <br />
-            <div>Geocode Found!!</div>
-          </div>
+            <figcaption>Geocode Found!!</figcaption>
+          </figure>
         </Fragment>
       }
       onConfirm={() => props.alertType(payload)}
@@ -153,15 +153,15 @@ const AlertBox = props => {
     <SweetAlert
       title={
         <Fragment>
-          <div className="alert-modal-wrapper">
+          <figure className="alert-modal-wrapper">
             <img
               className="alert-image-modal"
               src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
               alt="Geocode found for new event photo"
             />
             <br />
-            <div>Geocode Found!!</div>
-          </div>
+            <figcaption>Geocode Found!!</figcaption>
+          </figure>
         </Fragment>
       }
       onConfirm={() => props.submitEvent()}

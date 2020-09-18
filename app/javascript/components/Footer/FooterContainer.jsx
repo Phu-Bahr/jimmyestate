@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import FooterEditOffice from "./FooterEditOffice";
 import FooterEditContactUs from "./FooterEditContactUs";
 import FooterEditSocial from "./FooterEditSocial";
@@ -170,7 +170,7 @@ class FooterContainer extends Component {
     });
 
     return (
-      <Fragment>
+      <footer>
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="footerbackground py-5">
@@ -208,7 +208,7 @@ class FooterContainer extends Component {
             style={{ height: 40, width: 40 }}
           />
         </div>
-      </Fragment>
+      </footer>
     );
   }
 }
