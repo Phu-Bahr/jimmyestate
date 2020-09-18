@@ -84,8 +84,6 @@ class JumbotronContainer extends Component {
       );
     });
 
-    console.log(this.state);
-
     return (
       <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
