@@ -7,13 +7,13 @@ const MarketPhotoTile = ({ photo, hide, handleDelete }) => {
     <div className="pb-3 ">
       <FadeInRight>
         <div className="parent1 m-0 imageShadow">
-          <div className="child1 particles">
+          <figure className="child1 particles">
             <img
               className="portfolioImage card-img-top"
               src={photo}
               alt="Market report photo"
             />
-          </div>
+          </figure>
           {hide && (
             <div className="portfolioTitle">
               <DeleteButton onClick={handleDelete} />

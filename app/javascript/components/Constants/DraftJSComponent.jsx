@@ -115,7 +115,7 @@ class DraftJSContainer extends Component {
 
   render() {
     let adminToggle = this.props.user.admin ? (
-      <div className="container pb-2 pt-3">
+      <main className="container pb-2 pt-3">
         {this.state.id === null && (
           <Fragment>
             <div className="container text-center pt-3">
@@ -123,7 +123,7 @@ class DraftJSContainer extends Component {
             </div>
           </Fragment>
         )}
-        <div className="p-3" style={{ borderStyle: "dotted" }}>
+        <article className="p-3" style={{ borderStyle: "dotted" }}>
           <Editor
             editorState={this.state.editorState}
             wrapperClassName="wrapperClassName"
@@ -151,22 +151,24 @@ class DraftJSContainer extends Component {
               />
             </div>
           </div>
-        </div>
-      </div>
+        </article>
+      </main>
     ) : (
-      <div className="container py-3 px-4">
-        <FadeIn>
-          <Editor
-            toolbarHidden
-            editorState={this.state.editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={this.updateEditorState.bind(this)}
-            readOnly={true}
-            placeholder="Sign In to Admin to edit"
-          />
-        </FadeIn>
-      </div>
+      <main className="container py-3 px-4">
+        <article>
+          <FadeIn>
+            <Editor
+              toolbarHidden
+              editorState={this.state.editorState}
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={this.updateEditorState.bind(this)}
+              readOnly={true}
+              placeholder="Sign In to Admin to edit"
+            />
+          </FadeIn>
+        </article>
+      </main>
     );
 
     return (

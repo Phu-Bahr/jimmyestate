@@ -281,7 +281,7 @@ class EventContainer extends Component {
               </div>
               <div className="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div className="row">
-                  <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                  <figure className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
                     <img
                       className="img-fluid"
                       src={this.state.flier}
@@ -289,7 +289,7 @@ class EventContainer extends Component {
                       style={{ boxShadow: "0px 10px 13px -7px #000000" }}
                     />
                     {/* <Testimonials user={this.props.user}/> */}
-                  </div>
+                  </figure>
 
                   <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
                     <Map {...this.state} />

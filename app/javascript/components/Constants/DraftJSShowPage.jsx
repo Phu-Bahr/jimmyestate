@@ -73,7 +73,7 @@ class DraftJSShowPage extends Component {
           paramsID={this.props.paramsID}
         />
 
-        <div className="container pb-2 pt-3">
+        <main className="container pb-2 pt-3">
           {this.props.admin && (
             <div className="container text-center py-4">
               <Link to={`/${this.props.editUrlPath}/${this.props.paramsID}`}>
@@ -82,7 +82,7 @@ class DraftJSShowPage extends Component {
             </div>
           )}
 
-          <div
+          <article
             className="p-3"
             style={{ borderStyle: this.props.admin && "dotted" }}
           >
@@ -105,8 +105,8 @@ class DraftJSShowPage extends Component {
                 />
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </main>
       </Fragment>
     );
   }
