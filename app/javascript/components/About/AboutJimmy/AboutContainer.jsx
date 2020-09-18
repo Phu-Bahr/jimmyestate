@@ -141,9 +141,9 @@ class AboutContainer extends Component {
 
           <LoadingScreen {...this.state} />
 
-          <div className="container">
+          <main className="container">
             <div className="row py-5">
-              <div className="col-md-12">
+              <div className="col-sm-12 col-md-12 col-lg-12">
                 <FadeIn>
                   <AboutJimmyPhotoContainer {...this.state} />
                 </FadeIn>
@@ -153,7 +153,7 @@ class AboutContainer extends Component {
                 </FadeInUp>
               </div>
             </div>
-          </div>
+          </main>
 
           {this.props.user.admin && (
             <div className="container text-center pb-3">

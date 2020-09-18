@@ -227,7 +227,9 @@ class PortfolioProperties extends Component {
         <FadeIn>
           <div className="pt-5 text-center portHeaders">
             <div className="port-line-break"></div>
-            <h2 style={{ fontWeight: "bold" }}>ACTIVE PROPERTIES</h2>
+            <header>
+              <h1>ACTIVE PROPERTIES</h1>
+            </header>
             <div className="port-line-break"></div>
             {activeLogic(this.state.portfolioData) == false ? (
               <div className="empty-active-container">
@@ -242,15 +244,21 @@ class PortfolioProperties extends Component {
             )}
 
             <div className="port-line-break"></div>
-            <h2 style={{ fontWeight: "bold" }}>SOLD PROPERTIES</h2>
+            <header>
+              <h1>SOLD PROPERTIES</h1>
+            </header>
             <div className="port-line-break"></div>
+
             <div className="card-container-wrapper">
               <div className="card-container">{propertyTile("Sold")}</div>
             </div>
 
             <div className="port-line-break"></div>
-            <h2 style={{ fontWeight: "bold" }}>RENTED PROPERTIES</h2>
+            <header>
+              <h1>RENTED PROPERTIES</h1>
+            </header>
             <div className="port-line-break"></div>
+
             <div className="card-container-wrapper">
               <div className="card-container">{propertyTile("Rental")}</div>
             </div>
