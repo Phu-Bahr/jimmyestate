@@ -55,12 +55,18 @@ export const Transition = styled.div`
   .active {
     visibility: visible;
     opacity: 1;
+    -webkit-transition: visibility 0s, opacity 0.5s linear, all 0.5s ease-in;
+    -o-transition: visibility 0s, opacity 0.5s linear, all 0.5s ease-in;
     transition: visibility 0s, opacity 0.5s linear, all 0.5s ease-in;
   }
   .hidden {
     visibility: hidden;
+    -webkit-transform: translate(0, -350%);
+    -ms-transform: translate(0, -350%);
     transform: translate(0, -350%);
     opacity: 0;
+    -webkit-transition: visibility 0s, opacity 0.1s linear, all 2s ease-out;
+    -o-transition: visibility 0s, opacity 0.1s linear, all 2s ease-out;
     transition: visibility 0s, opacity 0.1s linear, all 2s ease-out;
   }
 `;
@@ -81,56 +87,48 @@ export const DropdownHelper = props => {
   });
   return formValue;
 };
-
 //end for navbar
 
-// needs ...state or banner state
+// needs {...state} or banner state
 export const ParallaxBanner = props => (
   <div
     className="parallaxStyleHome"
-    style={{
-      backgroundImage: "url(" + props.bannerImage + ")"
-    }}
+    style={{ backgroundImage: "url(" + props.bannerImage + ")" }}
   />
 );
 
 // needs ...state or banner state. Especially id for loading
 export const ParallaxBannerRoutes = props => (
-  <Fragment>
-    <FadeIn>
-      <div
-        className="parallaxStyleRoutes"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
-            props.bannerImage +
-            ")"
-        }}
-      >
-        <div className="container h-100">
-          <div className="row h-100">
-            <div className="col-sm-12 my-auto header-alignment">
-              <h1 id="header1">{props.headerText1}</h1>
-              <h2 id="header2">{props.headerText2}</h2>
-            </div>
-          </div>
+  <FadeIn>
+    <div
+      className="parallaxStyleRoutes"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(" +
+          props.bannerImage +
+          ")"
+      }}
+    >
+      <div className="container h-100">
+        <div className="row h-100">
+          <header className="col-sm-12 my-auto header-alignment">
+            <h1 id="header1">{props.headerText1}</h1>
+            <h2 id="header2">{props.headerText2}</h2>
+          </header>
         </div>
-        {props.id == null && (
-          <div
-            className="container text-center"
-            style={{ paddingTop: "250px" }}
-          >
-            <CommonLoading />
-            <div>Loading...</div>
-          </div>
-        )}
       </div>
-    </FadeIn>
-  </Fragment>
+      {props.id == null && (
+        <div className="container text-center" style={{ paddingTop: "250px" }}>
+          <CommonLoading />
+          <div>Loading...</div>
+        </div>
+      )}
+    </div>
+  </FadeIn>
 );
 
 // as long as original component's state has the 3 keys below to send state down and up, this should work
-// value=this.state, onchange, onsubmit
+// value=this.state, onChange, onSubmit
 export const ParallaxEditForm = props => {
   const parallaxFormContent = {
     bannerImage: "Banner Image",
@@ -235,10 +233,7 @@ export const FormMapsV2 = props => {
 
 // <RadioDials formConst={dialData} onChange={props.onChange} />
 // props in below format
-// let dialData = {
-//   1: 0.1,
-//   2: 0.2
-// };
+// let dialData = { 1: 0.1, 2: 0.2};
 export const RadioDials = props => {
   const keyValuePair = Object.entries(props.formConst).map(([key, value]) => {
     return (
@@ -278,10 +273,7 @@ export const LoadingScreen = props => {
 
 // reusable slider
 // needs this wherever state is stored then give to onChange
-// onSliderChange = value => {
-//   let convertedValue = value / 100;
-//   this.setState({ opacity: convertedValue });
-// };
+// onSliderChange = value => {let convertedValue = value / 100; this.setState({ opacity: convertedValue });};
 export const SliderBar = props => {
   return (
     <Slider
@@ -290,6 +282,7 @@ export const SliderBar = props => {
       onChange={props.onSliderChange}
       value={props.opacity ? props.opacity : props.opacity * 100}
 
+      //sample settings slider can have
       // dots
       // step={20}
       // defaultValue={100}
@@ -300,47 +293,21 @@ export const SliderBar = props => {
   );
 };
 
-//particles
-
+//particles set up
 export const particleOpt = {
   particles: {
-    number: {
-      value: 100,
-      density: {
-        enable: true,
-        value_area: 1000
-      }
-    },
-    color: {
-      value: "#000000"
-    },
-    shape: {
-      stroke: {
-        width: 0
-      },
-      polygon: {
-        nb_sides: 5
-      }
-    },
+    number: { value: 100, density: { enable: true, value_area: 1000 } },
+    color: { value: "#000000" },
+    shape: { stroke: { width: 0 }, polygon: { nb_sides: 5 } },
     opacity: {
       value: 0.4,
       random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false
-      }
+      anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
     },
     size: {
       value: 3,
       random: true,
-      anim: {
-        enable: false,
-        speed: 40,
-        size_min: 0.1,
-        sync: false
-      }
+      anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
     },
     line_linked: {
       enable: true,
@@ -355,31 +322,18 @@ export const particleOpt = {
       random: false,
       straight: false,
       bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200
-      }
+      attract: { enable: false, rotateX: 600, rotateY: 1200 }
     }
   },
   interactivity: {
     detect_on: "canvas",
     events: {
-      onhover: {
-        enable: true
-      },
-      onclick: {
-        enable: true
-      },
+      onhover: { enable: true },
+      onclick: { enable: true },
       resize: true
     },
     modes: {
-      grab: {
-        distance: 400,
-        line_linked: {
-          opacity: 1
-        }
-      },
+      grab: { distance: 400, line_linked: { opacity: 1 } },
       bubble: {
         distance: 400,
         size: 40,
@@ -387,16 +341,9 @@ export const particleOpt = {
         opacity: 8,
         speed: 3
       },
-      repulse: {
-        distance: 150,
-        duration: 0.4
-      },
-      push: {
-        particles_nb: 4
-      },
-      remove: {
-        particles_nb: 2
-      }
+      repulse: { distance: 150, duration: 0.4 },
+      push: { particles_nb: 4 },
+      remove: { particles_nb: 2 }
     }
   }
 };

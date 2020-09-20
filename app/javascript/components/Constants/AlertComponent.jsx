@@ -7,17 +7,15 @@ const AlertBox = props => {
   const successfulDelete = (
     <SweetAlert
       title={
-        <Fragment>
-          <figure className="alert-modal-wrapper">
-            <img
-              className="alert-image-modal"
-              src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
-              alt="Deleted Gif confirmation photo"
-            />
-            <br />
-            <figcaption>Deleted!</figcaption>
-          </figure>
-        </Fragment>
+        <figure className="alert-modal-wrapper">
+          <img
+            className="alert-image-modal"
+            src="https://media2.giphy.com/media/AgO9VR2a9KW1MSP73I/200.gif"
+            alt="Deleted Gif confirmation photo"
+          />
+          <br />
+          <figcaption>Deleted!</figcaption>
+        </figure>
       }
       onConfirm={() => props.alertType(payload)}
     >
@@ -42,17 +40,15 @@ const AlertBox = props => {
   const successfulEmail = (
     <SweetAlert
       title={
-        <Fragment>
-          <figure className="alert-modal-wrapper">
-            <img
-              className="alert-image-modal"
-              src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
-              alt="Sent confirmation photo"
-            />
-            <br />
-            <figcaption>SENT</figcaption>
-          </figure>
-        </Fragment>
+        <figure className="alert-modal-wrapper">
+          <img
+            className="alert-image-modal"
+            src="https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif"
+            alt="Sent confirmation photo"
+          />
+          <br />
+          <figcaption>SENT</figcaption>
+        </figure>
       }
       onConfirm={() => props.alertType(payload)}
     >
@@ -83,17 +79,15 @@ const AlertBox = props => {
       confirmBtnText="Delete"
       confirmBtnBsStyle="danger"
       title={
-        <Fragment>
-          <figure className="alert-modal-wrapper">
-            <img
-              className="alert-image-modal"
-              src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
-              alt="Are you sure? confirmation photo"
-            />
-            <br />
-            <figcaption>Are you sure?</figcaption>
-          </figure>
-        </Fragment>
+        <figure className="alert-modal-wrapper">
+          <img
+            className="alert-image-modal"
+            src="https://media.tenor.com/images/4d641863b305acb3f6e6022fdfa299c0/tenor.gif"
+            alt="Are you sure? confirmation photo"
+          />
+          <br />
+          <figcaption>Are you sure?</figcaption>
+        </figure>
       }
       onConfirm={() => props.deleteEvent(props.idForAlert)}
       onCancel={() => props.alertType(payload)}
@@ -131,17 +125,15 @@ const AlertBox = props => {
   const successfulGeocode = (
     <SweetAlert
       title={
-        <Fragment>
-          <figure className="alert-modal-wrapper">
-            <img
-              className="alert-image-modal"
-              src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
-              alt="Geocode found photo"
-            />
-            <br />
-            <figcaption>Geocode Found!!</figcaption>
-          </figure>
-        </Fragment>
+        <figure className="alert-modal-wrapper">
+          <img
+            className="alert-image-modal"
+            src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
+            alt="Geocode found photo"
+          />
+          <br />
+          <figcaption>Geocode Found!!</figcaption>
+        </figure>
       }
       onConfirm={() => props.alertType(payload)}
     >
@@ -152,17 +144,15 @@ const AlertBox = props => {
   const successfulGeocodeEvent = (
     <SweetAlert
       title={
-        <Fragment>
-          <figure className="alert-modal-wrapper">
-            <img
-              className="alert-image-modal"
-              src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
-              alt="Geocode found for new event photo"
-            />
-            <br />
-            <figcaption>Geocode Found!!</figcaption>
-          </figure>
-        </Fragment>
+        <figure className="alert-modal-wrapper">
+          <img
+            className="alert-image-modal"
+            src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
+            alt="Geocode found for new event photo"
+          />
+          <br />
+          <figcaption>Geocode Found!!</figcaption>
+        </figure>
       }
       onConfirm={() => props.submitEvent()}
     >

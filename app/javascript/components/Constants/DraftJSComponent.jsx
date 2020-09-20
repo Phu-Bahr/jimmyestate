@@ -22,8 +22,6 @@ class DraftJSContainer extends Component {
       id: null,
       typeOfAlert: null
     };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onSubmitUpdate = this.onSubmitUpdate.bind(this);
   }
 
   alertType = payload => {
@@ -45,7 +43,7 @@ class DraftJSContainer extends Component {
       content: JSON.stringify(convertToRaw(contentData))
     });
 
-  onSubmit(event) {
+  onSubmit = event => {
     if (this.state.readOnly) {
       alert("Can't save on Read Only");
     } else {
@@ -60,9 +58,9 @@ class DraftJSContainer extends Component {
 
       postFetchDraft(url, body, this.alertType).then(this.toggleRefreshKey());
     }
-  }
+  };
 
-  onSubmitUpdate(event) {
+  onSubmitUpdate = event => {
     if (this.state.id === null) {
       alert("Can't update first post.");
     } else {
@@ -77,7 +75,7 @@ class DraftJSContainer extends Component {
 
       putFetch(url, body, this.alertType);
     }
-  }
+  };
 
   mountState = rawContent => {
     if (rawContent) {
@@ -117,11 +115,9 @@ class DraftJSContainer extends Component {
     let adminToggle = this.props.user.admin ? (
       <main className="container pb-2 pt-3">
         {this.state.id === null && (
-          <Fragment>
-            <div className="container text-center pt-3">
-              <p>You must make first post before editing banners/headers.</p>
-            </div>
-          </Fragment>
+          <div className="container text-center pt-3">
+            <p>You must make first post before editing banners/headers.</p>
+          </div>
         )}
         <article className="p-3" style={{ borderStyle: "dotted" }}>
           <Editor
