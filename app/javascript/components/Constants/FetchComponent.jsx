@@ -187,6 +187,7 @@ export const getGeocode = (location, mountLatLng, alertType) => {
     })
     .catch(error => console.log("error message =>", error.message));
 };
+
 export const getGeocodeEvent = (location, mountLatLng, alertType) => {
   return fetch(`/api/v1/events/search?location=${location}`)
     .then(response => {
