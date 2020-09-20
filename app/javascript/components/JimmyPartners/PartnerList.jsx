@@ -77,7 +77,7 @@ class PartnerList extends Component {
       );
     });
 
-    return <div>{partnerCategories}</div>;
+    return <Fragment>{partnerCategories}</Fragment>;
   }
 }
 

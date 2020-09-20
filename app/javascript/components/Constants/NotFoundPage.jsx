@@ -3,8 +3,8 @@ import React, { Fragment } from "react";
 const NotFoundPage = () => {
   return (
     <Fragment>
-      <div className="mainbox-background">
-        <div className="mainbox">
+      <main className="mainbox-background">
+        <section className="mainbox">
           <div className="err">4</div>
           <i className="far fa-question-circle fa-spin"></i>
           <div className="err2">4</div>
@@ -15,8 +15,8 @@ const NotFoundPage = () => {
               Let's go <a href="/">home</a> and try from there.
             </p>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </Fragment>
   );
 };

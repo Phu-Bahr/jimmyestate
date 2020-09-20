@@ -55,9 +55,11 @@ class TownShowPage extends Component {
             />
 
             <div className="container px-5 pb-1">
-              <div className="townheader-font">
-                {this.state.townData.townheader}
-              </div>
+              <header>
+                <h1 className="townheader-font">
+                  {this.state.townData.townheader}
+                </h1>
+              </header>
               <ul>
                 <TownLinks
                   loggedInStatus={this.props.loggedInStatus}

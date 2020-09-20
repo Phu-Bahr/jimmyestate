@@ -3,7 +3,7 @@ import { gaContactLinks } from "../Constants/GoogleAnalyticEvents";
 
 const FooterEditContactUs = props => {
   return (
-    <div className="pb-3">
+    <section className="pb-3">
       <div className="footerAlignment">
         <a
           href={`tel:` + props.contact1}
@@ -26,7 +26,7 @@ const FooterEditContactUs = props => {
       </div>
       <div className="footerAlignment">{props.contact3}</div>
       <div className="footerAlignment">{props.contact4}</div>
-    </div>
+    </section>
   );
 };
 

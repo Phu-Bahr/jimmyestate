@@ -50,13 +50,15 @@ class Login extends Component {
 
         <div className="loginWrapper">
           <div className="loginForm">
-            <h1>Status: {this.props.loggedInStatus}</h1>
-            <h2>
-              Logged in as:
-              {this.props.user.email == undefined
-                ? " No User"
-                : this.props.user.email}
-            </h2>
+            <header>
+              <h1>Status: {this.props.loggedInStatus}</h1>
+              <h2>
+                Logged in as:
+                {this.props.user.email == undefined
+                  ? " No User"
+                  : this.props.user.email}
+              </h2>
+            </header>
 
             <form onSubmit={this.handleLoginSubmit}>
               <div className="form-group formWidth">

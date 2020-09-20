@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 const JumboTile = props => {
   return (
-    <Fragment>
-      <h4 className="jumboFont2">{props.line1}</h4>
-      <h1 className="jumboFont">{props.line2}</h1>
+    <header>
+      <h1 className="jumboFont1">{props.line1}</h1>
+      <h2 className="jumboFont2">{props.line2}</h2>
       <h3 className="jumboFont3">{props.line3}</h3>
-    </Fragment>
+    </header>
   );
 };
 

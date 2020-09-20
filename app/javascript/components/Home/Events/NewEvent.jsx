@@ -82,7 +82,9 @@ class NewEvent extends Component {
     return (
       <Fragment>
         <div className="px-3">
-          <h4>Add new event here:</h4>
+          <header>
+            <h2>Add new event here:</h2>
+          </header>
         </div>
         <div className="col-sm-12 col-lg-6 pb-4 container mx-auto">
           <form onSubmit={this.onSubmit}>

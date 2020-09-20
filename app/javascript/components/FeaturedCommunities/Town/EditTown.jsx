@@ -98,7 +98,9 @@ class EditTown extends Component {
         <FadeIn>
           <div className="newTownWrapper">
             <div className="form">
-              <h1 className="mb-5">Edit your Town here.</h1>
+              <header>
+                <h1 className="mb-5">Edit your Town here.</h1>
+              </header>
 
               <form onSubmit={this.onSubmit}>
                 <FormMaps

@@ -22,16 +22,18 @@ class DraftJSContainer extends Component {
       id: null,
       typeOfAlert: null
     };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onSubmitUpdate = this.onSubmitUpdate.bind(this);
   }
 
   alertType = payload => {
+    //if alertType function was passed down from HOC use that, else set payload as is.
     this.props.alertType
       ? this.props.alertType(payload)
       : this.setState({ typeOfAlert: payload });
   };
   toggleRefreshKey = () => this.setState({ refreshKey: true });
+
+  saveContent = contentData =>
+    this.setState({ content: JSON.stringify(convertToRaw(contentData)) });
 
   updateEditorState(editorState) {
     const contentState = editorState.getCurrentContent();
@@ -39,12 +41,7 @@ class DraftJSContainer extends Component {
     this.setState({ editorState });
   }
 
-  saveContent = contentData =>
-    this.setState({
-      content: JSON.stringify(convertToRaw(contentData))
-    });
-
-  onSubmit(event) {
+  onSubmit = event => {
     if (this.state.readOnly) {
       alert("Can't save on Read Only");
     } else {
@@ -59,9 +56,9 @@ class DraftJSContainer extends Component {
 
       postFetchDraft(url, body, this.alertType).then(this.toggleRefreshKey());
     }
-  }
+  };
 
-  onSubmitUpdate(event) {
+  onSubmitUpdate = event => {
     if (this.state.id === null) {
       alert("Can't update first post.");
     } else {
@@ -76,7 +73,16 @@ class DraftJSContainer extends Component {
 
       putNoScrollFetch(url, body, this.alertType);
     }
-  }
+  };
+
+  componentDidMount = () => {
+    let url;
+    this.props.url === undefined
+      ? (url = this.props.urlPath)
+      : (url = this.props.url);
+
+    getFetch(url, this.mountState);
+  };
 
   mountState = rawContent => {
     if (rawContent) {
@@ -89,15 +95,6 @@ class DraftJSContainer extends Component {
     } else {
       this.setState({ editorState: EditorState.createEmpty() });
     }
-  };
-
-  componentDidMount = () => {
-    let url;
-    this.props.url === undefined
-      ? (url = this.props.urlPath)
-      : (url = this.props.url);
-
-    getFetch(url, this.mountState);
   };
 
   componentDidUpdate = () => {
@@ -116,11 +113,9 @@ class DraftJSContainer extends Component {
     let adminToggle = this.props.user.admin ? (
       <main className="container pb-2 pt-3">
         {this.state.id === null && (
-          <Fragment>
-            <div className="container text-center pt-3">
-              <p>You must make first post before editing banners/headers.</p>
-            </div>
-          </Fragment>
+          <div className="container text-center pt-3">
+            <p>You must make first post before editing banners/headers.</p>
+          </div>
         )}
         <article className="p-3" style={{ borderStyle: "dotted" }}>
           <Editor
