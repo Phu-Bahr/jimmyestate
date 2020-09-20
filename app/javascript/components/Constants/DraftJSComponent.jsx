@@ -25,6 +25,7 @@ class DraftJSContainer extends Component {
   }
 
   alertType = payload => {
+    //if alertType function was passed down from HOC use that, else set payload as is.
     this.props.alertType
       ? this.props.alertType(payload)
       : this.setState({ typeOfAlert: payload });
@@ -32,16 +33,14 @@ class DraftJSContainer extends Component {
 
   toggleRefreshKey = () => this.setState({ refreshKey: true });
 
+  saveContent = contentData =>
+    this.setState({ content: JSON.stringify(convertToRaw(contentData)) });
+
   updateEditorState(editorState) {
     const contentState = editorState.getCurrentContent();
     this.saveContent(contentState);
     this.setState({ editorState });
   }
-
-  saveContent = contentData =>
-    this.setState({
-      content: JSON.stringify(convertToRaw(contentData))
-    });
 
   onSubmit = event => {
     if (this.state.readOnly) {
@@ -77,6 +76,15 @@ class DraftJSContainer extends Component {
     }
   };
 
+  componentDidMount = () => {
+    let url;
+    this.props.url === undefined
+      ? (url = this.props.urlPath)
+      : (url = this.props.url);
+
+    getFetch(url, this.mountState);
+  };
+
   mountState = rawContent => {
     if (rawContent) {
       this.setState({
@@ -88,15 +96,6 @@ class DraftJSContainer extends Component {
     } else {
       this.setState({ editorState: EditorState.createEmpty() });
     }
-  };
-
-  componentDidMount = () => {
-    let url;
-    this.props.url === undefined
-      ? (url = this.props.urlPath)
-      : (url = this.props.url);
-
-    getFetch(url, this.mountState);
   };
 
   componentDidUpdate = () => {
