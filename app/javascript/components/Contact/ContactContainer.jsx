@@ -95,10 +95,7 @@ class ContactContainer extends Component {
     );
 
   mountLatLng = body => {
-    this.setState({
-      lat: body.data[0].lat,
-      lng: body.data[0].lng
-    });
+    this.setState({ lat: body.data[0].lat, lng: body.data[0].lng });
   };
 
   onUpdateGeocode = () => {
@@ -124,15 +121,15 @@ class ContactContainer extends Component {
             </div>
           )}
 
-          <div className="container py-5">
+          <main className="container py-5">
             <div className="row">
-              <div className="col-md-6 pb-5">
+              <section className="col-md-6 pb-5">
                 <FadeInLeft>
                   <EmailForm alertType={this.alertType} />
                 </FadeInLeft>
-              </div>
+              </section>
 
-              <div className="col-md-6">
+              <section className="col-md-6">
                 <FadeInRight>
                   <div className="p-3 contact-info-wrapper">
                     <div>{this.state.name}</div>
@@ -165,9 +162,9 @@ class ContactContainer extends Component {
                     />
                   </FadeInRight>
                 </div>
-              </div>
+              </section>
             </div>
-          </div>
+          </main>
         </div>
       </Fragment>
     );

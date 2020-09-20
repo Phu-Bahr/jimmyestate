@@ -138,10 +138,7 @@ class EventContainer extends Component {
   };
 
   mountLatLng = body =>
-    this.setState({
-      lat: body.data[0].lat,
-      lng: body.data[0].lng
-    });
+    this.setState({ lat: body.data[0].lat, lng: body.data[0].lng });
 
   onUpdateGeocode = () => {
     let location = `${this.state.location}`;
@@ -229,7 +226,7 @@ class EventContainer extends Component {
     });
 
     return (
-      <Fragment>
+      <section>
         <AlertBox
           {...this.state}
           alertType={this.alertType}
@@ -238,7 +235,9 @@ class EventContainer extends Component {
         />
 
         <div className="text-center">
-          <h1>EVENTS</h1>
+          <header>
+            <h1>EVENTS</h1>
+          </header>
           <div className="event-line-break mt-3"></div>
 
           {this.props.user.admin && (
@@ -276,10 +275,10 @@ class EventContainer extends Component {
             </Link>
           ) : (
             <div className="row">
-              <div className="col-sm-12 col-md-12 col-lg-12 col-xl-4">
+              <section className="col-sm-12 col-md-12 col-lg-12 col-xl-4">
                 {events}
-              </div>
-              <div className="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+              </section>
+              <section className="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div className="row">
                   <figure className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
                     <img
@@ -295,11 +294,11 @@ class EventContainer extends Component {
                     <Map {...this.state} />
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           )}
         </div>
-      </Fragment>
+      </section>
     );
   }
 }

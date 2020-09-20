@@ -1,11 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { gaSocialLinks } from "../Constants/GoogleAnalyticEvents";
 
 const FooterEditSocial = props => {
   return (
-    <Fragment>
+    <section>
       <div className="social-container">
-        <h1>SOCIAL</h1>
+        <header>
+          <h1>SOCIAL</h1>
+        </header>
         <ul className="social-icons">
           <li>
             <a
@@ -78,7 +80,7 @@ const FooterEditSocial = props => {
           </li>
         </ul>
       </div>
-    </Fragment>
+    </section>
   );
 };
 

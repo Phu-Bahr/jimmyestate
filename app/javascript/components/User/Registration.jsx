@@ -72,7 +72,9 @@ class Registration extends Component {
 
         <div className="loginWrapper">
           <div className="loginForm">
-            <h1>Register User Here</h1>
+            <header>
+              <h1>Register User Here</h1>
+            </header>
 
             <form onSubmit={this.handleRegSubmit}>
               <div className="form-group formWidth">

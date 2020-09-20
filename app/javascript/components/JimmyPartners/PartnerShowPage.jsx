@@ -51,12 +51,6 @@ class PartnerShowPage extends Component {
               urlPath={urlPath}
               editUrlPath={editUrlPath}
             />
-
-            <div className="container pb-5">
-              <div className="townheader-font">
-                {this.state.partnerData.townheader}
-              </div>
-            </div>
           </FadeIn>
         </div>
       </Fragment>
