@@ -9,15 +9,14 @@ import AlertBox from "../Constants/AlertComponent";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      typeOfAlert: null
-    };
+    this.state = { typeOfAlert: null };
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
+
   render() {
     return (
-      <Fragment>
+      <main>
         <AlertBox {...this.state} alertType={this.alertType} />
         <JumbotronContainer {...this.props} />
 
@@ -30,7 +29,7 @@ class Home extends Component {
         </ScrollAnimation>
 
         <CardsContainer {...this.props} alertType={this.alertType} />
-      </Fragment>
+      </main>
     );
   }
 }

@@ -58,12 +58,14 @@ class AnnouncementContainer extends Component {
 
   render() {
     return (
-      <Fragment>
+      <section>
         <ParallaxBanner {...this.state} />
 
         <div className="container-fluid pt-5">
           <div className="text-center">
-            <h1>{this.state.title}</h1>
+            <header>
+              <h1>{this.state.title}</h1>
+            </header>
 
             <div className="container text-center">
               <p>{this.state.description}</p>
@@ -125,7 +127,7 @@ class AnnouncementContainer extends Component {
             )}
           </div>
         </div>
-      </Fragment>
+      </section>
     );
   }
 }

@@ -26,10 +26,7 @@ class Map extends Component {
   onClick = () => this.setState({ window: !this.state.window });
 
   render() {
-    const center = {
-      lat: this.props.lat,
-      lng: this.props.lng
-    };
+    const center = { lat: this.props.lat, lng: this.props.lng };
 
     return (
       <LoadScript googleMapsApiKey="AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c">

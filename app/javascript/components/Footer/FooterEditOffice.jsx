@@ -1,13 +1,12 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
 const FooterEditOffice = props => {
   return (
-    <Fragment>
+    <section>
       <p className="footerAlignment">{props.name}</p>
       <p className="footerAlignment mt-n3">{props.street}</p>
       <p className="footerAlignment mt-n3">{props.citystate}</p>
-    </Fragment>
+    </section>
   );
 };
 

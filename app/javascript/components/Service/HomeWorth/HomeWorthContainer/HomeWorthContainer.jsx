@@ -97,14 +97,14 @@ class HomeWorthContainer extends Component {
             </div>
           )}
 
-          <div className="container py-5">
+          <section className="container py-5">
             <div className="row">
               <WorthPhotoContainer
                 user={this.props.user}
                 hide={this.state.hideDiv}
               />
 
-              <div className="col-sm-12 col-md-6 pb-3">
+              <section className="col-sm-12 col-md-6 pb-3">
                 <FadeInRight>
                   <p className="pb-2">{this.state.paragraph1}</p>
                   <p className="pb-2">{this.state.paragraph2}</p>
@@ -120,9 +120,9 @@ class HomeWorthContainer extends Component {
 
                   <HomeWorthEmailForm alertType={this.alertType} />
                 </FadeInRight>
-              </div>
+              </section>
             </div>
-          </div>
+          </section>
         </div>
       </Fragment>
     );

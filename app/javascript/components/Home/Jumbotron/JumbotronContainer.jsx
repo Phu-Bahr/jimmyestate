@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Particles from "react-particles-js";
 import JumboTile from "./JumboTile";
 import { particleOpt } from "../../Constants/Constants";
@@ -68,15 +68,7 @@ class JumbotronContainer extends Component {
   render() {
     let jumboList = this.state.jumboData.map(element => {
       return (
-        <div
-          key={element.id}
-          style={{
-            position: "relative",
-            top: "30%",
-            right: "50",
-            textAlign: "center"
-          }}
-        >
+        <div key={element.id} className="jumboList-wrapper">
           <JumboTile
             key={element.id}
             id={element.id}
@@ -89,7 +81,7 @@ class JumbotronContainer extends Component {
     });
 
     return (
-      <Fragment>
+      <section>
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <ScrollAnimation animateIn="fadeIn">
@@ -116,7 +108,7 @@ class JumbotronContainer extends Component {
             />
           </div>
         </ScrollAnimation>
-      </Fragment>
+      </section>
     );
   }
 }

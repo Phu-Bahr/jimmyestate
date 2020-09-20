@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import HelperLinks from "./HelperLinks";
 import NewHelperCard from "./NewHelperCard";
 import CardsContainerEdit from "./CardsContainerEdit";
@@ -69,7 +69,7 @@ class CardsContainer extends Component {
     });
 
     return (
-      <Fragment>
+      <section>
         <AlertBox
           {...this.state}
           alertType={this.alertType}
@@ -91,12 +91,12 @@ class CardsContainer extends Component {
             />
           )}
 
-          <div className="row">
+          <section className="row">
             <CustomCards user={this.props.user} alertType={this.alertType} />
             {cards}
-          </div>
+          </section>
         </div>
-      </Fragment>
+      </section>
     );
   }
 }

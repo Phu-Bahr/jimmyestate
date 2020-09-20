@@ -75,7 +75,9 @@ class NewTown extends Component {
         <FadeIn>
           <div className="newTownWrapper">
             <div className="form">
-              <h1 className="mb-5">Add your new Community here.</h1>
+              <header>
+                <h1 className="mb-5">Add your new Community here.</h1>
+              </header>
 
               <form onSubmit={this.onSubmit}>
                 <FormMaps

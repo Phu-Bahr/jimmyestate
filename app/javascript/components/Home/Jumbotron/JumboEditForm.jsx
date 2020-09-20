@@ -17,9 +17,11 @@ const JumboEditForm = props => {
             <div className="container pb-3">
               <div className="row">
                 <div className="col-sm-12 col-lg-6 offset-lg-3">
-                  <h1 className="font-weight-normal pt-1 pb-3">
-                    Update hero here...
-                  </h1>
+                  <header>
+                    <h1 className="font-weight-normal pt-1 pb-3">
+                      Update hero here...
+                    </h1>
+                  </header>
                   <form onSubmit={props.onSubmit}>
                     <div className="form-group">
                       <input
