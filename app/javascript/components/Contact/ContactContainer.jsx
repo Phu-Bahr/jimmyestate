@@ -157,8 +157,12 @@ class ContactContainer extends Component {
                 <div>
                   <FadeInRight>
                     <Map
-                      lat={parseFloat(this.state.lat)}
-                      lng={parseFloat(this.state.lng)}
+                      lat={
+                        this.state.lat ? parseFloat(this.state.lat) : 35.6762
+                      }
+                      lng={
+                        this.state.lng ? parseFloat(this.state.lng) : 139.6503
+                      }
                     />
                   </FadeInRight>
                 </div>
