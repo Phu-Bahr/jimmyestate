@@ -26,7 +26,16 @@ class Map extends Component {
   onClick = () => this.setState({ window: !this.state.window });
 
   render() {
-    const center = { lat: this.props.lat, lng: this.props.lng };
+    let center;
+    this.props.lat == NaN || this.props.lng == NaN
+      ? (center = {
+          lat: 35.6762,
+          lng: 139.6503
+        })
+      : (center = {
+          lat: parseFloat(this.props.lat),
+          lng: parseFloat(this.props.lng)
+        });
 
     return (
       <LoadScript googleMapsApiKey="AIzaSyAgrEtHoYMPR-67ZUVvtqCiwU-fSc5Ty6c">
