@@ -13,7 +13,7 @@ const AboutJimmyPhotoContainer = ({
     <Fragment>
       <figure className="about-position">
         <img
-          className="img-fluid rounded"
+          className="img-wrapper rounded"
           src={photo}
           alt="Jimmy Chao Photo"
           style={{
