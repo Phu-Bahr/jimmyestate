@@ -10,7 +10,7 @@ import Registration from "./User/Registration";
 import Login from "./User/Login";
 import AboutContainer from "./About/AboutJimmy/AboutContainer";
 import AboutCompanyContainer from "./About/AboutCompany/AboutCompanyContainer";
-import JimmysTipsContainer from "./About/JimmysTips/JimmysTipsContainer";
+// import JimmysTipsContainer from "./About/JimmysTips/JimmysTipsContainer";
 import ContactContainer from "./Contact/ContactContainer";
 import NavbarContainer from "./Navbar/NavbarContainer";
 import FooterContainer from "./Footer/FooterContainer";
@@ -93,7 +93,6 @@ class App extends Component {
                 user={this.state.user}
                 handleLogin={this.handleLogin}
                 handleLogout={this.handleLogout}
-                refreshTownList={this.refreshTownList}
               />
             ) : (
               <Redirect
@@ -114,10 +113,9 @@ class App extends Component {
     return (
       <Router history={history}>
         <NavbarContainer
+          history={history}
           loggedInStatus={this.state.loggedInStatus}
           user={this.state.user}
-          refreshTownList={this.refreshTownList}
-          ref={this.refreshingTownList}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
         />
