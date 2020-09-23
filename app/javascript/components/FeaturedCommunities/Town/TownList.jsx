@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getFetch, deleteFetch } from "../../Constants/FetchComponent";
 import { gaNavLinks } from "../../Constants/GoogleAnalyticEvents";
 
 const urlPath = "towns";
@@ -10,32 +9,12 @@ const editUrlPath = "editcommunity";
 class TownList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      townData: [],
-      refreshKey: false
-    };
+    this.state = {};
   }
-  toggleRefreshKey = () => this.setState({ refreshKey: true });
-  mountState = body => this.setState({ townData: body });
-  componentDidMount = () => getFetch(urlPath, this.mountState);
-
-  componentDidUpdate = () =>
-    this.state.refreshKey &&
-    getFetch(urlPath, this.mountState).then(
-      this.setState({ refreshKey: false })
-    );
-
-  deleteEvent = id => {
-    const url = `/api/v1/${urlPath}/${id}`;
-
-    deleteFetch(url, this.props.alertType)
-      .then(this.toggleRefreshKey)
-      .then(this.props.history.push("/"));
-  };
 
   render() {
     let admin = this.props.user.admin;
-    let listOfTowns = this.state.townData.map(element => {
+    let listOfTowns = this.props.townData.map(element => {
       return (
         <Fragment key={element.id}>
           <div
@@ -52,7 +31,9 @@ class TownList extends Component {
                     <FontAwesomeIcon
                       icon="trash-alt"
                       size="2x"
-                      onClick={() => this.deleteEvent(element.id)}
+                      onClick={() =>
+                        this.props.handleDelete(element.id, urlPath)
+                      }
                     />
                   </div>
                   <div className="px-1" style={{ display: "inline-block" }}>

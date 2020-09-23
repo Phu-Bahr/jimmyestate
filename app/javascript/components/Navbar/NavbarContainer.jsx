@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, createRef } from "react";
 import { Link } from "react-router-dom";
 import TownList from "../FeaturedCommunities/Town/TownList";
 import PartnerList from "../JimmyPartners/PartnerList";
@@ -6,6 +6,7 @@ import { animateScroll as scroll } from "react-scroll";
 import AdminBanner from "../User/AdminBanner";
 import AlertBox from "../Constants/AlertComponent";
 import ReactGA from "react-ga";
+import { deleteFetch, getFetch } from "../Constants/FetchComponent";
 
 import {
   FadeInDown,
@@ -18,11 +19,15 @@ class NavbarContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      townData: [],
+      partnerData: [],
       refreshKey: false,
       show: true,
       scrollPos: 0,
       typeOfAlert: null,
-      width: null
+      width: null,
+      idForAlert: null,
+      pathForAlert: ""
     };
   }
 
@@ -30,6 +35,18 @@ class NavbarContainer extends Component {
   toggleRefreshKey = () => this.setState({ refreshKey: true });
   toggleRefreshFalse = () => this.setState({ refreshKey: false });
   scrollToTop = () => scroll.scrollToTop();
+
+  handleDelete = (id, path) => {
+    this.setState({ idForAlert: id, pathForAlert: path });
+    this.alertType("delete");
+  };
+
+  deleteEvent = id => {
+    const url = `/api/v1/${this.state.pathForAlert}/${id}`;
+    deleteFetch(url, this.alertType)
+      .then(this.toggleRefreshKey)
+      .then(this.props.history.push("/"));
+  };
 
   gaNavLinks = title => {
     if (innerWidth < 680) {
@@ -46,11 +63,26 @@ class NavbarContainer extends Component {
     scroll.scrollToTop();
   };
 
+  mountState = body => this.setState({ townData: body });
+  mountState1 = body => this.setState({ partnerData: body });
+
   componentDidMount = () => {
+    getFetch("towns", this.mountState);
+    getFetch("partner_categories", this.mountState1);
     this.setState({ width: document.body.getBoundingClientRect().width });
     window.addEventListener("scroll", this.handleScroll);
     window.addEventListener("resize", this.handleScroll);
   };
+
+  componentDidUpdate = () =>
+    this.state.refreshKey &&
+    getFetch("towns", this.mountState)
+      .then(this.setState({ refreshKey: false }))
+      .then(
+        getFetch("partner_categories", this.mountState1).then(
+          this.setState({ refreshKey: false })
+        )
+      );
 
   componentWillUnmount = () => {
     window.removeEventListener("scroll", this.handleScroll);
@@ -141,6 +173,8 @@ class NavbarContainer extends Component {
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
               alertType={this.alertType}
+              handleDelete={this.handleDelete}
+              townData={this.state.townData}
             />
 
             {admin && (
@@ -167,6 +201,8 @@ class NavbarContainer extends Component {
               loggedInStatus={this.props.loggedInStatus}
               user={this.props.user}
               alertType={this.alertType}
+              handleDelete={this.handleDelete}
+              partnerData={this.state.partnerData}
             />
 
             {admin && (
@@ -214,7 +250,12 @@ class NavbarContainer extends Component {
 
     return (
       <Transition>
-        <AlertBox {...this.state} alertType={this.alertType} />
+        <AlertBox
+          {...this.state}
+          alertType={this.alertType}
+          deleteEvent={this.deleteEvent}
+          urlPath={"towns"}
+        />
         <StyledNavbar
           className={
             //controls when nav bar fades out based on scroll down position
