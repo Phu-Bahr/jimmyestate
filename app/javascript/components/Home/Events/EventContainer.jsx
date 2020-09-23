@@ -282,7 +282,7 @@ class EventContainer extends Component {
                 <div className="row">
                   <figure className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
                     <img
-                      className="img-fluid"
+                      className="img_wrapper"
                       src={this.state.flier}
                       alt={`Event image ` + this.state.id}
                       style={{ boxShadow: "0px 10px 13px -7px #000000" }}
