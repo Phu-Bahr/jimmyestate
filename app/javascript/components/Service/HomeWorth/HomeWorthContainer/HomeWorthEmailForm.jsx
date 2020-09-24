@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { SubmitEmailButton } from "../../../Constants/Buttons";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { postFetchEmail } from "../../../Constants/FetchComponent";
+import { MessageCounter } from "../../../Constants/Constants";
 
 const urlPathForEmails = "home_worths";
 
@@ -23,6 +24,7 @@ class HomeWorthEmailForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
+
     this.recaptcha.execute();
     const url = `/api/v1/${urlPathForEmails}`;
     const { name, email, phone, address, message } = this.state;
@@ -34,7 +36,9 @@ class HomeWorthEmailForm extends Component {
       message
     };
 
-    postFetchEmail(url, body, this.props.alertType);
+    postFetchEmail(url, body, this.props.alertType).then(
+      this.setState({ phone: "" })
+    );
   };
 
   render() {
@@ -50,6 +54,7 @@ class HomeWorthEmailForm extends Component {
                 id="name"
                 className="form-control"
                 onChange={this.onChange}
+                maxLength="30"
                 required
               />
             </div>
@@ -57,11 +62,15 @@ class HomeWorthEmailForm extends Component {
             <div className="form-group col-md-6">
               <label htmlFor="phone">Phone Number</label>
               <input
-                type="text"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="xxx-xxx-xxxx"
                 name="phone"
                 id="phone"
                 className="form-control"
                 onChange={this.onChange}
+                value={this.state.phone}
+                maxLength="12"
                 required
               />
             </div>
@@ -70,7 +79,7 @@ class HomeWorthEmailForm extends Component {
           <div className="form-group">
             <label htmlFor="email">Your Email</label>
             <input
-              type="text"
+              type="email"
               name="email"
               id="email"
               className="form-control"
@@ -89,6 +98,7 @@ class HomeWorthEmailForm extends Component {
               id="address"
               className="form-control"
               onChange={this.onChange}
+              maxLength="50"
               required
             />
           </div>
@@ -102,9 +112,11 @@ class HomeWorthEmailForm extends Component {
               id="message"
               className="form-control"
               onChange={this.onChange}
+              maxLength="250"
               required
               placeholder="Please provide any additional questions or information."
             />
+            <MessageCounter {...this.state} />
           </div>
 
           <SubmitEmailButton GAValue="Homeworth Email Button" />
