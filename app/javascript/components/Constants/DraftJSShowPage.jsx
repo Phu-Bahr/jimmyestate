@@ -102,6 +102,7 @@ class DraftJSShowPage extends Component {
                   type="button"
                   onClick={this.onSubmit}
                   value="Save your content"
+                  disabled={this.state.content == null && true}
                 />
               </div>
             )}
