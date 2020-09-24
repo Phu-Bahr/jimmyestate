@@ -44,12 +44,6 @@ body,
   padding-top: 75px;
 }
 
-@media screen and (max-width: 990px) {
-  .flex-container {
-    padding-top: 62px;
-  }
-}
-
 .townlink-color {
   color: #8bce3c;
 }
@@ -151,17 +145,6 @@ body,
   display: block;
 }
 
-/* Media Queries */
-@media screen and (max-width: 960px) {
-  .parent {
-    width: 100%;
-    margin: 20px 0px;
-  }
-  .wrapper {
-    padding: 20px 20px;
-  }
-}
-
 .border {
   border: #565050;
 }
@@ -240,38 +223,6 @@ body,
   transition: background-size 0;
 }
 
-// mobile view
-
-@media only screen and (max-width: 680px) {
-  .cardImage {
-    height: 150px;
-    opacity: 1;
-  }
-
-  .cardTitle {
-    font-size: 16px;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: whitesmoke;
-  }
-
-  .parent {
-    height: 150px;
-  }
-
-  .parent:hover .child,
-  .parent:focus .child {
-    -ms-transform: scale(1);
-    -moz-transform: scale(1);
-    -webkit-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-  }
-
-  .helperL {
-    font-size: 16px;
-  }
-}
 // end of helper cards
 
 // JUMBOTRON HERO CSS
@@ -314,26 +265,6 @@ body,
 
 .jumboFont3 {
   font-size: 4vw;
-}
-
-// bigger than mobile
-@media only screen and (min-width: 1100px) {
-  .jumboFont1 {
-    font-size: 2vw;
-  }
-
-  .jumboFont2 {
-    font-size: 4vw;
-  }
-
-  .jumboFont3 {
-    font-size: 3vw;
-  }
-
-  .jumboBackground {
-    background-attachment: fixed;
-    height: 100vh;
-  }
 }
 
 // end of jumbotron
@@ -382,55 +313,6 @@ body,
   background: #fff;
   -webkit-box-shadow: 0px 7px 50px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 7px 50px 0px rgba(0, 0, 0, 0.1);
-}
-
-@media only screen and (min-width: 1100px) {
-  .site-header {
-    padding: 20px 10px;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(rgba(255, 0, 0, 0)),
-      color-stop(rgba(255, 255, 255, 1)),
-      color-stop(rgba(255, 255, 255, 1)),
-      color-stop(rgba(255, 255, 255, 1)),
-      color-stop(rgba(255, 255, 255, 1)),
-      color-stop(rgba(255, 255, 255, 1)),
-      to(rgba(255, 0, 0, 0))
-    );
-    background-image: -o-linear-gradient(
-      left,
-      rgba(255, 0, 0, 0),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 0, 0, 0)
-    );
-    background-image: linear-gradient(
-      to right,
-      rgba(255, 0, 0, 0),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 0, 0, 0)
-    );
-
-    background: -webkit-linear-gradient(
-      right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0)
-    );
-  }
 }
 
 .navbar-underline:link {
@@ -496,13 +378,11 @@ body,
   transform: scale(1, 1);
 }
 
-@media (min-width: 992px) {
-  .animate {
-    animation-duration: 0.3s;
-    -webkit-animation-duration: 0.3s;
-    animation-fill-mode: both;
-    -webkit-animation-fill-mode: both;
-  }
+.animate {
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
 }
 
 @keyframes slideIn {
@@ -547,22 +427,6 @@ body,
   margin-right: 10px;
 }
 
-//determines when hover drop vs click drop down will work
-@media only screen and (min-width: 990px) {
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-
-  .dropdown:hover .dropdown-toggle::after {
-    -webkit-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
-  }
-
-  .dropdown-menu {
-    margin-top: 0;
-  }
-}
 // end of navbar
 
 // footer
@@ -763,32 +627,6 @@ $gradient: #00b5f5;
   }
 }
 
-@media only screen and (max-width: 680px) {
-  .footerFont {
-    left: 0%;
-    line-height: 1.5;
-    font-size: 16px;
-    letter-spacing: 0px;
-    padding-left: 15% !important;
-  }
-
-  .social-container {
-    width: 100%;
-    text-align: left;
-  }
-
-  .socialFont {
-    padding-left: 15% !important;
-  }
-
-  .social-icons {
-    padding-right: 4em;
-    padding-left: 1em;
-    list-style: none;
-    margin: 0em;
-    text-align: center;
-  }
-}
 // end of footer
 
 // beginning Company component
@@ -841,31 +679,6 @@ $gradient: #00b5f5;
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 680px) {
-  .loginWrapper {
-    -ms-grid-rows: (1fr) [3];
-    -ms-grid-columns: 1fr;
-    grid-template: repeat(3, 1fr) / 1fr;
-  }
-
-  .loginForm {
-    margin: 10px;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: 2 / 1 / 2 / 1;
-  }
-
-  .loginForm h1 {
-    font-size: 24px;
-    font-weight: 500;
-  }
-
-  .loginForm h2 {
-    font-size: 22px;
-    font-weight: 500;
-  }
-}
-
 // end of login
 
 // announcements
@@ -908,32 +721,6 @@ $gradient: #00b5f5;
     rgba(192, 209, 227, 1) 50%,
     rgba(255, 255, 255, 1) 100%
   );
-}
-
-@media only screen and (max-width: 680px) {
-  .mobile-view {
-    font-size: 16px;
-  }
-
-  .event-map {
-    height: 300px !important;
-  }
-}
-
-.event-map {
-  height: 100%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding: 0;
 }
 
 .event-line-break {
@@ -1033,27 +820,6 @@ $gradient: #00b5f5;
   border-radius: 10px;
 }
 
-#event-box {
-  height: 250px;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-@media only screen and (min-width: 1200px) {
-  .hvr-bounce-to-right {
-    font-size: 1.5vw;
-  }
-}
-@media only screen and (min-width: 780px) {
-  #event-box {
-    height: 350px;
-    width: 100%;
-    overflow: hidden;
-    overflow-y: scroll;
-  }
-}
-
 .helper-card {
   -webkit-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -1094,12 +860,6 @@ $gradient: #00b5f5;
   }
 }
 
-@media only screen and (max-width: 680px) {
-  .empty-event {
-    font-size: 20px;
-    width: 100%;
-  }
-}
 // end of announcements
 
 // beginning SHOWPAGE
@@ -1405,32 +1165,6 @@ $gradient: #00b5f5;
   left: 5%;
 }
 
-@media only screen and (max-width: 680px) {
-  .card-container {
-    padding-left: 0%;
-  }
-
-  .cardPort {
-    width: 325px;
-    min-width: 275px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .card-container-wrapper {
-    width: 100%;
-    left: 0%;
-  }
-}
-
-@media only screen and (max-width: 767.92px) {
-  //home worth mobile
-  .image-hide {
-    position: absolute;
-    visibility: none;
-  }
-}
-
 .empty-active-container {
   padding: 50px;
 }
@@ -1486,26 +1220,6 @@ $gradient: #00b5f5;
   }
   h2 {
     font-size: 1.8em;
-  }
-}
-
-@media only screen and (max-width: 680px) {
-  .parallaxStyleHome {
-    font-size: 5.5vw;
-    height: 200px;
-    -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  .parallaxStyleRoutes {
-    height: 200px;
-  }
-
-  #header1 {
-    font-size: 1.2em;
-  }
-  #header2 {
-    font-size: 0.8em;
   }
 }
 
@@ -1656,24 +1370,6 @@ $gradient: #00b5f5;
   font-weight: 700;
 }
 
-@media only screen and (max-width: 680px) {
-  .newTownWrapper {
-    height: 100vh;
-    -ms-grid-rows: 1fr;
-    -ms-grid-columns: 1fr;
-    grid-template: 1fr / 1fr;
-  }
-
-  .newTownWrapper .form {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: 1/1/1/1;
-  }
-  .newTownWrapper h1 {
-    font-size: 20px;
-    font-weight: 600;
-  }
-}
 //end of new town
 
 // new partners
@@ -1714,40 +1410,10 @@ $gradient: #00b5f5;
   font-weight: 700;
 }
 
-@media only screen and (max-width: 680px) {
-  .newPartnerWrapper {
-    height: 100vh;
-    -ms-grid-rows: 1fr;
-    -ms-grid-columns: 1fr;
-    grid-template: 1fr / 1fr;
-    background-color: #525f7d;
-  }
-
-  .newPartnerWrapper .form {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: 1/1/1/1;
-  }
-  .newPartnerWrapper h1 {
-    font-size: 24px;
-    font-weight: 600;
-  }
-}
 //end of new town
 
 .testimonyFont #testimony-name {
   text-align: right;
-}
-
-@media only screen and (max-width: 680px) {
-  .testimonyFont {
-    h1 {
-      font-size: 1rem;
-    }
-    p {
-      font-size: 0.9;
-    }
-  }
 }
 
 //404
@@ -1813,28 +1479,6 @@ a:hover {
   text-decoration: underline;
 }
 
-@media only screen and (max-width: 680px) {
-  .mainbox {
-    width: 100%;
-  }
-
-  .err {
-    font-size: 8rem;
-  }
-
-  .far {
-    font-size: 5.5rem;
-  }
-
-  .err2 {
-    font-size: 8rem;
-  }
-
-  .msg {
-    font-size: 1rem;
-  }
-}
-
 //privacy page
 
 .privacyContent {
@@ -1848,20 +1492,6 @@ a:hover {
   color: #8cce3c;
 }
 
-@media only screen and (max-width: 1100px) {
-  //homepage banners
-  .parallaxStyleHome {
-    background-attachment: inherit;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  //padding about picture
-  .about-position {
-    text-align: center;
-    width: 100%;
-  }
-}
 //contact page
 
 .contact-info-wrapper {
@@ -1909,6 +1539,7 @@ a:hover {
   width: 100%;
 }
 
+//mobile and below
 @media only screen and (max-width: 680px) {
   .alert-image-modal {
     height: 50%;
@@ -1922,8 +1553,228 @@ a:hover {
     position: relative;
     left: 12.5%;
   }
+
+  //helper cards
+  .cardImage {
+    height: 150px;
+    opacity: 1;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+  }
+
+  .parent {
+    height: 150px;
+  }
+
+  .parent:hover .child,
+  .parent:focus .child {
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+
+  .helperL {
+    font-size: 16px;
+  }
+
+  //footer css
+  .footerFont {
+    left: 0%;
+    line-height: 1.5;
+    font-size: 16px;
+    letter-spacing: 0px;
+    padding-left: 15% !important;
+  }
+
+  .social-container {
+    width: 100%;
+    text-align: left;
+  }
+
+  .socialFont {
+    padding-left: 15% !important;
+  }
+
+  .social-icons {
+    padding-right: 4em;
+    padding-left: 1em;
+    list-style: none;
+    margin: 0em;
+    text-align: center;
+  }
+
+  //login page for mobile view
+  .loginWrapper {
+    -ms-grid-rows: (1fr) [3];
+    -ms-grid-columns: 1fr;
+    grid-template: repeat(3, 1fr) / 1fr;
+  }
+
+  .loginForm {
+    margin: 10px;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: 2 / 1 / 2 / 1;
+  }
+
+  .loginForm h1 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .loginForm h2 {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  //mobile for eventile
+  .mobile-view {
+    font-size: 16px;
+  }
+
+  .empty-event {
+    font-size: 20px;
+    width: 100%;
+  }
+
+  //portfolio cards
+  .card-container {
+    padding-left: 0%;
+  }
+
+  .cardPort {
+    width: 325px;
+    min-width: 275px;
+  }
+
+  //parallax and banner css for mobile
+  .parallaxStyleHome {
+    font-size: 5.5vw;
+    height: 200px;
+    -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .parallaxStyleRoutes {
+    height: 200px;
+  }
+
+  #header1 {
+    font-size: 1.2em;
+  }
+  #header2 {
+    font-size: 0.8em;
+  }
+
+  //newtown page in mobile view
+  .newTownWrapper {
+    height: 100vh;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: 1fr;
+    grid-template: 1fr / 1fr;
+  }
+
+  .newTownWrapper .form {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: 1/1/1/1;
+  }
+  .newTownWrapper h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  //newpartner page in mobile view
+  .newPartnerWrapper {
+    height: 100vh;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: 1fr;
+    grid-template: 1fr / 1fr;
+    background-color: #525f7d;
+  }
+
+  .newPartnerWrapper .form {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: 1/1/1/1;
+  }
+  .newPartnerWrapper h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  //testimony mobile
+  .testimonyFont {
+    h1 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.9;
+    }
+  }
+
+  //404 page in mobile
+  .mainbox {
+    width: 100%;
+  }
+
+  .err {
+    font-size: 8rem;
+  }
+
+  .far {
+    font-size: 5.5rem;
+  }
+
+  .err2 {
+    font-size: 8rem;
+  }
+
+  .msg {
+    font-size: 1rem;
+  }
 }
 
+//dropdown menu logic for ipad lengthy menus
+@media only screen and (min-width: 415px) and (max-width: 992px) {
+  .dropdown-item {
+    white-space: normal !important;
+    line-height: 1em;
+    text-align: center !important;
+  }
+
+  .nav-item {
+    text-align: center !important;
+  }
+}
+
+//ipad starting point
+@media only screen and (max-width: 767.92px) {
+  //portfolio cards
+  .card-container-wrapper {
+    width: 100%;
+    left: 0%;
+  }
+  .image-hide {
+    position: absolute;
+    visibility: none;
+  }
+
+  //padding about picture
+  .about-position {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+// up to hamburger breakpoint and tablet/phone
 @media only screen and (max-width: 992px) {
   //nav-item is each title in dropdown menu
   .nav-item {
@@ -1936,16 +1787,119 @@ a:hover {
     white-space: normal !important;
     line-height: 1em;
   }
-}
 
-@media only screen and (min-width: 415px) and (max-width: 992px) {
-  .dropdown-item {
-    white-space: normal !important;
-    line-height: 1em;
-    text-align: center !important;
+  //flex wrapper
+  .flex-container {
+    padding-top: 62px;
   }
 
-  .nav-item {
-    text-align: center !important;
+  //helper cards
+  .parent {
+    width: 100%;
+    margin: 20px 0px;
+  }
+  .wrapper {
+    padding: 20px 20px;
+  }
+}
+
+// navbar breakpoint to turn into hamburger and bigger
+@media only screen and (min-width: 990px) {
+  //navbar
+  //determines when hover drop vs click drop down will work
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-toggle::after {
+    -webkit-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+}
+
+// bigger than tablet
+@media only screen and (min-width: 1100px) {
+  //jumbotron
+  .jumboFont1 {
+    font-size: 2vw;
+  }
+
+  .jumboFont2 {
+    font-size: 4vw;
+  }
+
+  .jumboFont3 {
+    font-size: 3vw;
+  }
+
+  .jumboBackground {
+    background-attachment: fixed;
+    height: 100vh;
+  }
+
+  //navbar side fade colors
+  .site-header {
+    padding: 20px 10px;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(rgba(255, 0, 0, 0)),
+      color-stop(rgba(255, 255, 255, 1)),
+      color-stop(rgba(255, 255, 255, 1)),
+      color-stop(rgba(255, 255, 255, 1)),
+      color-stop(rgba(255, 255, 255, 1)),
+      color-stop(rgba(255, 255, 255, 1)),
+      to(rgba(255, 0, 0, 0))
+    );
+    background-image: -o-linear-gradient(
+      left,
+      rgba(255, 0, 0, 0),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 0, 0, 0)
+    );
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 0, 0, 0)
+    );
+
+    background: -webkit-linear-gradient(
+      right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  //event tile
+  .hvr-bounce-to-right {
+    font-size: 1.5vw;
+  }
+}
+
+//no parallax for tablets/landscape and below
+@media only screen and (max-width: 1100px) {
+  //homepage banners
+  .parallaxStyleHome {
+    background-attachment: inherit;
   }
 }
