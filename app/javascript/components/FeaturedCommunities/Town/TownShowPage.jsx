@@ -54,7 +54,7 @@ class TownShowPage extends Component {
               editUrlPath={editUrlPath}
             />
 
-            <div className="container px-5 pb-1">
+            <aside className="container px-5 pb-4">
               <header>
                 <h1 className="townheader-font">
                   {this.state.townData.townheader}
@@ -68,7 +68,7 @@ class TownShowPage extends Component {
                   townName={this.state.townData.name}
                 />
               </ul>
-            </div>
+            </aside>
           </FadeIn>
         </div>
       </Fragment>

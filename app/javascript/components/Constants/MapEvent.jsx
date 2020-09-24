@@ -17,7 +17,8 @@ const containerStyleMobile = {
   display: "flex",
   flexFlow: "row nowrap",
   justifyContent: "center",
-  padding: "0"
+  padding: "0",
+  boxShadow: "0px 10px 13px -7px #000000"
 };
 
 const Map = props => {

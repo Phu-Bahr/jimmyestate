@@ -88,9 +88,9 @@ class CardsContainerEdit extends Component {
 
           <figure className="text-center py-5 card-photo-background">
             <img
-              className="img_wrapper rounded imageShadow"
+              className="img_wrapper rounded box-shadow"
               src={this.state.image}
-              alt="Helper card image"
+              alt="Home page bio of Jimmy"
               style={{ width: "300px", height: "400px" }}
             />
           </figure>
