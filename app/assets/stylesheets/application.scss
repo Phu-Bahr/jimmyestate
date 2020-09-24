@@ -18,6 +18,9 @@ $rtnColor: #8bce3c;
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
 
 * {
   font-family: "Open Sans", sans-serif;
@@ -53,6 +56,11 @@ body,
 
 .invisible {
   display: none;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 0px 10px 13px -7px #000000;
+  box-shadow: 0px 10px 13px -7px #000000;
 }
 
 // helper cards
@@ -870,8 +878,8 @@ $gradient: #00b5f5;
 }
 
 .townheader-font {
-  font-weight: 300;
-  font-size: 30px;
+  font-weight: 500;
+  font-size: 1.8em;
 }
 
 // ending SHOWPAGE
@@ -881,13 +889,6 @@ $gradient: #00b5f5;
 .about-position {
   float: left;
   padding: 5px 20px;
-}
-
-.imageShadow {
-  -webkit-box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.2),
-    0px 5px 15px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.2),
-    0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .caption {
@@ -1412,8 +1413,16 @@ $gradient: #00b5f5;
 
 //end of new town
 
-.testimonyFont #testimony-name {
-  text-align: right;
+.testimonyFont {
+  #testimony-name {
+    text-align: right;
+    font-style: italic;
+  }
+  h1 {
+    font-family: "Dancing Script", "Open Sans", sans-serif;
+    color: $rtnColor;
+    text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
+  }
 }
 
 //404
@@ -1713,7 +1722,7 @@ a:hover {
   //testimony mobile
   .testimonyFont {
     h1 {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     p {
       font-size: 0.9;
@@ -1739,6 +1748,10 @@ a:hover {
 
   .msg {
     font-size: 1rem;
+  }
+
+  .townheader-font {
+    font-size: 1.3em;
   }
 }
 

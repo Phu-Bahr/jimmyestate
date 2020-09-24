@@ -74,8 +74,6 @@ class DraftJSContainer extends Component {
       const { content } = this.state;
       const body = { content };
 
-      console.log("submitupdate body being sent to putfetch", body);
-
       putFetch(url, body, this.alertType);
     }
   };
@@ -115,9 +113,6 @@ class DraftJSContainer extends Component {
   };
 
   render() {
-    console.log("draftjs editor state", this.state.editorState);
-    console.log("content state", this.state.content);
-
     let adminToggle = this.props.user.admin ? (
       <main className="container pb-2 pt-3">
         {this.state.id === null && (

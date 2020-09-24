@@ -116,6 +116,7 @@ class NewEvent extends Component {
               required
               onChange={this.onChange}
               value={this.state.date}
+              placeholder="Enter Date of event here."
             />
             <input
               type="time"
@@ -125,6 +126,7 @@ class NewEvent extends Component {
               required
               onChange={this.onChange}
               value={this.state.time}
+              placeholder="Enter time of event here."
             />
             <input
               type="text"
