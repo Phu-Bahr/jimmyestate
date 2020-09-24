@@ -107,11 +107,11 @@ class CustomCards extends Component {
               <div className="parent m-0">
                 <figure className="child particles">
                   <img
-                    className="venueImage"
+                    className="cardImage"
                     src={element.image}
                     alt="custom helper card image 1"
                   />
-                  <figcaption className="venueTitle px-3 py-1">
+                  <figcaption className="cardTitle px-3 py-1">
                     {element.title}
                   </figcaption>
                 </figure>
@@ -120,7 +120,7 @@ class CustomCards extends Component {
 
             {this.state.visible && (
               <FadeIn>
-                <div className="card-body venueDetails container">
+                <div className="card-body cardDetails container">
                   <div className="row">{townlist}</div>
                 </div>
               </FadeIn>
@@ -154,18 +154,18 @@ class CustomCards extends Component {
               <div className="parent m-0">
                 <figure className="child particles">
                   <img
-                    className="venueImage"
+                    className="cardImage"
                     src={element.image}
                     alt="custom helper card image 2"
                   />
                 </figure>
-                <div className="venueTitle px-3 py-1">{element.title}</div>
+                <div className="cardTitle px-3 py-1">{element.title}</div>
               </div>
             </div>
 
             {this.state.visible1 && (
               <FadeIn>
-                <div className="card-body venueDetails container">
+                <div className="card-body cardDetails container">
                   <div className="row">{partnerlist}</div>
                 </div>
               </FadeIn>
