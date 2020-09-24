@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { SubmitEmailButton } from "../../../Constants/Buttons";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { postFetchEmail } from "../../../Constants/FetchComponent";
+import { MessageCounter } from "../../../Constants/Constants";
 
 const urlEmailPath = "relocations";
 
@@ -66,13 +67,14 @@ class RelocationEmailForm extends Component {
                 id="name"
                 className="form-control"
                 onChange={this.onChange}
+                maxLength="30"
                 required
               />
             </div>
             <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="email">Your Email</label>
               <input
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 className="form-control"
@@ -85,7 +87,9 @@ class RelocationEmailForm extends Component {
             <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="phone">Phone Number</label>
               <input
-                type="text"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="xxx-xxx-xxxx"
                 name="phone"
                 id="phone"
                 className="form-control"
@@ -119,6 +123,7 @@ class RelocationEmailForm extends Component {
               id="destinationaddress"
               className="form-control"
               onChange={this.onChange}
+              maxLength="50"
               required
             />
           </div>
@@ -131,6 +136,7 @@ class RelocationEmailForm extends Component {
                 id="timeframe"
                 className="form-control"
                 onChange={this.onChange}
+                maxLength="100"
               />
             </div>
             <div className="form-group col-sm-12 col-md-12 col-lg-5">
@@ -163,6 +169,7 @@ class RelocationEmailForm extends Component {
               required
               placeholder="Additional information you'd like to tell me."
             />
+            <MessageCounter {...this.state} />
           </div>
           <SubmitEmailButton GAValue="Relocation Email Button" />
           <Recaptcha

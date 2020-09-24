@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { SubmitEmailButton } from "../../Constants/Buttons";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { postFetchEmail } from "../../Constants/FetchComponent";
+import { MessageCounter } from "../../Constants/Constants";
 
 const urlEmailPath = "market_reports";
 
@@ -49,6 +50,7 @@ class MarketReportsEmailForm extends Component {
               id="name"
               className="form-control"
               onChange={this.onChange}
+              maxLength="30"
               required
             />
           </div>
@@ -56,7 +58,9 @@ class MarketReportsEmailForm extends Component {
           <div className="form-group col-md-6">
             <label htmlFor="phone">Phone Number</label>
             <input
-              type="text"
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              placeholder="xxx-xxx-xxxx"
               name="phone"
               id="phone"
               className="form-control"
@@ -69,7 +73,7 @@ class MarketReportsEmailForm extends Component {
         <div className="form-group">
           <label htmlFor="email">Your Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             className="form-control"
@@ -88,6 +92,7 @@ class MarketReportsEmailForm extends Component {
             id="destinationaddress"
             className="form-control"
             onChange={this.onChange}
+            maxLength="20"
             required
           />
         </div>
@@ -101,9 +106,11 @@ class MarketReportsEmailForm extends Component {
             id="message"
             className="form-control"
             onChange={this.onChange}
-            required
             placeholder="Please provide any additional questions or information."
+            maxLength="250"
+            required
           />
+          <MessageCounter {...this.state} />
         </div>
         <SubmitEmailButton GAValue="Market Report Email Button" />
         <Recaptcha
