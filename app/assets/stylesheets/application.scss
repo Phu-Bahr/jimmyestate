@@ -31,10 +31,7 @@ body,
   background-color: whitesmoke;
 }
 
-.venueBackground {
-  background: white;
-}
-
+//wrapper container for routes
 .flex-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -53,10 +50,10 @@ body,
   }
 }
 
-.link {
+.townlink-color {
   color: #8bce3c;
 }
-.link:hover {
+.townlink-color:hover {
   color: #8bce3c;
 }
 
@@ -64,8 +61,8 @@ body,
   display: none;
 }
 
-// venue
-.venueImage {
+// helper cards
+.cardImage {
   display: block;
   width: 100%;
   height: 300px;
@@ -78,7 +75,7 @@ body,
   transition: opacity 0.4s ease-in-out;
 }
 
-.venueTitle {
+.cardTitle {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -97,17 +94,17 @@ body,
   border-radius: 3px;
 }
 
-.venueDetails {
+.cardDetails {
   background: #d6d6d6;
 }
 
-.parent:hover .venueTitle {
+.parent:hover .cardTitle {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   color: #8bce3c;
 }
 
-.parent:hover .venueImage {
+.parent:hover .cardImage {
   opacity: 1;
 }
 
@@ -246,132 +243,38 @@ body,
 // mobile view
 
 @media only screen and (max-width: 680px) {
-  .venueImage {
-    display: block;
-    width: 100%;
+  .cardImage {
     height: 150px;
-    -o-object-fit: fill;
-    object-fit: fill;
     opacity: 1;
-    border-radius: 2px;
-    -webkit-transition: opacity 0.4s ease-in-out;
-    -o-transition: opacity 0.4s ease-in-out;
-    transition: opacity 0.4s ease-in-out;
   }
 
-  .venueTitle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    font-weight: 900;
+  .cardTitle {
     font-size: 16px;
-    text-align: center;
-    color: black;
-    -webkit-transition: width 1s, background 0.1s, 0.5s;
-    -o-transition: width 1s, background 0.1s, 0.5s;
-    transition: width 1s, background 0.1s, 0.5s;
-    border-radius: 3px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     color: whitesmoke;
   }
 
-  .venueDetails {
-    background: #d6d6d6;
-  }
-
   .parent {
-    display: block;
-    width: 100%;
     height: 150px;
-    -o-object-fit: fill;
-    object-fit: fill;
-    overflow: hidden;
-    position: relative;
-    float: left;
-    display: inline-block;
-    border-radius: 2px;
-  }
-
-  .child {
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    -webkit-transition: all 0.2s;
-    -o-transition: all 0.2s;
-    transition: all 0.2s;
   }
 
   .parent:hover .child,
   .parent:focus .child {
     -ms-transform: scale(1);
+    -moz-transform: scale(1);
     -webkit-transform: scale(1);
+    -o-transform: scale(1);
     transform: scale(1);
-    cursor: pointer;
   }
 
   .helperL {
-    background-size: 0% 100%;
-    border: none;
-    border-radius: 2px;
-    color: black;
-    display: inline-block;
     font-size: 16px;
-    outline: none;
-    text-align: center;
-    text-decoration: none;
-    -webkit-transition: background-color 0.5s, color 0.3s;
-    -o-transition: background-color 0.5s, color 0.3s;
-    transition: background-color 0.5s, color 0.3s;
-    width: 100%;
-  }
-
-  .helperL:hover {
-    background-color: #8cce3c;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(rgba(255, 255, 255, 0)),
-      color-stop(40%, rgba(255, 255, 255, 0)),
-      to(rgba(255, 255, 255, 0.7))
-    );
-    background-image: -o-linear-gradient(
-      left,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0.7) 100%
-    );
-    background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0.7) 100%
-    );
-    background-repeat: no-repeat;
-    background-size: 200% 100%;
-    -webkit-transition: background-size 1s, background-color 1s, color 0.2s;
-    -o-transition: background-size 1s, background-color 1s, color 0.2s;
-    transition: background-size 1s, background-color 1s, color 0.2s;
-    color: white;
-    text-decoration: none;
-  }
-
-  .helperL:active {
-    background-color: #8cce3c;
-    -webkit-transition: background-size 0;
-    -o-transition: background-size 0;
-    transition: background-size 0;
   }
 }
-// end of venue
+// end of helper cards
 
-// jumbotron
-
+// JUMBOTRON HERO CSS
 .jumboBackground {
   background-position: center;
   background-repeat: no-repeat;
@@ -398,10 +301,6 @@ body,
 }
 
 .particles {
-  position: absolute;
-}
-
-.particles1 {
   position: absolute;
 }
 
@@ -667,7 +566,6 @@ body,
 // end of navbar
 
 // footer
-
 .footerFont {
   position: relative;
   left: 5%;
@@ -700,9 +598,6 @@ body,
 }
 
 // social css
-
-// icons layers
-
 .facebook {
   background-color: #3b5998;
 }
@@ -870,7 +765,6 @@ $gradient: #00b5f5;
 
 @media only screen and (max-width: 680px) {
   .footerFont {
-    position: relative;
     left: 0%;
     line-height: 1.5;
     font-size: 16px;
@@ -949,13 +843,6 @@ $gradient: #00b5f5;
 
 @media only screen and (max-width: 680px) {
   .loginWrapper {
-    height: 100vh;
-    width: 100%;
-    background-image: url("https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: -ms-grid;
-    display: grid;
     -ms-grid-rows: (1fr) [3];
     -ms-grid-columns: 1fr;
     grid-template: repeat(3, 1fr) / 1fr;
@@ -963,14 +850,9 @@ $gradient: #00b5f5;
 
   .loginForm {
     margin: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    padding: 30px 0px;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     grid-area: 2 / 1 / 2 / 1;
-    text-align: center;
-    color: white;
   }
 
   .loginForm h1 {
@@ -1035,18 +917,6 @@ $gradient: #00b5f5;
 
   .event-map {
     height: 300px !important;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: row nowrap;
-    flex-flow: row nowrap;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding: 0;
   }
 }
 
@@ -1074,7 +944,6 @@ $gradient: #00b5f5;
   left: 25%;
   position: relative;
   height: 4px;
-
   -webkit-animation: AnimationName 6s ease infinite;
   animation: AnimationName 6s ease infinite;
 }
@@ -1260,6 +1129,7 @@ $gradient: #00b5f5;
   box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.2),
     0px 5px 15px rgba(0, 0, 0, 0.2);
 }
+
 .caption {
   position: absolute;
   top: 40%;
@@ -1621,35 +1491,21 @@ $gradient: #00b5f5;
 
 @media only screen and (max-width: 680px) {
   .parallaxStyleHome {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     font-size: 5.5vw;
-    color: white;
-    position: relative;
-    z-index: 1;
     height: 200px;
     -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
   }
 
   .parallaxStyleRoutes {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-size: 5.5vw;
-    color: white;
-    position: relative;
-    z-index: 1;
     height: 200px;
   }
 
   #header1 {
-    font-size: 1em;
+    font-size: 1.2em;
   }
   #header2 {
-    font-size: 0.6em;
+    font-size: 0.8em;
   }
 }
 
@@ -1802,14 +1658,10 @@ $gradient: #00b5f5;
 
 @media only screen and (max-width: 680px) {
   .newTownWrapper {
-    width: 100%;
     height: 100vh;
-    display: -ms-grid;
-    display: grid;
     -ms-grid-rows: 1fr;
     -ms-grid-columns: 1fr;
     grid-template: 1fr / 1fr;
-    background-color: #99b3d4;
   }
 
   .newTownWrapper .form {
@@ -1864,10 +1716,7 @@ $gradient: #00b5f5;
 
 @media only screen and (max-width: 680px) {
   .newPartnerWrapper {
-    width: 100%;
     height: 100vh;
-    display: -ms-grid;
-    display: grid;
     -ms-grid-rows: 1fr;
     -ms-grid-columns: 1fr;
     grid-template: 1fr / 1fr;
@@ -1889,6 +1738,7 @@ $gradient: #00b5f5;
 .testimonyFont #testimony-name {
   text-align: right;
 }
+
 @media only screen and (max-width: 680px) {
   .testimonyFont {
     h1 {
@@ -1897,81 +1747,6 @@ $gradient: #00b5f5;
     p {
       font-size: 0.9;
     }
-  }
-}
-
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-@-webkit-keyframes rotate {
-  100% {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes rotate {
-  100% {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-
-.rainbow {
-  position: relative;
-  z-index: 0;
-  width: 400px;
-  height: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 2rem;
-
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    left: -50%;
-    top: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: #399953;
-    background-repeat: no-repeat;
-    background-size: 50% 50%, 50% 50%;
-    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(#399953),
-        to(#399953)
-      ),
-      -webkit-gradient(linear, left top, left bottom, from(#fbb300), to(#fbb300)),
-      -webkit-gradient(linear, left top, left bottom, from(#d53e33), to(#d53e33)),
-      -webkit-gradient(linear, left top, left bottom, from(#377af5), to(#377af5));
-    background-image: -o-linear-gradient(#399953, #399953),
-      -o-linear-gradient(#fbb300, #fbb300), -o-linear-gradient(#d53e33, #d53e33),
-      -o-linear-gradient(#377af5, #377af5);
-    background-image: linear-gradient(#399953, #399953),
-      linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33),
-      linear-gradient(#377af5, #377af5);
-    -webkit-animation: rotate 4s linear infinite;
-    animation: rotate 4s linear infinite;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 6px;
-    top: 6px;
-    width: calc(100% - 12px);
-    height: calc(100% - 12px);
-    background: white;
-    border-radius: 5px;
   }
 }
 
@@ -2040,47 +1815,23 @@ a:hover {
 
 @media only screen and (max-width: 680px) {
   .mainbox {
-    background-color: #95c2de;
-    margin: auto;
-    height: 100%;
     width: 100%;
-    position: relative;
   }
 
   .err {
-    color: #ffffff;
-    font-family: "Nunito Sans", sans-serif;
     font-size: 8rem;
-    position: absolute;
-    left: 20%;
-    top: 8%;
   }
 
   .far {
-    position: absolute;
     font-size: 5.5rem;
-    left: 40%;
-    top: 18%;
-    color: #ffffff;
   }
 
   .err2 {
-    color: #ffffff;
-    font-family: "Nunito Sans", sans-serif;
     font-size: 8rem;
-    position: absolute;
-    left: 68%;
-    top: 8%;
   }
 
   .msg {
-    text-align: center;
-    font-family: "Nunito Sans", sans-serif;
     font-size: 1rem;
-    position: absolute;
-    left: 16%;
-    top: 45%;
-    width: 75%;
   }
 }
 
