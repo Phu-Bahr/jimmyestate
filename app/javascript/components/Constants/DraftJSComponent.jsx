@@ -62,6 +62,8 @@ class DraftJSContainer extends Component {
   onSubmitUpdate = event => {
     if (this.state.id === null) {
       alert("Can't update first post.");
+    } else if (this.state.content === null) {
+      alert("Please make a change first!");
     } else {
       event.preventDefault();
       let url;
@@ -71,6 +73,8 @@ class DraftJSContainer extends Component {
 
       const { content } = this.state;
       const body = { content };
+
+      console.log("submitupdate body being sent to putfetch", body);
 
       putFetch(url, body, this.alertType);
     }
@@ -111,6 +115,9 @@ class DraftJSContainer extends Component {
   };
 
   render() {
+    console.log("draftjs editor state", this.state.editorState);
+    console.log("content state", this.state.content);
+
     let adminToggle = this.props.user.admin ? (
       <main className="container pb-2 pt-3">
         {this.state.id === null && (
@@ -143,6 +150,7 @@ class DraftJSContainer extends Component {
                 type="button"
                 onClick={this.onSubmitUpdate}
                 value="Update your content"
+                disabled={this.state.content == null && true}
               />
             </div>
           </div>
