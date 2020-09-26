@@ -86,7 +86,7 @@ class JumbotronContainer extends Component {
 
         <ScrollAnimation animateIn="fadeIn">
           <header
-            className="pt-5 jumboBackground"
+            className="jumboBackground"
             style={{
               backgroundImage: `linear-gradient(rgba(255, 255, 255, ${this.state.opacity}), rgba(255, 255, 255, ${this.state.opacity})), url(${this.state.image})`
             }}

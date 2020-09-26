@@ -34,6 +34,13 @@ body,
   background-color: whitesmoke;
 }
 
+.imageShadow {
+  -webkit-box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.2),
+    0px 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.2),
+    0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 //wrapper container for routes
 .flex-container {
   display: -webkit-box;
@@ -244,6 +251,8 @@ body,
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
     0px 18px 23px rgba(0, 0, 0, 0.1);
   z-index: 0;
+  -webkit-box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3);
 }
 
 .jumboList-wrapper {
@@ -784,6 +793,7 @@ $gradient: #00b5f5;
   border-radius: 10px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000;
   box-shadow: 0px 10px 13px -7px #000000;
+  border-radius: 10px;
 }
 
 .hvr-bounce-to-right:before {
@@ -820,6 +830,13 @@ $gradient: #00b5f5;
   color: white;
   cursor: pointer;
 }
+.hvr-bounce-to-right:active {
+  color: white;
+  cursor: pointer;
+  transform: translateY(2px);
+  // -webkit-box-shadow: 0px 10px 10px -3px #000000;
+  box-shadow: 0px 10px 10px -10px #000000;
+}
 .hvr-bounce-to-right:hover:before,
 .hvr-bounce-to-right:focus:before,
 .hvr-bounce-to-right:active:before {
@@ -835,7 +852,9 @@ $gradient: #00b5f5;
 .helper-card {
   -webkit-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
 }
 
 .helper-card:hover {
@@ -843,8 +862,16 @@ $gradient: #00b5f5;
   -ms-transform: scale(1.05);
   transform: scale(1.05);
   -webkit-box-shadow: 0 5px 26px rgba(0, 0, 0, 0.2),
-    0 5px 26px rgba(0, 0, 0, 0.2);
+    0 10px 26px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 26px rgba(0, 0, 0, 0.2), 0 5px 26px rgba(0, 0, 0, 0.2);
+}
+
+.helper-card:active {
+  -webkit-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  transform: scale(1.02);
+  -webkit-box-shadow: 0 5px 6px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .empty-event {

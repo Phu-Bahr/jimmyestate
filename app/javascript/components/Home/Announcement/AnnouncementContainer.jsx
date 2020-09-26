@@ -59,6 +59,7 @@ class AnnouncementContainer extends Component {
   render() {
     return (
       <section>
+        {/* <div style={{ height: "100px" }}></div> */}
         <ParallaxBanner {...this.state} />
 
         <div className="container-fluid pt-5">
