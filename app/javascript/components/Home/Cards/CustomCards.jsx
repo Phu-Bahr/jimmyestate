@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { FadeIn } from "../../Constants/Constants";
+import { FadeInDown } from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import CustomEditLinks from "./CustomEditLinks";
 import { getNoScrollFetch } from "../../Constants/FetchComponent";
@@ -107,11 +107,11 @@ class CustomCards extends Component {
               <div className="parent m-0">
                 <figure className="child particles">
                   <img
-                    className="venueImage"
+                    className="cardImage"
                     src={element.image}
                     alt="custom helper card image 1"
                   />
-                  <figcaption className="venueTitle px-3 py-1">
+                  <figcaption className="cardTitle px-3 py-1">
                     {element.title}
                   </figcaption>
                 </figure>
@@ -119,11 +119,11 @@ class CustomCards extends Component {
             </div>
 
             {this.state.visible && (
-              <FadeIn>
-                <div className="card-body venueDetails container">
+              <FadeInDown>
+                <div className="card-body cardDetails container">
                   <div className="row">{townlist}</div>
                 </div>
-              </FadeIn>
+              </FadeInDown>
             )}
 
             {this.props.user.admin && (
@@ -154,21 +154,21 @@ class CustomCards extends Component {
               <div className="parent m-0">
                 <figure className="child particles">
                   <img
-                    className="venueImage"
+                    className="cardImage"
                     src={element.image}
                     alt="custom helper card image 2"
                   />
                 </figure>
-                <div className="venueTitle px-3 py-1">{element.title}</div>
+                <div className="cardTitle px-3 py-1">{element.title}</div>
               </div>
             </div>
 
             {this.state.visible1 && (
-              <FadeIn>
-                <div className="card-body venueDetails container">
+              <FadeInDown>
+                <div className="card-body cardDetails container">
                   <div className="row">{partnerlist}</div>
                 </div>
-              </FadeIn>
+              </FadeInDown>
             )}
 
             {this.props.user.admin && (

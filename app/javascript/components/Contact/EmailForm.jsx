@@ -2,32 +2,75 @@ import React, { Component, Fragment } from "react";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { SubmitEmailButton } from "../Constants/Buttons";
 import { postFetchEmail } from "../Constants/FetchComponent";
+import { MessageCounter } from "../Constants/Constants";
 
 const urlPath = "contacts";
 
 class EmailForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", message: "" };
+    this.state = { name: "", message: "", errors: "", input: {} };
   }
+
+  handleChange = event => {
+    let input = this.state.input;
+    input[event.target.name] = event.target.value;
+    this.setState({ input });
+  };
+
+  validate = () => {
+    let input = this.state.input;
+    let errors = {};
+    let isValid = true;
+
+    if (!input["email"]) {
+      isValid = false;
+      errors["email"] = "Please enter your email Address.";
+    }
+
+    if (typeof input["email"] !== "undefined") {
+      var pattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+
+      if (!pattern.test(input["email"])) {
+        isValid = false;
+        errors["email"] = "Please enter valid email address.";
+      }
+    }
+
+    this.setState({ errors: errors });
+
+    return isValid;
+  };
 
   onResolved = () =>
     console.log(
       "Recaptcha resolved with response: " + this.recaptcha.getResponse()
     );
+
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
-    this.recaptcha.execute();
-    const url = `/api/v1/${urlPath}`;
-    const { name, email, message } = this.state;
-    const body = { name, email, message };
 
-    postFetchEmail(url, body, this.props.alertType);
+    if (this.validate()) {
+      this.recaptcha.execute();
+      const url = `/api/v1/${urlPath}`;
+      let email = this.state.input.email;
+      const { name, message } = this.state;
+
+      const body = { name, email, message };
+      postFetchEmail(url, body, this.props.alertType).then(
+        this.setState({ input: {} })
+      );
+    }
   };
 
   render() {
+    console.log(this.state.input.email);
+    console.log(this.state.input);
+
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>
@@ -39,6 +82,7 @@ class EmailForm extends Component {
               id="name"
               className="form-control"
               onChange={this.onChange}
+              maxLength="30"
               required
             />
           </div>
@@ -49,14 +93,16 @@ class EmailForm extends Component {
               name="email"
               id="email"
               className="form-control"
-              onChange={this.onChange}
-              required
+              onChange={this.handleChange}
+              value={this.state.input.email}
             />
+            <div className="text-danger">{this.state.errors.email}</div>
           </div>
           <div className="form-group">
             <label htmlFor="message">
               Please tell me about your Real Estate Goals:
             </label>
+
             <textarea
               rows="5"
               type="text"
@@ -65,8 +111,10 @@ class EmailForm extends Component {
               className="form-control"
               onChange={this.onChange}
               placeholder="Message"
+              maxLength="250"
               required
             />
+            <MessageCounter {...this.state} />
           </div>
 
           <SubmitEmailButton GAValue="Contact Email Button" />

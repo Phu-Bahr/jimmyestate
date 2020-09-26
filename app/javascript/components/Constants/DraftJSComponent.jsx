@@ -61,6 +61,8 @@ class DraftJSContainer extends Component {
   onSubmitUpdate = event => {
     if (this.state.id === null) {
       alert("Can't update first post.");
+    } else if (this.state.content === null) {
+      alert("Please make a change first!");
     } else {
       event.preventDefault();
       let url;
@@ -142,6 +144,7 @@ class DraftJSContainer extends Component {
                 type="button"
                 onClick={this.onSubmitUpdate}
                 value="Update your content"
+                disabled={this.state.content == null && true}
               />
             </div>
           </div>

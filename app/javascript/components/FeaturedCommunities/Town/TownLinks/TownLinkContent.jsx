@@ -16,7 +16,7 @@ const TownLinkContent = props => {
           <a
             href={`//` + props.townlink}
             target="_blank"
-            className="link"
+            className="townlink-color"
             onClick={() =>
               gaLinks(
                 `${props.townlinkdescription} from Town ${props.townName}`

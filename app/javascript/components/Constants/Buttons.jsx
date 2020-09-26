@@ -47,7 +47,7 @@ export const EditButton = ({ type, className, onClick, value }) => {
 };
 
 //for put fetches
-export const UpdateButton = ({ type, className, onClick, value }) => {
+export const UpdateButton = ({ type, className, onClick, value, disabled }) => {
   return (
     <button
       type={type == "" ? submit : type}
@@ -57,6 +57,7 @@ export const UpdateButton = ({ type, className, onClick, value }) => {
           : `btn btn-outline-primary ${className}`
       }
       onClick={onClick}
+      disabled={disabled == true ? "disabled" : null}
     >
       {value == null ? "Update" : value}
     </button>
