@@ -9,7 +9,7 @@ const JumboEditForm = props => {
     <Fragment>
       {props.user.admin && (
         <Fragment>
-          <div className="col-sm-12 pt-5 pb-2">
+          <div className="col-sm-12 pt-4 pb-2">
             <EditButton onClick={props.clickEdit} />
           </div>
 

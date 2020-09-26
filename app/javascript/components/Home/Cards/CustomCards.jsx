@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { FadeIn } from "../../Constants/Constants";
+import { FadeInDown } from "../../Constants/Constants";
 import { Link } from "react-router-dom";
 import CustomEditLinks from "./CustomEditLinks";
 import { getNoScrollFetch } from "../../Constants/FetchComponent";
@@ -119,11 +119,11 @@ class CustomCards extends Component {
             </div>
 
             {this.state.visible && (
-              <FadeIn>
+              <FadeInDown>
                 <div className="card-body cardDetails container">
                   <div className="row">{townlist}</div>
                 </div>
-              </FadeIn>
+              </FadeInDown>
             )}
 
             {this.props.user.admin && (
@@ -164,11 +164,11 @@ class CustomCards extends Component {
             </div>
 
             {this.state.visible1 && (
-              <FadeIn>
+              <FadeInDown>
                 <div className="card-body cardDetails container">
                   <div className="row">{partnerlist}</div>
                 </div>
-              </FadeIn>
+              </FadeInDown>
             )}
 
             {this.props.user.admin && (
