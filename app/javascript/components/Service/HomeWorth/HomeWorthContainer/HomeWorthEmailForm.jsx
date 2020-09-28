@@ -62,9 +62,8 @@ class HomeWorthEmailForm extends Component {
             <div className="form-group col-md-6">
               <label htmlFor="phone">Phone Number</label>
               <input
-                type="tel"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="xxx-xxx-xxxx"
+                type="text"
+                maxLength="16"
                 name="phone"
                 id="phone"
                 className="form-control"
