@@ -3,9 +3,11 @@ import React from "react";
 const JumboTile = props => {
   return (
     <header>
-      <h1 className="jumboFont1">{props.line1}</h1>
-      <h2 className="jumboFont2">{props.line2}</h2>
-      <h3 className="jumboFont3">{props.line3}</h3>
+      <h1 className="jumboFont-primary">
+        <span className="jumboFont1">{props.line1}</span>
+        <span className="jumboFont2">{props.line2}</span>
+        <span className="jumboFont3">{props.line3}</span>
+      </h1>
     </header>
   );
 };
