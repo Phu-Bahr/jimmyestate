@@ -68,7 +68,7 @@ class JumbotronContainer extends Component {
   render() {
     let jumboList = this.state.jumboData.map(element => {
       return (
-        <div key={element.id} className="jumboList-wrapper">
+        <header key={element.id} className="jumboList-wrapper">
           <JumboTile
             key={element.id}
             id={element.id}
@@ -76,7 +76,7 @@ class JumbotronContainer extends Component {
             line2={element.line2}
             line3={element.line3}
           />
-        </div>
+        </header>
       );
     });
 
