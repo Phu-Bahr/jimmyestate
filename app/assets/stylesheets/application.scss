@@ -1697,6 +1697,37 @@ a:hover {
 
 //end of contact page
 
+//home page boxes
+
+.section-features {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.feature-box {
+  border-radius: 3px;
+  padding: 2.5rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+  background-color: white;
+  min-width: 16rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 4rem;
+    display: inline-block;
+    color: $rtnColor;
+  }
+
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
+}
+
+//end of home page boxes
+
 .alert-image-modal {
   height: 100%;
   width: 100%;
