@@ -1702,7 +1702,10 @@ a:hover {
 .feature-box {
   border-radius: 3px;
   padding: 2.5rem;
+  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   background-color: white;
   min-width: 16rem;
@@ -1715,11 +1718,15 @@ a:hover {
   }
 
   &:hover {
+    -webkit-transform: translateY(-1.5rem) scale(1.03);
+    -ms-transform: translateY(-1.5rem) scale(1.03);
     transform: translateY(-1.5rem) scale(1.03);
   }
 }
 
 .confidentIcon {
+  -webkit-filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
+    brightness(95%) contrast(90%);
   filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
     brightness(95%) contrast(90%);
   width: 15%;
