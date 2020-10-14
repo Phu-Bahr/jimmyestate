@@ -87,9 +87,9 @@ class JumbotronContainer extends Component {
         <ScrollAnimation animateIn="fadeIn">
           <header
             className="jumboBackground"
-            // style={{
-            //   backgroundImage: `linear-gradient(rgba(255, 255, 255, ${this.state.opacity}), rgba(255, 255, 255, ${this.state.opacity})), url(${this.state.image})`
-            // }}
+            style={{
+              backgroundImage: `linear-gradient(rgba(255, 255, 255, ${this.state.opacity}), rgba(255, 255, 255, ${this.state.opacity})), url(${this.state.image})`
+            }}
             onClick={() => gaInteraction("Particles")}
           >
             {/* <video className="videoTag" autoPlay loop muted>
