@@ -1719,6 +1719,13 @@ a:hover {
   }
 }
 
+.confidentIcon {
+  filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
+    brightness(95%) contrast(90%);
+  width: 15%;
+  margin-top: -15px;
+}
+
 //end of home page boxes
 
 .alert-image-modal {
