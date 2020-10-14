@@ -1718,6 +1718,44 @@ a:hover {
 
 //end of contact page
 
+//home page boxes
+
+.feature-box {
+  border-radius: 3px;
+  padding: 2.5rem;
+  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  background-color: white;
+  min-width: 16rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 4rem;
+    display: inline-block;
+    color: $rtnColor;
+  }
+
+  &:hover {
+    -webkit-transform: translateY(-1.5rem) scale(1.03);
+    -ms-transform: translateY(-1.5rem) scale(1.03);
+    transform: translateY(-1.5rem) scale(1.03);
+  }
+}
+
+.confidentIcon {
+  -webkit-filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
+    brightness(95%) contrast(90%);
+  filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
+    brightness(95%) contrast(90%);
+  width: 15%;
+  margin-top: -15px;
+}
+
+//end of home page boxes
+
 .alert-image-modal {
   height: 100%;
   width: 100%;
@@ -2015,6 +2053,10 @@ a:hover {
   .dropdown-menu {
     margin-top: 0;
   }
+
+  .section-features {
+    height: 32rem;
+  }
 }
 
 // bigger than tablet
@@ -2088,6 +2130,8 @@ a:hover {
       rgba(255, 255, 255, 1),
       rgba(255, 255, 255, 0)
     );
+
+    //home page box height
   }
 
   //event tile

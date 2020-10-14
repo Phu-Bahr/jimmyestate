@@ -5,6 +5,7 @@ import AnnouncementContainer from "../Home/Announcement/AnnouncementContainer";
 import EventContainer from "../Home/Events/EventContainer";
 import ScrollAnimation from "react-animate-on-scroll";
 import AlertBox from "../Constants/AlertComponent";
+import BoxContainer from "./Boxes/BoxContainer";
 
 class Home extends Component {
   constructor(props) {
@@ -19,6 +20,10 @@ class Home extends Component {
       <main>
         <AlertBox {...this.state} alertType={this.alertType} />
         <JumbotronContainer {...this.props} />
+
+        <ScrollAnimation animateIn="fadeIn">
+          <BoxContainer />
+        </ScrollAnimation>
 
         <ScrollAnimation animateIn="fadeIn">
           <AnnouncementContainer {...this.props} alertType={this.alertType} />
