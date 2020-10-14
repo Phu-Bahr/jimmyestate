@@ -1699,13 +1699,6 @@ a:hover {
 
 //home page boxes
 
-.section-features {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .feature-box {
   border-radius: 3px;
   padding: 2.5rem;
@@ -2025,6 +2018,10 @@ a:hover {
   .dropdown-menu {
     margin-top: 0;
   }
+
+  .section-features {
+    height: 32rem;
+  }
 }
 
 // bigger than tablet
@@ -2098,6 +2095,8 @@ a:hover {
       rgba(255, 255, 255, 1),
       rgba(255, 255, 255, 0)
     );
+
+    //home page box height
   }
 
   //event tile
