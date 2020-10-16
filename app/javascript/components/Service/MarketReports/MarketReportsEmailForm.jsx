@@ -14,7 +14,9 @@ class MarketReportsEmailForm extends Component {
       email: "",
       phone: "",
       destinationaddress: "",
-      message: ""
+      message: "",
+      input: {},
+      errors: ""
     };
   }
 
@@ -22,20 +24,58 @@ class MarketReportsEmailForm extends Component {
   onResolved = () =>
     console.log("Captcha response => ", this.recaptcha.getResponse());
 
+  handleChange = event => {
+    let input = this.state.input;
+    input[event.target.name] = event.target.value;
+    this.setState({ input: input, errors: "" });
+  };
+
+  validate = () => {
+    let input = this.state.input;
+    let errors = {};
+    let isValid = true;
+
+    if (!input["email"]) {
+      isValid = false;
+      errors["email"] = "Please enter your email Address.";
+    }
+
+    if (typeof input["email"] !== "undefined") {
+      var pattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+
+      if (!pattern.test(input["email"])) {
+        isValid = false;
+        errors["email"] = "Please enter valid email address.";
+      }
+    }
+
+    this.setState({ errors: errors });
+
+    return isValid;
+  };
+
   onSubmit = event => {
     event.preventDefault();
-    this.recaptcha.execute();
-    const url = `/api/v1/${urlEmailPath}`;
-    const { name, email, phone, destinationaddress, message } = this.state;
-    const body = {
-      name,
-      email,
-      phone,
-      destinationaddress,
-      message
-    };
 
-    postFetchEmail(url, body, this.props.alertType);
+    if (this.validate()) {
+      this.recaptcha.execute();
+      const url = `/api/v1/${urlEmailPath}`;
+      let email = this.state.input.email;
+      const { name, phone, destinationaddress, message } = this.state;
+
+      const body = {
+        name,
+        email,
+        phone,
+        destinationaddress,
+        message
+      };
+      postFetchEmail(url, body, this.props.alertType).then(
+        this.setState({ input: {} })
+      );
+    }
   };
 
   render() {
@@ -76,9 +116,11 @@ class MarketReportsEmailForm extends Component {
             name="email"
             id="email"
             className="form-control"
-            onChange={this.onChange}
+            onChange={this.handleChange}
+            value={this.state.input.email}
             required
           />
+          <div className="text-danger">{this.state.errors.email}</div>
         </div>
 
         <div className="form-group">

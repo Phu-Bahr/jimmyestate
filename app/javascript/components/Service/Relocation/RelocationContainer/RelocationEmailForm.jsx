@@ -26,10 +26,11 @@ class RelocationEmailForm extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   onResolved = () =>
     console.log("Captcha response => ", this.recaptcha.getResponse());
+
   handleChange = event => {
     let input = this.state.input;
     input[event.target.name] = event.target.value;
-    this.setState({ input });
+    this.setState({ input: input, errors: "" });
   };
 
   validate = () => {
@@ -77,6 +78,7 @@ class RelocationEmailForm extends Component {
 
       const body = {
         name,
+        email,
         phone,
         time,
         destinationaddress,
@@ -92,6 +94,7 @@ class RelocationEmailForm extends Component {
   };
 
   render() {
+    console.log(this.state.input, this.state.errors);
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>
@@ -111,14 +114,14 @@ class RelocationEmailForm extends Component {
             <div className="form-group col-sm-12 col-md-12 col-lg-6">
               <label htmlFor="email">Your Email</label>
               <input
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 className="form-control"
                 onChange={this.handleChange}
                 value={this.state.input.email}
-                required
               />
+              <div className="text-danger">{this.state.errors.email}</div>
             </div>
           </div>
           <div className="form-row">
