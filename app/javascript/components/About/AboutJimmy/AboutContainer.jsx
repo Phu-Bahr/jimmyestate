@@ -141,13 +141,14 @@ class AboutContainer extends Component {
 
           <LoadingScreen {...this.state} />
 
-          <main className="container">
-            <div className="row py-5">
-              <div className="col-sm-12 col-md-12 col-lg-12">
+          <main className="container-fluid py-5 about-container">
+            <div className="row">
+              <div className="col-sm-12 col-md-12 col-lg-4 col-xl-3">
                 <FadeIn>
                   <AboutJimmyPhotoContainer {...this.state} />
                 </FadeIn>
-
+              </div>
+              <div className="col-sm-12 col-md-12 col-lg-8 col-xl-9">
                 <FadeInUp>
                   <AboutJimmyContent {...this.state} />
                 </FadeInUp>

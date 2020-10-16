@@ -13,14 +13,9 @@ const AboutJimmyPhotoContainer = ({
     <Fragment>
       <figure className="about-position">
         <img
-          className="img_wrapper rounded"
+          className="img_wrapper about_img_style rounded img-fluid"
           src={photo}
           alt="Jimmy Chao Photo"
-          style={{
-            boxShadow: "0px 10px 13px -7px #000000",
-            width: "300px",
-            height: "400px"
-          }}
         />
         <figcaption className="container mt-3 text-center">
           <div className="container">
