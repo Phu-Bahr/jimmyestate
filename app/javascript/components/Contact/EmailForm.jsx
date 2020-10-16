@@ -68,9 +68,6 @@ class EmailForm extends Component {
   };
 
   render() {
-    console.log(this.state.input.email);
-    console.log(this.state.input);
-
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>
