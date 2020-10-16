@@ -5,7 +5,9 @@ const AboutJimmyContent = props => {
     <Fragment>
       <article>
         <div className="jimmy-signature about-hi-position mb-n5">Hi,</div>
-        <p className="about-hi-position">{props.paragraph1}</p>
+        <p className="about-hi-position about-mobile-padding">
+          {props.paragraph1}
+        </p>
         <p>{props.paragraph2}</p>
         <p>{props.paragraph3}</p>
         <p>{props.paragraph4}</p>
