@@ -4,7 +4,8 @@ const AboutJimmyContent = props => {
   return (
     <Fragment>
       <article>
-        <p>{props.paragraph1}</p>
+        <div className="jimmy-signature about-hi-position mb-n5">Hi,</div>
+        <p className="about-hi-position">{props.paragraph1}</p>
         <p>{props.paragraph2}</p>
         <p>{props.paragraph3}</p>
         <p>{props.paragraph4}</p>
