@@ -15,7 +15,7 @@ class EmailForm extends Component {
   handleChange = event => {
     let input = this.state.input;
     input[event.target.name] = event.target.value;
-    this.setState({ input });
+    this.setState({ input: input, errors: "" });
   };
 
   validate = () => {
@@ -68,9 +68,6 @@ class EmailForm extends Component {
   };
 
   render() {
-    console.log(this.state.input.email);
-    console.log(this.state.input);
-
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>
@@ -96,7 +93,6 @@ class EmailForm extends Component {
               onChange={this.handleChange}
               value={this.state.input.email}
             />
-            <div className="text-danger">{this.state.errors.email}</div>
           </div>
           <div className="form-group">
             <label htmlFor="message">

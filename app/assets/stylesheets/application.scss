@@ -841,6 +841,17 @@ $gradient: #00b5f5;
   object-fit: cover;
 }
 
+.about-container {
+  padding: 0 2rem !important;
+}
+
+.about_img_style {
+  box-shadow: 0px 10px 13px -7px #000000;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000;
+  width: 300px;
+  height: 400px;
+}
+
 .event-border:hover {
   -webkit-box-shadow: 0px 0px 30px 10px #565050;
   box-shadow: 0px 0px 30px 10px #565050;
@@ -1068,9 +1079,25 @@ $gradient: #00b5f5;
 
 // About Portfolio page
 
+.jimmy-signature {
+  font-family: "Dancing Script", "Open Sans", sans-serif;
+  color: $rtnColor;
+  font-size: 6rem;
+  // margin-top: -1.5rem;
+}
+
 .about-position {
-  float: left;
-  padding: 5px 20px;
+  text-align: center;
+  padding-top: 25px;
+}
+
+.about-hi-position {
+  display: inline-block;
+}
+
+.about-mobile-padding {
+  padding-top: 16px;
+  display: inline-block;
 }
 
 .caption {
@@ -1727,21 +1754,75 @@ a:hover {
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: -webkit-transform 0.2s border 0.5s;
+  transition: -webkit-transform 0.2s border 0.5s;
+  -o-transition: transform 0.2s border 0.5s;
+  transition: transform 0.2s border 0.5s;
+  transition: transform 0.2s border 0.5s, -webkit-transform 0.2s border 0.5s;
   background-color: white;
   min-width: 16rem;
   text-align: center;
+  border: lightgray solid 0px;
 
   &__icon {
     font-size: 4rem;
     display: inline-block;
     color: $rtnColor;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  &__heading {
+    color: black;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
   }
 
   &:hover {
-    -webkit-transform: translateY(-1.5rem) scale(1.03);
-    -ms-transform: translateY(-1.5rem) scale(1.03);
-    transform: translateY(-1.5rem) scale(1.03);
+    -webkit-transform: translateY(-1.5rem);
+    -ms-transform: translateY(-1.5rem);
+    transform: translateY(-1.5rem);
+    border: lightgray solid 5px;
+
+    .feature-box__icon {
+      -webkit-animation: iconPulse 1.3s ease-out infinite;
+      animation: iconPulse 1.3s ease-out infinite;
+    }
+    .feature-box__heading {
+      color: $rtnColor;
+    }
+  }
+}
+
+@-webkit-keyframes iconPulse {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes iconPulse {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -2007,7 +2088,7 @@ a:hover {
   }
 }
 
-// up to hamburger breakpoint and tablet/phone
+// up to hamburger breakpoint and tablet/phone and below.
 @media only screen and (max-width: 992px) {
   //nav-item is each title in dropdown menu
   .nav-item {
@@ -2056,6 +2137,10 @@ a:hover {
 
   .section-features {
     height: 32rem;
+  }
+
+  .about-container {
+    padding: 0 5rem !important;
   }
 }
 
