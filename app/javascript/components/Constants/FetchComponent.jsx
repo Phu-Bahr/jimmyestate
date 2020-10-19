@@ -152,6 +152,8 @@ export const getFetch = (url, mountState) => {
     .then(response => {
       if (response.ok) {
         return response;
+      } else if (response.status == 404) {
+        window.location.href = "/page-404";
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
           error = new Error(errorMessage);
