@@ -390,3 +390,5 @@ export const MessageCounter = props => {
     </div>
   );
 };
+
+export const RecaptchaKey = "6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7";
