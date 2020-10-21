@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { SubmitEmailButton } from "../../Constants/Buttons";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { postFetchEmail } from "../../Constants/FetchComponent";
-import { MessageCounter } from "../../Constants/Constants";
+import { MessageCounter, RecaptchaKey } from "../../Constants/Constants";
 
 const urlEmailPath = "market_reports";
 
@@ -156,7 +156,7 @@ class MarketReportsEmailForm extends Component {
         <SubmitEmailButton GAValue="Market Report Email Button" />
         <Recaptcha
           ref={ref => (this.recaptcha = ref)}
-          sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
+          sitekey={RecaptchaKey}
           onResolved={this.onResolved}
         />
       </form>
