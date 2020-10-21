@@ -13,8 +13,8 @@ ReactGA.initialize(
     {
       trackingId: "UA-173933096-2"
     }
-  ],
-  { debug: true, alwaysSendToDefaultTracker: false }
+  ]
+  // { debug: true, alwaysSendToDefaultTracker: false }
 );
 ReactGA.pageview(window.location.pathname + window.location.search);
 
