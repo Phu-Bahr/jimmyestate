@@ -68,19 +68,23 @@ Needed for developer environment:
 
 4. For now open the app in your text Editor. I'm using VSCode. Go to `config/environments/development.rb` file and comment out lines 43 to 50 for now. We're going to comment this back in later.
 
---insert image 2 
+5. Now go to config/database.yml file. Replace jimmyestates on line 26, 55, 78-80 with the database name of your choice. i.e. `my_real_estate_app`
 
-1. Now go to config/database.yml file. Replace jimmyestates on line 26, 55, 78-80 with the database name of your choice. i.e. `my_real_estate_app`
-
---insert image 3 
+<p align="center">
+   <img src="images/readme%20images/3-database-yml.png">
+</p>
 
 6. With this set up we can set up our rails environment now. In you terminal type in `rails db:create`. This will take the database.yml file and create your database in Postgres with it.
 
--insert image 4
+<p align="center">
+   <img src="images/readme%20images/4-db-create-sample.png" width="500">
+</p>
 
 7. We have a database but no tables. Type in `rails db:migrate` to create the tables associated with rails migration file already set up.
 
---insert image 5
+<p align="center">
+   <img src="images/readme%20images/5-db-migrate-sample.png" width="500">
+</p>
 
 8. Now that we have a database and tables, lets fill it with some sample data. Type in `rails db:seed`
 
@@ -88,7 +92,9 @@ Needed for developer environment:
 
 10. Type `User.create!(email: "yourUserName@gmail.com", password: "coding", password_conformation: "coding", admin: true)`. Admin: true is the main part we need. Type `exit` to exit out of rails c.
 
---insert image 6
+<p align="center">
+   <img src="images/readme%20images/6-rails-c-sample.png">
+</p>
 
 11. Everything is all set up. Time to test it. In your terminal type `rails s` to run the rails server, and in another tab in the terminal type in `./bin/webpack-dev-server`, to run the React side. Open browser to localhost:3000 and you should be set up to go.
 
@@ -104,21 +110,29 @@ Needed for developer environment:
 
 3. In your console.developers.google.com API dashboard, click on *credentials* and then click on *js map key* or the default *Javascript MAP API key*.
 
---insert image 7
+<p align="center">
+   <img src="images/readme%20images/7-google-map-api-restriction.png" width="400">
+</p>
 
 4. From here under Application restrictions, you want to set it to HTTP referrers (web sites).
 
 5. Under Website restrictions, add `localhost:3000/*` and a heroku name while we're still here. i.e. `my-real-estate-app.heroku.com/*`. When your site is live take off 3000 or change your 3000 path to something else so others can't use your api in their dev environment.
 
---insert image 8
+<p align="center">
+   <img src="images/readme%20images/8-application-restriction.png" width="500">
+</p>
 
 6. Finally, for the API restrictions restrict key, 1 API, and make sure to **SAVE**. 
 
---INSERT image 9
+<p align="center">
+   <img src="images/readme%20images/9-google-api-restriction.png" width="500">
+</p>
 
 7. Now that we can use the API, go to `App/Javascript/Constants/MapEvent.jsx` file, line 37 is where you input the key. 
 
---insert image 10
+<p align="center">
+   <img src="images/readme%20images/10-map-api-destination.png" width="500">
+</p>
 
 #### Geocode API Install
 
@@ -126,15 +140,21 @@ Needed for developer environment:
 
 2. Once you have it, restrict it. The restriction will be different from Google MAP API, you want `none` on Application restrictions and API restrictions put 1 api and select Geocode API.
 
---insert image 11
+<p align="center">
+   <img src="images/readme%20images/11-geocode-restriction.png" width="500">
+</p>
 
 3. For this key, you'll be hiding it in your rails app and will not show in GitHub or the public. First we need to start fresh. In `config` folder, delete `master.key` and `credentials.yml` files. 
 
---insert image 12
+<p align="center">
+   <img src="images/readme%20images/12-secret-file-location.png" width="300">
+</p>
 
 *If you're using VSCode, you might need to `Shift+Cmd+P` then choose `Shell Command: Install "code" command in path` before running EDITOR*
 
---insert image 13
+<p align="center">
+   <img src="images/readme%20images/13-shell-command.png" width="500">
+</p>
 
 4. In your terminal type `EDITOR="code --wait" rails credentials:edit`. replace code with atom or sublime, whatever text editor you're using. 
 
@@ -153,7 +173,9 @@ Needed for developer environment:
    - Select `other (custom name)` under the Select App dropdown, enter the name of your app or something close to it.
    - Click on `Generate` and your new password will appear. Copy this and we need to put it in our `credentials.yml file.
 
---insert image 14
+<p align="center">
+   <img src="images/readme%20images/14-email-app-password.png">
+</p>
 
 3. Back in your terminal type `EDITOR="code --wait" rails credentials:edit` and enter the below data:
 
@@ -168,7 +190,9 @@ Needed for developer environment:
 
 5. Restart Rails s and webpacker to text your email out in one of the contact forms.
 
---insert image 15
+<p align="center">
+   <img src="images/readme%20images/15-comment-in-dev-env.png" width="500">
+</p>
 
 #### reCAPTCHA Install
 
