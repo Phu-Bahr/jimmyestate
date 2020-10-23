@@ -1,8 +1,12 @@
+<p align="right">www.tonyphu.com</p>
+  
 # JIMMY ESTATES
 
 Jimmy Estate is a personal CMS app. My end goal was to create an application that would give the user most of the control on the content in their site like other CMS websites but without the additional costs. Currently it's geared towards Real Estate Agents but can be customized for any type of site.
 
-The goal of this project was to learn how to implement a full application. Everything from the front end logic, the CSS displays, and responsiveness to the back end validations, data management, and http requests.
+The goal of this project was to learn how to implement a full application. Everything from the front end logic, the CSS displays, and responsiveness to the back end validations, data management, and http requests. 
+
+<img align="right" src="https://media3.giphy.com/media/SYi7uc4CIa78EDg5Y8/giphy.gif">  
 
 ## Table of Contents:
 
@@ -21,11 +25,11 @@ The goal of this project was to learn how to implement a full application. Every
 
 ## Main Technology
 
-React v16.12.0\
-Ruby on Rails v5.2.3\
-Ruby 2.6.5\
-PostgreSQL 11\
-Heroku
+![](https://img.shields.io/badge/React-v16.12.0-informational?)
+![](https://img.shields.io/badge/Ruby_on_Rails-v5.2.3-informational?)
+![](https://img.shields.io/badge/Ruby-v2.6.5-informational?)
+![](https://img.shields.io/badge/PostgreSQL-v11.0-informational?)
+![](https://img.shields.io/badge/Heroku-Heroku-informational?)
 
 ## Features
 
@@ -379,6 +383,21 @@ User.create!(email: "yourUserName@gmail.com", password: "coding", password_confo
 ---
 ## Additonal Tech
 
+![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Code-Ruby-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Code-CSS-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Code-SASS-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/OS-MAC-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Framework-Ruby_on_Rails-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Library-React-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-Heroku-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-Google_APIs-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-Bootstrap_4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-Animate.css-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-Draft_JS-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Tools-SweetAlert-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+
 For contact information and maps:
 
 - Google Geocode API
@@ -394,14 +413,10 @@ Admin access (no devise):
 
 The fun stuff:
 
-- SASS
 - Google Analytics
-- Bootstrap 4
 - Fontawesome
 - React-Animations
 - React-Animate-on-scroll
-- Animate.css
-- Draft-js
 - React-draft-wysiwyg
 - React-particles-js
 - Styled-Components
