@@ -6,24 +6,18 @@ The goal of this project was to learn how to implement a full application. Every
 
 ## Table of Contents:
 
-- [JIMMY ESTATES](#JIMMY-ESTATES)
-  - [Table of Contents:](#Table-of-Contents)
-  - [Main Technology](#Main-Technology)
-  - [Features](#Features)
-  - [INSTALLATION](#INSTALLATION)
-    - [**Cloning**](#Cloning)
-    - [**Setting up Dev Environment**](#Setting-up-Dev-Environment)
-    - [**Google Tools Installation**](#Google-Tools-Installation)
-      - [Google Maps](#Google-Maps)
-      - [Geocode API Install](#Geocode-API-Install)
-      - [Email Rails Mailer with Gmail Install](#Email-Rails-Mailer-with-Gmail-Install)
-      - [reCAPTCHA Install](#reCAPTCHA-Install)
-      - [Google Analytics](#Google-Analytics)
-  - [5. Start up the servers rails s and webpacker and test out adding an event on the home page. It should properly display google map and the location of the address you put in.](#5-Start-up-the-servers-rails-s-and-webpacker-and-test-out-adding-an-event-on-the-home-page-It-should-properly-display-google-map-and-the-location-of-the-address-you-put-in)
-  - [PRODUCTION](#PRODUCTION)
-    - [Setting up HEROKU](#Setting-up-HEROKU)
-  - [3. Now when you merge a branch to master, heroku will automatically deploy when your new updates from master.](#3-Now-when-you-merge-a-branch-to-master-heroku-will-automatically-deploy-when-your-new-updates-from-master)
-  - [Additonal Tech](#Additonal-Tech)
+- [**INSTALLATION**](#INSTALLATION)
+  - [Cloning](#Cloning)
+  - [Setting up Dev Environment](#Setting-up-Dev-Environment)
+- [**Google Tools Installation**](#Google-Tools-Installation)
+  - [Google Maps](#Google-Maps)
+  - [Geocode API Install](#Geocode-API-Install)
+  - [Email Rails Mailer with Gmail Install](#Email-Rails-Mailer-with-Gmail-Install)
+  - [reCAPTCHA Install](#reCAPTCHA-Install)
+  - [Google Analytics](#Google-Analytics)
+- [**PRODUCTION**](#PRODUCTION)
+  - [Setting up HEROKU](#Setting-up-HEROKU)
+- [**Additonal Tech**](#Additonal-Tech)
 
 ## Main Technology
 
