@@ -12,7 +12,6 @@ import AlertBox from "../../Constants/AlertComponent";
 import { EditButton } from "../../Constants/Buttons";
 import { Link } from "react-scroll";
 import { gaLinks, gaEvents } from "../../Constants/GoogleAnalyticEvents";
-import Testimonials from "../../About/Testimonials/Testimonials";
 const urlPath = "events";
 
 class EventContainer extends Component {
