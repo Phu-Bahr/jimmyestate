@@ -12,6 +12,13 @@ class EmailForm extends Component {
     this.state = { name: "", message: "", errors: "", input: {} };
   }
 
+  onResolved = () =>
+    console.log(
+      "Recaptcha resolved with response: " + this.recaptcha.getResponse()
+    );
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
   handleChange = event => {
     let input = this.state.input;
     input[event.target.name] = event.target.value;
@@ -43,13 +50,6 @@ class EmailForm extends Component {
 
     return isValid;
   };
-
-  onResolved = () =>
-    console.log(
-      "Recaptcha resolved with response: " + this.recaptcha.getResponse()
-    );
-
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
     event.preventDefault();
@@ -92,8 +92,10 @@ class EmailForm extends Component {
               className="form-control"
               onChange={this.handleChange}
               value={this.state.input.email}
+              required
             />
           </div>
+          <div className="text-danger">{this.state.errors.email}</div>
           <div className="form-group">
             <label htmlFor="message">
               Please tell me about your Real Estate Goals:

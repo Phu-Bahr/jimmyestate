@@ -154,7 +154,7 @@ class DraftJSContainer extends Component {
         </article>
       </main>
     ) : (
-      <main className="container py-3 px-4">
+      <main className="container py-5 px-4">
         <article>
           <FadeIn>
             <Editor
