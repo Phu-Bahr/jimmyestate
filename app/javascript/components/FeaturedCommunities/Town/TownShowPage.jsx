@@ -19,7 +19,9 @@ class TownShowPage extends Component {
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
-  mountState = body => this.setState({ townData: body, id: body.id });
+  mountState = body => {
+    this.setState({ townData: body, id: body.id });
+  };
 
   componentDidMount = () => {
     const url = `${urlPath}/${this.props.match.params.id}`;

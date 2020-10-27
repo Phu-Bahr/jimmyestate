@@ -19,7 +19,8 @@ class PortfolioContainer extends Component {
       headerText2: "",
       id: null,
       refreshKey: false,
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null
     };
   }
 
@@ -41,7 +42,8 @@ class PortfolioContainer extends Component {
       bannerImage: body[body.length - 1].bannerImage,
       headerText1: body[body.length - 1].headerText1,
       headerText2: body[body.length - 1].headerText2,
-      id: body[body.length - 1].id
+      id: body[body.length - 1].id,
+      loading: true
     });
   };
 

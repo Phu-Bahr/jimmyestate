@@ -145,20 +145,7 @@ const AlertBox = props => {
   );
 
   const successfulGeocodeEvent = (
-    <SweetAlert
-      title={
-        <figure className="alert-modal-wrapper">
-          <img
-            className="alert-image-modal"
-            src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
-            alt="Geocode found for new event photo"
-          />
-          <br />
-          <figcaption>Geocode Found!!</figcaption>
-        </figure>
-      }
-      onConfirm={() => props.submitEvent()}
-    >
+    <SweetAlert onConfirm={() => props.submitEvent()}>
       Geocode has been updated to the database.
     </SweetAlert>
   );
@@ -176,6 +163,16 @@ const AlertBox = props => {
       onConfirm={() => props.directToPath()}
     >
       User has been registered. Speak to developer for admin access rights.
+    </SweetAlert>
+  );
+
+  const unAuthorizedLogin = (
+    <SweetAlert
+      error
+      title="Unauthorized Entry"
+      onConfirm={() => props.alertType(payload)}
+    >
+      Username or Password is incorrect. Please try again.
     </SweetAlert>
   );
 
@@ -203,6 +200,8 @@ const AlertBox = props => {
         return successfulGeocodeEvent;
       case "successRegistration":
         return successfulRegistration;
+      case "unAuthLogin":
+        return unAuthorizedLogin;
 
       default:
         break;

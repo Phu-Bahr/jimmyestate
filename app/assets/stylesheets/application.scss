@@ -55,10 +55,10 @@ body,
 }
 
 .townlink-color {
-  color: #8bce3c;
+  color: $rtnColor;
 }
 .townlink-color:hover {
-  color: #8bce3c;
+  color: $rtnColor;
 }
 
 .invisible {
@@ -110,7 +110,7 @@ body,
 .parent:hover .cardTitle {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  color: #8bce3c;
+  color: $rtnColor;
 }
 
 .parent:hover .cardImage {
@@ -201,7 +201,7 @@ body,
 }
 
 .helperL:hover {
-  background-color: #8cce3c;
+  background-color: $rtnColor;
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -232,7 +232,7 @@ body,
 }
 
 .helperL:active {
-  background-color: #8cce3c;
+  background-color: $rtnColor;
   -webkit-transition: background-size 0;
   -o-transition: background-size 0;
   transition: background-size 0;
@@ -444,7 +444,7 @@ body,
 
 .navbar-font {
   font-size: 31px;
-  color: #8bce3c;
+  color: $rtnColor;
   font-weight: 800;
   -webkit-transition: all 250ms;
   -o-transition: all 250ms;
@@ -453,7 +453,7 @@ body,
 
 .navbar-font:hover {
   text-decoration: none;
-  color: #8bce3c;
+  color: $rtnColor;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -474,7 +474,7 @@ body,
 .navbar-underline:hover,
 .navbar-underline:focus,
 .navbar-underline:active {
-  color: #8bce3c !important;
+  color: $rtnColor !important;
   text-decoration: none;
 }
 .navbar-underline {
@@ -504,7 +504,7 @@ body,
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: #8bce3c;
+  background-color: $rtnColor;
   -webkit-transform-origin: right top;
   -ms-transform-origin: right top;
   transform-origin: right top;
@@ -849,7 +849,12 @@ $gradient: #00b5f5;
   box-shadow: 0px 10px 13px -7px #000000;
   -webkit-box-shadow: 0px 10px 13px -7px #000000;
   width: 300px;
-  height: 400px;
+}
+
+.about-company-img-style {
+  box-shadow: 0px 10px 13px -7px #000000;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000;
+  width: 800px;
 }
 
 .event-border:hover {
@@ -966,7 +971,7 @@ $gradient: #00b5f5;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #7fc41c;
+  background: $rtnColor;
   -webkit-transform: scaleX(0);
   -ms-transform: scaleX(0);
   transform: scaleX(0);
@@ -1285,7 +1290,7 @@ $gradient: #00b5f5;
         color: #fff;
 
         &.tag-news {
-          background: #8cce3c;
+          background: $rtnColor;
         }
       }
     }
@@ -1507,7 +1512,7 @@ $gradient: #00b5f5;
 }
 
 .effect04:hover {
-  background-color: #8bce3c;
+  background-color: $rtnColor;
 }
 
 /* HOVERしたら文字1を上に */
@@ -1707,7 +1712,7 @@ a:hover {
 //end of privacy
 
 .contact-icons {
-  color: #8cce3c;
+  color: $rtnColor;
 }
 
 //contact page

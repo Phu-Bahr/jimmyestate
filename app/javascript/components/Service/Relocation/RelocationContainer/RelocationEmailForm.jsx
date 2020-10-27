@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { SubmitEmailButton } from "../../../Constants/Buttons";
 import Recaptcha from "react-google-invisible-recaptcha";
 import { postFetchEmail } from "../../../Constants/FetchComponent";
-import { MessageCounter } from "../../../Constants/Constants";
+import { MessageCounter, RecaptchaKey } from "../../../Constants/Constants";
 
 const urlEmailPath = "relocations";
 
@@ -94,7 +94,6 @@ class RelocationEmailForm extends Component {
   };
 
   render() {
-    console.log(this.state.input, this.state.errors);
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>
@@ -214,7 +213,7 @@ class RelocationEmailForm extends Component {
           <SubmitEmailButton GAValue="Relocation Email Button" />
           <Recaptcha
             ref={ref => (this.recaptcha = ref)}
-            sitekey="6LduIvAUAAAAANu_zPUXIWLmjk_L-ZWdJkAFJbx7"
+            sitekey={RecaptchaKey}
             onResolved={this.onResolved}
           />
         </form>

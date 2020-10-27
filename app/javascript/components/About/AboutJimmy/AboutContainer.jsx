@@ -39,7 +39,8 @@ class AboutContainer extends Component {
       refreshKey: false,
       hideDiv: false,
       bannerImage: "",
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null
     };
   }
 
@@ -114,7 +115,8 @@ class AboutContainer extends Component {
       photoemail: body[body.length - 1].photoemail,
       photoaddress1: body[body.length - 1].photoaddress1,
       photoaddress2: body[body.length - 1].photoaddress2,
-      bannerImage: body[body.length - 1].bannerImage
+      bannerImage: body[body.length - 1].bannerImage,
+      loading: true
     });
   };
 
@@ -149,9 +151,7 @@ class AboutContainer extends Component {
                 </FadeIn>
               </div>
               <div className="col-sm-12 col-md-12 col-lg-8 col-xl-9">
-                <FadeInUp>
-                  <AboutJimmyContent {...this.state} />
-                </FadeInUp>
+                <AboutJimmyContent {...this.state} />
               </div>
             </div>
           </main>

@@ -20,7 +20,8 @@ class DraftJSContainer extends Component {
       refreshKey: false,
       readOnly: false,
       id: null,
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null
     };
   }
 
@@ -73,7 +74,7 @@ class DraftJSContainer extends Component {
       const { content } = this.state;
       const body = { content };
 
-      putNoScrollFetch(url, body, this.alertType);
+      putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
     }
   };
 
@@ -92,10 +93,11 @@ class DraftJSContainer extends Component {
         editorState: EditorState.createWithContent(
           convertFromRaw(JSON.parse(rawContent[rawContent.length - 1].content))
         ),
-        id: rawContent[rawContent.length - 1].id
+        id: rawContent[rawContent.length - 1].id,
+        loading: true
       });
     } else {
-      this.setState({ editorState: EditorState.createEmpty() });
+      this.setState({ editorState: EditorState.createEmpty(), loading: true });
     }
   };
 
@@ -151,7 +153,7 @@ class DraftJSContainer extends Component {
         </article>
       </main>
     ) : (
-      <main className="container py-3 px-4">
+      <main className="container py-5 px-4">
         <article>
           <FadeIn>
             <Editor

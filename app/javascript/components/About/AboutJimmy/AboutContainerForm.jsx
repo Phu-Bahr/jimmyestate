@@ -40,7 +40,7 @@ const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
                 onChange={onChange}
                 value={value}
               />
-              <UpdateButton />
+              <UpdateButton value="Update Banner" />
             </div>
 
             <div className="container py-3">
@@ -58,11 +58,11 @@ const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
                     onChange={onChange}
                     value={value}
                   />
-                  <UpdateButton />
+                  <UpdateButton value="Update Jimmy Info" />
                 </div>
               </div>
 
-              <UpdateButton />
+              <UpdateButton value="Update Bio" />
             </div>
           </form>
         </div>

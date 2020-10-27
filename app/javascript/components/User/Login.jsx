@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import AlertBox from "../Constants/AlertComponent";
 import { loginFetch } from "../Constants/FetchComponent";
 import { SubmitEmailButton } from "../Constants/Buttons";
+import Recaptcha from "react-google-invisible-recaptcha";
+import { RecaptchaKey } from "../Constants/Constants";
 
 class Login extends Component {
   constructor(props) {
@@ -21,9 +23,14 @@ class Login extends Component {
     this.setState({ typeOfAlert: null });
     this.props.history.goBack();
   };
+  onResolved = () =>
+    console.log(
+      "Recaptcha resolved with response: " + this.recaptcha.getResponse()
+    );
 
   handleLoginSubmit = event => {
     event.preventDefault();
+    this.recaptcha.execute();
     const url = "/api/v1/sessions";
     const { email, password } = this.state;
     const body = { user: { email: email, password: password } };
@@ -88,6 +95,12 @@ class Login extends Component {
               </div>
 
               <SubmitEmailButton value2="LOG IN" value1="Let's fix stuff" />
+
+              <Recaptcha
+                ref={ref => (this.recaptcha = ref)}
+                sitekey={RecaptchaKey}
+                onResolved={this.onResolved}
+              />
             </form>
 
             <div className="mt-3">
