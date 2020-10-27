@@ -322,8 +322,13 @@ export const loginFetch = (url, body, alertType, handleLogin) => {
     body: JSON.stringify(body)
   })
     .then(response => {
+      console.log("logingfetch response -->", response);
+
       if (response.ok) {
         alertType("successLogin");
+        return response;
+      } else if (response.status == 401) {
+        alertType("unAuthLogin");
         return response;
       } else {
         alertType("error");

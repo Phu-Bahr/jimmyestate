@@ -18,7 +18,7 @@ class TownList extends Component {
       return (
         <Fragment key={element.id}>
           <div
-            className={admin && "dropdown-item px-3"}
+            className={admin ? "dropdown-item px-3" : ""}
             onClick={() => gaNavLinks(element.name)}
           >
             <div className={admin ? "navbar-underline py-2" : "py-1"}>

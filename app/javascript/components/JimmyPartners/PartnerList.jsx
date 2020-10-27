@@ -18,7 +18,7 @@ class PartnerList extends Component {
       return (
         <Fragment key={element.id}>
           <div
-            className={admin && "dropdown-item px-3"}
+            className={admin ? "dropdown-item px-3" : ""}
             onClick={() => gaNavLinks(element.name)}
           >
             <div className={admin ? "navbar-underline py-2" : "py-1"}>
@@ -50,7 +50,7 @@ class PartnerList extends Component {
                 <Link
                   to={`/${urlPath}/${element.id}`}
                   className={admin ? "" : "dropdown-item navbar-underline"}
-                  style={admin && { fontSize: "13px" }}
+                  style={admin ? { fontSize: "13px" } : { fontSize: "" }}
                 >
                   {element.name}
                 </Link>
