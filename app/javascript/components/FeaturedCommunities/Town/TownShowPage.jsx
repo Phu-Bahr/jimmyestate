@@ -20,7 +20,7 @@ class TownShowPage extends Component {
 
   alertType = payload => this.setState({ typeOfAlert: payload });
   mountState = body => {
-    this.setState({ townData: body, id: body.id }), console.log(body);
+    this.setState({ townData: body, id: body.id });
   };
 
   componentDidMount = () => {

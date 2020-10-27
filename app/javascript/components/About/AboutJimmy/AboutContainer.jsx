@@ -39,7 +39,8 @@ class AboutContainer extends Component {
       refreshKey: false,
       hideDiv: false,
       bannerImage: "",
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null
     };
   }
 
@@ -114,7 +115,8 @@ class AboutContainer extends Component {
       photoemail: body[body.length - 1].photoemail,
       photoaddress1: body[body.length - 1].photoaddress1,
       photoaddress2: body[body.length - 1].photoaddress2,
-      bannerImage: body[body.length - 1].bannerImage
+      bannerImage: body[body.length - 1].bannerImage,
+      loading: true
     });
   };
 

@@ -19,7 +19,8 @@ class TestimonialsContainer extends Component {
       bannerImage: "",
       id: null,
       hideDiv: false,
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null
     };
   }
 
@@ -45,7 +46,8 @@ class TestimonialsContainer extends Component {
       headerText1: body[body.length - 1].headerText1,
       headerText2: body[body.length - 1].headerText2,
       bannerImage: body[body.length - 1].bannerImage,
-      id: body[body.length - 1].id
+      id: body[body.length - 1].id,
+      loading: true
     });
   };
 

@@ -20,12 +20,14 @@ class AboutCompanyContainer extends Component {
       image: "",
       id: null,
       bannerImage: "",
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null,
+      refreshKey: true
     };
   }
 
   alertType = payload => this.setState({ typeOfAlert: payload });
-  toggleRefreshKey = () => this.setState({ refreshKey: true });
+  toggleRefreshKey = () => this.setState({ refreshKey: true, loading: true });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
@@ -43,7 +45,8 @@ class AboutCompanyContainer extends Component {
       headerText2: body[body.length - 1].headerText2,
       image: body[body.length - 1].image,
       id: body[body.length - 1].id,
-      bannerImage: body[body.length - 1].bannerImage
+      bannerImage: body[body.length - 1].bannerImage,
+      loading: true
     });
   };
 
@@ -61,7 +64,7 @@ class AboutCompanyContainer extends Component {
         <AlertBox {...this.state} alertType={this.alertType} />
 
         <div className="flex-container">
-          <LoadingScreen id={this.state.id} />
+          <LoadingScreen {...this.state} />
 
           <ParallaxBannerRoutes {...this.state} {...this.props} />
 

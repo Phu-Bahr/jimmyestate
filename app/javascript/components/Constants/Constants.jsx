@@ -262,7 +262,7 @@ export const RadioDials = props => {
 //needs this.state sent  or id in state
 export const LoadingScreen = props => {
   return (
-    props.id == null && (
+    props.loading == null && (
       <div className="container text-center pt-3">
         <p>Loading...</p>
         <CommonLoading />
