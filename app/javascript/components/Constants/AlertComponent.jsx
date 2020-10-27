@@ -176,6 +176,16 @@ const AlertBox = props => {
     </SweetAlert>
   );
 
+  const unAuthorizedLogin = (
+    <SweetAlert
+      error
+      title="Unauthorized Entry"
+      onConfirm={() => props.alertType(payload)}
+    >
+      Username or Password is incorrect. Please try again.
+    </SweetAlert>
+  );
+
   if (props.typeOfAlert !== null) {
     switch (props.typeOfAlert) {
       case "successLogin":
@@ -200,6 +210,8 @@ const AlertBox = props => {
         return successfulGeocodeEvent;
       case "successRegistration":
         return successfulRegistration;
+      case "unAuthLogin":
+        return unAuthorizedLogin;
 
       default:
         break;

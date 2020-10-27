@@ -1,3 +1,5 @@
+require 'pry'
+
 class Api::V1::SessionsController < ApplicationController
 
     include CurrentUserConcern
@@ -6,18 +8,23 @@ class Api::V1::SessionsController < ApplicationController
         user = User
             .find_by(email: params["user"]["email"])
             .try(:authenticate, params["user"]["password"])
+        unless user&.admin
+            return render(
+                json: {
+                    errors: ['no such user', 'verify credentials and try again or signup'] 
+                },
+                status: 401
+            )
+        end
 
-        if user
-            session[:user_id] =  user.id
-            render json: {
-                status: :created,
+        session[:user_id] =  user.id
+        render(
+            json: {
                 logged_in: true,
                 user: user
-            }
-        else
-            render json: { status: 401,
-            errors: ['no such user', 'verify credentials and try again or signup'] }
-        end
+            },
+            status: :created
+        )
     end
 
     def logged_in
