@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { relative } from "upath";
 
 const payload = null;
 
@@ -142,20 +143,7 @@ const AlertBox = props => {
   );
 
   const successfulGeocodeEvent = (
-    <SweetAlert
-      title={
-        <figure className="alert-modal-wrapper">
-          <img
-            className="alert-image-modal"
-            src="https://media1.giphy.com/media/9FXA260svGMw3QRFC8/giphy.gif"
-            alt="Geocode found for new event photo"
-          />
-          <br />
-          <figcaption>Geocode Found!!</figcaption>
-        </figure>
-      }
-      onConfirm={() => props.submitEvent()}
-    >
+    <SweetAlert onConfirm={() => props.submitEvent()}>
       Geocode has been updated to the database.
     </SweetAlert>
   );
