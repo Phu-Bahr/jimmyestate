@@ -94,7 +94,6 @@ class RelocationEmailForm extends Component {
   };
 
   render() {
-    console.log(this.state.input, this.state.errors);
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>

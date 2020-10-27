@@ -20,7 +20,8 @@ class DraftJSContainer extends Component {
       refreshKey: false,
       readOnly: false,
       id: null,
-      typeOfAlert: null
+      typeOfAlert: null,
+      loading: null
     };
   }
 
@@ -93,10 +94,11 @@ class DraftJSContainer extends Component {
         editorState: EditorState.createWithContent(
           convertFromRaw(JSON.parse(rawContent[rawContent.length - 1].content))
         ),
-        id: rawContent[rawContent.length - 1].id
+        id: rawContent[rawContent.length - 1].id,
+        loading: true
       });
     } else {
-      this.setState({ editorState: EditorState.createEmpty() });
+      this.setState({ editorState: EditorState.createEmpty(), loading: null });
     }
   };
 
