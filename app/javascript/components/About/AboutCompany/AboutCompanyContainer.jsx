@@ -69,9 +69,9 @@ class AboutCompanyContainer extends Component {
           <ParallaxBannerRoutes {...this.state} {...this.props} />
 
           <FadeInUp>
-            <figure className="pt-4 pb-3 px-4 text-center">
+            <figure className="pt-5 pb-3 px-4 text-center">
               <img
-                className="img-fluid rounded"
+                className="img-fluid rounded img_wrapper about-company-img-style"
                 src={this.state.image}
                 alt="RTN Logo Image"
               ></img>

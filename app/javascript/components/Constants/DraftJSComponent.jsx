@@ -75,7 +75,7 @@ class DraftJSContainer extends Component {
       const { content } = this.state;
       const body = { content };
 
-      putFetch(url, body, this.alertType);
+      putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
     }
   };
 
@@ -98,7 +98,7 @@ class DraftJSContainer extends Component {
         loading: true
       });
     } else {
-      this.setState({ editorState: EditorState.createEmpty(), loading: null });
+      this.setState({ editorState: EditorState.createEmpty(), loading: true });
     }
   };
 
