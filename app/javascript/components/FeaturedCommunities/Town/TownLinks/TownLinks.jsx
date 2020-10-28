@@ -136,7 +136,9 @@ class TownLinks extends Component {
           deleteEvent={this.deleteEvent}
         />
 
-        {this.state.townLinkData.length !== 0 && <div>{displayLinks}</div>}
+        {this.state.townLinkData.length !== 0 && (
+          <div style={{ display: "inline-block" }}>{displayLinks}</div>
+        )}
 
         {admin && (
           <TownLinkForm

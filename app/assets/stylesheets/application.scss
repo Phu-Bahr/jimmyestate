@@ -61,6 +61,16 @@ body,
   color: $rtnColor;
 }
 
+.townlink-icon {
+  float: left;
+  padding-right: 1rem;
+  color: blueviolet;
+  &:hover {
+    color: $rtnColor;
+    cursor: default;
+  }
+}
+
 .invisible {
   display: none;
 }
