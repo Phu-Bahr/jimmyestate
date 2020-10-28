@@ -145,7 +145,7 @@ const AlertBox = props => {
   );
 
   const successfulGeocodeEvent = (
-    <SweetAlert onConfirm={() => props.submitEvent()}>
+    <SweetAlert title="Event Submitted!" onConfirm={() => props.submitEvent()}>
       Geocode has been updated to the database.
     </SweetAlert>
   );
