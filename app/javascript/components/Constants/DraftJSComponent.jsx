@@ -4,7 +4,12 @@ import { Editor } from "react-draft-wysiwyg";
 import { AddButton, UpdateButton } from "./Buttons";
 import { FadeIn, LoadingScreen } from "./Constants";
 import AlertBox from "./AlertComponent";
-import { postFetchDraft, putNoScrollFetch, getFetch } from "./FetchComponent";
+import {
+  postFetchDraft,
+  putNoScrollFetch,
+  getFetch,
+  putFetch
+} from "./FetchComponent";
 
 //parent component needs to supply url state
 //{...this.props} <- for admin
