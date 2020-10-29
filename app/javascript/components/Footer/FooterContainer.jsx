@@ -134,6 +134,7 @@ class FooterContainer extends Component {
         <div
           key={element.id}
           className="col-sm-12 col-md-6 col-lg-4 footerFont"
+          style={{ overflow: "hidden" }}
         >
           <h1 className="footerAlignment">CONTACT ME</h1>
           <FooterEditContactUs
