@@ -597,6 +597,7 @@ body,
   line-height: 1.7;
   font-size: 1.2em;
   letter-spacing: 1.5px;
+  overflow: hidden !important;
 }
 
 .footerFont h1 {
@@ -2109,6 +2110,10 @@ a:hover {
   }
   .wrapper {
     padding: 20px 20px;
+  }
+
+  .footerFont {
+    left: 1%;
   }
 }
 
