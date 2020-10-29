@@ -112,8 +112,10 @@ export const ParallaxBannerRoutes = props => (
       <div className="container h-100">
         <div className="row h-100">
           <header className="col-sm-12 my-auto header-alignment">
-            <h1 id="header1">{props.headerText1}</h1>
-            <h2 id="header2">{props.headerText2}</h2>
+            <FadeInUp>
+              <h1 id="header1">{props.headerText1}</h1>
+              <h2 id="header2">{props.headerText2}</h2>
+            </FadeInUp>
           </header>
         </div>
       </div>
