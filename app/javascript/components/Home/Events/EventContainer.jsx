@@ -3,7 +3,7 @@ import Map from "../../Constants/MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
 import {
-  getGeocode,
+  getGeocodeEventUpdate,
   deleteNoScrollFetch,
   putNoScrollFetch,
   getNoScrollFetch
@@ -141,10 +141,12 @@ class EventContainer extends Component {
 
   onUpdateGeocode = () => {
     let location = `${this.state.location}`;
-    getGeocode(location, this.mountLatLng, this.alertType);
+    getGeocodeEventUpdate(location, this.mountLatLng, this.alertType);
   };
 
   render() {
+    console.log(this.state.id);
+
     let events = this.state.eventData.map(element => {
       let hideUpdate;
       element.id === this.state.selectedStepId
@@ -231,6 +233,7 @@ class EventContainer extends Component {
           alertType={this.alertType}
           deleteEvent={this.deleteEvent}
           submitEvent={this.submitEvent}
+          updateEvent={this.updateEvent}
         />
 
         <div className="text-center">
