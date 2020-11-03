@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_185253) do
+ActiveRecord::Schema.define(version: 2020_11_03_170142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_09_17_185253) do
     t.string "flier"
     t.string "lat"
     t.string "lng"
+    t.string "timeEnd"
   end
 
   create_table "footers", force: :cascade do |t|
