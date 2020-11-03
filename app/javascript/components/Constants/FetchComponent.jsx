@@ -196,7 +196,7 @@ export const getGeocodeEvent = (location, mountLatLng, alertType) => {
       if (response.ok) {
         return response;
       } else {
-        alertType("noGeocode");
+        alertType("noGeocodeEvent");
         let errorMessage = `${response.status} (${response.statusText})`,
           error = new Error(errorMessage);
         throw error;
@@ -205,9 +205,33 @@ export const getGeocodeEvent = (location, mountLatLng, alertType) => {
     .then(response => response.json())
     .then(body => {
       if (body.data[0].result === "No Results") {
-        alertType("noGeocode");
+        alertType("noGeocodeEvent");
       } else {
         alertType("successGeocodeEvent");
+        mountLatLng(body);
+      }
+    })
+    .catch(error => console.log("error message =>", error.message));
+};
+
+export const getGeocodeEventUpdate = (location, mountLatLng, alertType) => {
+  return fetch(`/api/v1/events/search?location=${location}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        alertType("noGeocodeEvent");
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.data[0].result === "No Results") {
+        alertType("noGeocodeEvent");
+      } else {
+        alertType("successGeocodeEventUpdate");
         mountLatLng(body);
       }
     })
