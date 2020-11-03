@@ -119,6 +119,31 @@ const AlertBox = props => {
           </figure>
         </Fragment>
       }
+      onConfirm={
+        props.submitEvent
+          ? () => props.submitEvent()
+          : () => props.alertType(payload)
+      }
+    >
+      Try a valid address.
+    </SweetAlert>
+  );
+
+  const errorGeocodeEvent = (
+    <SweetAlert
+      title={
+        <Fragment>
+          <figure className="alert-modal-wrapper">
+            <img
+              className="alert-image-modal"
+              src="https://media0.giphy.com/media/aN9GqoR7OD3nq/200.gif"
+              alt="Geocode does not exist Photo"
+            />
+            <br />
+            <figcaption>Location does not exist on Earth!</figcaption>
+          </figure>
+        </Fragment>
+      }
       onConfirm={() => props.alertType(payload)}
     >
       Try a valid address.
@@ -145,8 +170,20 @@ const AlertBox = props => {
   );
 
   const successfulGeocodeEvent = (
-    <SweetAlert title="Event Submitted!" onConfirm={() => props.submitEvent()}>
+    <SweetAlert
+      title="Coordinates found!"
+      onConfirm={() => props.submitEvent()}
+    >
       Geocode has been updated to the database.
+    </SweetAlert>
+  );
+
+  const successfulGeocodeEventUpdate = (
+    <SweetAlert
+      title="Coordinates found!"
+      onConfirm={() => props.alertType(payload)}
+    >
+      Lat / Lng has been updated. Finalize by pressing update for event.
     </SweetAlert>
   );
 
@@ -194,10 +231,14 @@ const AlertBox = props => {
         return successfulEdit;
       case "noGeocode":
         return errorGeocode;
+      case "noGeocodeEvent":
+        return errorGeocodeEvent;
       case "successGeocode":
         return successfulGeocode;
       case "successGeocodeEvent":
         return successfulGeocodeEvent;
+      case "successGeocodeEventUpdate":
+        return successfulGeocodeEventUpdate;
       case "successRegistration":
         return successfulRegistration;
       case "unAuthLogin":

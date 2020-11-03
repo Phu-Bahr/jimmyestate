@@ -597,6 +597,7 @@ body,
   line-height: 1.7;
   font-size: 1.2em;
   letter-spacing: 1.5px;
+  overflow: hidden !important;
 }
 
 .footerFont h1 {
@@ -1854,8 +1855,9 @@ a:hover {
 //end of home page boxes
 
 .alert-image-modal {
-  height: 100%;
-  width: 100%;
+  padding-bottom: 20px !important;
+  height: 50%;
+  width: 50%;
   border-radius: 50%;
 }
 
@@ -2130,6 +2132,10 @@ a:hover {
   }
   .wrapper {
     padding: 20px 20px;
+  }
+
+  .footerFont {
+    left: 1%;
   }
 }
 

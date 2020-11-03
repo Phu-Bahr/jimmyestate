@@ -3,7 +3,7 @@ import Map from "../../Constants/MapEvent";
 import EventTile from "./EventTile";
 import NewEvent from "./NewEvent";
 import {
-  getGeocode,
+  getGeocodeEventUpdate,
   deleteNoScrollFetch,
   putNoScrollFetch,
   getNoScrollFetch
@@ -31,7 +31,8 @@ class EventContainer extends Component {
       refreshKey: false,
       typeOfAlert: null,
       idForAlert: null,
-      id: null
+      id: null,
+      timeEnd: ""
     };
     this.submitNewEvent = createRef();
   }
@@ -47,7 +48,15 @@ class EventContainer extends Component {
       : this.setState({ selectedStepId: stepId });
   };
 
-  editCurrentEventState = (a, b, c, d, e, f, g, h) => {
+  ShowCurrentDate = () => {
+    let date = ("0" + new Date().getDate()).slice(-2);
+    let month = ("0" + (new Date().getMonth() + 1)).slice(-2);
+    let year = new Date().getFullYear();
+
+    return year + "-" + month + "-" + date;
+  };
+
+  editCurrentEventState = (a, b, c, d, e, f, g, h, i) => {
     if (this.state.selectedStepId === f) {
       this.setState({
         title: a,
@@ -56,7 +65,8 @@ class EventContainer extends Component {
         time: d,
         flier: e,
         lat: g,
-        lng: h
+        lng: h,
+        timeEnd: i
       });
     } else {
       this.setState({
@@ -67,7 +77,8 @@ class EventContainer extends Component {
         flier: e,
         selectedStepId: f,
         lat: g,
-        lng: h
+        lng: h,
+        timeEnd: i
       });
     }
   };
@@ -80,7 +91,16 @@ class EventContainer extends Component {
   updateEvent = id => {
     event.preventDefault();
     const url = `/api/v1/events/${id}`;
-    const { title, location, date, time, flier, lat, lng } = this.state;
+    const {
+      title,
+      location,
+      date,
+      time,
+      flier,
+      lat,
+      lng,
+      timeEnd
+    } = this.state;
 
     const body = {
       title,
@@ -89,23 +109,29 @@ class EventContainer extends Component {
       time,
       flier,
       lat,
-      lng
+      lng,
+      timeEnd
     };
 
-    putNoScrollFetch(url, body, this.props.alertType)
-      .then(this.props.toggleRefreshKey)
-      .then(
-        this.setState({
-          title: "",
-          location: "",
-          date: "",
-          time: "",
-          flier: "",
-          lat: "",
-          lng: ""
-        })
-      )
-      .then(this.toggleRefreshKey);
+    Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)
+      ? alert("Please choose a current or future date!")
+      : this.state.timeEnd <= this.state.time
+      ? alert("Ending time can not be before start time.")
+      : putNoScrollFetch(url, body, this.props.alertType)
+          .then(this.props.toggleRefreshKey)
+          .then(
+            this.setState({
+              title: "",
+              location: "",
+              date: "",
+              time: "",
+              flier: "",
+              lat: "",
+              lng: "",
+              timeEnd: ""
+            })
+          )
+          .then(this.toggleRefreshKey);
   };
 
   mountState = body => {
@@ -141,7 +167,7 @@ class EventContainer extends Component {
 
   onUpdateGeocode = () => {
     let location = `${this.state.location}`;
-    getGeocode(location, this.mountLatLng, this.alertType);
+    getGeocodeEventUpdate(location, this.mountLatLng, this.alertType);
   };
 
   render() {
@@ -168,7 +194,8 @@ class EventContainer extends Component {
           element.flier,
           element.id,
           element.lat,
-          element.lng
+          element.lng,
+          element.timeEnd
         );
         this.setSelectedStep(element.id);
         gaEvents(`${element.title} event`);
@@ -181,6 +208,7 @@ class EventContainer extends Component {
       let flierState;
       let latState;
       let lngState;
+      let timeEndState;
 
       this.state.selectedStepId === element.id
         ? ((titleState = this.state.title),
@@ -189,14 +217,16 @@ class EventContainer extends Component {
           (timeState = this.state.time),
           (flierState = this.state.flier),
           (latState = this.state.lat),
-          (lngState = this.state.lng))
+          (lngState = this.state.lng),
+          (timeEndState = this.state.timeEnd))
         : ((titleState = ""),
           (locationState = ""),
           (dateState = ""),
           (timeState = ""),
           (flierState = ""),
           (latState = ""),
-          (lngState = ""));
+          (lngState = ""),
+          (timeEndState = ""));
 
       return (
         <EventTile
@@ -220,6 +250,8 @@ class EventContainer extends Component {
           payload={getCurrentEventState}
           handleUpdateGeocode={handleUpdateGeocode}
           user={this.props.user}
+          timeEnd={element.timeEnd}
+          timeEndState={timeEndState}
         />
       );
     });
@@ -231,6 +263,7 @@ class EventContainer extends Component {
           alertType={this.alertType}
           deleteEvent={this.deleteEvent}
           submitEvent={this.submitEvent}
+          updateEvent={this.updateEvent}
         />
 
         <div className="text-center">

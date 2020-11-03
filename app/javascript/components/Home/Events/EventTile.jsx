@@ -18,7 +18,12 @@ const EventTile = props => {
           <div>{props.title}</div>
           <div>{props.location}</div>
           <div>
-            {moment(props.date).format("MMMM Do YYYY")}, {convert(props.time)}
+            <span style={{ display: "block" }}>
+              {moment(props.date).format("MMMM Do, YYYY")}
+            </span>
+            <span style={{ display: "block" }}>
+              {convert(props.time)} - {convert(props.timeEnd)}
+            </span>
           </div>
         </div>
         {props.user.admin && (
@@ -30,7 +35,7 @@ const EventTile = props => {
               <form onSubmit={props.submitUpdate}>
                 <div className="row">
                   <div className="col-sm-6">
-                    <label>Name of Event</label>
+                    <label htmlFor="title">Name of Event</label>
                     <input
                       type="text"
                       name="title"
@@ -41,7 +46,7 @@ const EventTile = props => {
                     />
                   </div>
                   <div className="col-sm-6">
-                    <label>Address</label>
+                    <label htmlFor="location">Address</label>
                     <input
                       type="text"
                       name="location"
@@ -59,7 +64,7 @@ const EventTile = props => {
                     </div>
                   </div>
                   <div className="col-sm-12 col-lg-6">
-                    <label>Date of Event</label>
+                    <label htmlFor="date">Date of Event</label>
                     <input
                       type="date"
                       name="date"
@@ -70,7 +75,7 @@ const EventTile = props => {
                     />
                   </div>
                   <div className="col-sm-12 col-lg-6">
-                    <label>Time of Event</label>
+                    <label htmlFor="time">Time of Event</label>
                     <input
                       type="time"
                       name="time"
@@ -80,8 +85,19 @@ const EventTile = props => {
                       value={props.timeState}
                     />
                   </div>
+                  <div className="col-sm-12 col-lg-6">
+                    <label htmlFor="timeEnd">Ending Time</label>
+                    <input
+                      type="time"
+                      name="timeEnd"
+                      id="timeEnd"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.timeEndState}
+                    />
+                  </div>
                   <div className="col-sm-6">
-                    <label>Image URL</label>
+                    <label htmlFor="flier">Image URL</label>
                     <input
                       type="text"
                       name="flier"
@@ -92,7 +108,7 @@ const EventTile = props => {
                     />
                   </div>
                   <div className="col-sm-6">
-                    <label>Latitude</label>
+                    <label htmlFor="lat">Latitude</label>
                     <input
                       type="text"
                       name="lat"
@@ -103,7 +119,7 @@ const EventTile = props => {
                     />
                   </div>
                   <div className="col-sm-6">
-                    <label>Longitude</label>
+                    <label htmlFor="lng">Longitude</label>
                     <input
                       type="text"
                       name="lng"
