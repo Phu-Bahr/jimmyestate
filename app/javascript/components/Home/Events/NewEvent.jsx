@@ -4,6 +4,7 @@ import {
   postNoScrollFetch
 } from "../../Constants/FetchComponent";
 import { AddButton } from "../../Constants/Buttons";
+import moment from "moment";
 
 class NewEvent extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class NewEvent extends Component {
       lat: "",
       lng: "",
       geoData: [],
-      refreshKey: false
+      refreshKey: false,
+      timeEnd: ""
     };
   }
 
@@ -31,7 +33,8 @@ class NewEvent extends Component {
       time: "",
       flier: "",
       lat: "",
-      lng: ""
+      lng: "",
+      timeEnd: ""
     });
   };
 
@@ -56,12 +59,23 @@ class NewEvent extends Component {
 
     Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)
       ? alert("Please choose a current or future date!")
+      : this.state.timeEnd <= this.state.time
+      ? alert("Ending time can not be before start time.")
       : getGeocodeEvent(location, this.mountLatLng, this.props.alertType);
   };
 
   submit = () => {
     const url = `/api/v1/${this.props.urlPath}`;
-    const { title, location, date, time, flier, lat, lng } = this.state;
+    const {
+      title,
+      location,
+      date,
+      time,
+      flier,
+      lat,
+      lng,
+      timeEnd
+    } = this.state;
 
     const body = {
       title,
@@ -70,7 +84,8 @@ class NewEvent extends Component {
       time,
       flier,
       lat,
-      lng
+      lng,
+      timeEnd
     };
 
     postNoScrollFetch(url, body, this.props.alertType)
@@ -86,7 +101,7 @@ class NewEvent extends Component {
             <h2>Add new event here:</h2>
           </header>
         </div>
-        <div className="col-sm-12 col-lg-6 pb-4 container mx-auto">
+        <div className="col-sm-12 col-md-6 col-lg-6 pb-4 container mx-auto">
           <form onSubmit={this.onSubmit}>
             <input
               type="text"
@@ -98,6 +113,7 @@ class NewEvent extends Component {
               value={this.state.title}
               placeholder="Name of Event"
             />
+
             <input
               type="text"
               name="location"
@@ -108,6 +124,7 @@ class NewEvent extends Component {
               value={this.state.location}
               placeholder="Location Address"
             />
+
             <input
               type="date"
               name="date"
@@ -118,16 +135,35 @@ class NewEvent extends Component {
               value={this.state.date}
               placeholder="Enter Date of event here."
             />
-            <input
-              type="time"
-              name="time"
-              id="time"
-              className="form-control"
-              required
-              onChange={this.onChange}
-              value={this.state.time}
-              placeholder="Enter time of event here."
-            />
+
+            <div className="row">
+              <div className="col-md-6">
+                <input
+                  type="time"
+                  name="time"
+                  id="time"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                  value={this.state.time}
+                  placeholder="Enter time of event here."
+                />
+              </div>
+
+              <div className="col-md-6">
+                <input
+                  type="time"
+                  name="timeEnd"
+                  id="timeEnd"
+                  className="form-control"
+                  required
+                  onChange={this.onChange}
+                  value={this.state.timeEnd}
+                  placeholder="Enter time of event here."
+                />
+              </div>
+            </div>
+
             <input
               type="text"
               name="flier"
