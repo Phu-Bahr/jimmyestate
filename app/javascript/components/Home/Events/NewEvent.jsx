@@ -136,31 +136,46 @@ class NewEvent extends Component {
               placeholder="Enter Date of event here."
             />
 
-            <div className="row">
+            <div className="row pt-2">
               <div className="col-md-6">
-                <input
-                  type="time"
-                  name="time"
-                  id="time"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.time}
-                  placeholder="Enter time of event here."
-                />
+                <div className="row">
+                  <div className="col-md-4 p-2">
+                    <label htmlFor="time">Starting</label>
+                  </div>
+                  <div className="col-md-8">
+                    <input
+                      type="time"
+                      name="time"
+                      id="time"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                      value={this.state.time}
+                      placeholder="Enter time of event here."
+                      style={{ display: "inline-block" }}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="col-md-6">
-                <input
-                  type="time"
-                  name="timeEnd"
-                  id="timeEnd"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                  value={this.state.timeEnd}
-                  placeholder="Enter time of event here."
-                />
+                <div className="row">
+                  <div className="col-md-4 p-2">
+                    <label htmlFor="timeEnd">Ending</label>
+                  </div>
+                  <div className="col-md-8">
+                    <input
+                      type="time"
+                      name="timeEnd"
+                      id="timeEnd"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                      value={this.state.timeEnd}
+                      placeholder="Enter end time of event here."
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
