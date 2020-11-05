@@ -5,6 +5,7 @@ import { gaNavLinks } from "../Constants/GoogleAnalyticEvents";
 
 const urlPath = "partner_categories";
 const editUrlPath = "edit-partner-category";
+const urlPathPartnerAlias = "preferred-services";
 
 class PartnerList extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class PartnerList extends Component {
               )}
               <div className={admin ? "ellipsis" : "ellipsis container"}>
                 <Link
-                  to={`/${urlPath}/${element.id}`}
+                  to={`/${urlPathPartnerAlias}/${element.id}`}
                   className={admin ? "" : "dropdown-item navbar-underline"}
                   style={admin ? { fontSize: "13px" } : { fontSize: "" }}
                 >
