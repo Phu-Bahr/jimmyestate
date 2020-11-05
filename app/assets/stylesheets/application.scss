@@ -796,6 +796,7 @@ $gradient: #00b5f5;
 .companycontent {
   background: whitesmoke;
   font-size: 26px;
+  border-radius: 10px;
 }
 
 .companyfont {
@@ -952,6 +953,7 @@ $gradient: #00b5f5;
   -webkit-box-shadow: 0px 10px 13px -7px #000000;
   box-shadow: 0px 10px 13px -7px #000000;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .hvr-bounce-to-right:before {
@@ -981,13 +983,16 @@ $gradient: #00b5f5;
   -webkit-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  border-radius: 10px;
 }
+
 .hvr-bounce-to-right:hover,
 .hvr-bounce-to-right:focus,
 .hvr-bounce-to-right:active {
   color: white;
   cursor: pointer;
 }
+
 .hvr-bounce-to-right:active {
   color: white;
   cursor: pointer;
@@ -1004,7 +1009,6 @@ $gradient: #00b5f5;
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   -o-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-  border-radius: 10px;
 }
 
 .helper-card {
