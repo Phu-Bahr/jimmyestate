@@ -192,7 +192,7 @@ class NavbarContainer extends Component {
         </li>
 
         <li className="nav-item m-0 dropdown">
-          {headerLink("Business Partners")}
+          {headerLink("Preferred Services")}
           <div
             className="dropdown-menu dropdown-menu-right dropdown-menu-lg-right dropdown-menu-xl-right py-3 animate slideIn"
             aria-labelledby="navbarDropdown"
@@ -212,7 +212,7 @@ class NavbarContainer extends Component {
                   to="/add-partner-category"
                   className="dropdown-item navbar-underline"
                 >
-                  Add Partner Category
+                  Add Preferred Services
                 </Link>
               </Fragment>
             )}

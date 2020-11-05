@@ -8,6 +8,7 @@ import { gaCards, gaLinks } from "../../Constants/GoogleAnalyticEvents";
 const urlPathCustom = "custom_cards";
 const urlPathPartner = "partner_categories";
 const urlPathTowns = "towns";
+const urlPathPartnerAlias = "preferred-services";
 
 class CustomCards extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class CustomCards extends Component {
       return (
         <div className="col-md-6" key={element.id}>
           <Link
-            to={`/${urlPathPartner}/${element.id}`}
+            to={`/${urlPathPartnerAlias}/${element.id}`}
             className="helperL py-1"
             onClick={() => gaLinks(`${element.name} from Partners Card`)}
           >

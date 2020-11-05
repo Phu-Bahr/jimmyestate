@@ -6,6 +6,8 @@ import { postFetch } from "../Constants/FetchComponent";
 import { AddButton } from "../Constants/Buttons";
 
 const urlPath = "partner_categories";
+const urlPathPartnerAlias = "preferred-services";
+
 class NewPartner extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class NewPartner extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   mountState = body => this.setState({ idToAdd: body.id });
   directToPath = () => {
-    this.props.history.push(`/${urlPath}/${this.state.idToAdd}`);
+    this.props.history.push(`/${urlPathPartnerAlias}/${this.state.idToAdd}`);
     window.location.reload(false);
   };
 
@@ -39,7 +41,7 @@ class NewPartner extends Component {
 
   render() {
     const dataForm = {
-      name: "Partner name (nav bar)",
+      name: "Preferred name (nav bar)",
       bannerImage: "Banner Image URL",
       headerText1: "Header text 1",
       headerText2: "Header text 2"
@@ -56,7 +58,7 @@ class NewPartner extends Component {
         <FadeIn>
           <div className="newPartnerWrapper">
             <div className="form">
-              <h1 className="mb-5">Add new partner here</h1>
+              <h1 className="mb-5">Add new Service here</h1>
 
               <form onSubmit={this.onSubmit}>
                 <FormMaps
@@ -65,7 +67,7 @@ class NewPartner extends Component {
                   value={this.state}
                 />
 
-                <AddButton className="mt-3" value="Create Partner Category" />
+                <AddButton className="mt-3" value="Create Preferred Service" />
 
                 <Link to="/" className="btn btn-link mt-3 ">
                   Back to Home Page
