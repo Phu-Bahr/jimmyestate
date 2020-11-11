@@ -807,10 +807,10 @@ $gradient: #00b5f5;
   }
   &__image {
     width: 100%;
-    -webkit-filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
-      brightness(95%) contrast(90%);
-    filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
-      brightness(95%) contrast(90%);
+    // -webkit-filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
+    //   brightness(95%) contrast(90%);
+    // filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
+    //   brightness(95%) contrast(90%);
   }
 }
 
