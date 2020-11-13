@@ -479,6 +479,7 @@ body,
 .navbar-underline:link {
   text-decoration: none;
   font-size: 15px;
+  display: inline-block;
 }
 
 .navbar-underline:hover,
@@ -811,6 +812,15 @@ $gradient: #00b5f5;
     //   brightness(95%) contrast(90%);
     // filter: invert(69%) sepia(70%) saturate(419%) hue-rotate(41deg)
     //   brightness(95%) contrast(90%);
+  }
+}
+
+.footer-link-format {
+  color: $rtnColor;
+  font-size: 20px;
+
+  &:not(:last-child) {
+    padding-right: 20px;
   }
 }
 
@@ -1725,6 +1735,10 @@ a:hover {
 //privacy page
 
 .privacyContent {
+  padding-top: 80px;
+  min-height: 80vh;
+}
+.privacyContentAdmin {
   padding-top: 150px;
   min-height: 80vh;
 }
