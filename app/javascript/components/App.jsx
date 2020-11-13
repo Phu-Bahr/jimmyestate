@@ -29,6 +29,7 @@ import PartnerShowPage from "./JimmyPartners/PartnerShowPage";
 import EditPartner from "./JimmyPartners/EditPartner";
 import NotFoundPage from "./Constants/NotFoundPage";
 import PrivacyPolicy from "./Constants/PrivacyPolicy";
+import Disclosure from "./Constants/Disclosure";
 
 library.add(fab, faTrashAlt, faEdit);
 
@@ -313,6 +314,17 @@ class App extends Component {
             path="/privacy-policy"
             render={props => (
               <PrivacyPolicy
+                {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/disclosure"
+            render={props => (
+              <Disclosure
                 {...props}
                 loggedInStatus={this.state.loggedInStatus}
                 user={this.state.user}

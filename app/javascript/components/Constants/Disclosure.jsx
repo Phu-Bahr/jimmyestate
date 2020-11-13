@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
 import DraftJSComponent from "./DraftJSComponent";
-import { userInfo } from "os";
 
-const urlPath = "privacy_policies";
+const urlPath = "disclosures";
 
-const PrivacyPolicy = props => {
+const Disclosure = props => {
   return (
     <Fragment>
       <div className="container">
@@ -20,4 +19,4 @@ const PrivacyPolicy = props => {
   );
 };
 
-export default PrivacyPolicy;
+export default Disclosure;

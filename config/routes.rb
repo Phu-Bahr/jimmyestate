@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       resources :custom_cards, only: [:index, :update]
       resources :card_drafts, only: [:index, :update, :create]
       resources :privacy_policies, only: [:index, :update, :create]
+      resources :disclosures, only: [:index, :update, :create]
      
     end
   end

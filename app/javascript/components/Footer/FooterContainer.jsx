@@ -193,13 +193,20 @@ class FooterContainer extends Component {
             />
           )}
 
-          <div className="text-center">
+          <div className="text-center py-3">
             <Link
               to="/privacy-policy"
-              style={{ color: "#8cce3c", fontSize: "20px" }}
+              className="footer-link-format"
               onClick={() => gaLinks("Privacy Policy")}
             >
               Privacy Policy
+            </Link>
+            <Link
+              to="/disclosure"
+              className="footer-link-format"
+              onClick={() => gaLinks("Disclosure")}
+            >
+              Disclosures
             </Link>
           </div>
 
