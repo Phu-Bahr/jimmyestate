@@ -20,7 +20,7 @@ class NewEvent extends Component {
       geoData: [],
       refreshKey: false,
       timeEnd: "",
-      link: ""
+      link: null
     };
   }
 
