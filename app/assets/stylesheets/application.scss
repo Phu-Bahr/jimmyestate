@@ -827,7 +827,6 @@ $gradient: #00b5f5;
 .copy-right {
   font-size: 14px;
   text-align: center;
-
   font-style: italic;
   &__jimmy {
     display: block;
@@ -907,7 +906,7 @@ $gradient: #00b5f5;
 
 // end of login
 
-// announcements
+// events
 
 .img_wrapper {
   width: 100%;
@@ -1053,15 +1052,21 @@ $gradient: #00b5f5;
 .hvr-bounce-to-right:focus,
 .hvr-bounce-to-right:active {
   color: white;
-  cursor: pointer;
+  a {
+    color: white;
+  }
 }
 
 .hvr-bounce-to-right:active {
   color: white;
-  cursor: pointer;
+
   transform: translateY(2px);
   -webkit-box-shadow: 0px 10px 10px -10px #000000;
   box-shadow: 0px 10px 10px -10px #000000;
+
+  a {
+    color: white;
+  }
 }
 .hvr-bounce-to-right:hover:before,
 .hvr-bounce-to-right:focus:before,
@@ -1124,7 +1129,18 @@ $gradient: #00b5f5;
   }
 }
 
-// end of announcements
+.edit-event-container {
+  label {
+    font-size: 16px;
+  }
+}
+
+.event-tile-link {
+  color: $rtnColor;
+  transition: all 0.2s ease-out;
+}
+
+// end of events
 
 // beginning SHOWPAGE
 

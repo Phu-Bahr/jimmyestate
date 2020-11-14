@@ -32,7 +32,8 @@ class EventContainer extends Component {
       typeOfAlert: null,
       idForAlert: null,
       id: null,
-      timeEnd: ""
+      timeEnd: "",
+      link: ""
     };
     this.submitNewEvent = createRef();
   }
@@ -56,7 +57,7 @@ class EventContainer extends Component {
     return year + "-" + month + "-" + date;
   };
 
-  editCurrentEventState = (a, b, c, d, e, f, g, h, i) => {
+  editCurrentEventState = (a, b, c, d, e, f, g, h, i, j) => {
     if (this.state.selectedStepId === f) {
       this.setState({
         title: a,
@@ -66,7 +67,8 @@ class EventContainer extends Component {
         flier: e,
         lat: g,
         lng: h,
-        timeEnd: i
+        timeEnd: i,
+        link: j
       });
     } else {
       this.setState({
@@ -78,7 +80,8 @@ class EventContainer extends Component {
         selectedStepId: f,
         lat: g,
         lng: h,
-        timeEnd: i
+        timeEnd: i,
+        link: j
       });
     }
   };
@@ -99,7 +102,8 @@ class EventContainer extends Component {
       flier,
       lat,
       lng,
-      timeEnd
+      timeEnd,
+      link
     } = this.state;
 
     const body = {
@@ -110,7 +114,8 @@ class EventContainer extends Component {
       flier,
       lat,
       lng,
-      timeEnd
+      timeEnd,
+      link
     };
 
     Date.parse(this.ShowCurrentDate()) > Date.parse(this.state.date)
@@ -128,7 +133,8 @@ class EventContainer extends Component {
               flier: "",
               lat: "",
               lng: "",
-              timeEnd: ""
+              timeEnd: "",
+              link: ""
             })
           )
           .then(this.toggleRefreshKey);
@@ -195,7 +201,8 @@ class EventContainer extends Component {
           element.id,
           element.lat,
           element.lng,
-          element.timeEnd
+          element.timeEnd,
+          element.link
         );
         this.setSelectedStep(element.id);
         gaEvents(`${element.title} event`);
@@ -209,6 +216,7 @@ class EventContainer extends Component {
       let latState;
       let lngState;
       let timeEndState;
+      let linkState;
 
       this.state.selectedStepId === element.id
         ? ((titleState = this.state.title),
@@ -218,7 +226,8 @@ class EventContainer extends Component {
           (flierState = this.state.flier),
           (latState = this.state.lat),
           (lngState = this.state.lng),
-          (timeEndState = this.state.timeEnd))
+          (timeEndState = this.state.timeEnd),
+          (linkState = this.state.link))
         : ((titleState = ""),
           (locationState = ""),
           (dateState = ""),
@@ -226,7 +235,8 @@ class EventContainer extends Component {
           (flierState = ""),
           (latState = ""),
           (lngState = ""),
-          (timeEndState = ""));
+          (timeEndState = ""),
+          (linkState = ""));
 
       return (
         <EventTile
@@ -252,6 +262,8 @@ class EventContainer extends Component {
           user={this.props.user}
           timeEnd={element.timeEnd}
           timeEndState={timeEndState}
+          link={element.link}
+          linkState={linkState}
         />
       );
     });
@@ -313,12 +325,14 @@ class EventContainer extends Component {
               <section className="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div className="row">
                   <figure className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
-                    <img
-                      className="img_wrapper"
-                      src={this.state.flier}
-                      alt={`Event image ` + this.state.id}
-                      style={{ boxShadow: "0px 10px 13px -7px #000000" }}
-                    />
+                    <a href={`//` + this.state.link} target="_blank">
+                      <img
+                        className="img_wrapper"
+                        src={this.state.flier}
+                        alt={`Event image ` + this.state.id}
+                        style={{ boxShadow: "0px 10px 13px -7px #000000" }}
+                      />
+                    </a>
                     {/* <Testimonials user={this.props.user}/> */}
                   </figure>
 

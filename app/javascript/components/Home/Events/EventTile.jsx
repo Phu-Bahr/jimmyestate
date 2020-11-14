@@ -15,7 +15,15 @@ const EventTile = props => {
     <Fragment>
       <div className="mobile-view companycontent">
         <div className="hvr-bounce-to-right p-3 mb-3" onClick={props.payload}>
-          <div>{props.title}</div>
+          <div>
+            <a
+              href={`//` + props.link}
+              target="_blank"
+              className="event-tile-link"
+            >
+              {props.title}
+            </a>
+          </div>
           <div>{props.location}</div>
           <div>
             <span style={{ display: "block" }}>
@@ -25,6 +33,13 @@ const EventTile = props => {
               {convert(props.time)} - {convert(props.timeEnd)}
             </span>
           </div>
+          <a
+            href={`//` + props.link}
+            target="_blank"
+            className="event-tile-link"
+          >
+            Link
+          </a>
         </div>
         {props.user.admin && (
           <div className="pb-3">
@@ -33,7 +48,7 @@ const EventTile = props => {
 
             <div className={"p-4" + " " + props.hideUpdate}>
               <form onSubmit={props.submitUpdate}>
-                <div className="row">
+                <div className="row edit-event-container">
                   <div className="col-sm-6">
                     <label htmlFor="title">Name of Event</label>
                     <input
@@ -62,6 +77,17 @@ const EventTile = props => {
                         value="Update Geocode"
                       />
                     </div>
+                  </div>
+                  <div className="col-sm-12 col-lg-6">
+                    <label htmlFor="link">Link for Event</label>
+                    <input
+                      type="link"
+                      name="link"
+                      id="link"
+                      className="form-control"
+                      onChange={props.onChange}
+                      value={props.linkState}
+                    />
                   </div>
                   <div className="col-sm-12 col-lg-6">
                     <label htmlFor="date">Date of Event</label>
@@ -96,7 +122,7 @@ const EventTile = props => {
                       value={props.timeEndState}
                     />
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-sm-12">
                     <label htmlFor="flier">Image URL</label>
                     <input
                       type="text"
