@@ -19,11 +19,11 @@ class Home extends Component {
     return (
       <main>
         <AlertBox {...this.state} alertType={this.alertType} />
-        {/* <JumbotronContainer {...this.props} />
+        <JumbotronContainer {...this.props} />
 
         <ScrollAnimation animateIn="fadeIn">
           <BoxContainer />
-        </ScrollAnimation> */}
+        </ScrollAnimation>
 
         <ScrollAnimation animateIn="fadeIn">
           <AnnouncementContainer {...this.props} alertType={this.alertType} />
