@@ -19,7 +19,8 @@ class NewEvent extends Component {
       lng: "",
       geoData: [],
       refreshKey: false,
-      timeEnd: ""
+      timeEnd: "",
+      link: ""
     };
   }
 
@@ -34,7 +35,8 @@ class NewEvent extends Component {
       flier: "",
       lat: "",
       lng: "",
-      timeEnd: ""
+      timeEnd: "",
+      link: ""
     });
   };
 
@@ -74,7 +76,8 @@ class NewEvent extends Component {
       flier,
       lat,
       lng,
-      timeEnd
+      timeEnd,
+      link
     } = this.state;
 
     const body = {
@@ -85,7 +88,8 @@ class NewEvent extends Component {
       flier,
       lat,
       lng,
-      timeEnd
+      timeEnd,
+      link
     };
 
     postNoScrollFetch(url, body, this.props.alertType)
@@ -125,16 +129,47 @@ class NewEvent extends Component {
               placeholder="Location Address"
             />
 
-            <input
-              type="date"
-              name="date"
-              id="date"
-              className="form-control"
-              required
-              onChange={this.onChange}
-              value={this.state.date}
-              placeholder="Enter Date of event here."
-            />
+            <div className="row pt-2">
+              <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-4 p-2">
+                    <label htmlFor="link">Link</label>
+                  </div>
+                  <div className="col-md-8">
+                    <input
+                      type="text"
+                      name="link"
+                      id="link"
+                      className="form-control"
+                      onChange={this.onChange}
+                      value={this.state.link}
+                      placeholder="Enter link of event here."
+                      style={{ display: "inline-block" }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-4 p-2">
+                    <label htmlFor="date">Date</label>
+                  </div>
+                  <div className="col-md-8">
+                    <input
+                      type="date"
+                      name="date"
+                      id="date"
+                      className="form-control"
+                      required
+                      onChange={this.onChange}
+                      value={this.state.date}
+                      placeholder="Enter Date of event here."
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div className="row pt-2">
               <div className="col-md-6">
