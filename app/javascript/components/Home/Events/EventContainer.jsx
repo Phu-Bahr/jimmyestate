@@ -33,7 +33,7 @@ class EventContainer extends Component {
       idForAlert: null,
       id: null,
       timeEnd: "",
-      link: ""
+      link: null
     };
     this.submitNewEvent = createRef();
   }
@@ -141,6 +141,8 @@ class EventContainer extends Component {
   };
 
   mountState = body => {
+    console.log("mountstate", body);
+
     body.length == 0
       ? this.setState({
           eventData: body,
@@ -148,14 +150,16 @@ class EventContainer extends Component {
           lat: "",
           lng: "",
           id: "",
-          location: ""
+          location: "",
+          link: ""
         })
       : this.setState({
           eventData: body,
-          flier: body[body.length - 1].flier,
-          lat: body[body.length - 1].lat,
-          lng: body[body.length - 1].lng,
-          id: body[body.length - 1].id
+          flier: body[0].flier,
+          lat: body[0].lat,
+          lng: body[0].lng,
+          id: body[0].id,
+          link: body[0].link
         });
   };
 
@@ -177,6 +181,8 @@ class EventContainer extends Component {
   };
 
   render() {
+    console.log(this.state);
+
     let events = this.state.eventData.map(element => {
       let hideUpdate;
       element.id === this.state.selectedStepId
@@ -325,14 +331,24 @@ class EventContainer extends Component {
               <section className="col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <div className="row">
                   <figure className="col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
-                    <a href={`//` + this.state.link} target="_blank">
+                    {this.state.link == null || this.state.link == "" ? (
                       <img
                         className="img_wrapper"
                         src={this.state.flier}
                         alt={`Event image ` + this.state.id}
                         style={{ boxShadow: "0px 10px 13px -7px #000000" }}
                       />
-                    </a>
+                    ) : (
+                      <a href={`//` + this.state.link} target="_blank">
+                        <img
+                          className="img_wrapper"
+                          src={this.state.flier}
+                          alt={`Event image ` + this.state.id}
+                          style={{ boxShadow: "0px 10px 13px -7px #000000" }}
+                        />
+                      </a>
+                    )}
+
                     {/* <Testimonials user={this.props.user}/> */}
                   </figure>
 

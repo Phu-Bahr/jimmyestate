@@ -16,13 +16,17 @@ const EventTile = props => {
       <div className="mobile-view companycontent">
         <div className="hvr-bounce-to-right p-3 mb-3" onClick={props.payload}>
           <div>
-            <a
-              href={`//` + props.link}
-              target="_blank"
-              className="event-tile-link"
-            >
-              {props.title}
-            </a>
+            {props.link == null || props.link == "" ? (
+              props.title
+            ) : (
+              <a
+                href={`//` + props.link}
+                target="_blank"
+                className="event-tile-link"
+              >
+                {props.title}
+              </a>
+            )}
           </div>
           <div>{props.location}</div>
           <div>
@@ -33,13 +37,15 @@ const EventTile = props => {
               {convert(props.time)} - {convert(props.timeEnd)}
             </span>
           </div>
-          <a
-            href={`//` + props.link}
-            target="_blank"
-            className="event-tile-link"
-          >
-            Link
-          </a>
+          {props.link == null || props.link == "" ? null : (
+            <a
+              href={`//` + props.link}
+              target="_blank"
+              className="event-tile-link"
+            >
+              Link
+            </a>
+          )}
         </div>
         {props.user.admin && (
           <div className="pb-3">
