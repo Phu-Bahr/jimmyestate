@@ -176,7 +176,7 @@ class FooterContainer extends Component {
 
         <div className="footerbackground py-5">
           <div className="container">
-            <div className="row">
+            <div className="row mx-auto">
               {footerOfficeData}
               {footerContactUsData}
               {footerSocialData}
@@ -209,6 +209,22 @@ class FooterContainer extends Component {
               Disclosures
             </Link>
           </div>
+
+          <p className="copy-right">
+            <span className="copy-right__jimmy">
+              Copyright &copy; 2020 by Jimmy Chao, All rights reserved
+            </span>
+            <span>
+              Built by
+              <a
+                className="copy-right__tony"
+                href="https://www.tonyphu.com/"
+                target="_blank"
+              >
+                Tony Phu
+              </a>
+            </span>
+          </p>
 
           <Link
             to="/login"
