@@ -154,6 +154,21 @@ class AboutContainer extends Component {
                 <AboutJimmyContent {...this.state} />
               </div>
             </div>
+
+            <div
+            // style={{ height: "315px", width: "560px", position: "relative" }}
+            >
+              <div className="iframe-container">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/_GEt5HGQ_v0"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
           </main>
 
           {this.props.user.admin && (
