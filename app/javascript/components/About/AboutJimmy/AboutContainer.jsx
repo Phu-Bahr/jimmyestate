@@ -162,12 +162,17 @@ class AboutContainer extends Component {
                 <iframe
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/_GEt5HGQ_v0"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+                  src="https://www.youtube.com/embed/W8Uafr5l7I4?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&autohide=0"
+                  frameborder="0"
                 ></iframe>
               </div>
+              {/* <video className="bg-video__content" autoPlay muted loop>
+                <source
+                  src=""
+                  type="video/mp4"
+                  className=""
+                />
+              </video> */}
             </div>
           </main>
 
