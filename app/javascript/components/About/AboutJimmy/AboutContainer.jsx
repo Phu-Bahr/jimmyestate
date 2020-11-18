@@ -160,9 +160,9 @@ class AboutContainer extends Component {
             >
               <div className="iframe-container">
                 <iframe
+                  src="https://www.youtube.com/embed/W8Uafr5l7I4?autoplay=1&loop=1&showinfo=0&rel=0&playlist=W8Uafr5l7I4"
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/W8Uafr5l7I4?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&autohide=0"
                   frameborder="0"
                 ></iframe>
               </div>
