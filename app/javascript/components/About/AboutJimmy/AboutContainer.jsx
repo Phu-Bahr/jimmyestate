@@ -160,10 +160,12 @@ class AboutContainer extends Component {
             >
               <div className="iframe-container">
                 <iframe
-                  src="https://www.youtube.com/embed/W8Uafr5l7I4?autoplay=1&loop=1&showinfo=0&rel=0&playlist=W8Uafr5l7I4"
                   width="560"
                   height="315"
-                  frameborder="0"
+                  src="https://www.youtube.com/embed/9lNmW5Amz_I?autoplay=1&loop=1&showinfo=0&rel=0&playlist=9lNmW5Amz_I"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 ></iframe>
               </div>
               {/* <video className="bg-video__content" autoPlay muted loop>
