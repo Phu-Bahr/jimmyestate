@@ -24,8 +24,18 @@ const FooterEditContactUs = props => {
           {props.contact2}
         </a>
       </div>
-      <div className="footerAlignment">{props.contact3}</div>
-      <div className="footerAlignment">{props.contact4}</div>
+
+      <div className="footerAlignment">
+        <a
+          href={props.contact4}
+          style={{ color: "black" }}
+          onClick={() => gaContactLinks("Youtube Footer")}
+          target="_blank"
+        >
+          <div className="fa fa-youtube pr-2 contact-icons" />
+          {props.contact3}
+        </a>
+      </div>
     </section>
   );
 };
