@@ -28,7 +28,14 @@ let bannerForms = {
   bannerText2: "Banner Text 2"
 };
 
-const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
+const AboutContainerForm = ({
+  onChange,
+  onSubmit,
+  hideDiv,
+  value,
+  admin,
+  youtube
+}) => {
   return (
     <Fragment>
       {hideDiv && admin && (
@@ -50,6 +57,18 @@ const AboutContainerForm = ({ onChange, onSubmit, hideDiv, value, admin }) => {
                     formConst={paragraphForms}
                     onChange={onChange}
                     value={value}
+                  />
+
+                  <label htmlFor="youtube">
+                    Youtube Embed ID i.e. 9lNaW5Amz_I
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="youtube"
+                    name="youtube"
+                    onChange={onChange}
+                    value={value.youtube}
                   />
                 </div>
                 <div className="col-md-3">

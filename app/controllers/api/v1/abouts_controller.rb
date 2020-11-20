@@ -35,6 +35,7 @@ class Api::V1::AboutsController < ApplicationController
                 :photoemail,
                 :photoaddress1,
                 :photoaddress2,
-                :bannerImage)
+                :bannerImage,
+                :youtube)
         end
 end
