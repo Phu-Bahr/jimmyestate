@@ -11,7 +11,7 @@ class BoxContainer extends Component {
       <section className="section-features">
         <div className="container h-100 p-5">
           <div className="row h-100">
-            <div className="col-sm-12 col-md-12 col-lg-4 my-auto">
+            <div className="col-sm-12 col-md-12 col-lg-4 py-3 my-auto">
               <div className="feature-box">
                 <i className="feature-box__icon icon-basic-spread-text"></i>
                 <h2 className="feature-box__heading">Get Educated</h2>
