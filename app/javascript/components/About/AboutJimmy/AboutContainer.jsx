@@ -40,7 +40,8 @@ class AboutContainer extends Component {
       hideDiv: false,
       bannerImage: "",
       typeOfAlert: null,
-      loading: null
+      loading: null,
+      youtube: ""
     };
   }
 
@@ -69,7 +70,8 @@ class AboutContainer extends Component {
       photoemail,
       photoaddress1,
       photoaddress2,
-      bannerImage
+      bannerImage,
+      youtube
     } = this.state;
 
     const body = {
@@ -89,7 +91,8 @@ class AboutContainer extends Component {
       photoemail,
       photoaddress1,
       photoaddress2,
-      bannerImage
+      bannerImage,
+      youtube
     };
 
     putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
@@ -116,7 +119,8 @@ class AboutContainer extends Component {
       photoaddress1: body[body.length - 1].photoaddress1,
       photoaddress2: body[body.length - 1].photoaddress2,
       bannerImage: body[body.length - 1].bannerImage,
-      loading: true
+      loading: true,
+      youtube: body[body.length - 1].youtube
     });
   };
 
@@ -129,6 +133,8 @@ class AboutContainer extends Component {
     );
 
   render() {
+    console.log(this.state.youtube);
+
     return (
       <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
@@ -155,27 +161,30 @@ class AboutContainer extends Component {
               </div>
             </div>
 
-            <div
-            // style={{ height: "315px", width: "560px", position: "relative" }}
-            >
+            {this.state.youtube && (
               <div className="iframe-container">
                 <iframe
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/9lNmW5Amz_I?autoplay=1&loop=1&showinfo=0&rel=0&playlist=9lNmW5Amz_I"
+                  src={
+                    `https://www.youtube.com/embed/` +
+                    this.state.youtube +
+                    `?autoplay=1&loop=1&showinfo=0&rel=0&playlist=` +
+                    this.state.youtube
+                  }
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
               </div>
-              {/* <video className="bg-video__content" autoPlay muted loop>
+            )}
+            {/* <video className="bg-video__content" autoPlay muted loop>
                 <source
                   src=""
                   type="video/mp4"
                   className=""
                 />
               </video> */}
-            </div>
           </main>
 
           {this.props.user.admin && (
