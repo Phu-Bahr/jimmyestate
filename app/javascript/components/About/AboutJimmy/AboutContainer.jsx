@@ -154,6 +154,28 @@ class AboutContainer extends Component {
                 <AboutJimmyContent {...this.state} />
               </div>
             </div>
+
+            <div
+            // style={{ height: "315px", width: "560px", position: "relative" }}
+            >
+              <div className="iframe-container">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/9lNmW5Amz_I?autoplay=1&loop=1&showinfo=0&rel=0&playlist=9lNmW5Amz_I"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              {/* <video className="bg-video__content" autoPlay muted loop>
+                <source
+                  src=""
+                  type="video/mp4"
+                  className=""
+                />
+              </video> */}
+            </div>
           </main>
 
           {this.props.user.admin && (

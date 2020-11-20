@@ -176,7 +176,7 @@ class FooterContainer extends Component {
 
         <div className="footerbackground py-5">
           <div className="container">
-            <div className="row">
+            <div className="row mx-auto">
               {footerOfficeData}
               {footerContactUsData}
               {footerSocialData}
@@ -193,15 +193,38 @@ class FooterContainer extends Component {
             />
           )}
 
-          <div className="text-center">
+          <div className="text-center py-3">
             <Link
               to="/privacy-policy"
-              style={{ color: "#8cce3c", fontSize: "20px" }}
+              className="footer-link-format"
               onClick={() => gaLinks("Privacy Policy")}
             >
               Privacy Policy
             </Link>
+            <Link
+              to="/disclosure"
+              className="footer-link-format"
+              onClick={() => gaLinks("Disclosure")}
+            >
+              Disclosures
+            </Link>
           </div>
+
+          <p className="copy-right">
+            <span className="copy-right__jimmy">
+              Copyright &copy; 2020 by Jimmy Chao, All rights reserved
+            </span>
+            <span>
+              Built by
+              <a
+                className="copy-right__tony"
+                href="https://www.tonyphu.com/"
+                target="_blank"
+              >
+                Tony Phu
+              </a>
+            </span>
+          </p>
 
           <Link
             to="/login"

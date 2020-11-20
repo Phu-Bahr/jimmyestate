@@ -6,6 +6,7 @@ import { FormMaps, FadeIn } from "../Constants/Constants";
 import { UpdateButton } from "../Constants/Buttons";
 
 const urlPath = "partner_categories";
+const urlPathPartnerAlias = "preferred-services";
 
 class EditPartner extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class EditPartner extends Component {
   alertType = payload => this.setState({ typeOfAlert: payload });
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   directToPath = () => {
-    this.props.history.push(`/${urlPath}/${this.state.id}`);
+    this.props.history.push(`/${urlPathPartnerAlias}/${this.state.id}`);
     window.location.reload(false);
   };
 
@@ -63,7 +64,7 @@ class EditPartner extends Component {
 
   render() {
     const dataForm = {
-      name: "Edit your Partner here.",
+      name: "Edit your Service here.",
       bannerImage: "Banner Image URL",
       headerText1: "Header text 1",
       headerText2: "Header text 2"
@@ -80,7 +81,7 @@ class EditPartner extends Component {
         <FadeIn>
           <div className="newPartnerWrapper">
             <div className="form">
-              <h1 className="mb-5">Edit Partner here.</h1>
+              <h1 className="mb-5">Edit Service here.</h1>
 
               <form onSubmit={this.onSubmit}>
                 <FormMaps
@@ -89,14 +90,14 @@ class EditPartner extends Component {
                   value={this.state}
                 />
 
-                <UpdateButton className="mt-3" value="Submit Partner changes" />
+                <UpdateButton className="mt-3" value="Submit Service changes" />
 
                 <Link
-                  to={`/${urlPath}/${this.state.id}`}
+                  to={`/${urlPathPartnerAlias}/${this.state.id}`}
                   className="btn btn-link mt-3"
                   onClick={this.scrollToTop}
                 >
-                  Back to Partner
+                  Back to Service
                 </Link>
               </form>
             </div>
