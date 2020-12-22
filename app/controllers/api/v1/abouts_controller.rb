@@ -9,10 +9,10 @@ class Api::V1::AboutsController < ApplicationController
 
     def update
         about = About.find(params[:id])
-        puts "HELLO THERRRRRR"
-        puts about.youtube
-        puts about_params[:youtube]
-        puts "hi"
+        # puts "update hit"
+        # puts about.youtube
+        # puts about_params[:youtube]
+        # puts "update hit end"
         
         if about.update_attributes(about_params)
             render json: about
