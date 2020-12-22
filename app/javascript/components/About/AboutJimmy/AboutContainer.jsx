@@ -94,7 +94,6 @@ class AboutContainer extends Component {
       bannerImage,
       youtube
     };
-
     putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
@@ -133,8 +132,6 @@ class AboutContainer extends Component {
     );
 
   render() {
-    console.log(this.state.youtube);
-
     return (
       <Fragment>
         <AlertBox {...this.state} alertType={this.alertType} />
