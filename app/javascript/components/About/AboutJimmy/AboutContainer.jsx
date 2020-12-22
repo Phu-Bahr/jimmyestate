@@ -133,7 +133,7 @@ class AboutContainer extends Component {
     );
 
   render() {
-    console.log(this.state.youtube);
+    console.log(this.state.youtube, this.state.id);
 
     return (
       <Fragment>
