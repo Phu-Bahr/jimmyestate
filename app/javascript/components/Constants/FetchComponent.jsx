@@ -13,6 +13,8 @@ export const putFetch = (url, body, alertType) => {
     body: JSON.stringify(body)
   })
     .then(response => {
+      console.log("put response", response);
+
       if (response.ok) {
         alertType === undefined
           ? alert("Content has been updated")

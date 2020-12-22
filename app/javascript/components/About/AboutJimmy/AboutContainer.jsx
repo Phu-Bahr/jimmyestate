@@ -51,6 +51,8 @@ class AboutContainer extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = event => {
+    console.log("submit fired");
+
     event.preventDefault();
     const url = `/api/v1/${urlPath}/${this.state.id}`;
     const {
@@ -95,6 +97,8 @@ class AboutContainer extends Component {
       youtube
     };
 
+    console.log("body being sent to put =>", body.youtube);
+
     putFetch(url, body, this.alertType).then(this.toggleRefreshKey);
   };
 
@@ -133,7 +137,7 @@ class AboutContainer extends Component {
     );
 
   render() {
-    console.log(this.state.youtube, this.state.id);
+    console.log("yt state =>", this.state.youtube, this.state.id);
 
     return (
       <Fragment>
