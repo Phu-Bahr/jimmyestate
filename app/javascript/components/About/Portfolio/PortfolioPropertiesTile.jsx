@@ -43,7 +43,7 @@ const PortfolioPropertiesTile = props => {
             </div>
             <h1 className="card-title">
               <div>{`${props.streetnumber} ${props.street} ${props.aptnumber}`}</div>
-              <div>{`${props.city}, ${props.state} ${props.zip}`}</div>
+              <div>{`${props.city} ${props.state} ${props.zip}`}</div>
             </h1>
             <div className="card-creator"></div>
           </section>

@@ -20,12 +20,9 @@ class BoxContainer extends Component {
             <div className="col-sm-12 col-md-6 col-lg-4 py-3 my-auto">
               <div className="feature-box">
                 <div className="feature-box__icon ">
-                  <img
-                    src="https://icon-library.net//images/confidence-icon/confidence-icon-20.jpg"
-                    className="confidentIcon"
-                  />
+                  <i className="feature-box__icon icon-basic-message"></i>
                 </div>
-                <h2 className="feature-box__heading">Feel Confident</h2>
+                <h2 className="feature-box__heading">Be in the Know</h2>
               </div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4 py-3 my-auto">
