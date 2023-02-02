@@ -61,7 +61,7 @@ const FooterEditSocial = props => {
             >
               <img
                 src="https://icons-for-free.com/download-icon-zillow-1324440261255464341_256.ico"
-                alt="zillow icon"
+                alt="zillow iconn"
               />
             </a>
           </li>
