@@ -60,7 +60,7 @@ const FooterEditSocial = props => {
               onClick={() => gaSocialLinks("Zillow")}
             >
               <img
-                src="https://img.pngio.com/zillow-icon-png-91-images-in-collection-page-2-zillow-icon-png-512_512.png"
+                src="https://icons-for-free.com/download-icon-zillow-1324440261255464341_256.ico"
                 alt="zillow icon"
               />
             </a>
